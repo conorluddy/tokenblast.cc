@@ -115,6 +115,7 @@
       line-height: var(--leading-relaxed);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ===== Base Components ===== */
@@ -498,6 +499,7 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-4);
+      min-width: 0;
     }
 
     @media (max-width: 768px) {
@@ -721,6 +723,84 @@
 
     /* ===== Utilities ===== */
     .hidden { display: none !important; }
+
+    /* ===== Sticky Mobile Cost Bar ===== */
+    .mobile-cost-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: var(--space-2) var(--space-4);
+    }
+
+    .mobile-cost-bar__inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .mobile-cost-bar__label {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .mobile-cost-bar__track {
+      flex: 1;
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .mobile-cost-bar__fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width var(--transition-slow), background var(--transition-slow);
+    }
+
+    .mobile-cost-bar__dollars {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-bold);
+      letter-spacing: 1px;
+      min-width: 3.5em;
+      text-align: right;
+    }
+
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 768px) {
+      .mobile-cost-bar { display: block; }
+      .footer { padding-bottom: calc(var(--space-7) + 38px); }
+      .container { padding: 0 var(--space-3); }
+      .card--padded { padding: var(--space-3) var(--space-4); }
+      .card--padded-sm { padding: var(--space-3) var(--space-4); }
+      .header { padding: var(--space-6) 0 var(--space-4); }
+      .header h1 { font-size: var(--text-2xl); }
+      .preset-bar { padding: var(--space-3) 0 var(--space-5); }
+      .catalog-search { width: 100%; }
+      .catalog-header { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+      .flag-row { grid-template-columns: 1fr; gap: var(--space-2); }
+      .flag-control-wrapper { justify-content: flex-start; }
+      .preview-code { white-space: pre-wrap; word-break: break-all; }
+      .preview-hint { font-size: var(--text-2xs); }
+      .cost-row { grid-template-columns: 4.5em 1fr 2.5em; }
+      .preview-panel { min-width: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 var(--space-2); }
+      .card--padded, .card--padded-sm { padding: var(--space-2) var(--space-3); }
+      .flag-group summary { padding: var(--space-2) var(--space-3); font-size: var(--text-base); }
+      .preview-header { padding: var(--space-2) var(--space-3); }
+      .preview-code { padding: var(--space-3); font-size: 0.7rem; }
+      .btn--pill { padding: var(--space-1) var(--space-3); font-size: var(--text-sm); }
+    }
   </style>
 </head>
 <body>
@@ -773,6 +853,17 @@
     <p style="margin-top: 0.25rem;"><a href="https://tokenblast.cc">tokenblast.cc</a> &middot; Built by <a href="https://conor.fyi" target="_blank">Conor Luddy</a></p>
   </footer>
 
+</div>
+
+<!-- Sticky mobile cost bar -->
+<div class="mobile-cost-bar" id="mobile-cost-bar">
+  <div class="mobile-cost-bar__inner">
+    <span class="mobile-cost-bar__label">Est. Cost</span>
+    <div class="mobile-cost-bar__track">
+      <div class="mobile-cost-bar__fill" id="mobile-cost-fill"></div>
+    </div>
+    <span class="mobile-cost-bar__dollars" id="mobile-cost-dollars"></span>
+  </div>
 </div>
 
 <script>
@@ -1511,6 +1602,16 @@ function renderCostIndicator() {
   fill.style.background = color;
   label.textContent = text;
   label.style.color = color;
+
+  // Mobile sticky bar
+  const mFill = document.getElementById("mobile-cost-fill");
+  const mDollars = document.getElementById("mobile-cost-dollars");
+  if (mFill && mDollars) {
+    mFill.style.width = `${Math.max(ratio * 100, 5)}%`;
+    mFill.style.background = color;
+    mDollars.textContent = text;
+    mDollars.style.color = color;
+  }
 
   // Breakdown bars
   const breakdown = computeCostBreakdown(state);
