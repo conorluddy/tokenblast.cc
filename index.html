@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokenBlast — Config Generator for Claude Code</title>
+  <meta name="description" content="Interactive config generator for Claude Code environment flags. Find your preferred balance of cost, tokens, and thinking. tokenblast.cc">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4A5;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* --- Theme palette --- */
+      --strawberry-red: #e54b4b;
+      --tangerine-dream: #ffa987;
+      --seashell: #f7ebe8;
+      --graphite: #565554;
+      --shadow-grey: #1e1e24;
+
+      /* --- Color tokens (derived from palette) --- */
+      --bg-primary: var(--shadow-grey);
+      --bg-surface: #26252b;
+      --bg-elevated: #302e34;
+      --bg-hover: #3a383e;
+      --bg-accent-subtle: rgba(229, 75, 75, 0.06);
+      --border: #3e3c40;
+      --border-focus: var(--strawberry-red);
+      --text-primary: var(--seashell);
+      --text-secondary: #9b918c;
+      --text-muted: #625c59;
+      --accent: var(--strawberry-red);
+      --accent-hover: var(--tangerine-dream);
+      --accent-dim: #5c2525;
+      --status-success: #5cb870;
+      --status-warning: var(--tangerine-dream);
+      --status-danger: var(--strawberry-red);
+      --status-success-bg: rgba(92,184,112,0.15);
+      --status-warning-bg: rgba(255,169,135,0.15);
+      --status-danger-bg: rgba(229,75,75,0.15);
+
+      /* --- Spacing scale (4px base) --- */
+      --space-0: 0;
+      --space-1: 0.25rem;   /* 4px */
+      --space-2: 0.5rem;    /* 8px */
+      --space-3: 0.75rem;   /* 12px */
+      --space-4: 1rem;      /* 16px */
+      --space-5: 1.25rem;   /* 20px */
+      --space-6: 1.5rem;    /* 24px */
+      --space-7: 2rem;      /* 32px */
+      --space-8: 2.5rem;    /* 40px */
+      --space-10: 3rem;     /* 48px */
+
+      /* --- Typography scale --- */
+      --text-2xs: 0.6rem;
+      --text-xs: 0.7rem;
+      --text-sm: 0.75rem;
+      --text-base: 0.85rem;
+      --text-md: 0.9rem;
+      --text-lg: 0.95rem;
+      --text-xl: 1.1rem;
+      --text-2xl: 1.3rem;
+      --text-3xl: 2rem;
+      --font: 'Overpass Mono', monospace;
+      --weight-normal: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --leading-tight: 1.3;
+      --leading-normal: 1.5;
+      --leading-relaxed: 1.6;
+
+      /* --- Shape --- */
+      --radius-sm: 4px;
+      --radius: 8px;
+      --radius-pill: 999px;
+
+      /* --- Motion --- */
+      --transition: 0.2s ease;
+      --transition-slow: 0.4s ease;
+    }
+
+    /* --- Light mode overrides --- */
+    [data-theme="light"] {
+      --bg-primary: var(--seashell);
+      --bg-surface: #ffffff;
+      --bg-elevated: #ede4e1;
+      --bg-hover: #e2d8d4;
+      --bg-accent-subtle: rgba(229, 75, 75, 0.06);
+      --border: #d4c8c4;
+      --border-focus: var(--strawberry-red);
+      --text-primary: var(--shadow-grey);
+      --text-secondary: #5c5552;
+      --text-muted: #9b918c;
+      --accent: var(--strawberry-red);
+      --accent-hover: #cc3e3e;
+      --accent-dim: #f5d0d0;
+      --status-success: #3a8f4f;
+      --status-warning: #c97030;
+      --status-danger: var(--strawberry-red);
+      --status-success-bg: rgba(58,143,79,0.12);
+      --status-warning-bg: rgba(201,112,48,0.12);
+      --status-danger-bg: rgba(229,75,75,0.12);
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: var(--leading-relaxed);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Base Components ===== */
+
+    /* -- Card -- */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .card--padded {
+      padding: var(--space-4) var(--space-6);
+    }
+
+    .card--padded-sm {
+      padding: var(--space-5) var(--space-6);
+    }
+
+    /* -- Button -- */
+    .btn {
+      font-family: var(--font);
+      font-size: var(--text-base);
+      font-weight: var(--weight-medium);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      background: var(--bg-elevated);
+    }
+
+    .btn.active {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      color: var(--text-primary);
+    }
+
+    .btn--pill {
+      border-radius: var(--radius-pill);
+      padding: var(--space-2) var(--space-5);
+    }
+
+    .btn--sm {
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-sm);
+    }
+
+    /* -- Input -- */
+    .input {
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .input:focus {
+      border-color: var(--border-focus);
+    }
+
+    .input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .input--pill {
+      font-family: var(--font);
+      font-size: var(--text-base);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+    }
+
+    .input--fixed {
+      width: 120px;
+    }
+
+    /* -- Badge -- */
+    .badge {
+      display: inline-block;
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-pill);
+    }
+
+    .badge--mono {
+      font-family: var(--font);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-normal);
+      text-transform: none;
+      letter-spacing: normal;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+    }
+
+    .badge--success { background: var(--status-success-bg); color: var(--status-success); }
+    .badge--warning { background: var(--status-warning-bg); color: var(--status-warning); }
+    .badge--danger  { background: var(--status-danger-bg);  color: var(--status-danger); }
+
+    /* -- Toggle Switch -- */
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle__track {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .toggle__track::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      transition: all var(--transition);
+    }
+
+    .toggle input:checked + .toggle__track {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+    }
+
+    .toggle input:checked + .toggle__track::before {
+      transform: translateX(18px);
+      background: var(--accent);
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      min-width: 0;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      padding: var(--space-8) 0 var(--space-6);
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-bold);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-1);
+    }
+
+    .header h1 span { color: var(--accent); }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: var(--text-lg);
+    }
+
+    .header .badge--mono {
+      margin-top: var(--space-2);
+      vertical-align: middle;
+    }
+
+    /* ===== Presets ===== */
+    .preset-bar {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: var(--space-4) 0 var(--space-7);
+    }
+
+    /* ===== Slider Panel ===== */
+    .slider-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .slider-group.overridden {
+      border-style: dashed;
+      border-color: var(--text-muted);
+    }
+
+    .slider-label {
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-1);
+    }
+
+    .slider-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    .slider-track-wrapper {
+      position: relative;
+      padding: var(--space-2) 0;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--accent);
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--accent);
+      cursor: pointer;
+    }
+
+    .tick-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-1);
+    }
+
+    .tick-label {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-align: center;
+      flex: 1;
+      transition: color var(--transition);
+    }
+
+    .tick-label.active {
+      color: var(--accent);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ===== Cost Indicator ===== */
+    .cost-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-2);
+    }
+
+    .cost-title {
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-md);
+    }
+
+    .cost-label {
+      font-family: var(--font);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      letter-spacing: 1px;
+    }
+
+    .cost-bar-bg {
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .cost-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-sm);
+      transition: width var(--transition-slow), background var(--transition-slow);
+    }
+
+    .cost-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    .cost-row {
+      display: grid;
+      grid-template-columns: 5.5em 1fr 2.5em;
+      gap: var(--space-2);
+      align-items: center;
+      font-size: var(--text-xs);
+    }
+
+    .cost-row-label {
+      color: var(--text-secondary);
+    }
+
+    .cost-row-bar {
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .cost-row-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--accent);
+      transition: width var(--transition-slow), opacity var(--transition-slow);
+    }
+
+    .cost-row-pct {
+      color: var(--text-muted);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== Preview Panel ===== */
+    .preview-panel {
+      position: sticky;
+      top: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 768px) {
+      .preview-panel { position: static; }
+    }
+
+    .preview-box { overflow: hidden; }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+
+    .preview-title {
+      font-family: var(--font);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .copy-btn.copied {
+      border-color: var(--status-success);
+      color: var(--status-success);
+    }
+
+    .preview-code {
+      padding: var(--space-4);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      line-height: var(--leading-normal);
+      color: var(--text-primary);
+      overflow-x: auto;
+      white-space: pre;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .preview-hint {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== JSON Syntax Colors ===== */
+    .json-key    { color: var(--accent); }
+    .json-string { color: var(--status-success); }
+    .json-number { color: var(--status-warning); }
+    .json-null   { color: var(--text-muted); }
+    .json-brace  { color: var(--text-secondary); }
+
+    /* ===== Section Divider ===== */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: var(--space-4) 0;
+    }
+
+    /* ===== Flag Catalog ===== */
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .catalog-header h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-bold);
+    }
+
+    .catalog-search {
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .flag-group {
+      margin-bottom: var(--space-3);
+    }
+
+    .flag-group summary {
+      cursor: pointer;
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-lg);
+      padding: var(--space-3) var(--space-4);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: background var(--transition);
+      user-select: none;
+    }
+
+    .flag-group summary:hover {
+      background: var(--bg-elevated);
+    }
+
+    .flag-group summary::before {
+      content: '\25B6';
+      font-size: var(--text-2xs);
+      transition: transform var(--transition);
+      display: inline-block;
+    }
+
+    .flag-group[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .flag-group summary::-webkit-details-marker { display: none; }
+
+    .flag-group-count {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      font-weight: var(--weight-normal);
+      margin-left: auto;
+    }
+
+    .flag-group-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: var(--space-2);
+    }
+
+    .flag-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-3);
+      align-items: center;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+
+    .flag-row:hover {
+      background: var(--bg-hover);
+    }
+
+    .flag-row.is-set {
+      background: var(--bg-accent-subtle);
+    }
+
+    .flag-row.slider-controlled {
+      border-left: 2px solid var(--accent-dim);
+    }
+
+    .flag-info { min-width: 0; }
+
+    .flag-name {
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+
+    .flag-desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-top: var(--space-1);
+    }
+
+    .flag-badges {
+      display: flex;
+      gap: var(--space-1);
+      margin-top: var(--space-1);
+    }
+
+    .flag-control-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-shrink: 0;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      text-align: center;
+      padding: var(--space-7) 0;
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: var(--space-10);
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      font-family: var(--font);
+      font-size: var(--text-base);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: var(--space-1) var(--space-3);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      line-height: 1;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    /* ===== Utilities ===== */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="container" style="position:relative">
+
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+
+  <!-- Header -->
+  <header class="header">
+    <h1><span>Token</span>Blast</h1>
+    <p>Config generator for Claude Code environment flags</p>
+    <div class="badge badge--mono">tokenblast.cc &middot; v2.1.83</div>
+  </header>
+
+  <!-- Presets -->
+  <nav class="preset-bar" id="preset-bar"></nav>
+
+  <!-- Main: Left column (sliders + catalog) + Right column (sticky preview) -->
+  <div class="main-grid">
+    <div class="left-column">
+      <div class="slider-panel" id="slider-panel"></div>
+
+      <hr class="section-divider">
+      <div id="flag-catalog">
+        <div class="catalog-header">
+          <h2>All Environment Flags</h2>
+          <input class="input input--pill catalog-search" type="search" id="catalog-search" placeholder="Filter flags...">
+        </div>
+        <div id="flag-groups"></div>
+      </div>
+    </div>
+
+    <div class="preview-panel" id="preview-panel">
+      <div id="cost-slot"></div>
+      <div class="card preview-box">
+        <div class="preview-header">
+          <span class="preview-title">settings.json</span>
+          <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
+        </div>
+        <div class="preview-code" id="preview-code"></div>
+        <div class="preview-hint">Paste into <code>~/.claude/settings.json</code> or the <code>/update-config</code> skill. Config encoded in URL hash for sharing.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Generated from Claude Code v2.1.83. Flags are undocumented and subject to change.</p>
+    <p style="margin-top: 0.25rem;"><a href="https://tokenblast.cc">tokenblast.cc</a> &middot; Built by <a href="https://conor.fyi" target="_blank">Conor Luddy</a></p>
+  </footer>
+
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const FLAG_REGISTRY = [
+  // === Authentication and Identity ===
+  { key: "CLAUDE_CODE_ACCOUNT_TAGGED_ID", label: "Account Tagged ID", description: "Internal account identifier for tagging/telemetry.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ACCOUNT_UUID", label: "Account UUID", description: "Account UUID for auth/billing.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_API_BASE_URL", label: "API Base URL", description: "Override the API endpoint URL.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "https://api.anthropic.com", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR", label: "API Key File Descriptor", description: "File descriptor for reading API key securely.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_API_KEY_HELPER_TTL_MS", label: "API Key Helper TTL", description: "Cache TTL for the API key helper script.", category: "auth", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ATTRIBUTION_HEADER", label: "Attribution Header", description: "Custom attribution header for API requests.", category: "auth", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_CUSTOM_OAUTH_URL", label: "Custom OAuth URL", description: "Custom OAuth endpoint URL (must be approved).", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OAUTH_CLIENT_ID", label: "OAuth Client ID", description: "OAuth client ID.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OAUTH_REFRESH_TOKEN", label: "OAuth Refresh Token", description: "OAuth refresh token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OAUTH_SCOPES", label: "OAuth Scopes", description: "OAuth scopes (space-separated).", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "user:profile user:inference", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OAUTH_TOKEN", label: "OAuth Token", description: "OAuth access token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR", label: "OAuth Token File Descriptor", description: "File descriptor for OAuth token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ORGANIZATION_UUID", label: "Organization UUID", description: "Organization UUID for multi-org accounts.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SESSION_ACCESS_TOKEN", label: "Session Access Token", description: "Session-specific access token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USER_EMAIL", label: "User Email", description: "User email for auth/attribution.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR", label: "WebSocket Auth FD", description: "WebSocket authentication file descriptor.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_API_KEY", label: "API Key", description: "Anthropic API key for direct access.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "sk-ant-...", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_AUTH_TOKEN", label: "Auth Token", description: "Alternative authentication token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_BASE_URL", label: "Base URL", description: "Override Anthropic API base URL.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "https://api.anthropic.com", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_UNIX_SOCKET", label: "Unix Socket", description: "Unix socket for local API connections.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Context and Memory ===
+  { key: "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD", label: "Additional CLAUDE.md Dirs", description: "Extra directories to scan for CLAUDE.md files.", category: "context-memory", type: "text", defaultValue: null, options: null, placeholder: "/path/one,/path/two", affectsUsage: true, impact: "medium", costDirection: "increase" },
+  { key: "CLAUDE_CODE_AUTO_COMPACT_WINDOW", label: "Auto Compact Window", description: "Token threshold for auto-compaction. Lower = more aggressive.", category: "context-memory", type: "number", defaultValue: null, options: null, placeholder: "e.g. 50000", affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_AUTO_MEMORY", label: "Disable Auto Memory", description: "Disables auto-memory reads/writes. Removes memory from context.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_CLAUDE_MDS", label: "Disable CLAUDE.md Files", description: "Drops ALL CLAUDE.md content from system prompt. Nuclear option.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "high", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS", label: "Disable Git Instructions", description: "Strips built-in git workflow instructions from system prompt.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP", label: "Disable Precompact Skip", description: "Forces full compaction pipeline instead of short-circuiting.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES", label: "Include Partial Messages", description: "Include incomplete messages in context.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_MCP_INSTR_DELTA", label: "MCP Instruction Deltas", description: "Send only MCP instruction changes, not full sets.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_REMOTE_MEMORY_DIR", label: "Remote Memory Dir", description: "Alternative directory for memory/session data in remote mode.", category: "context-memory", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_RESUME_INTERRUPTED_TURN", label: "Resume Interrupted Turn", description: "Auto-resume interrupted turns.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_SAVE_HOOK_ADDITIONAL_CONTEXT", label: "Save Hook Context", description: "Persist and inject hook context into conversation.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_SKIP_PROMPT_HISTORY", label: "Skip Prompt History", description: "Skip loading previous prompt history at session start.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_SM_COMPACT", label: "Session Memory Compact", description: "Auto-summarises conversation history. Major impact on long sessions.", category: "context-memory", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+
+  // === Debugging and Diagnostics ===
+  { key: "CLAUDE_CODE_DEBUG_LOG_LEVEL", label: "Debug Log Level", description: "Debug logging verbosity (verbose/debug/info/warn/error).", category: "debug", type: "select", defaultValue: null, options: [{ value: "verbose", label: "Verbose" }, { value: "debug", label: "Debug" }, { value: "info", label: "Info" }, { value: "warn", label: "Warn" }, { value: "error", label: "Error" }], placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DEBUG_LOGS_DIR", label: "Debug Logs Dir", description: "Directory for debug log output.", category: "debug", type: "text", defaultValue: null, options: null, placeholder: "~/.claude/debug/", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DEBUG_REPAINTS", label: "Debug Repaints", description: "Debug UI repaint cycles.", category: "debug", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DIAGNOSTICS_FILE", label: "Diagnostics File", description: "Path to write diagnostic output.", category: "debug", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_FRAME_TIMING_LOG", label: "Frame Timing Log", description: "Logs UI frame timing.", category: "debug", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PERFETTO_TRACE", label: "Perfetto Trace", description: "Enables Perfetto performance tracing.", category: "debug", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PROFILE_QUERY", label: "Profile Query", description: "Enables query profiling.", category: "debug", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PROFILE_STARTUP", label: "Profile Startup", description: "Enables detailed startup profiling.", category: "debug", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS", label: "Slow Op Threshold", description: "Threshold for slow operation warnings (ms).", category: "debug", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING", label: "Stall Timeout (Testing)", description: "Stall detection timeout for testing.", category: "debug", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+
+  // === IDE and Editor Integration ===
+  { key: "CLAUDE_CODE_AUTO_CONNECT_IDE", label: "Auto Connect IDE", description: "Auto-connect to IDE extensions on startup.", category: "ide", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_IDE_HOST_OVERRIDE", label: "IDE Host Override", description: "Override host address for IDE connections.", category: "ide", type: "text", defaultValue: null, options: null, placeholder: "127.0.0.1", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL", label: "IDE Skip Auto Install", description: "Skip auto-install of IDE extensions.", category: "ide", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_IDE_SKIP_VALID_CHECK", label: "IDE Skip Valid Check", description: "Skip workspace folder validation.", category: "ide", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Model and Effort ===
+  { key: "CLAUDE_CODE_ALWAYS_ENABLE_EFFORT", label: "Always Enable Effort", description: "Forces effort control on all models, not just Opus/Sonnet.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING", label: "Disable Adaptive Thinking", description: "Switches from dynamic to fixed thinking budgets.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_FAST_MODE", label: "Disable Fast Mode", description: "Prevents fast mode from being enabled.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP", label: "Disable Legacy Model Remap", description: "Prevents remapping of legacy model names.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK", label: "Disable Nonstreaming Fallback", description: "Disables fallback to non-streaming API calls.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_THINKING", label: "Disable Thinking", description: "Completely disables extended thinking. Eliminates all thinking tokens.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "high", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_EFFORT_LEVEL", label: "Effort Level", description: "Controls reasoning effort: low/medium/high/max.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "low", label: "Low" }, { value: "medium", label: "Medium" }, { value: "high", label: "High" }, { value: "max", label: "Max (Opus only)" }], placeholder: null, affectsUsage: true, impact: "high", costDirection: "variable" },
+  { key: "CLAUDE_CODE_MAX_OUTPUT_TOKENS", label: "Max Output Tokens", description: "Hard cap on output tokens per response.", category: "model-effort", type: "number", defaultValue: null, options: null, placeholder: "e.g. 16000", affectsUsage: true, impact: "high", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_SUBAGENT_MODEL", label: "Subagent Model", description: "Model for all subagent tasks. 'haiku' or 'sonnet' saves cost.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "haiku", label: "Haiku (cheapest)" }, { value: "sonnet", label: "Sonnet (balanced)" }, { value: "opus", label: "Opus (best)" }], placeholder: null, affectsUsage: true, impact: "high", costDirection: "variable" },
+  { key: "ANTHROPIC_BETAS", label: "Betas", description: "Enable beta API features.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "ANTHROPIC_CUSTOM_HEADERS", label: "Custom Headers", description: "Custom HTTP headers for API requests.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_CUSTOM_MODEL_OPTION", label: "Custom Model Option", description: "Custom model option in the CLI model picker.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION", label: "Custom Model Description", description: "Description for custom model option.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME", label: "Custom Model Name", description: "Display name for custom model option.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_DEFAULT_HAIKU_MODEL", label: "Default Haiku Model", description: "Override which model ID maps to 'haiku'.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "claude-haiku-4-5-20251001", affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "ANTHROPIC_DEFAULT_OPUS_MODEL", label: "Default Opus Model", description: "Override which model ID maps to 'opus'.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "claude-opus-4-6-20250514", affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "ANTHROPIC_DEFAULT_SONNET_MODEL", label: "Default Sonnet Model", description: "Override which model ID maps to 'sonnet'.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "claude-sonnet-4-6-20250514", affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "ANTHROPIC_LOG", label: "Log Level", description: "Anthropic SDK logging level.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "debug", label: "Debug" }, { value: "info", label: "Info" }, { value: "warn", label: "Warn" }, { value: "error", label: "Error" }], placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_MODEL", label: "Main Model Override", description: "Override the primary model entirely.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "e.g. claude-sonnet-4-6-20250514", affectsUsage: true, impact: "high", costDirection: "variable" },
+  { key: "ANTHROPIC_SMALL_FAST_MODEL", label: "Small/Fast Model", description: "Model for hooks, classifiers, utility ops.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "claude-haiku-4-5-20251001", affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION", label: "Small Model AWS Region", description: "AWS region for the small/fast model.", category: "model-effort", type: "text", defaultValue: null, options: null, placeholder: "us-east-1", affectsUsage: false, impact: null, costDirection: null },
+
+  // === MCP, Plugins, and Features ===
+  { key: "CLAUDE_CODE_DISABLE_ADVISOR_TOOL", label: "Disable Advisor Tool", description: "Removes advisor tool definition from context.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_ATTACHMENTS", label: "Disable Attachments", description: "Prevents file attachments entering context.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_BACKGROUND_TASKS", label: "Disable Background Tasks", description: "Prevents background tasks that consume tokens.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_CRON", label: "Disable Cron", description: "Disables cron/scheduled task support.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS", label: "Disable Experimental Betas", description: "Disables all experimental beta features.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY", label: "Disable Feedback Survey", description: "Disables feedback survey prompts.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING", label: "Disable File Checkpointing", description: "Disables file state checkpointing.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL", label: "Disable Marketplace Autoinstall", description: "Prevents auto-install of marketplace plugins.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENABLE_CFC", label: "Enable CFC", description: "Enables CFC feature (caching/function calling).", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING", label: "Fine Grained Tool Streaming", description: "Fine-grained streaming for tool results.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION", label: "Enable Prompt Suggestions", description: "AI-generated suggestions consume lightweight model calls.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING", label: "SDK File Checkpointing", description: "File checkpointing in SDK mode.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT", label: "Token Usage Attachment", description: "Adds token usage stats per turn.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_ENABLE_XAA", label: "Enable XAA", description: "Enables experimental extended agent actions.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_EXTRA_BODY", label: "Extra Body", description: "Extra JSON fields for API request body.", category: "mcp-plugins", type: "text", defaultValue: null, options: null, placeholder: '{"key":"value"}', affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_EXTRA_METADATA", label: "Extra Metadata", description: "Extra metadata attached to API requests.", category: "mcp-plugins", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_FORCE_GLOBAL_CACHE", label: "Force Global Cache", description: "Forces use of global prompt cache.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY", label: "Max Tool Concurrency", description: "Max parallel tool calls per turn.", category: "mcp-plugins", type: "number", defaultValue: null, options: null, placeholder: "e.g. 5", affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_PLUGIN_CACHE_DIR", label: "Plugin Cache Dir", description: "Plugin cache directory path.", category: "mcp-plugins", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS", label: "Plugin Git Timeout", description: "Timeout for plugin git operations (ms).", category: "mcp-plugins", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PLUGIN_SEED_DIR", label: "Plugin Seed Dir", description: "Seed directory for plugins.", category: "mcp-plugins", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE", label: "Plugin Zip Cache", description: "Use ZIP-based cache for plugins.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V", label: "Session Ingress Version", description: "Session ingress POST version.", category: "mcp-plugins", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB", label: "Subprocess Env Scrub", description: "Scrub env vars from subprocesses.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SYNC_PLUGIN_INSTALL", label: "Sync Plugin Install", description: "Synchronous plugin installation.", category: "mcp-plugins", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS", label: "Plugin Install Timeout", description: "Plugin install timeout (ms).", category: "mcp-plugins", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+
+  // === Networking and Proxy ===
+  { key: "CLAUDE_CODE_CLIENT_CERT", label: "Client Cert", description: "Client certificate for TLS/mTLS auth.", category: "networking", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_CLIENT_KEY", label: "Client Key", description: "Client key for mTLS auth.", category: "networking", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_CLIENT_KEY_PASSPHRASE", label: "Client Key Passphrase", description: "Passphrase for the client key.", category: "networking", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_HOST_HTTP_PROXY_PORT", label: "HTTP Proxy Port", description: "HTTP proxy port for host networking.", category: "networking", type: "number", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_HOST_SOCKS_PROXY_PORT", label: "SOCKS Proxy Port", description: "SOCKS proxy port for host networking.", category: "networking", type: "number", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_PROXY_RESOLVES_HOSTS", label: "Proxy Resolves Hosts", description: "Proxy handles DNS resolution.", category: "networking", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SKIP_BEDROCK_AUTH", label: "Skip Bedrock Auth", description: "Skip AWS Bedrock authentication.", category: "networking", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS", label: "Skip Fast Mode Net Errors", description: "Skip network errors in fast mode.", category: "networking", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SKIP_FOUNDRY_AUTH", label: "Skip Foundry Auth", description: "Skip Foundry authentication.", category: "networking", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SKIP_VERTEX_AUTH", label: "Skip Vertex Auth", description: "Skip Vertex AI authentication.", category: "networking", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Output and Display ===
+  { key: "CLAUDE_CODE_ACCESSIBILITY", label: "Accessibility", description: "Enables accessibility mode for screen readers.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_BRIEF", label: "Brief Mode", description: "Encourages terse/condensed responses.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_BRIEF_UPLOAD", label: "Brief Upload", description: "Compact upload path for file attachments.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_DISABLE_TERMINAL_TITLE", label: "Disable Terminal Title", description: "Prevents updating terminal tab title.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL", label: "Disable Virtual Scroll", description: "Disables virtual scrolling in UI.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EAGER_FLUSH", label: "Eager Flush", description: "Flush output buffers immediately.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER", label: "Exit After First Render", description: "Exit after first UI render (testing).", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EXIT_AFTER_STOP_DELAY", label: "Exit After Stop Delay", description: "Auto-exit delay after stop (ms).", category: "output-display", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_FORCE_FULL_LOGO", label: "Force Full Logo", description: "Forces full ASCII logo display.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_QUESTION_PREVIEW_FORMAT", label: "Question Preview Format", description: "Format for question previews.", category: "output-display", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SIMPLE", label: "Simple Mode", description: "Simplified output, minimal decorations.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_SYNTAX_HIGHLIGHT", label: "Syntax Highlight", description: "Controls syntax highlighting for code blocks.", category: "output-display", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SYNTAX_HIGHLIGHTBAT_THEMEF", label: "Syntax Highlight Theme", description: "Bat theme for syntax highlighting (env var has typo).", category: "output-display", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Planning and Tasks ===
+  { key: "CLAUDE_CODE_AGENT_NAME", label: "Agent Name", description: "Name/identifier for an agent instance.", category: "planning-tasks", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_AGENT_RULE_DISABLED", label: "Agent Rule Disabled", description: "Disables agent rule enforcement.", category: "planning-tasks", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE", label: "Blocking Limit Override", description: "Override turn/blocking limits.", category: "planning-tasks", type: "number", defaultValue: null, options: null, placeholder: "e.g. 50", affectsUsage: true, impact: "medium", costDirection: "variable" },
+  { key: "CLAUDE_CODE_ENABLE_TASKS", label: "Enable Tasks", description: "Enables the task tracking system.", category: "planning-tasks", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS", label: "Agent Teams", description: "Multi-agent teams -- multiplies token usage.", category: "planning-tasks", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "high", costDirection: "increase" },
+  { key: "CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE", label: "Plan Interview Phase", description: "Controls interview phase in plan mode.", category: "planning-tasks", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_PLAN_MODE_REQUIRED", label: "Plan Mode Required", description: "Forces plan mode before execution.", category: "planning-tasks", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_PLAN_V", label: "Plan Version", description: "Plan mode version/variant.", category: "planning-tasks", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TASK_LIST_ID", label: "Task List ID", description: "Task list identifier.", category: "planning-tasks", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Provider Routing ===
+  { key: "CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST", label: "Provider Managed By Host", description: "Provider managed by host (enterprise).", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_BEDROCK", label: "Use Bedrock", description: "Route API calls through AWS Bedrock.", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_CCR_V", label: "Use CCR Version", description: "CCR version selector.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_FOUNDRY", label: "Use Foundry", description: "Route API calls through Foundry.", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_VERTEX", label: "Use Vertex", description: "Route API calls through Vertex AI.", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_BEDROCK_BASE_URL", label: "Bedrock Base URL", description: "AWS Bedrock endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_API_KEY", label: "Foundry API Key", description: "Foundry-specific API key.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_AUTH_TOKEN", label: "Foundry Auth Token", description: "Foundry auth token.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_BASE_URL", label: "Foundry Base URL", description: "Foundry API endpoint.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_RESOURCE", label: "Foundry Resource", description: "Foundry resource identifier.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_VERTEX_BASE_URL", label: "Vertex Base URL", description: "Vertex AI endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_VERTEX_PROJECT_ID", label: "Vertex Project ID", description: "GCP project ID for Vertex AI.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Remote and Containers ===
+  { key: "CLAUDE_CODE_CONTAINER_ID", label: "Container ID", description: "Container identifier.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENVIRONMENT_KIND", label: "Environment Kind", description: "Environment type (local/remote/container).", category: "remote-containers", type: "select", defaultValue: null, options: [{ value: "local", label: "Local" }, { value: "remote", label: "Remote" }, { value: "container", label: "Container" }], placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION", label: "Runner Version", description: "Environment runner version.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_HOST_PLATFORM", label: "Host Platform", description: "Override detected host platform.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_REMOTE", label: "Remote", description: "Indicates remote session.", category: "remote-containers", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE", label: "Remote Environment Type", description: "Remote environment type.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_REMOTE_SEND_KEEPALIVES", label: "Remote Keepalives", description: "Send keepalives in remote sessions.", category: "remote-containers", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_REMOTE_SESSION_ID", label: "Remote Session ID", description: "Remote session identifier.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_WORKSPACE_HOST_PATHS", label: "Workspace Host Paths", description: "Workspace host path mappings.", category: "remote-containers", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Sandbox and Security ===
+  { key: "CLAUDE_CODE_ADDITIONAL_PROTECTION", label: "Additional Protection", description: "Enables additional safety/protection layers.", category: "sandbox-security", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR", label: "Sandbox Indicator", description: "Show visual indicator when sandbox is active.", category: "sandbox-security", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_BUBBLEWRAP", label: "Bubblewrap", description: "Bubblewrap sandbox configuration (Linux).", category: "sandbox-security", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_COMMAND_INJECTION_CHECK", label: "Disable Injection Check", description: "Disables command injection safety checks.", category: "sandbox-security", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_FORCE_SANDBOX", label: "Force Sandbox", description: "Forces sandbox mode on.", category: "sandbox-security", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Search and File System ===
+  { key: "CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS", label: "File Read Max Tokens", description: "Caps tokens from file reads. Default ~25,000.", category: "search-filesystem", type: "number", defaultValue: null, options: null, placeholder: "25000", affectsUsage: true, impact: "medium", costDirection: "decrease" },
+  { key: "CLAUDE_CODE_GLOB_HIDDEN", label: "Glob Hidden Files", description: "Include dotfiles in glob searches.", category: "search-filesystem", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_GLOB_NO_IGNORE", label: "Glob No Ignore", description: "Ignore .gitignore in glob searches.", category: "search-filesystem", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "low", costDirection: "increase" },
+  { key: "CLAUDE_CODE_GLOB_TIMEOUT_SECONDS", label: "Glob Timeout", description: "Timeout for glob searches (seconds).", category: "search-filesystem", type: "number", defaultValue: null, options: null, placeholder: "20", affectsUsage: true, impact: "low", costDirection: "variable" },
+
+  // === Session and Lifecycle ===
+  { key: "CLAUDE_CODE_ACTION", label: "Action", description: "Startup action identifier.", category: "session-lifecycle", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DONT_INHERIT_ENV", label: "Don't Inherit Env", description: "Don't inherit parent shell env vars.", category: "session-lifecycle", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENTRYPOINT", label: "Entrypoint", description: "Entrypoint identifier (CLI/IDE/SDK).", category: "session-lifecycle", type: "select", defaultValue: null, options: [{ value: "cli", label: "CLI" }, { value: "ide", label: "IDE" }, { value: "sdk", label: "SDK" }], placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_GIT_BASH_PATH", label: "Git Bash Path", description: "Path to git bash (Windows).", category: "session-lifecycle", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_MAX_RETRIES", label: "Max Retries", description: "Max retry attempts for failed API calls.", category: "session-lifecycle", type: "number", defaultValue: null, options: null, placeholder: "e.g. 3", affectsUsage: true, impact: "low", costDirection: "variable" },
+  { key: "CLAUDE_CODE_NEW_INIT", label: "New Init", description: "Changes /init to create multiple CLAUDE.md files.", category: "session-lifecycle", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS", label: "Session End Hooks Timeout", description: "Timeout for session-end hooks (ms).", category: "session-lifecycle", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SHELL", label: "Shell", description: "Override detected shell.", category: "session-lifecycle", type: "text", defaultValue: null, options: null, placeholder: "/bin/zsh", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SHELL_PREFIX", label: "Shell Prefix", description: "Prefix commands run in shell.", category: "session-lifecycle", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TMPDIR", label: "Tmpdir", description: "Override temp directory.", category: "session-lifecycle", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Teams and Collaboration ===
+  { key: "CLAUDE_CODE_BASE_REF", label: "Base Ref", description: "Base git ref for diff operations.", category: "teams-collaboration", type: "text", defaultValue: null, options: null, placeholder: "main", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_IS_COWORK", label: "Is Cowork", description: "Indicates cowork/collaboration mode.", category: "teams-collaboration", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_SSE_PORT", label: "SSE Port", description: "Server-sent events port.", category: "teams-collaboration", type: "number", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TEAM_NAME", label: "Team Name", description: "Team name for team sessions.", category: "teams-collaboration", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TEAMMATE_COMMAND", label: "Teammate Command", description: "Command for teammate agent invocation.", category: "teams-collaboration", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_COWORK_PLUGINS", label: "Use Cowork Plugins", description: "Enable cowork-specific plugins.", category: "teams-collaboration", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_WORKER_EPOCH", label: "Worker Epoch", description: "Worker epoch identifier.", category: "teams-collaboration", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Telemetry and Observability ===
+  { key: "CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS", label: "Datadog Flush Interval", description: "Datadog telemetry flush interval (ms).", category: "telemetry", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC", label: "Disable Nonessential Traffic", description: "Disables telemetry/analytics network calls.", category: "telemetry", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS", label: "Emit Session State Events", description: "Emit session state events for SDK.", category: "telemetry", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES", label: "Emit Tool Use Summaries", description: "Emit tool usage summaries.", category: "telemetry", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENABLE_TELEMETRY", label: "Enable Telemetry", description: "Master switch for telemetry collection.", category: "telemetry", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA", label: "Enhanced Telemetry Beta", description: "Enhanced telemetry beta.", category: "telemetry", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS", label: "OTel Flush Timeout", description: "OpenTelemetry flush timeout (ms).", category: "telemetry", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS", label: "OTel Headers Debounce", description: "OTel headers helper debounce (ms).", category: "telemetry", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS", label: "OTel Shutdown Timeout", description: "OTel shutdown timeout (ms).", category: "telemetry", type: "number", defaultValue: null, options: null, placeholder: "ms", affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TAGS", label: "Tags", description: "Tags for session metadata.", category: "telemetry", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Terminal Multiplexer ===
+  { key: "CLAUDE_CODE_TMUX_PREFIX", label: "Tmux Prefix", description: "Custom tmux prefix key.", category: "terminal-mux", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TMUX_PREFIX_CONFLICTS", label: "Tmux Prefix Conflicts", description: "Tmux prefix conflict detection.", category: "terminal-mux", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TMUX_SESSION", label: "Tmux Session", description: "Tmux session name.", category: "terminal-mux", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TMUX_TRUECOLOR", label: "Tmux Truecolor", description: "Enable truecolor in tmux.", category: "terminal-mux", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+
+  // === Uncategorised ===
+  { key: "CLAUDE_CODE_SEARCH_HINTS_IN_LIST", label: "Search Hints In List", description: "Show search hints in list views.", category: "uncategorised", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_TEST_FIXTURES_ROOT", label: "Test Fixtures Root", description: "Root directory for test fixtures.", category: "uncategorised", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+  { key: "CLAUDE_CODE_USE_POWERSHELL_TOOL", label: "Use PowerShell Tool", description: "Use PowerShell instead of Bash tool.", category: "uncategorised", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
+];
+
+const CATEGORIES = {
+  "auth":               { label: "Authentication & Identity", hasUsageFlags: false },
+  "context-memory":     { label: "Context & Memory", hasUsageFlags: true },
+  "debug":              { label: "Debugging & Diagnostics", hasUsageFlags: false },
+  "ide":                { label: "IDE & Editor Integration", hasUsageFlags: false },
+  "model-effort":       { label: "Model & Effort", hasUsageFlags: true },
+  "mcp-plugins":        { label: "MCP, Plugins & Features", hasUsageFlags: true },
+  "networking":         { label: "Networking & Proxy", hasUsageFlags: false },
+  "output-display":     { label: "Output & Display", hasUsageFlags: true },
+  "planning-tasks":     { label: "Planning & Tasks", hasUsageFlags: true },
+  "provider-routing":   { label: "Provider Routing", hasUsageFlags: false },
+  "remote-containers":  { label: "Remote & Containers", hasUsageFlags: false },
+  "sandbox-security":   { label: "Sandbox & Security", hasUsageFlags: false },
+  "search-filesystem":  { label: "Search & File System", hasUsageFlags: true },
+  "session-lifecycle":  { label: "Session & Lifecycle", hasUsageFlags: true },
+  "teams-collaboration":{ label: "Teams & Collaboration", hasUsageFlags: false },
+  "telemetry":          { label: "Telemetry & Observability", hasUsageFlags: false },
+  "terminal-mux":       { label: "Terminal Multiplexer", hasUsageFlags: false },
+  "uncategorised":      { label: "Uncategorised", hasUsageFlags: false },
+};
+
+const SLIDER_DEFINITIONS = {
+  thinking: {
+    label: "Thinking Budget",
+    description: "Controls reasoning depth. Higher = smarter but more expensive.",
+    positions: [
+      { label: "Off", flags: { CLAUDE_CODE_DISABLE_THINKING: "1", CLAUDE_CODE_EFFORT_LEVEL: null, CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 0 },
+      { label: "Low", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "low", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1" }, costWeight: 1 },
+      { label: "Medium", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "medium", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1" }, costWeight: 2 },
+      { label: "High", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "high", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 3 },
+      { label: "Max", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "max", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 4 },
+    ],
+  },
+  context: {
+    label: "Context Size",
+    description: "What gets loaded into the conversation window.",
+    positions: [
+      { label: "Minimal", flags: { CLAUDE_CODE_DISABLE_CLAUDE_MDS: "1", CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS: "1", CLAUDE_CODE_DISABLE_AUTO_MEMORY: "1", CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: "5000", CLAUDE_CODE_AUTO_COMPACT_WINDOW: "30000" }, costWeight: 0 },
+      { label: "Lean", flags: { CLAUDE_CODE_DISABLE_CLAUDE_MDS: null, CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS: "1", CLAUDE_CODE_DISABLE_AUTO_MEMORY: "1", CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: "10000", CLAUDE_CODE_AUTO_COMPACT_WINDOW: "50000" }, costWeight: 1 },
+      { label: "Standard", flags: { CLAUDE_CODE_DISABLE_CLAUDE_MDS: null, CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS: null, CLAUDE_CODE_DISABLE_AUTO_MEMORY: null, CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: null, CLAUDE_CODE_AUTO_COMPACT_WINDOW: null }, costWeight: 2 },
+      { label: "Everything", flags: { CLAUDE_CODE_DISABLE_CLAUDE_MDS: null, CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS: null, CLAUDE_CODE_DISABLE_AUTO_MEMORY: null, CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: "50000", CLAUDE_CODE_AUTO_COMPACT_WINDOW: null }, costWeight: 3 },
+    ],
+  },
+  output: {
+    label: "Output Length",
+    description: "How verbose responses are.",
+    positions: [
+      { label: "Brief", flags: { CLAUDE_CODE_BRIEF: "1", CLAUDE_CODE_MAX_OUTPUT_TOKENS: "8000" }, costWeight: 0 },
+      { label: "Standard", flags: { CLAUDE_CODE_BRIEF: null, CLAUDE_CODE_MAX_OUTPUT_TOKENS: null }, costWeight: 1 },
+      { label: "Unlimited", flags: { CLAUDE_CODE_BRIEF: null, CLAUDE_CODE_MAX_OUTPUT_TOKENS: "128000" }, costWeight: 2 },
+    ],
+  },
+  subagent: {
+    label: "Subagent Cost",
+    description: "Model quality for delegated sub-tasks.",
+    positions: [
+      { label: "Cheapest", flags: { CLAUDE_CODE_SUBAGENT_MODEL: "haiku", ANTHROPIC_SMALL_FAST_MODEL: "claude-haiku-4-5-20251001" }, costWeight: 0 },
+      { label: "Balanced", flags: { CLAUDE_CODE_SUBAGENT_MODEL: "sonnet", ANTHROPIC_SMALL_FAST_MODEL: null }, costWeight: 1 },
+      { label: "Best", flags: { CLAUDE_CODE_SUBAGENT_MODEL: null, ANTHROPIC_SMALL_FAST_MODEL: null }, costWeight: 2 },
+    ],
+  },
+};
+
+const PRESETS = {
+  costSaver: {
+    label: "Cost Saver",
+    description: "Minimize spend",
+    sliders: { thinking: 0, context: 0, output: 0, subagent: 0 },
+    extraFlags: { CLAUDE_CODE_DISABLE_BACKGROUND_TASKS: "1", CLAUDE_CODE_DISABLE_ADVISOR_TOOL: "1", CLAUDE_CODE_SKIP_PROMPT_HISTORY: "1", CLAUDE_CODE_MCP_INSTR_DELTA: "1" },
+  },
+  balanced: {
+    label: "Balanced",
+    description: "Reasonable defaults",
+    sliders: { thinking: 2, context: 2, output: 1, subagent: 1 },
+    extraFlags: {},
+  },
+  fullPower: {
+    label: "Full Power",
+    description: "Maximum capability",
+    sliders: { thinking: 4, context: 3, output: 2, subagent: 2 },
+    extraFlags: {},
+  },
+  speedRun: {
+    label: "Speed Run",
+    description: "Fast, lean, brief",
+    sliders: { thinking: 1, context: 1, output: 0, subagent: 0 },
+    extraFlags: { CLAUDE_CODE_DISABLE_BACKGROUND_TASKS: "1", CLAUDE_CODE_SM_COMPACT: "1" },
+  },
+};
+
+// Build lookup: which flags are controlled by sliders
+const SLIDER_CONTROLLED_FLAGS = new Set();
+for (const def of Object.values(SLIDER_DEFINITIONS)) {
+  for (const pos of def.positions) {
+    for (const key of Object.keys(pos.flags)) {
+      SLIDER_CONTROLLED_FLAGS.add(key);
+    }
+  }
+}
+
+// ============================================================
+// STATE
+// ============================================================
+
+const state = {
+  sliders: { thinking: 2, context: 2, output: 1, subagent: 1 },
+  flagOverrides: {},
+  activePreset: "balanced",
+};
+
+let syncLock = false;
+
+// ============================================================
+// CORE LOGIC
+// ============================================================
+
+function resolveFlags(st) {
+  const env = {};
+
+  // Layer 1: Slider positions
+  for (const [sliderId, sliderDef] of Object.entries(SLIDER_DEFINITIONS)) {
+    const pos = sliderDef.positions[st.sliders[sliderId]];
+    for (const [key, val] of Object.entries(pos.flags)) {
+      if (val !== null) env[key] = String(val);
+    }
+  }
+
+  // Layer 2: Preset extra flags
+  if (st.activePreset && PRESETS[st.activePreset]?.extraFlags) {
+    for (const [key, val] of Object.entries(PRESETS[st.activePreset].extraFlags)) {
+      if (val !== null) env[key] = String(val);
+    }
+  }
+
+  // Layer 3: Manual overrides (highest precedence)
+  for (const [key, val] of Object.entries(st.flagOverrides)) {
+    if (val === null || val === "" || val === undefined) {
+      delete env[key];
+    } else {
+      env[key] = String(val);
+    }
+  }
+
+  return env;
+}
+
+function generateJSON(env) {
+  // Sort keys for consistency
+  const sorted = {};
+  for (const key of Object.keys(env).sort()) {
+    sorted[key] = env[key];
+  }
+  return JSON.stringify({ env: sorted }, null, 2);
+}
+
+function syntaxHighlightJSON(json) {
+  return json.replace(
+    /("(?:\\.|[^"\\])*")\s*:/g,
+    '<span class="json-key">$1</span>:'
+  ).replace(
+    /:\s*("(?:\\.|[^"\\])*")/g,
+    ': <span class="json-string">$1</span>'
+  ).replace(
+    /:\s*(\d+)/g,
+    ': <span class="json-number">$1</span>'
+  ).replace(
+    /:\s*(null)/g,
+    ': <span class="json-null">$1</span>'
+  ).replace(
+    /([{}])/g,
+    '<span class="json-brace">$1</span>'
+  );
+}
+
+const COST_WEIGHTS = { thinking: 3, context: 2, output: 1.5, subagent: 1.5 };
+const COST_MAX_POS = { thinking: 4, context: 3, output: 2, subagent: 2 };
+const COST_LABELS = { thinking: 'Thinking', context: 'Context', output: 'Output', subagent: 'Subagent' };
+
+function computeCost(st) {
+  let total = 0, max = 0;
+  for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
+    total += def.positions[st.sliders[id]].costWeight * COST_WEIGHTS[id];
+    max += COST_MAX_POS[id] * COST_WEIGHTS[id];
+  }
+  return total / max;
+}
+
+function computeCostBreakdown(st) {
+  const items = [];
+  let totalWeighted = 0;
+  for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
+    const weighted = def.positions[st.sliders[id]].costWeight * COST_WEIGHTS[id];
+    totalWeighted += weighted;
+    items.push({ id, weighted });
+  }
+  return items.map(({ id, weighted }) => ({
+    id,
+    label: COST_LABELS[id],
+    pct: totalWeighted > 0 ? weighted / totalWeighted : 0,
+    intensity: COST_MAX_POS[id] > 0 ? (SLIDER_DEFINITIONS[id].positions[st.sliders[id]].costWeight / COST_MAX_POS[id]) : 0,
+  }));
+}
+
+function detectActivePreset(st) {
+  outer: for (const [id, preset] of Object.entries(PRESETS)) {
+    for (const [k, v] of Object.entries(preset.sliders)) {
+      if (st.sliders[k] !== v) continue outer;
+    }
+    // Check extra flags match current overrides
+    for (const [key, val] of Object.entries(preset.extraFlags)) {
+      if ((st.flagOverrides[key] || null) !== val && !st.flagOverrides[key]) {
+        // This is fine — extra flags come from preset, not overrides
+      }
+    }
+    // Check no conflicting overrides
+    if (Object.keys(st.flagOverrides).length > 0) continue outer;
+    return id;
+  }
+  return null;
+}
+
+function inferSliderPosition(sliderId, st) {
+  const def = SLIDER_DEFINITIONS[sliderId];
+  for (let i = 0; i < def.positions.length; i++) {
+    const pos = def.positions[i];
+    let matches = true;
+    for (const [key, expected] of Object.entries(pos.flags)) {
+      const actual = st.flagOverrides[key] !== undefined ? st.flagOverrides[key] : null;
+      const norm = v => (v === null || v === undefined || v === "") ? null : String(v);
+      if (norm(actual) !== norm(expected)) {
+        matches = false;
+        break;
+      }
+    }
+    if (matches) return i;
+  }
+  return null;
+}
+
+// ============================================================
+// URL HASH
+// ============================================================
+
+function stateToHash(st) {
+  const s = [st.sliders.thinking, st.sliders.context, st.sliders.output, st.sliders.subagent].join("");
+  const payload = { s };
+  if (st.activePreset) payload.p = st.activePreset;
+  if (Object.keys(st.flagOverrides).length > 0) payload.a = st.flagOverrides;
+  return btoa(JSON.stringify(payload));
+}
+
+function hashToState(hash) {
+  try {
+    const payload = JSON.parse(atob(hash));
+    const s = payload.s || "2210";
+    return {
+      sliders: { thinking: +s[0], context: +s[1], output: +s[2], subagent: +s[3] },
+      flagOverrides: payload.a || {},
+      activePreset: payload.p || null,
+    };
+  } catch { return null; }
+}
+
+let hashTimeout;
+function updateHash() {
+  clearTimeout(hashTimeout);
+  hashTimeout = setTimeout(() => {
+    history.replaceState(null, "", "#" + stateToHash(state));
+  }, 300);
+}
+
+// ============================================================
+// COMPONENT FACTORIES
+// ============================================================
+
+const ui = {
+  el(tag, classes, attrs = {}) {
+    const el = document.createElement(tag);
+    if (classes) el.className = classes;
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === 'text') el.textContent = v;
+      else if (k === 'html') el.innerHTML = v;
+      else if (k.startsWith('data-')) el.setAttribute(k, v);
+      else el[k] = v;
+    }
+    return el;
+  },
+
+  card(extraClasses = '', attrs = {}) {
+    return ui.el('div', `card ${extraClasses}`.trim(), attrs);
+  },
+
+  badge(text, variant = '') {
+    const cls = variant ? `badge badge--${variant}` : 'badge';
+    return ui.el('span', cls, { text });
+  },
+
+  toggle(flagKey) {
+    const label = ui.el('label', 'toggle');
+    const input = ui.el('input', null, { type: 'checkbox', 'data-flag-key': flagKey });
+    const track = ui.el('span', 'toggle__track');
+    label.append(input, track);
+    return label;
+  },
+
+  selectControl(flagKey, options) {
+    const select = ui.el('select', 'input', { 'data-flag-key': flagKey });
+    select.append(ui.el('option', null, { value: '', text: 'Default' }));
+    for (const o of options) {
+      select.append(ui.el('option', null, { value: o.value || '', text: o.label }));
+    }
+    return select;
+  },
+
+  textInput(flagKey, type, placeholder) {
+    return ui.el('input', 'input input--fixed', {
+      type,
+      'data-flag-key': flagKey,
+      placeholder: placeholder || '',
+    });
+  },
+
+  flagControl(flag) {
+    if (flag.type === 'boolean') return ui.toggle(flag.key);
+    if (flag.type === 'select' && flag.options) return ui.selectControl(flag.key, flag.options);
+    return ui.textInput(flag.key, flag.type === 'number' ? 'number' : 'text', flag.placeholder);
+  },
+
+  flagRow(flag) {
+    const row = ui.el('div', 'flag-row', { 'data-flag-key': flag.key });
+    if (SLIDER_CONTROLLED_FLAGS.has(flag.key)) row.classList.add('slider-controlled');
+
+    const info = ui.el('div', 'flag-info');
+    info.append(
+      ui.el('div', 'flag-name', { text: flag.key }),
+      ui.el('div', 'flag-desc', { text: flag.description }),
+    );
+    if (flag.impact) {
+      const badges = ui.el('div', 'flag-badges');
+      const variant = { high: 'danger', medium: 'warning', low: 'success' }[flag.impact];
+      badges.append(ui.badge(flag.impact, variant));
+      info.append(badges);
+    }
+
+    const control = ui.el('div', 'flag-control-wrapper');
+    control.append(ui.flagControl(flag));
+
+    row.append(info, control);
+    return row;
+  },
+
+  sliderGroup(id, def) {
+    const group = ui.card('card--padded-sm slider-group', { 'data-slider-id': id });
+    group.append(
+      ui.el('div', 'slider-label', { text: def.label }),
+      ui.el('div', 'slider-desc', { text: def.description }),
+    );
+
+    const wrapper = ui.el('div', 'slider-track-wrapper');
+    const input = ui.el('input', null, {
+      type: 'range',
+      min: '0',
+      max: String(def.positions.length - 1),
+      step: '1',
+      value: String(state.sliders[id]),
+      'data-slider': id,
+    });
+    wrapper.append(input);
+
+    const ticks = ui.el('div', 'tick-labels');
+    for (let i = 0; i < def.positions.length; i++) {
+      const tick = ui.el('span', `tick-label${i === state.sliders[id] ? ' active' : ''}`, {
+        text: def.positions[i].label,
+      });
+      ticks.append(tick);
+    }
+
+    group.append(wrapper, ticks);
+    return { group, input };
+  },
+
+  costIndicator() {
+    const card = ui.card('card--padded cost-indicator', { id: 'cost-indicator' });
+    const header = ui.el('div', 'cost-header');
+    header.append(
+      ui.el('span', 'cost-title', { text: 'Estimated Relative Cost' }),
+      ui.el('span', 'cost-label', { id: 'cost-label' }),
+    );
+    const barBg = ui.el('div', 'cost-bar-bg');
+    barBg.append(ui.el('div', 'cost-bar-fill', { id: 'cost-fill' }));
+
+    const breakdown = ui.el('div', 'cost-breakdown', { id: 'cost-breakdown' });
+    for (const id of Object.keys(COST_LABELS)) {
+      const row = ui.el('div', 'cost-row');
+      row.append(
+        ui.el('span', 'cost-row-label', { text: COST_LABELS[id] }),
+        (() => {
+          const bar = ui.el('div', 'cost-row-bar');
+          bar.append(ui.el('div', 'cost-row-fill', { id: `cost-row-fill-${id}` }));
+          return bar;
+        })(),
+        ui.el('span', 'cost-row-pct', { id: `cost-row-pct-${id}` }),
+      );
+      breakdown.append(row);
+    }
+
+    card.append(header, barBg, breakdown);
+    return card;
+  },
+};
+
+// ============================================================
+// RENDERING
+// ============================================================
+
+function render() {
+  renderSliders();
+  renderPresets();
+  renderCostIndicator();
+  renderPreview();
+  renderCatalog();
+  updateHash();
+}
+
+// --- Sliders ---
+function renderSliders() {
+  const panel = document.getElementById("slider-panel");
+  if (!panel.hasChildNodes()) {
+    for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
+      const { group, input } = ui.sliderGroup(id, def);
+      input.addEventListener("input", (e) => {
+        if (syncLock) return;
+        syncLock = true;
+        const newPos = parseInt(e.target.value);
+        state.sliders[id] = newPos;
+        const pos = def.positions[newPos];
+        for (const key of Object.keys(pos.flags)) {
+          delete state.flagOverrides[key];
+        }
+        state.activePreset = detectActivePreset(state);
+        render();
+        syncLock = false;
+      });
+      panel.appendChild(group);
+    }
+    document.getElementById("cost-slot").appendChild(ui.costIndicator());
+  }
+
+  // Update slider values and labels
+  for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
+    const group = panel.querySelector(`[data-slider-id="${id}"]`);
+    const input = group.querySelector("input");
+    input.value = state.sliders[id];
+    const labels = group.querySelectorAll(".tick-label");
+    labels.forEach((l, i) => l.classList.toggle("active", i === state.sliders[id]));
+    const isOverridden = Object.keys(def.positions[0].flags).some(k => state.flagOverrides[k] !== undefined);
+    group.classList.toggle("overridden", isOverridden);
+  }
+}
+
+// --- Presets ---
+function renderPresets() {
+  const bar = document.getElementById("preset-bar");
+  if (!bar.hasChildNodes()) {
+    for (const [id, preset] of Object.entries(PRESETS)) {
+      const btn = ui.el('button', 'btn btn--pill preset-btn', {
+        'data-preset': id,
+        text: preset.label,
+        title: preset.description,
+      });
+      btn.addEventListener("click", () => {
+        state.sliders = { ...preset.sliders };
+        state.flagOverrides = {};
+        state.activePreset = id;
+        render();
+      });
+      bar.appendChild(btn);
+    }
+  }
+  bar.querySelectorAll(".preset-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.preset === state.activePreset);
+  });
+}
+
+// --- Cost Indicator ---
+function renderCostIndicator() {
+  const ratio = computeCost(state);
+  const fill = document.getElementById("cost-fill");
+  const label = document.getElementById("cost-label");
+  if (!fill || !label) return;
+
+  fill.style.width = `${Math.max(ratio * 100, 5)}%`;
+
+  let color, text;
+  if (ratio <= 0.2)      { color = "var(--status-success)"; text = "$"; }
+  else if (ratio <= 0.4) { color = "#8ecf9a";               text = "$$"; }
+  else if (ratio <= 0.6) { color = "var(--status-warning)"; text = "$$$"; }
+  else if (ratio <= 0.8) { color = "#e07050";               text = "$$$$"; }
+  else                   { color = "var(--status-danger)";   text = "$$$$$"; }
+
+  fill.style.background = color;
+  label.textContent = text;
+  label.style.color = color;
+
+  // Breakdown bars
+  const breakdown = computeCostBreakdown(state);
+  for (const { id, pct, intensity } of breakdown) {
+    const rowFill = document.getElementById(`cost-row-fill-${id}`);
+    const rowPct = document.getElementById(`cost-row-pct-${id}`);
+    if (!rowFill || !rowPct) continue;
+    rowFill.style.width = `${Math.max(intensity * 100, 2)}%`;
+    rowFill.style.opacity = pct > 0 ? 1 : 0.3;
+    rowPct.textContent = `${Math.round(pct * 100)}%`;
+  }
+}
+
+// --- Preview ---
+function renderPreview() {
+  const code = document.getElementById("preview-code");
+  const env = resolveFlags(state);
+  const json = generateJSON(env);
+  code.innerHTML = syntaxHighlightJSON(json);
+}
+
+// --- Copy ---
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const env = resolveFlags(state);
+  const json = generateJSON(env);
+  try {
+    await navigator.clipboard.writeText(json);
+    const btn = document.getElementById("copy-btn");
+    btn.textContent = "Copied!";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
+  } catch {}
+});
+
+// --- Flag Catalog ---
+function renderCatalog() {
+  const container = document.getElementById("flag-groups");
+  const env = resolveFlags(state);
+
+  if (!container.hasChildNodes()) {
+    for (const [catId, catDef] of Object.entries(CATEGORIES)) {
+      const flags = FLAG_REGISTRY.filter(f => f.category === catId);
+      if (flags.length === 0) continue;
+
+      const details = ui.el('details', 'flag-group', { 'data-category': catId });
+      if (catDef.hasUsageFlags) details.open = true;
+
+      const summary = document.createElement("summary");
+      summary.append(
+        document.createTextNode(catDef.label + ' '),
+        ui.el('span', 'flag-group-count', { text: `${flags.length} flags` }),
+      );
+      details.appendChild(summary);
+
+      const body = ui.el('div', 'flag-group-body');
+      for (const flag of flags) body.appendChild(ui.flagRow(flag));
+      details.appendChild(body);
+      container.appendChild(details);
+    }
+
+    // Single delegated handler for all flag control changes
+    function handleFlagChange(e) {
+      if (syncLock) return;
+      const target = e.target;
+      const flagKey = target.dataset.flagKey;
+      if (!flagKey) return;
+
+      syncLock = true;
+      const value = target.type === "checkbox" ? (target.checked ? "1" : null) : (target.value || null);
+
+      if (value === null || value === "") {
+        delete state.flagOverrides[flagKey];
+      } else {
+        state.flagOverrides[flagKey] = value;
+      }
+
+      for (const sliderId of Object.keys(SLIDER_DEFINITIONS)) {
+        const inferred = inferSliderPosition(sliderId, state);
+        if (inferred !== null) {
+          state.sliders[sliderId] = inferred;
+          const def = SLIDER_DEFINITIONS[sliderId];
+          for (const key of Object.keys(def.positions[0].flags)) {
+            delete state.flagOverrides[key];
+          }
+        }
+      }
+
+      state.activePreset = detectActivePreset(state);
+      render();
+      syncLock = false;
+    }
+
+    // "change" fires for checkboxes/selects, "input" fires on every keystroke for text/number
+    container.addEventListener("change", handleFlagChange);
+    container.addEventListener("input", handleFlagChange);
+  }
+
+  // Update control values and highlight state
+  for (const flag of FLAG_REGISTRY) {
+    const row = container.querySelector(`.flag-row[data-flag-key="${flag.key}"]`);
+    if (!row) continue;
+
+    const effectiveVal = env[flag.key] || null;
+    row.classList.toggle("is-set", effectiveVal !== null);
+
+    const input = row.querySelector(`[data-flag-key="${flag.key}"]`);
+    if (!input) continue;
+    if (document.activeElement === input) continue;
+
+    if (input.type === "checkbox") {
+      input.checked = effectiveVal === "1";
+    } else {
+      input.value = effectiveVal || "";
+    }
+  }
+}
+
+// --- Search/Filter ---
+document.getElementById("catalog-search").addEventListener("input", (e) => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll(".flag-row").forEach(row => {
+    const key = row.dataset.flagKey.toLowerCase();
+    const desc = row.querySelector(".flag-desc")?.textContent.toLowerCase() || "";
+    row.classList.toggle("hidden", q && !key.includes(q) && !desc.includes(q));
+  });
+
+  // Show/hide empty groups
+  document.querySelectorAll(".flag-group").forEach(group => {
+    const visibleFlags = group.querySelectorAll(".flag-row:not(.hidden)").length;
+    group.classList.toggle("hidden", visibleFlags === 0);
+    if (q && visibleFlags > 0) group.open = true;
+  });
+});
+
+// ============================================================
+// THEME
+// ============================================================
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('theme-toggle').textContent = theme === 'dark' ? '// light' : '// dark';
+  localStorage.setItem('theme', theme);
+}
+
+const savedTheme = localStorage.getItem('theme')
+  || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+applyTheme(savedTheme);
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ============================================================
+// INIT
+// ============================================================
+
+// Load from hash
+const hashState = hashToState(window.location.hash.slice(1));
+if (hashState) Object.assign(state, hashState);
+
+// First render
+render();
+</script>
+
+</body>
+</html>
