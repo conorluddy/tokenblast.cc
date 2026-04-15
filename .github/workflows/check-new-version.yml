@@ -2,7 +2,7 @@ name: Check for new Claude Code version
 
 on:
   schedule:
-    - cron: "0 9 * * 1" # Weekly Monday 9am UTC
+    - cron: "0 9 * * *" # Daily 9am UTC
   workflow_dispatch:
 
 permissions:
