@@ -594,6 +594,11 @@
       border-top: 1px solid var(--border);
     }
 
+    .preview-hint--warning {
+      color: var(--status-warning);
+      border-top-color: var(--status-warning);
+    }
+
     /* ===== JSON Syntax Colors ===== */
     .json-key    { color: var(--accent); cursor: pointer; }
     .json-key:hover { text-decoration: underline; }
@@ -2167,8 +2172,10 @@ function getImpactComment(flagKey) {
   const flag = FLAG_REGISTRY.find(f => f.key === flagKey);
   if (!flag || !flag.impact) return null;
   const arrows = { increase: "\u2191", decrease: "\u2193", variable: "\u2195" };
+  const labels = { increase: "increases cost", decrease: "decreases cost", variable: "variable impact" };
   const arrow = arrows[flag.costDirection] || "\u2195";
-  return `${arrow} ${flag.impact} impact`;
+  const label = labels[flag.costDirection] || "variable impact";
+  return `${arrow} ${flag.impact} \u2014 ${label}. ${flag.description}`;
 }
 
 function renderPreview() {
@@ -2179,16 +2186,40 @@ function renderPreview() {
 
   if (showBreakdown) {
     highlighted = highlighted.replace(
-      /(<span class="json-key" data-flag-key="([^"]+)">[^<]+<\/span>:\s*<span class="json-(?:string|number|null)">[^<]+<\/span>)/g,
-      (match, full, key) => {
+      /(<span class="json-key" data-flag-key="([^"]+)">[^<]+<\/span>:\s*<span class="json-(?:string|number|null)">[^<]+<\/span>)(,?)/g,
+      (match, full, key, comma) => {
         const comment = getImpactComment(key);
-        if (!comment) return full;
-        return `${full} <span class="json-comment">// ${comment}</span>`;
+        if (!comment) return full + comma;
+        return `${full}${comma}\n    <span class="json-comment">// ${comment}</span>`;
       }
     );
   }
 
   code.innerHTML = highlighted;
+
+  // Breakdown warning + copy button state
+  const hint = document.querySelector('.preview-hint');
+  const copyBtn = document.getElementById('copy-btn');
+  const warning = document.getElementById('breakdown-warning');
+  if (showBreakdown) {
+    copyBtn.disabled = true;
+    copyBtn.style.opacity = '0.4';
+    copyBtn.style.pointerEvents = 'none';
+    if (hint) hint.style.display = 'none';
+    if (!warning) {
+      const w = document.createElement('div');
+      w.id = 'breakdown-warning';
+      w.className = 'preview-hint preview-hint--warning';
+      w.textContent = 'Breakdown comments are for reference only \u2014 JSON with comments is invalid. Turn off Breakdown to copy.';
+      code.parentElement.appendChild(w);
+    }
+  } else {
+    copyBtn.disabled = false;
+    copyBtn.style.opacity = '';
+    copyBtn.style.pointerEvents = '';
+    if (hint) hint.style.display = '';
+    if (warning) warning.remove();
+  }
 }
 
 // --- Click key in preview to search ---
