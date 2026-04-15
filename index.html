@@ -691,20 +691,7 @@
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    .flag-remove {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: var(--text-lg);
-      line-height: 1;
-      padding: var(--space-1);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition);
-      display: none;
-    }
-    .flag-remove:hover { color: var(--status-error); background: var(--bg-hover); }
-    .flag-row.is-set .flag-remove { display: block; }
+
 
     .flag-group {
       margin-bottom: var(--space-3);
@@ -1798,9 +1785,6 @@ const ui = {
     const control = ui.el('div', 'flag-control-wrapper');
     control.append(ui.flagControl(flag));
 
-    const removeBtn = ui.el('button', 'flag-remove', { text: '×', 'data-remove-key': flag.key });
-    control.append(removeBtn);
-
     row.append(info, control);
     return row;
   },
@@ -2183,14 +2167,6 @@ function renderCatalog() {
       render();
       syncLock = false;
     }
-
-    // Delegated handler for remove buttons
-    container.addEventListener("click", (e) => {
-      const removeBtn = e.target.closest('.flag-remove');
-      if (!removeBtn) return;
-      delete state.flagOverrides[removeBtn.dataset.removeKey];
-      render();
-    });
 
     container.addEventListener("change", handleFlagChange);
     container.addEventListener("input", handleFlagChange);
