@@ -619,6 +619,11 @@
       font-size: var(--text-lg);
     }
 
+    .search-footer {
+      text-align: center;
+      padding: var(--space-4) 0;
+    }
+
     /* ===== Flag Catalog ===== */
 
     .tab-bar {
@@ -1065,6 +1070,9 @@
           <hr class="section-divider">
         </div>
         <div id="flag-groups"></div>
+        <div class="search-footer hidden" id="search-footer">
+          <button class="btn btn--pill" id="search-footer-clear">Clear Search</button>
+        </div>
         <div class="search-empty" id="search-empty">
           <p>No flags matching your search</p>
           <button class="btn btn--pill" id="search-clear">Clear search</button>
@@ -2323,14 +2331,17 @@ document.getElementById("catalog-search").addEventListener("input", (e) => {
   });
 
   document.getElementById("search-empty").style.display = (q && totalVisible === 0) ? 'block' : 'none';
+  document.getElementById("search-footer").classList.toggle('hidden', !q || totalVisible === 0);
 });
 
-document.getElementById("search-clear").addEventListener("click", () => {
+function clearSearch() {
   const input = document.getElementById("catalog-search");
   input.value = '';
   input.dispatchEvent(new Event('input'));
   input.focus();
-});
+}
+document.getElementById("search-clear").addEventListener("click", clearSearch);
+document.getElementById("search-footer-clear").addEventListener("click", clearSearch);
 
 // ============================================================
 // THEME
