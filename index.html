@@ -512,6 +512,18 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .cost-variable-note {
+      font-size: var(--text-2xs);
+      color: var(--status-warning);
+      margin-top: var(--space-2);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .cost-variable-note.visible { opacity: 1; }
+
+    .flag-row:not(.is-set) .flag-badges .badge { opacity: 0.4; }
+    .flag-row.is-set .flag-badges .badge { opacity: 1; transition: opacity var(--transition); }
+
     /* ===== Preview Panel ===== */
     .preview-panel {
       position: sticky;
@@ -1506,6 +1518,7 @@ function applyVersionData(version, data) {
   currentVersion = version;
   FLAG_REGISTRY = data.flags;
   CATEGORIES = data.categories;
+  recomputeFlagBudget();
   const container = document.getElementById("flag-groups");
   if (container) container.innerHTML = "";
   const tabBar = document.getElementById("tab-bar");
@@ -1719,13 +1732,51 @@ const COST_WEIGHTS = { thinking: 3, context: 2, output: 1.5, subagent: 1.5 };
 const COST_MAX_POS = { thinking: 4, context: 3, output: 2, subagent: 2 };
 const COST_LABELS = { thinking: 'Thinking', context: 'Context', output: 'Output', subagent: 'Subagent' };
 
-function computeCost(st) {
+const FLAG_IMPACT_WEIGHTS = { low: 0.5, medium: 1.0, high: 2.0 };
+const FLAG_INFLUENCE = 0.20;
+let FLAG_COST_BUDGET = 0;
+
+function recomputeFlagBudget() {
+  FLAG_COST_BUDGET = FLAG_REGISTRY
+    .filter(f => f.impact && f.affectsUsage && !SLIDER_CONTROLLED_FLAGS.has(f.key))
+    .reduce((sum, f) => sum + FLAG_IMPACT_WEIGHTS[f.impact], 0);
+}
+
+function computeSliderRatio(st) {
   let total = 0, max = 0;
   for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
     total += def.positions[st.sliders[id]].costWeight * COST_WEIGHTS[id];
     max += COST_MAX_POS[id] * COST_WEIGHTS[id];
   }
   return total / max;
+}
+
+function computeCompositeCost(st) {
+  const sliderRatio = computeSliderRatio(st);
+  const env = resolveFlags(st);
+  let flagDelta = 0, variableCount = 0, activeFlagCount = 0;
+
+  for (const flag of FLAG_REGISTRY) {
+    if (!flag.impact || !flag.affectsUsage) continue;
+    if (SLIDER_CONTROLLED_FLAGS.has(flag.key)) continue;
+    if (env[flag.key] === undefined) continue;
+    activeFlagCount++;
+    const w = FLAG_IMPACT_WEIGHTS[flag.impact];
+    if (flag.costDirection === 'increase') flagDelta += w;
+    else if (flag.costDirection === 'decrease') flagDelta -= w;
+    else variableCount++;
+  }
+
+  const normalizedDelta = FLAG_COST_BUDGET > 0 ? flagDelta / FLAG_COST_BUDGET : 0;
+  const flagContribution = normalizedDelta * FLAG_INFLUENCE;
+
+  return {
+    total: Math.max(0, Math.min(1, sliderRatio + flagContribution)),
+    sliderRatio,
+    flagContribution,
+    variableCount,
+    activeFlagCount,
+  };
 }
 
 function computeCostBreakdown(st) {
@@ -1868,6 +1919,11 @@ const ui = {
       const badges = ui.el('div', 'flag-badges');
       const variant = { high: 'danger', medium: 'warning', low: 'success' }[flag.impact];
       badges.append(ui.badge(flag.impact, variant));
+      if (flag.costDirection) {
+        const arrows = { increase: '\u2191', decrease: '\u2193', variable: '\u2195' };
+        const dirVariant = { increase: 'danger', decrease: 'success', variable: 'warning' };
+        badges.append(ui.badge(arrows[flag.costDirection], dirVariant[flag.costDirection]));
+      }
       info.append(badges);
     }
     if (flag.type === 'apikey') {
@@ -1936,7 +1992,21 @@ const ui = {
       breakdown.append(row);
     }
 
-    card.append(header, barBg, breakdown);
+    // 5th breakdown row: Flags
+    const flagRow = ui.el('div', 'cost-row');
+    flagRow.append(
+      ui.el('span', 'cost-row-label', { text: 'Flags' }),
+      (() => {
+        const bar = ui.el('div', 'cost-row-bar');
+        bar.append(ui.el('div', 'cost-row-fill', { id: 'cost-row-fill-flags' }));
+        return bar;
+      })(),
+      ui.el('span', 'cost-row-pct', { id: 'cost-row-pct-flags' }),
+    );
+    breakdown.append(flagRow);
+
+    const variableNote = ui.el('div', 'cost-variable-note', { id: 'cost-variable-note' });
+    card.append(header, barBg, breakdown, variableNote);
     return card;
   },
 };
@@ -2028,7 +2098,8 @@ function renderPresets() {
 
 // --- Cost Indicator ---
 function renderCostIndicator() {
-  const ratio = computeCost(state);
+  const composite = computeCompositeCost(state);
+  const ratio = composite.total;
   const fill = document.getElementById("cost-fill");
   const label = document.getElementById("cost-label");
   if (!fill || !label) return;
@@ -2042,8 +2113,9 @@ function renderCostIndicator() {
   else if (ratio <= 0.8) { color = "#e07050";               text = "$$$$"; }
   else                   { color = "var(--status-danger)";   text = "$$$$$"; }
 
+  const suffix = composite.variableCount > 0 ? '\u00b1' : '';
   fill.style.background = color;
-  label.textContent = text;
+  label.textContent = text + suffix;
   label.style.color = color;
 
   // Mobile sticky bar
@@ -2052,11 +2124,11 @@ function renderCostIndicator() {
   if (mFill && mDollars) {
     mFill.style.width = `${Math.max(ratio * 100, 5)}%`;
     mFill.style.background = color;
-    mDollars.textContent = text;
+    mDollars.textContent = text + suffix;
     mDollars.style.color = color;
   }
 
-  // Breakdown bars
+  // Slider breakdown bars
   const breakdown = computeCostBreakdown(state);
   for (const { id, pct, intensity } of breakdown) {
     const rowFill = document.getElementById(`cost-row-fill-${id}`);
@@ -2065,6 +2137,28 @@ function renderCostIndicator() {
     rowFill.style.width = `${Math.max(intensity * 100, 2)}%`;
     rowFill.style.opacity = pct > 0 ? 1 : 0.3;
     rowPct.textContent = `${Math.round(pct * 100)}%`;
+  }
+
+  // Flags breakdown row
+  const flagFill = document.getElementById('cost-row-fill-flags');
+  const flagPct = document.getElementById('cost-row-pct-flags');
+  if (flagFill && flagPct) {
+    const absContrib = Math.abs(composite.flagContribution);
+    flagFill.style.width = `${Math.max(absContrib / FLAG_INFLUENCE * 100, composite.activeFlagCount > 0 ? 4 : 0)}%`;
+    flagFill.style.background = composite.flagContribution > 0.001 ? 'var(--status-danger)'
+      : composite.flagContribution < -0.001 ? 'var(--status-success)'
+      : 'var(--status-warning)';
+    flagFill.style.opacity = composite.activeFlagCount > 0 ? 1 : 0.3;
+    flagPct.textContent = composite.activeFlagCount > 0 ? `${composite.activeFlagCount} flags` : '';
+  }
+
+  // Variable flags callout
+  const varNote = document.getElementById('cost-variable-note');
+  if (varNote) {
+    varNote.classList.toggle('visible', composite.variableCount > 0);
+    varNote.textContent = composite.variableCount > 0
+      ? `\u2195 ${composite.variableCount} variable flag${composite.variableCount === 1 ? '' : 's'} \u2014 actual cost depends on usage`
+      : '';
   }
 }
 
@@ -2482,6 +2576,7 @@ if (hashState) {
   const { version, ...rest } = hashState;
   Object.assign(state, rest);
 }
+recomputeFlagBudget();
 render();
 
 // Async: fetch manifest to populate version selector, load non-default version if needed
