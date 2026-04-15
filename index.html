@@ -1054,7 +1054,6 @@
         <div id="slider-section" class="slider-section">
           <nav class="preset-bar" id="preset-bar"></nav>
           <div class="slider-panel" id="slider-panel"></div>
-          <hr class="section-divider">
         </div>
         <div id="flag-groups"></div>
         <div class="search-footer hidden" id="search-footer">
@@ -1517,6 +1516,7 @@ const PRESETS = {
 };
 
 const TAB_GROUPS = [
+  { id: 'presets', label: 'Presets', categories: [] },
   { id: 'cost-effort', label: 'Cost & Effort', categories: ['model-effort', 'session-lifecycle'] },
   { id: 'context-output', label: 'Context & Output', categories: ['context-memory', 'output-display', 'search-filesystem'] },
   { id: 'tools-plugins', label: 'Tools & Plugins', categories: ['mcp-plugins', 'planning-tasks'] },
@@ -1543,7 +1543,7 @@ const state = {
   sliders: { thinking: 2, context: 2, output: 1, subagent: 1 },
   flagOverrides: {},
   activePreset: "balanced",
-  activeTab: "cost-effort",
+  activeTab: "presets",
 };
 
 let syncLock = false;
@@ -1594,7 +1594,7 @@ function deleteCustomPreset(id) {
   const presets = loadCustomPresets().filter(p => p.id !== id);
   saveCustomPresets(presets);
   if (presets.length === 0 && state.activeTab === 'saved-presets') {
-    state.activeTab = 'cost-effort';
+    state.activeTab = 'presets';
   }
   render();
 }
@@ -2214,7 +2214,7 @@ function renderCatalog() {
         }
         state.flagOverrides = { ...state.flagOverrides, ...(preset.extraFlags || {}) };
         state.activePreset = detectActivePreset(state);
-        state.activeTab = 'cost-effort';
+        state.activeTab = 'presets';
         render();
       });
       actions.appendChild(loadBtn);
@@ -2233,7 +2233,8 @@ function renderCatalog() {
   if (searchQuery) {
     // Search is active: show all flag panes (not saved-presets), hide tab bar and sliders
     container.querySelectorAll('.tab-pane').forEach(pane => {
-      pane.classList.toggle('active', pane.dataset.tabPane !== 'saved-presets');
+      const id = pane.dataset.tabPane;
+      pane.classList.toggle('active', id !== 'saved-presets' && id !== 'presets');
     });
     document.getElementById('tab-bar').style.display = 'none';
     const sliderSection = document.getElementById('slider-section');
@@ -2244,7 +2245,7 @@ function renderCatalog() {
     });
     document.getElementById('tab-bar').style.display = '';
     const sliderSection = document.getElementById('slider-section');
-    if (sliderSection) sliderSection.style.display = state.activeTab === 'cost-effort' ? '' : 'none';
+    if (sliderSection) sliderSection.style.display = state.activeTab === 'presets' ? '' : 'none';
   }
 
   // Update control values and highlight state
@@ -2274,9 +2275,10 @@ document.getElementById("catalog-search").addEventListener("input", (e) => {
   const tabBar = document.getElementById("tab-bar");
 
   if (q) {
-    // Show all flag panes (not saved-presets), hide tab bar and slider section
+    // Show all flag panes (not presets/saved-presets), hide tab bar and slider section
     container.querySelectorAll('.tab-pane').forEach(p => {
-      p.classList.toggle('active', p.dataset.tabPane !== 'saved-presets');
+      const id = p.dataset.tabPane;
+      p.classList.toggle('active', id !== 'saved-presets' && id !== 'presets');
     });
     tabBar.style.display = 'none';
     const sliderSection = document.getElementById('slider-section');
@@ -2299,7 +2301,7 @@ document.getElementById("catalog-search").addEventListener("input", (e) => {
     });
     tabBar.style.display = '';
     const sliderSection = document.getElementById('slider-section');
-    if (sliderSection) sliderSection.style.display = state.activeTab === 'cost-effort' ? '' : 'none';
+    if (sliderSection) sliderSection.style.display = state.activeTab === 'presets' ? '' : 'none';
 
     document.querySelectorAll(".flag-row").forEach(row => {
       row.classList.remove("hidden");
