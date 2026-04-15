@@ -84,8 +84,8 @@
 
       /* --- Shape --- */
       --radius-sm: 4px;
-      --radius: 8px;
-      --radius-pill: 999px;
+      --radius: 6px;
+      --radius-pill: 6px;
 
       /* --- Motion --- */
       --transition: 0.2s ease;
@@ -233,6 +233,16 @@
       color: var(--text-muted);
       background: var(--bg-elevated);
       border: 1px solid var(--border);
+    }
+
+    .version-select {
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
+    }
+    .version-select option {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
     }
 
     .badge--success { background: var(--status-success-bg); color: var(--status-success); }
@@ -709,25 +719,44 @@
     .footer a:hover { text-decoration: underline; }
 
     /* ===== Theme Toggle ===== */
-    .theme-toggle {
+    .toolbar {
       position: absolute;
       top: var(--space-4);
       right: var(--space-4);
-      font-family: var(--font);
-      font-size: var(--text-base);
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-pill);
-      padding: var(--space-1) var(--space-3);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all var(--transition);
+      padding: var(--space-1) var(--space-2);
       line-height: 1;
     }
 
-    .theme-toggle:hover {
-      border-color: var(--accent);
+    .toolbar__item {
+      font-family: var(--font);
+      font-size: var(--text-xs);
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-pill);
+      transition: all var(--transition);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .toolbar__item:hover {
       color: var(--text-primary);
+      background: var(--bg-elevated);
+    }
+
+    .toolbar__separator {
+      width: 1px;
+      height: 1rem;
+      background: var(--border);
     }
 
     /* ===== Utilities ===== */
@@ -816,13 +845,22 @@
 
 <div class="container" style="position:relative">
 
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+  <div class="toolbar">
+    <select id="version-selector" class="toolbar__item version-select">
+      <option>CC v...</option>
+    </select>
+    <div class="toolbar__separator"></div>
+    <button class="toolbar__item" id="theme-toggle" aria-label="Toggle theme"></button>
+    <div class="toolbar__separator"></div>
+    <a class="toolbar__item" href="https://github.com/conorluddy/tokenblast.cc" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+  </div>
 
   <!-- Header -->
   <header class="header">
     <h1><span>Token</span>Blast</h1>
     <p>Config generator for Claude Code environment flags</p>
-    <div class="badge badge--mono">tokenblast.cc &middot; v2.1.107</div>
   </header>
 
   <!-- Presets -->
@@ -880,7 +918,7 @@
 // DATA
 // ============================================================
 
-const FLAG_REGISTRY = [
+let FLAG_REGISTRY = [
   // === Authentication and Identity ===
   { key: "CLAUDE_CODE_ACCOUNT_TAGGED_ID", label: "Account Tagged ID", description: "Internal account identifier for tagging/telemetry.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_ACCOUNT_UUID", label: "Account UUID", description: "Account UUID for auth/billing.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
@@ -1151,7 +1189,7 @@ const FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_USE_POWERSHELL_TOOL", label: "Use PowerShell Tool", description: "Use PowerShell instead of Bash tool.", category: "uncategorised", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
 ];
 
-const CATEGORIES = {
+let CATEGORIES = {
   "auth":               { label: "Authentication & Identity", hasUsageFlags: false },
   "context-memory":     { label: "Context & Memory", hasUsageFlags: true },
   "debug":              { label: "Debugging & Diagnostics", hasUsageFlags: false },
@@ -1171,6 +1209,35 @@ const CATEGORIES = {
   "terminal-mux":       { label: "Terminal Multiplexer", hasUsageFlags: false },
   "uncategorised":      { label: "Uncategorised", hasUsageFlags: false },
 };
+
+// ============================================================
+// VERSION LOADING
+// ============================================================
+
+// Inline data above matches this version — no fetch needed on first load
+const INLINE_VERSION = "2.1.109";
+let currentVersion = INLINE_VERSION;
+const versionCache = {};
+
+async function loadVersion(version) {
+  if (versionCache[version]) {
+    applyVersionData(version, versionCache[version]);
+    return;
+  }
+  const res = await fetch(`flags/${version}.json`);
+  const data = await res.json();
+  versionCache[version] = data;
+  applyVersionData(version, data);
+}
+
+function applyVersionData(version, data) {
+  currentVersion = version;
+  FLAG_REGISTRY = data.flags;
+  CATEGORIES = data.categories;
+  const container = document.getElementById("flag-groups");
+  if (container) container.innerHTML = "";
+  render();
+}
 
 const SLIDER_DEFINITIONS = {
   thinking: {
@@ -1399,6 +1466,7 @@ function stateToHash(st) {
   const payload = { s };
   if (st.activePreset) payload.p = st.activePreset;
   if (Object.keys(st.flagOverrides).length > 0) payload.a = st.flagOverrides;
+  if (currentVersion) payload.v = currentVersion;
   return btoa(JSON.stringify(payload));
 }
 
@@ -1410,6 +1478,7 @@ function hashToState(hash) {
       sliders: { thinking: +s[0], context: +s[1], output: +s[2], subagent: +s[3] },
       flagOverrides: payload.a || {},
       activePreset: payload.p || null,
+      version: payload.v || null,
     };
   } catch { return null; }
 }
@@ -1821,12 +1890,37 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 // INIT
 // ============================================================
 
-// Load from hash
+// Synchronous first render using inline data
 const hashState = hashToState(window.location.hash.slice(1));
-if (hashState) Object.assign(state, hashState);
-
-// First render
+if (hashState) {
+  const { version, ...rest } = hashState;
+  Object.assign(state, rest);
+}
 render();
+
+// Async: fetch manifest to populate version selector, load non-default version if needed
+(async () => {
+  const manifest = await fetch('flags/manifest.json').then(r => r.json());
+  const selector = document.getElementById('version-selector');
+  selector.innerHTML = '';
+
+  manifest.snapshots.slice().reverse().forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.version;
+    opt.textContent = `CC v${s.version}${s.version === manifest.latest ? ' (latest)' : ''}`;
+    selector.appendChild(opt);
+  });
+
+  const requestedVersion = hashState?.version || manifest.latest;
+  selector.value = requestedVersion;
+
+  // Only fetch if hash requests a different version than what's inlined
+  if (requestedVersion !== INLINE_VERSION) {
+    await loadVersion(requestedVersion);
+  }
+
+  selector.addEventListener('change', () => loadVersion(selector.value));
+})();
 </script>
 
 </body>
