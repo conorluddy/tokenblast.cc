@@ -542,6 +542,21 @@
       color: var(--text-secondary);
     }
 
+    .preview-actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .btn--ghost {
+      background: none;
+      border-color: transparent;
+      color: var(--text-muted);
+    }
+    .btn--ghost:hover {
+      color: var(--status-error);
+      border-color: var(--status-error);
+    }
+
     .copy-btn.copied {
       border-color: var(--status-success);
       color: var(--status-success);
@@ -580,18 +595,30 @@
       margin: var(--space-4) 0;
     }
 
-    /* ===== Flag Catalog ===== */
-    .catalog-header {
+    /* ===== Global Search ===== */
+    .global-search {
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-bottom: var(--space-4);
+      justify-content: center;
+      padding-bottom: var(--space-4);
     }
 
     .catalog-search {
-      width: 280px;
+      width: 420px;
       max-width: 100%;
     }
+
+    .search-empty {
+      display: none;
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+      color: var(--text-muted);
+    }
+    .search-empty p {
+      margin-bottom: var(--space-4);
+      font-size: var(--text-lg);
+    }
+
+    /* ===== Flag Catalog ===== */
 
     .tab-bar {
       display: flex;
@@ -711,6 +738,8 @@
     }
 
     .flag-group-body {
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--border);
       border-top: none;
       border-radius: 0 0 var(--radius) var(--radius);
@@ -888,7 +917,6 @@
       .header h1 { font-size: var(--text-2xl); }
       .preset-bar { padding: 0 0 var(--space-3); }
       .catalog-search { width: 100%; }
-      .catalog-header { justify-content: stretch; }
       .flag-row { grid-template-columns: 1fr; gap: var(--space-2); }
       .flag-control-wrapper { justify-content: flex-start; }
       .preview-code { white-space: pre-wrap; word-break: break-all; }
@@ -929,15 +957,17 @@
     <p>Config generator for Claude Code environment flags</p>
   </header>
 
+  <!-- Global search -->
+  <div class="global-search">
+    <input class="input input--pill catalog-search" type="search" id="catalog-search" placeholder="Search 226 flags...">
+  </div>
+
   <!-- Primary: Category Tabs -->
   <div class="tab-bar tab-bar--primary" id="tab-bar"></div>
 
   <!-- Main: Left column (tab content) + Right column (sticky preview) -->
   <div class="main-grid">
     <div class="left-column">
-      <div class="catalog-header">
-        <input class="input input--pill catalog-search" type="search" id="catalog-search" placeholder="Filter flags...">
-      </div>
       <div id="tab-content">
         <div id="slider-section" class="slider-section">
           <nav class="preset-bar" id="preset-bar"></nav>
@@ -945,6 +975,10 @@
           <hr class="section-divider">
         </div>
         <div id="flag-groups"></div>
+        <div class="search-empty" id="search-empty">
+          <p>No flags matching your search</p>
+          <button class="btn btn--pill" id="search-clear">Clear search</button>
+        </div>
       </div>
     </div>
 
@@ -953,7 +987,10 @@
       <div class="card preview-box">
         <div class="preview-header">
           <span class="preview-title">settings.json</span>
-          <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
+          <div class="preview-actions">
+            <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
+            <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
+          </div>
         </div>
         <div class="preview-code" id="preview-code"></div>
         <div class="preview-hint">Paste into <code>~/.claude/settings.json</code> or the <code>/update-config</code> skill. Config encoded in URL hash for sharing.</div>
@@ -1829,6 +1866,14 @@ document.getElementById("copy-btn").addEventListener("click", async () => {
   } catch {}
 });
 
+// --- Reset ---
+document.getElementById("reset-btn").addEventListener("click", () => {
+  state.sliders = { thinking: 2, context: 2, output: 1, subagent: 1 };
+  state.flagOverrides = {};
+  state.activePreset = "balanced";
+  render();
+});
+
 // --- Tab Bar ---
 function renderTabBar() {
   const bar = document.getElementById("tab-bar");
@@ -1962,28 +2007,56 @@ function renderCatalog() {
 document.getElementById("catalog-search").addEventListener("input", (e) => {
   const q = e.target.value.toLowerCase();
   const container = document.getElementById("flag-groups");
+  const tabBar = document.getElementById("tab-bar");
 
   if (q) {
-    // When searching, show all tab panes and filter across all tabs
+    // Show all tab panes, hide tab bar and slider section
     container.querySelectorAll('.tab-pane').forEach(p => p.classList.add('active'));
+    tabBar.style.display = 'none';
+    const sliderSection = document.getElementById('slider-section');
+    if (sliderSection) sliderSection.style.display = 'none';
+
+    // Score and sort: name matches first, then description-only matches
+    const rows = [...document.querySelectorAll(".flag-row")];
+    for (const row of rows) {
+      const key = row.dataset.flagKey.toLowerCase();
+      const desc = row.querySelector(".flag-desc")?.textContent.toLowerCase() || "";
+      const nameMatch = key.includes(q);
+      const descMatch = desc.includes(q);
+      row.classList.toggle("hidden", !nameMatch && !descMatch);
+      row.style.order = nameMatch ? '0' : '1';
+    }
   } else {
-    // When search cleared, restore tab view
+    // Restore tab view
     container.querySelectorAll('.tab-pane').forEach(p => {
       p.classList.toggle('active', p.dataset.tabPane === state.activeTab);
     });
+    tabBar.style.display = '';
+    const sliderSection = document.getElementById('slider-section');
+    if (sliderSection) sliderSection.style.display = state.activeTab === 'cost-effort' ? '' : 'none';
+
+    document.querySelectorAll(".flag-row").forEach(row => {
+      row.classList.remove("hidden");
+      row.style.order = '';
+    });
   }
 
-  document.querySelectorAll(".flag-row").forEach(row => {
-    const key = row.dataset.flagKey.toLowerCase();
-    const desc = row.querySelector(".flag-desc")?.textContent.toLowerCase() || "";
-    row.classList.toggle("hidden", q && !key.includes(q) && !desc.includes(q));
-  });
-
+  let totalVisible = 0;
   document.querySelectorAll(".flag-group").forEach(group => {
     const visibleFlags = group.querySelectorAll(".flag-row:not(.hidden)").length;
+    totalVisible += visibleFlags;
     group.classList.toggle("hidden", visibleFlags === 0);
     if (q && visibleFlags > 0) group.open = true;
   });
+
+  document.getElementById("search-empty").style.display = (q && totalVisible === 0) ? 'block' : 'none';
+});
+
+document.getElementById("search-clear").addEventListener("click", () => {
+  const input = document.getElementById("catalog-search");
+  input.value = '';
+  input.dispatchEvent(new Event('input'));
+  input.focus();
 });
 
 // ============================================================
