@@ -235,6 +235,23 @@
       border: 1px solid var(--border);
     }
 
+    .version-select {
+      font-family: var(--font);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .version-select option {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
     .badge--success { background: var(--status-success-bg); color: var(--status-success); }
     .badge--warning { background: var(--status-warning-bg); color: var(--status-warning); }
     .badge--danger  { background: var(--status-danger-bg);  color: var(--status-danger); }
@@ -822,7 +839,11 @@
   <header class="header">
     <h1><span>Token</span>Blast</h1>
     <p>Config generator for Claude Code environment flags</p>
-    <div class="badge badge--mono">tokenblast.cc &middot; v2.1.107</div>
+    <div class="badge badge--mono">tokenblast.cc &middot;
+      <select id="version-selector" class="version-select">
+        <option>loading&hellip;</option>
+      </select>
+    </div>
   </header>
 
   <!-- Presets -->
@@ -880,7 +901,7 @@
 // DATA
 // ============================================================
 
-const FLAG_REGISTRY = [
+let FLAG_REGISTRY = [
   // === Authentication and Identity ===
   { key: "CLAUDE_CODE_ACCOUNT_TAGGED_ID", label: "Account Tagged ID", description: "Internal account identifier for tagging/telemetry.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_ACCOUNT_UUID", label: "Account UUID", description: "Account UUID for auth/billing.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
@@ -1151,7 +1172,7 @@ const FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_USE_POWERSHELL_TOOL", label: "Use PowerShell Tool", description: "Use PowerShell instead of Bash tool.", category: "uncategorised", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
 ];
 
-const CATEGORIES = {
+let CATEGORIES = {
   "auth":               { label: "Authentication & Identity", hasUsageFlags: false },
   "context-memory":     { label: "Context & Memory", hasUsageFlags: true },
   "debug":              { label: "Debugging & Diagnostics", hasUsageFlags: false },
@@ -1171,6 +1192,35 @@ const CATEGORIES = {
   "terminal-mux":       { label: "Terminal Multiplexer", hasUsageFlags: false },
   "uncategorised":      { label: "Uncategorised", hasUsageFlags: false },
 };
+
+// ============================================================
+// VERSION LOADING
+// ============================================================
+
+// Inline data above matches this version — no fetch needed on first load
+const INLINE_VERSION = "2.1.109";
+let currentVersion = INLINE_VERSION;
+const versionCache = {};
+
+async function loadVersion(version) {
+  if (versionCache[version]) {
+    applyVersionData(version, versionCache[version]);
+    return;
+  }
+  const res = await fetch(`flags/${version}.json`);
+  const data = await res.json();
+  versionCache[version] = data;
+  applyVersionData(version, data);
+}
+
+function applyVersionData(version, data) {
+  currentVersion = version;
+  FLAG_REGISTRY = data.flags;
+  CATEGORIES = data.categories;
+  const container = document.getElementById("flag-groups");
+  if (container) container.innerHTML = "";
+  render();
+}
 
 const SLIDER_DEFINITIONS = {
   thinking: {
@@ -1399,6 +1449,7 @@ function stateToHash(st) {
   const payload = { s };
   if (st.activePreset) payload.p = st.activePreset;
   if (Object.keys(st.flagOverrides).length > 0) payload.a = st.flagOverrides;
+  if (currentVersion) payload.v = currentVersion;
   return btoa(JSON.stringify(payload));
 }
 
@@ -1410,6 +1461,7 @@ function hashToState(hash) {
       sliders: { thinking: +s[0], context: +s[1], output: +s[2], subagent: +s[3] },
       flagOverrides: payload.a || {},
       activePreset: payload.p || null,
+      version: payload.v || null,
     };
   } catch { return null; }
 }
@@ -1821,12 +1873,37 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 // INIT
 // ============================================================
 
-// Load from hash
+// Synchronous first render using inline data
 const hashState = hashToState(window.location.hash.slice(1));
-if (hashState) Object.assign(state, hashState);
-
-// First render
+if (hashState) {
+  const { version, ...rest } = hashState;
+  Object.assign(state, rest);
+}
 render();
+
+// Async: fetch manifest to populate version selector, load non-default version if needed
+(async () => {
+  const manifest = await fetch('flags/manifest.json').then(r => r.json());
+  const selector = document.getElementById('version-selector');
+  selector.innerHTML = '';
+
+  manifest.snapshots.slice().reverse().forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.version;
+    opt.textContent = `v${s.version}${s.version === manifest.latest ? ' (latest)' : ''}`;
+    selector.appendChild(opt);
+  });
+
+  const requestedVersion = hashState?.version || manifest.latest;
+  selector.value = requestedVersion;
+
+  // Only fetch if hash requests a different version than what's inlined
+  if (requestedVersion !== INLINE_VERSION) {
+    await loadVersion(requestedVersion);
+  }
+
+  selector.addEventListener('change', () => loadVersion(selector.value));
+})();
 </script>
 
 </body>
