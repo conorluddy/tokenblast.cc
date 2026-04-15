@@ -1,0 +1,104 @@
+name: Agentic Task
+description: Structured task for AI agent execution — clear scope, verifiable outcomes
+title: "[Task] "
+labels: []
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this task exists. What problem does it solve? Link to parent epic if applicable.
+      placeholder: |
+        Part of #XX (epic title).
+        Currently, X works like Y. We need Z because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Exact files to create or modify, with full paths. One per line.
+      placeholder: |
+        **Create:**
+        - `src/components/tb-example.js`
+
+        **Modify:**
+        - `src/app.js` (add import + event wiring)
+
+        **Read (reference only):**
+        - `index.html` (lines 1449-1489, SLIDER_DEFINITIONS)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State
+      description: What exists now. Code references, line numbers, relevant snippets. The agent should be able to verify this before starting.
+      placeholder: |
+        `resolveFlags()` currently lives in `index.html` at line 1555.
+        It reads from global `SLIDER_DEFINITIONS` and `state.flagOverrides`.
+    validations:
+      required: true
+
+  - type: textarea
+    id: target-state
+    attributes:
+      label: Target State
+      description: What should exist after. Concrete and verifiable — not aspirational.
+      placeholder: |
+        `resolveFlags()` is exported from `src/logic.js`.
+        It accepts `(sliders, flagOverrides, sliderDefinitions)` as parameters.
+        No global state access.
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-hints
+    attributes:
+      label: Implementation Hints
+      description: Key patterns, APIs, functions to reuse. Pointers, not prescriptions.
+      placeholder: |
+        - Reuse the existing `ui.sliderGroup()` pattern from index.html:1792
+        - Use `adoptedStyleSheets` for shared Constructable Stylesheets
+        - Emit `tb:slider-change` CustomEvent with `{ bubbles: true, composed: true }`
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Which issues must be complete first? List by number.
+      placeholder: |
+        - #XX — Store module (imports `store.js`)
+        - #YY — Data modules (imports `data.js`)
+    validations:
+      required: false
+
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: Definition of Done
+      description: Each item should be independently verifiable. Use checkboxes.
+      placeholder: |
+        - [ ] `src/logic.js` exports `resolveFlags()`, `computeCost()`, `detectActivePreset()`
+        - [ ] All functions are pure — no global state access
+        - [ ] ES module imports use file extensions (`.js`)
+        - [ ] No regressions in URL hash encoding/decoding
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How to test. Commands to run, things to check in the browser.
+      placeholder: |
+        1. `python3 -m http.server` from project root
+        2. Open http://localhost:8000
+        3. Verify sliders adjust preview JSON
+        4. Verify URL hash round-trips correctly
+    validations:
+      required: true
