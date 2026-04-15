@@ -2255,8 +2255,10 @@ function renderCatalog() {
   // Show active tab pane + slider section — but respect active search
   const searchQuery = document.getElementById('catalog-search').value;
   if (searchQuery) {
-    // Search is active: show all panes, hide tab bar and sliders
-    container.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('active'));
+    // Search is active: show all flag panes (not saved-presets), hide tab bar and sliders
+    container.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.classList.toggle('active', pane.dataset.tabPane !== 'saved-presets');
+    });
     document.getElementById('tab-bar').style.display = 'none';
     const sliderSection = document.getElementById('slider-section');
     if (sliderSection) sliderSection.style.display = 'none';
@@ -2296,8 +2298,10 @@ document.getElementById("catalog-search").addEventListener("input", (e) => {
   const tabBar = document.getElementById("tab-bar");
 
   if (q) {
-    // Show all tab panes, hide tab bar and slider section
-    container.querySelectorAll('.tab-pane').forEach(p => p.classList.add('active'));
+    // Show all flag panes (not saved-presets), hide tab bar and slider section
+    container.querySelectorAll('.tab-pane').forEach(p => {
+      p.classList.toggle('active', p.dataset.tabPane !== 'saved-presets');
+    });
     tabBar.style.display = 'none';
     const sliderSection = document.getElementById('slider-section');
     if (sliderSection) sliderSection.style.display = 'none';
