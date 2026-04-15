@@ -1,0 +1,27 @@
+name: Generate README
+
+on:
+  push:
+    branches: [main]
+    paths: [flags/**]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate README from flags
+        run: node scripts/generate-readme.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "Update README from flags/${{ github.sha }}"
+          git push
