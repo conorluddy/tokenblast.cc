@@ -582,7 +582,8 @@
     }
 
     /* ===== JSON Syntax Colors ===== */
-    .json-key    { color: var(--accent); }
+    .json-key    { color: var(--accent); cursor: pointer; }
+    .json-key:hover { text-decoration: underline; }
     .json-string { color: var(--status-success); }
     .json-number { color: var(--status-warning); }
     .json-null   { color: var(--text-muted); }
@@ -649,9 +650,16 @@
       transition: all var(--transition);
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: var(--space-2);
+      flex: 1;
     }
     .tab-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+    .tab-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+      pointer-events: none;
+    }
     .tab-btn.active {
       background: var(--accent);
       color: var(--bg-base);
@@ -906,6 +914,88 @@
       text-align: right;
     }
 
+    /* ===== Save Dialog ===== */
+
+    .save-dialog {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font);
+      padding: 0;
+      max-width: 624px;
+      width: calc(100% - var(--space-6));
+      margin: auto;
+    }
+    .save-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+    .save-dialog__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border);
+      font-weight: var(--weight-bold);
+    }
+    .save-dialog__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); }
+    .save-dialog__preview {
+      background: var(--bg-base);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-3);
+      font-size: var(--text-xs);
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .save-dialog__actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== Saved Presets ===== */
+
+    .preset-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+    .preset-card__name { font-weight: var(--weight-bold); font-size: var(--text-base); }
+    .preset-card__meta {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      margin-top: var(--space-1);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .preset-card__summary {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      margin-top: var(--space-2);
+    }
+    .preset-card__actions {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+    .btn--danger {
+      color: var(--status-red);
+      border-color: var(--status-red);
+    }
+    .btn--danger:hover { background: var(--status-red); color: var(--bg-base); }
+    .saved-empty {
+      text-align: center;
+      color: var(--text-secondary);
+      padding: var(--space-6) var(--space-4);
+      font-size: var(--text-sm);
+    }
+
     /* ===== Mobile Responsive ===== */
     @media (max-width: 768px) {
       .mobile-cost-bar { display: block; }
@@ -989,6 +1079,7 @@
           <span class="preview-title">settings.json</span>
           <div class="preview-actions">
             <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
+            <button class="btn btn--sm copy-btn" id="save-btn">Save</button>
             <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
           </div>
         </div>
@@ -997,6 +1088,22 @@
       </div>
     </div>
   </div>
+
+  <!-- Save Preset Dialog -->
+  <dialog id="save-dialog" class="save-dialog">
+    <div class="save-dialog__header">
+      <span>Save Custom Preset</span>
+      <button class="btn btn--sm" id="save-dialog-close">&times;</button>
+    </div>
+    <div class="save-dialog__body">
+      <input class="input" id="preset-name-input" placeholder="Preset name..." maxlength="40" autocomplete="off">
+      <pre class="save-dialog__preview" id="save-dialog-preview"></pre>
+    </div>
+    <div class="save-dialog__actions">
+      <button class="btn btn--pill" id="save-dialog-cancel">Cancel</button>
+      <button class="btn btn--pill" id="save-dialog-confirm">Save</button>
+    </div>
+  </dialog>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1473,6 +1580,38 @@ function resolveFlags(st) {
   return env;
 }
 
+// ============================================================
+// CUSTOM PRESETS (localStorage)
+// ============================================================
+
+const CUSTOM_PRESETS_KEY = 'tokenblast-custom-presets';
+
+function loadCustomPresets() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_PRESETS_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveCustomPresets(presets) {
+  localStorage.setItem(CUSTOM_PRESETS_KEY, JSON.stringify(presets));
+}
+
+function deleteCustomPreset(id) {
+  const presets = loadCustomPresets().filter(p => p.id !== id);
+  saveCustomPresets(presets);
+  if (presets.length === 0 && state.activeTab === 'saved-presets') {
+    state.activeTab = 'cost-effort';
+  }
+  render();
+}
+
+function extractExtraFlags() {
+  const extra = {};
+  for (const [key, val] of Object.entries(state.flagOverrides)) {
+    if (!SLIDER_CONTROLLED_FLAGS.has(key)) extra[key] = val;
+  }
+  return extra;
+}
+
 function generateJSON(env) {
   // Sort keys for consistency
   const sorted = {};
@@ -1484,8 +1623,8 @@ function generateJSON(env) {
 
 function syntaxHighlightJSON(json) {
   return json.replace(
-    /("(?:\\.|[^"\\])*")\s*:/g,
-    '<span class="json-key">$1</span>:'
+    /"((?:\\.|[^"\\])*)"\s*:/g,
+    '<span class="json-key" data-flag-key="$1">"$1"</span>:'
   ).replace(
     /:\s*("(?:\\.|[^"\\])*")/g,
     ': <span class="json-string">$1</span>'
@@ -1853,6 +1992,18 @@ function renderPreview() {
   code.innerHTML = syntaxHighlightJSON(json);
 }
 
+// --- Click key in preview to search ---
+document.getElementById("preview-code").addEventListener("click", (e) => {
+  const keySpan = e.target.closest(".json-key");
+  if (!keySpan) return;
+  const flagKey = keySpan.dataset.flagKey;
+  if (!flagKey) return;
+  const input = document.getElementById("catalog-search");
+  input.value = flagKey;
+  input.dispatchEvent(new Event("input"));
+  input.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
 // --- Copy ---
 document.getElementById("copy-btn").addEventListener("click", async () => {
   const env = resolveFlags(state);
@@ -1874,6 +2025,45 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   render();
 });
 
+// --- Save Dialog ---
+document.getElementById('save-btn').addEventListener('click', () => openSaveDialog());
+
+const saveDialog = document.getElementById('save-dialog');
+const presetNameInput = document.getElementById('preset-name-input');
+const saveDialogPreview = document.getElementById('save-dialog-preview');
+
+function openSaveDialog() {
+  const env = resolveFlags(state);
+  saveDialogPreview.textContent = generateJSON(env);
+  presetNameInput.value = '';
+  saveDialog.showModal();
+  presetNameInput.focus();
+}
+
+document.getElementById('save-dialog-confirm').addEventListener('click', () => {
+  const name = presetNameInput.value.trim();
+  if (!name) { presetNameInput.focus(); return; }
+  const presets = loadCustomPresets();
+  presets.push({
+    id: 'custom_' + Date.now(),
+    label: name,
+    sliders: { ...state.sliders },
+    extraFlags: extractExtraFlags(),
+    savedAt: Date.now(),
+    version: currentVersion,
+  });
+  saveCustomPresets(presets);
+  saveDialog.close();
+  render();
+});
+
+document.getElementById('save-dialog-cancel').addEventListener('click', () => saveDialog.close());
+document.getElementById('save-dialog-close').addEventListener('click', () => saveDialog.close());
+saveDialog.addEventListener('click', (e) => { if (e.target === saveDialog) saveDialog.close(); });
+presetNameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('save-dialog-confirm').click();
+});
+
 // --- Tab Bar ---
 function renderTabBar() {
   const bar = document.getElementById("tab-bar");
@@ -1888,6 +2078,14 @@ function renderTabBar() {
       );
       bar.appendChild(btn);
     }
+    // "Saved" tab — always created, visibility toggled below
+    const savedBtn = ui.el('button', 'tab-btn', { 'data-tab': 'saved-presets' });
+    savedBtn.append(
+      document.createTextNode('Saved'),
+      ui.el('span', 'tab-badge', { id: 'tab-badge-saved-presets' }),
+    );
+    bar.appendChild(savedBtn);
+
     bar.addEventListener('click', (e) => {
       const btn = e.target.closest('.tab-btn');
       if (!btn) return;
@@ -1895,6 +2093,8 @@ function renderTabBar() {
       render();
     });
   }
+
+  const customPresets = loadCustomPresets();
 
   // Update active state and badge counts
   for (const tab of TAB_GROUPS) {
@@ -1906,6 +2106,13 @@ function renderTabBar() {
     const badge = document.getElementById(`tab-badge-${tab.id}`);
     badge.textContent = setCount > 0 ? setCount : '';
   }
+
+  // Saved tab — always visible, disabled when empty
+  const savedTabBtn = bar.querySelector('[data-tab="saved-presets"]');
+  savedTabBtn.disabled = customPresets.length === 0;
+  savedTabBtn.classList.toggle('active', state.activeTab === 'saved-presets');
+  const savedBadge = document.getElementById('tab-badge-saved-presets');
+  savedBadge.textContent = customPresets.length > 0 ? customPresets.length : '';
 }
 
 // --- Flag Catalog ---
@@ -1976,12 +2183,78 @@ function renderCatalog() {
     container.addEventListener("input", handleFlagChange);
   }
 
-  // Show active tab pane + slider section only on cost-effort tab
-  container.querySelectorAll('.tab-pane').forEach(pane => {
-    pane.classList.toggle('active', pane.dataset.tabPane === state.activeTab);
-  });
-  const sliderSection = document.getElementById('slider-section');
-  if (sliderSection) sliderSection.style.display = state.activeTab === 'cost-effort' ? '' : 'none';
+  // Saved presets pane — rebuilt each render
+  let savedPane = container.querySelector('[data-tab-pane="saved-presets"]');
+  if (!savedPane) {
+    savedPane = ui.el('div', 'tab-pane', { 'data-tab-pane': 'saved-presets' });
+    container.appendChild(savedPane);
+  }
+  savedPane.innerHTML = '';
+  const customPresets = loadCustomPresets();
+  if (customPresets.length === 0) {
+    savedPane.appendChild(ui.el('div', 'saved-empty', { text: 'No saved presets yet. Configure your flags and click "+ Save" to create one.' }));
+  } else {
+    for (const preset of customPresets) {
+      const card = ui.el('div', 'preset-card');
+
+      card.appendChild(ui.el('div', 'preset-card__name', { text: preset.label }));
+
+      const meta = ui.el('div', 'preset-card__meta');
+      const date = new Date(preset.savedAt);
+      meta.appendChild(ui.el('span', '', { text: date.toLocaleDateString() }));
+      if (preset.version) meta.appendChild(ui.el('span', '', { text: `v${preset.version}` }));
+      card.appendChild(meta);
+
+      const sliderNames = { thinking: 'Thinking', context: 'Context', output: 'Output', subagent: 'Subagent' };
+      const parts = Object.entries(preset.sliders).map(([k, v]) => {
+        const def = SLIDER_DEFINITIONS[k];
+        const posLabel = def ? def.positions[v]?.label || v : v;
+        return `${sliderNames[k]}: ${posLabel}`;
+      });
+      const extraCount = Object.keys(preset.extraFlags || {}).length;
+      if (extraCount > 0) parts.push(`+${extraCount} flag${extraCount > 1 ? 's' : ''}`);
+      card.appendChild(ui.el('div', 'preset-card__summary', { text: parts.join(' · ') }));
+
+      const actions = ui.el('div', 'preset-card__actions');
+      const loadBtn = ui.el('button', 'btn btn--pill', { text: 'Load' });
+      loadBtn.addEventListener('click', () => {
+        state.sliders = { ...preset.sliders };
+        for (const key of SLIDER_CONTROLLED_FLAGS) delete state.flagOverrides[key];
+        for (const p of Object.values(PRESETS)) {
+          for (const key of Object.keys(p.extraFlags)) delete state.flagOverrides[key];
+        }
+        state.flagOverrides = { ...state.flagOverrides, ...(preset.extraFlags || {}) };
+        state.activePreset = detectActivePreset(state);
+        state.activeTab = 'cost-effort';
+        render();
+      });
+      actions.appendChild(loadBtn);
+
+      const delBtn = ui.el('button', 'btn btn--pill btn--danger', { text: 'Delete' });
+      delBtn.addEventListener('click', () => deleteCustomPreset(preset.id));
+      actions.appendChild(delBtn);
+
+      card.appendChild(actions);
+      savedPane.appendChild(card);
+    }
+  }
+
+  // Show active tab pane + slider section — but respect active search
+  const searchQuery = document.getElementById('catalog-search').value;
+  if (searchQuery) {
+    // Search is active: show all panes, hide tab bar and sliders
+    container.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('active'));
+    document.getElementById('tab-bar').style.display = 'none';
+    const sliderSection = document.getElementById('slider-section');
+    if (sliderSection) sliderSection.style.display = 'none';
+  } else {
+    container.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.classList.toggle('active', pane.dataset.tabPane === state.activeTab);
+    });
+    document.getElementById('tab-bar').style.display = '';
+    const sliderSection = document.getElementById('slider-section');
+    if (sliderSection) sliderSection.style.display = state.activeTab === 'cost-effort' ? '' : 'none';
+  }
 
   // Update control values and highlight state
   for (const flag of FLAG_REGISTRY) {
