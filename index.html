@@ -589,6 +589,12 @@
     .json-number { color: var(--status-warning); }
     .json-null   { color: var(--text-muted); }
     .json-brace  { color: var(--text-secondary); }
+    .json-comment { color: var(--text-muted); font-style: italic; opacity: 0.7; user-select: none; }
+
+    .breakdown-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* ===== Section Divider ===== */
     .section-divider {
@@ -601,12 +607,14 @@
     .global-search {
       display: flex;
       justify-content: center;
-      padding-bottom: var(--space-4);
+      padding: 40px 0 80px;
     }
 
     .catalog-search {
-      width: 420px;
+      width: 630px;
       max-width: 100%;
+      font-size: 1.275rem;
+      padding: var(--space-3) var(--space-6);
     }
 
     .search-empty {
@@ -630,7 +638,7 @@
     .tab-bar {
       display: flex;
       gap: var(--space-2);
-      overflow-x: auto;
+      overflow: visible;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
@@ -640,11 +648,12 @@
       justify-content: center;
       flex-wrap: nowrap;
       padding-bottom: var(--space-6);
+      overflow: visible;
     }
 
     .tab-btn {
       font-family: var(--font);
-      font-size: 0.55rem;
+      font-size: 0.65rem;
       font-weight: var(--weight-semibold);
       padding: var(--space-2) var(--space-4);
       border: 1px solid var(--border);
@@ -654,7 +663,7 @@
       cursor: pointer;
       position: relative;
       white-space: nowrap;
-      overflow: hidden;
+      overflow: visible;
       text-overflow: ellipsis;
       transition: all var(--transition);
       display: flex;
@@ -692,21 +701,26 @@
 
     .tab-badge {
       position: absolute;
-      top: 3px;
-      right: 4px;
-      font-size: var(--text-xs);
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      font-family: var(--font);
+      font-size: 0.5rem;
       font-weight: var(--weight-bold);
-      min-width: 1.1rem;
-      height: 1.1rem;
-      line-height: 1.1rem;
-      text-align: center;
-      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
       background: var(--bg-hover);
       color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      transition: transform var(--transition);
+      pointer-events: none;
+      z-index: -1;
     }
-    .tab-btn.active .tab-badge {
-      background: rgba(255,255,255,0.25);
-      color: var(--bg-base);
+    .tab-badge:not(:empty) {
+      transform: translateX(-50%) translateY(0);
     }
     .tab-badge:empty { display: none; }
 
@@ -1048,6 +1062,14 @@
       .preview-hint { font-size: var(--text-2xs); }
       .cost-row { grid-template-columns: 4.5em 1fr 2.5em; }
       .preview-panel { min-width: 0; }
+      .toolbar {
+        position: static;
+        justify-content: center;
+        margin: var(--space-4) auto 0;
+      }
+      .tab-bar--primary {
+        row-gap: var(--space-6);
+      }
     }
 
     @media (max-width: 480px) {
@@ -1115,6 +1137,7 @@
         <div class="preview-header">
           <span class="preview-title">settings.json</span>
           <div class="preview-actions">
+            <button class="btn btn--sm btn--ghost breakdown-btn" id="breakdown-btn">Breakdown</button>
             <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
             <button class="btn btn--sm copy-btn" id="save-btn">Save</button>
             <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
@@ -1145,6 +1168,7 @@
   <!-- Footer -->
   <footer class="footer">
     <p>Generated from Claude Code v2.1.107. Flags are undocumented and subject to change.</p>
+    <p style="margin-top: 0.25rem;">Cost estimates are unofficial best guesses — use your own judgement and testing.</p>
     <p style="margin-top: 0.25rem;"><a href="https://tokenblast.cc">tokenblast.cc</a> &middot; Built by <a href="https://conor.fyi" target="_blank">Conor Luddy</a></p>
   </footer>
 
@@ -1590,6 +1614,7 @@ const state = {
 };
 
 let syncLock = false;
+let showBreakdown = false;
 
 // ============================================================
 // CORE LOGIC
@@ -2044,11 +2069,32 @@ function renderCostIndicator() {
 }
 
 // --- Preview ---
+function getImpactComment(flagKey) {
+  const flag = FLAG_REGISTRY.find(f => f.key === flagKey);
+  if (!flag || !flag.impact) return null;
+  const arrows = { increase: "\u2191", decrease: "\u2193", variable: "\u2195" };
+  const arrow = arrows[flag.costDirection] || "\u2195";
+  return `${arrow} ${flag.impact} impact`;
+}
+
 function renderPreview() {
   const code = document.getElementById("preview-code");
   const env = resolveFlags(state);
   const json = generateJSON(env);
-  code.innerHTML = syntaxHighlightJSON(json);
+  let highlighted = syntaxHighlightJSON(json);
+
+  if (showBreakdown) {
+    highlighted = highlighted.replace(
+      /(<span class="json-key" data-flag-key="([^"]+)">[^<]+<\/span>:\s*<span class="json-(?:string|number|null)">[^<]+<\/span>)/g,
+      (match, full, key) => {
+        const comment = getImpactComment(key);
+        if (!comment) return full;
+        return `${full} <span class="json-comment">// ${comment}</span>`;
+      }
+    );
+  }
+
+  code.innerHTML = highlighted;
 }
 
 // --- Click key in preview to search ---
@@ -2074,6 +2120,13 @@ document.getElementById("copy-btn").addEventListener("click", async () => {
     btn.classList.add("copied");
     setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
   } catch {}
+});
+
+// --- Breakdown toggle ---
+document.getElementById("breakdown-btn").addEventListener("click", () => {
+  showBreakdown = !showBreakdown;
+  document.getElementById("breakdown-btn").classList.toggle("active", showBreakdown);
+  renderPreview();
 });
 
 // --- Reset ---
@@ -2163,7 +2216,7 @@ function renderTabBar() {
       return n + FLAG_REGISTRY.filter(f => f.category === catId && env[f.key]).length;
     }, 0);
     const badge = document.getElementById(`tab-badge-${tab.id}`);
-    badge.textContent = setCount > 0 ? setCount : '';
+    badge.textContent = setCount > 0 ? `${setCount} active` : '';
   }
 
   // Saved tab — always visible, disabled when empty
@@ -2171,7 +2224,7 @@ function renderTabBar() {
   savedTabBtn.disabled = customPresets.length === 0;
   savedTabBtn.classList.toggle('active', state.activeTab === 'saved-presets');
   const savedBadge = document.getElementById('tab-badge-saved-presets');
-  savedBadge.textContent = customPresets.length > 0 ? customPresets.length : '';
+  savedBadge.textContent = customPresets.length > 0 ? `${customPresets.length} saved` : '';
 }
 
 // --- Flag Catalog ---
