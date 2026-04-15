@@ -2170,7 +2170,12 @@ function renderCatalog() {
       const value = target.type === "checkbox" ? (target.checked ? "1" : null) : (target.value || null);
 
       if (value === null || value === "") {
-        delete state.flagOverrides[flagKey];
+        // For slider-controlled flags, keep a null override to suppress the slider value
+        if (SLIDER_CONTROLLED_FLAGS.has(flagKey)) {
+          state.flagOverrides[flagKey] = null;
+        } else {
+          delete state.flagOverrides[flagKey];
+        }
       } else {
         state.flagOverrides[flagKey] = value;
       }
