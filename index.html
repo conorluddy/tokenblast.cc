@@ -512,6 +512,18 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .cost-variable-note {
+      font-size: var(--text-2xs);
+      color: var(--status-warning);
+      margin-top: var(--space-2);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .cost-variable-note.visible { opacity: 1; }
+
+    .flag-row:not(.is-set) .flag-badges .badge { opacity: 0.4; }
+    .flag-row.is-set .flag-badges .badge { opacity: 1; transition: opacity var(--transition); }
+
     /* ===== Preview Panel ===== */
     .preview-panel {
       position: sticky;
@@ -582,6 +594,11 @@
       border-top: 1px solid var(--border);
     }
 
+    .preview-hint--warning {
+      color: var(--status-warning);
+      border-top-color: var(--status-warning);
+    }
+
     /* ===== JSON Syntax Colors ===== */
     .json-key    { color: var(--accent); cursor: pointer; }
     .json-key:hover { text-decoration: underline; }
@@ -589,6 +606,12 @@
     .json-number { color: var(--status-warning); }
     .json-null   { color: var(--text-muted); }
     .json-brace  { color: var(--text-secondary); }
+    .json-comment { color: var(--text-muted); font-style: italic; opacity: 0.7; user-select: none; }
+
+    .breakdown-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* ===== Section Divider ===== */
     .section-divider {
@@ -601,12 +624,14 @@
     .global-search {
       display: flex;
       justify-content: center;
-      padding-bottom: var(--space-4);
+      padding: 40px 0 80px;
     }
 
     .catalog-search {
-      width: 420px;
+      width: 630px;
       max-width: 100%;
+      font-size: 1.275rem;
+      padding: var(--space-3) var(--space-6);
     }
 
     .search-empty {
@@ -630,7 +655,7 @@
     .tab-bar {
       display: flex;
       gap: var(--space-2);
-      overflow-x: auto;
+      overflow: visible;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
@@ -640,11 +665,12 @@
       justify-content: center;
       flex-wrap: nowrap;
       padding-bottom: var(--space-6);
+      overflow: visible;
     }
 
     .tab-btn {
       font-family: var(--font);
-      font-size: 0.55rem;
+      font-size: 0.65rem;
       font-weight: var(--weight-semibold);
       padding: var(--space-2) var(--space-4);
       border: 1px solid var(--border);
@@ -654,7 +680,7 @@
       cursor: pointer;
       position: relative;
       white-space: nowrap;
-      overflow: hidden;
+      overflow: visible;
       text-overflow: ellipsis;
       transition: all var(--transition);
       display: flex;
@@ -692,21 +718,26 @@
 
     .tab-badge {
       position: absolute;
-      top: 3px;
-      right: 4px;
-      font-size: var(--text-xs);
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      font-family: var(--font);
+      font-size: 0.5rem;
       font-weight: var(--weight-bold);
-      min-width: 1.1rem;
-      height: 1.1rem;
-      line-height: 1.1rem;
-      text-align: center;
-      border-radius: 999px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
       background: var(--bg-hover);
       color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      transition: transform var(--transition);
+      pointer-events: none;
+      z-index: -1;
     }
-    .tab-btn.active .tab-badge {
-      background: rgba(255,255,255,0.25);
-      color: var(--bg-base);
+    .tab-badge:not(:empty) {
+      transform: translateX(-50%) translateY(0);
     }
     .tab-badge:empty { display: none; }
 
@@ -1048,6 +1079,14 @@
       .preview-hint { font-size: var(--text-2xs); }
       .cost-row { grid-template-columns: 4.5em 1fr 2.5em; }
       .preview-panel { min-width: 0; }
+      .toolbar {
+        position: static;
+        justify-content: center;
+        margin: var(--space-4) auto 0;
+      }
+      .tab-bar--primary {
+        row-gap: var(--space-6);
+      }
     }
 
     @media (max-width: 480px) {
@@ -1115,6 +1154,7 @@
         <div class="preview-header">
           <span class="preview-title">settings.json</span>
           <div class="preview-actions">
+            <button class="btn btn--sm btn--ghost breakdown-btn" id="breakdown-btn">Breakdown</button>
             <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
             <button class="btn btn--sm copy-btn" id="save-btn">Save</button>
             <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
@@ -1145,6 +1185,7 @@
   <!-- Footer -->
   <footer class="footer">
     <p>Generated from Claude Code v2.1.107. Flags are undocumented and subject to change.</p>
+    <p style="margin-top: 0.25rem;">Cost estimates are unofficial best guesses — use your own judgement and testing.</p>
     <p style="margin-top: 0.25rem;"><a href="https://tokenblast.cc">tokenblast.cc</a> &middot; Built by <a href="https://conor.fyi" target="_blank">Conor Luddy</a></p>
   </footer>
 
@@ -1482,6 +1523,7 @@ function applyVersionData(version, data) {
   currentVersion = version;
   FLAG_REGISTRY = data.flags;
   CATEGORIES = data.categories;
+  recomputeFlagBudget();
   const container = document.getElementById("flag-groups");
   if (container) container.innerHTML = "";
   const tabBar = document.getElementById("tab-bar");
@@ -1590,6 +1632,7 @@ const state = {
 };
 
 let syncLock = false;
+let showBreakdown = false;
 
 // ============================================================
 // CORE LOGIC
@@ -1694,13 +1737,51 @@ const COST_WEIGHTS = { thinking: 3, context: 2, output: 1.5, subagent: 1.5 };
 const COST_MAX_POS = { thinking: 4, context: 3, output: 2, subagent: 2 };
 const COST_LABELS = { thinking: 'Thinking', context: 'Context', output: 'Output', subagent: 'Subagent' };
 
-function computeCost(st) {
+const FLAG_IMPACT_WEIGHTS = { low: 0.5, medium: 1.0, high: 2.0 };
+const FLAG_INFLUENCE = 0.20;
+let FLAG_COST_BUDGET = 0;
+
+function recomputeFlagBudget() {
+  FLAG_COST_BUDGET = FLAG_REGISTRY
+    .filter(f => f.impact && f.affectsUsage && !SLIDER_CONTROLLED_FLAGS.has(f.key))
+    .reduce((sum, f) => sum + FLAG_IMPACT_WEIGHTS[f.impact], 0);
+}
+
+function computeSliderRatio(st) {
   let total = 0, max = 0;
   for (const [id, def] of Object.entries(SLIDER_DEFINITIONS)) {
     total += def.positions[st.sliders[id]].costWeight * COST_WEIGHTS[id];
     max += COST_MAX_POS[id] * COST_WEIGHTS[id];
   }
   return total / max;
+}
+
+function computeCompositeCost(st) {
+  const sliderRatio = computeSliderRatio(st);
+  const env = resolveFlags(st);
+  let flagDelta = 0, variableCount = 0, activeFlagCount = 0;
+
+  for (const flag of FLAG_REGISTRY) {
+    if (!flag.impact || !flag.affectsUsage) continue;
+    if (SLIDER_CONTROLLED_FLAGS.has(flag.key)) continue;
+    if (env[flag.key] === undefined) continue;
+    activeFlagCount++;
+    const w = FLAG_IMPACT_WEIGHTS[flag.impact];
+    if (flag.costDirection === 'increase') flagDelta += w;
+    else if (flag.costDirection === 'decrease') flagDelta -= w;
+    else variableCount++;
+  }
+
+  const normalizedDelta = FLAG_COST_BUDGET > 0 ? flagDelta / FLAG_COST_BUDGET : 0;
+  const flagContribution = normalizedDelta * FLAG_INFLUENCE;
+
+  return {
+    total: Math.max(0, Math.min(1, sliderRatio + flagContribution)),
+    sliderRatio,
+    flagContribution,
+    variableCount,
+    activeFlagCount,
+  };
 }
 
 function computeCostBreakdown(st) {
@@ -1843,6 +1924,11 @@ const ui = {
       const badges = ui.el('div', 'flag-badges');
       const variant = { high: 'danger', medium: 'warning', low: 'success' }[flag.impact];
       badges.append(ui.badge(flag.impact, variant));
+      if (flag.costDirection) {
+        const arrows = { increase: '\u2191', decrease: '\u2193', variable: '\u2195' };
+        const dirVariant = { increase: 'danger', decrease: 'success', variable: 'warning' };
+        badges.append(ui.badge(arrows[flag.costDirection], dirVariant[flag.costDirection]));
+      }
       info.append(badges);
     }
     if (flag.type === 'apikey') {
@@ -1911,7 +1997,21 @@ const ui = {
       breakdown.append(row);
     }
 
-    card.append(header, barBg, breakdown);
+    // 5th breakdown row: Flags
+    const flagRow = ui.el('div', 'cost-row');
+    flagRow.append(
+      ui.el('span', 'cost-row-label', { text: 'Flags' }),
+      (() => {
+        const bar = ui.el('div', 'cost-row-bar');
+        bar.append(ui.el('div', 'cost-row-fill', { id: 'cost-row-fill-flags' }));
+        return bar;
+      })(),
+      ui.el('span', 'cost-row-pct', { id: 'cost-row-pct-flags' }),
+    );
+    breakdown.append(flagRow);
+
+    const variableNote = ui.el('div', 'cost-variable-note', { id: 'cost-variable-note' });
+    card.append(header, barBg, breakdown, variableNote);
     return card;
   },
 };
@@ -2003,7 +2103,8 @@ function renderPresets() {
 
 // --- Cost Indicator ---
 function renderCostIndicator() {
-  const ratio = computeCost(state);
+  const composite = computeCompositeCost(state);
+  const ratio = composite.total;
   const fill = document.getElementById("cost-fill");
   const label = document.getElementById("cost-label");
   if (!fill || !label) return;
@@ -2017,8 +2118,9 @@ function renderCostIndicator() {
   else if (ratio <= 0.8) { color = "#e07050";               text = "$$$$"; }
   else                   { color = "var(--status-danger)";   text = "$$$$$"; }
 
+  const suffix = composite.variableCount > 0 ? '\u00b1' : '';
   fill.style.background = color;
-  label.textContent = text;
+  label.textContent = text + suffix;
   label.style.color = color;
 
   // Mobile sticky bar
@@ -2027,11 +2129,11 @@ function renderCostIndicator() {
   if (mFill && mDollars) {
     mFill.style.width = `${Math.max(ratio * 100, 5)}%`;
     mFill.style.background = color;
-    mDollars.textContent = text;
+    mDollars.textContent = text + suffix;
     mDollars.style.color = color;
   }
 
-  // Breakdown bars
+  // Slider breakdown bars
   const breakdown = computeCostBreakdown(state);
   for (const { id, pct, intensity } of breakdown) {
     const rowFill = document.getElementById(`cost-row-fill-${id}`);
@@ -2041,14 +2143,83 @@ function renderCostIndicator() {
     rowFill.style.opacity = pct > 0 ? 1 : 0.3;
     rowPct.textContent = `${Math.round(pct * 100)}%`;
   }
+
+  // Flags breakdown row
+  const flagFill = document.getElementById('cost-row-fill-flags');
+  const flagPct = document.getElementById('cost-row-pct-flags');
+  if (flagFill && flagPct) {
+    const absContrib = Math.abs(composite.flagContribution);
+    flagFill.style.width = `${Math.max(absContrib / FLAG_INFLUENCE * 100, composite.activeFlagCount > 0 ? 4 : 0)}%`;
+    flagFill.style.background = composite.flagContribution > 0.001 ? 'var(--status-danger)'
+      : composite.flagContribution < -0.001 ? 'var(--status-success)'
+      : 'var(--status-warning)';
+    flagFill.style.opacity = composite.activeFlagCount > 0 ? 1 : 0.3;
+    flagPct.textContent = composite.activeFlagCount > 0 ? `${composite.activeFlagCount} flags` : '';
+  }
+
+  // Variable flags callout
+  const varNote = document.getElementById('cost-variable-note');
+  if (varNote) {
+    varNote.classList.toggle('visible', composite.variableCount > 0);
+    varNote.textContent = composite.variableCount > 0
+      ? `\u2195 ${composite.variableCount} variable flag${composite.variableCount === 1 ? '' : 's'} \u2014 actual cost depends on usage`
+      : '';
+  }
 }
 
 // --- Preview ---
+function getImpactComment(flagKey) {
+  const flag = FLAG_REGISTRY.find(f => f.key === flagKey);
+  if (!flag || !flag.impact) return null;
+  const arrows = { increase: "\u2191", decrease: "\u2193", variable: "\u2195" };
+  const labels = { increase: "increases cost", decrease: "decreases cost", variable: "variable impact" };
+  const arrow = arrows[flag.costDirection] || "\u2195";
+  const label = labels[flag.costDirection] || "variable impact";
+  return `${arrow} ${flag.impact} \u2014 ${label}. ${flag.description}`;
+}
+
 function renderPreview() {
   const code = document.getElementById("preview-code");
   const env = resolveFlags(state);
   const json = generateJSON(env);
-  code.innerHTML = syntaxHighlightJSON(json);
+  let highlighted = syntaxHighlightJSON(json);
+
+  if (showBreakdown) {
+    highlighted = highlighted.replace(
+      /(<span class="json-key" data-flag-key="([^"]+)">[^<]+<\/span>:\s*<span class="json-(?:string|number|null)">[^<]+<\/span>)(,?)/g,
+      (match, full, key, comma) => {
+        const comment = getImpactComment(key);
+        if (!comment) return full + comma;
+        return `${full}${comma}\n    <span class="json-comment">// ${comment}</span>`;
+      }
+    );
+  }
+
+  code.innerHTML = highlighted;
+
+  // Breakdown warning + copy button state
+  const hint = document.querySelector('.preview-hint');
+  const copyBtn = document.getElementById('copy-btn');
+  const warning = document.getElementById('breakdown-warning');
+  if (showBreakdown) {
+    copyBtn.disabled = true;
+    copyBtn.style.opacity = '0.4';
+    copyBtn.style.pointerEvents = 'none';
+    if (hint) hint.style.display = 'none';
+    if (!warning) {
+      const w = document.createElement('div');
+      w.id = 'breakdown-warning';
+      w.className = 'preview-hint preview-hint--warning';
+      w.textContent = 'Breakdown comments are for reference only \u2014 JSON with comments is invalid. Turn off Breakdown to copy.';
+      code.parentElement.appendChild(w);
+    }
+  } else {
+    copyBtn.disabled = false;
+    copyBtn.style.opacity = '';
+    copyBtn.style.pointerEvents = '';
+    if (hint) hint.style.display = '';
+    if (warning) warning.remove();
+  }
 }
 
 // --- Click key in preview to search ---
@@ -2074,6 +2245,13 @@ document.getElementById("copy-btn").addEventListener("click", async () => {
     btn.classList.add("copied");
     setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1500);
   } catch {}
+});
+
+// --- Breakdown toggle ---
+document.getElementById("breakdown-btn").addEventListener("click", () => {
+  showBreakdown = !showBreakdown;
+  document.getElementById("breakdown-btn").classList.toggle("active", showBreakdown);
+  renderPreview();
 });
 
 // --- Reset ---
@@ -2163,7 +2341,7 @@ function renderTabBar() {
       return n + FLAG_REGISTRY.filter(f => f.category === catId && env[f.key]).length;
     }, 0);
     const badge = document.getElementById(`tab-badge-${tab.id}`);
-    badge.textContent = setCount > 0 ? setCount : '';
+    badge.textContent = setCount > 0 ? `${setCount} active` : '';
   }
 
   // Saved tab — always visible, disabled when empty
@@ -2171,7 +2349,7 @@ function renderTabBar() {
   savedTabBtn.disabled = customPresets.length === 0;
   savedTabBtn.classList.toggle('active', state.activeTab === 'saved-presets');
   const savedBadge = document.getElementById('tab-badge-saved-presets');
-  savedBadge.textContent = customPresets.length > 0 ? customPresets.length : '';
+  savedBadge.textContent = customPresets.length > 0 ? `${customPresets.length} saved` : '';
 }
 
 // --- Flag Catalog ---
@@ -2429,6 +2607,7 @@ if (hashState) {
   const { version, ...rest } = hashState;
   Object.assign(state, rest);
 }
+recomputeFlagBudget();
 render();
 
 // Async: fetch manifest to populate version selector, load non-default version if needed
