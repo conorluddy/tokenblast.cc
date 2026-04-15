@@ -1,0 +1,25 @@
+{
+  "latest": "2.1.109",
+  "snapshots": [
+    {
+      "version": "2.1.107",
+      "file": "2.1.107.json",
+      "date": "2026-04-14",
+      "claudeCodeVersion": "2.1.107",
+      "totalFlags": 225,
+      "added": null,
+      "removed": null,
+      "notes": "Initial tracked snapshot"
+    },
+    {
+      "version": "2.1.109",
+      "file": "2.1.109.json",
+      "date": "2026-04-15",
+      "claudeCodeVersion": "2.1.109",
+      "totalFlags": 226,
+      "added": 1,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    }
+  ]
+}
