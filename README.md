@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.109** — 226 flags across 18 categories.
+Generated from Claude Code **v2.1.110** — 230 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -129,6 +129,7 @@ Generated from Claude Code **v2.1.109** — 226 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING` | boolean | Disables file state checkpointing. |
 | `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL` | boolean | Prevents auto-install of marketplace plugins. |
 | `CLAUDE_CODE_DISABLE_POLICY_SKILLS` | boolean | Skips loading admin/org-managed policy skills. |
+| `CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH` 🆕 | boolean | — |
 | `CLAUDE_CODE_ENABLE_CFC` | boolean | Enables CFC feature (caching/function calling). |
 | `CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING` | boolean | Fine-grained streaming for tool results. |
 | `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` | boolean | AI-generated suggestions consume lightweight model calls. |
@@ -318,8 +319,11 @@ Generated from Claude Code **v2.1.109** — 226 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_REPL` 🆕 | text | — |
+| `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` 🆕 | boolean | — |
+| `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` 🆕 | boolean | — |
+| `CLAUDE_CODE_REPL` | text | — |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Root directory for test fixtures. |
+| `CLAUDE_CODE_TUI_JUST_SWITCHED` 🆕 | text | — |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Use PowerShell instead of Bash tool. |
 
 ---
