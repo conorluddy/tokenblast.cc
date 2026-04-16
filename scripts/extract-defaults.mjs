@@ -41,6 +41,26 @@ console.error(`Detected boolean gate helper: ${GATE_HELPER ?? '(none — all boo
 
 const ENABLE_BOOLEAN_RE = /(?:ENABLE|DISABLE|SKIP|FORCE|USE|IS)_/;
 
+// Resolve a minified module constant like `cw_ = 300000` or `CB3 = 1e5` to its
+// numeric literal. Rejects single-letter idents (almost always local vars) and
+// anything that looks like a function (`function X(` or `X=()=>`).
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function resolveNumericConst(ident) {
+  if (ident.length < 2) return null;
+  const esc = escapeRegex(ident);
+  // `$` is not a word char, so `\b` doesn't anchor to identifiers containing `$`.
+  // Use an explicit non-identifier lookbehind/lookahead instead.
+  const boundary = `(?<![\\w$])${esc}(?![\\w$])`;
+  if (new RegExp(`function\\s+${esc}[\\s(]`).test(cli)) return null;
+  if (new RegExp(`${boundary}\\s*=\\s*(?:async\\s+)?(?:\\(|function)`).test(cli)) return null;
+  const re = new RegExp(`${boundary}\\s*=\\s*(\\d+(?:\\.\\d+)?(?:e\\d+)?)(?![\\w$])`);
+  const m = cli.match(re);
+  return m ? Number(m[1]) : null;
+}
+
 function findContexts(key) {
   const needle = `process.env.${key}`;
   const out = [];
@@ -95,10 +115,22 @@ function classify(flag) {
         if (raw) return { status: 'extracted', value: Number(raw), source: 'number-literal', contexts };
       }
     }
-    // Named constant fallback: return <ident> after a parseInt of THIS key (minified pattern)
-    if (new RegExp(`${envExpr}[\\s\\S]{0,200}return\\s+([a-zA-Z_$][\\w$]*)\\b(?!\\s*=)`).test(joined)) {
-      const m = joined.match(new RegExp(`${envExpr}[\\s\\S]{0,200}return\\s+([a-zA-Z_$][\\w$]*)`));
-      return { status: 'unknown', value: null, source: `number-named-const:${m[1]}`, contexts };
+    // Named constant fallback: any `return <ident>` within ~300 chars of THIS key.
+    // The first match may be a local var (e.g. the parsed value K); try every
+    // candidate until one resolves to a module-scoped numeric constant.
+    const window = joined.match(new RegExp(`${envExpr}[\\s\\S]{0,300}`))?.[0] ?? '';
+    const candidateRe = /return\s+([a-zA-Z_$][\w$]*)\b(?!\s*[=(])/g;
+    let cm;
+    const candidates = [];
+    while ((cm = candidateRe.exec(window))) candidates.push(cm[1]);
+    for (const ident of candidates) {
+      const resolved = resolveNumericConst(ident);
+      if (resolved !== null) {
+        return { status: 'extracted', value: resolved, source: `number-named-const:${ident}`, contexts };
+      }
+    }
+    if (candidates.length) {
+      return { status: 'unknown', value: null, source: `number-named-const-unresolved:${candidates.join(',')}`, contexts };
     }
     return { status: 'unknown', value: null, source: 'number-no-fallback', contexts };
   }
