@@ -1576,7 +1576,7 @@ let FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP", label: "Disable Legacy Model Remap", description: "Prevents automatic remapping of legacy model names (e.g. old Opus IDs) to current equivalents.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null, tokenEffect: { surface: "none", magnitude: "negligible" }, internal: false },
   { key: "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK", label: "Disable Nonstreaming Fallback", description: "Prevents falling back to non-streaming API calls on stream timeout or idle errors.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null, tokenEffect: { surface: "none", magnitude: "negligible" }, internal: false },
   { key: "CLAUDE_CODE_DISABLE_THINKING", label: "Disable Thinking", description: "Eliminates extended-thinking tokens entirely by hard-disabling the thinking budget.", category: "model-effort", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: true, impact: "high", costDirection: "decrease", tokenEffect: { surface: "thinking", magnitude: "high" }, internal: false },
-  { key: "CLAUDE_CODE_EFFORT_LEVEL", label: "Effort Level", description: "Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "low", label: "Low" }, { value: "medium", label: "Medium" }, { value: "high", label: "High" }, { value: "max", label: "Max (Opus only)" }], placeholder: null, affectsUsage: true, impact: "high", costDirection: "variable", tokenEffect: { surface: "thinking", magnitude: "variable", notes: "Higher values proportionally increase thinking budget" }, internal: false },
+  { key: "CLAUDE_CODE_EFFORT_LEVEL", label: "Effort Level", description: "Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "low", label: "Low" }, { value: "medium", label: "Medium" }, { value: "high", label: "High" }, { value: "xhigh", label: "XHigh (Opus only)" }, { value: "max", label: "Max (Opus only)" }], placeholder: null, affectsUsage: true, impact: "high", costDirection: "variable", tokenEffect: { surface: "thinking", magnitude: "variable", notes: "Higher values proportionally increase thinking budget" }, internal: false },
   { key: "CLAUDE_CODE_MAX_OUTPUT_TOKENS", label: "Max Output Tokens", description: "Caps output tokens per response, applied as a hard upper limit before the model default.", category: "model-effort", type: "number", defaultValue: null, options: null, placeholder: "e.g. 16000", affectsUsage: true, impact: "high", costDirection: "decrease", tokenEffect: { surface: "output", magnitude: "variable" }, internal: false },
   { key: "CLAUDE_CODE_SUBAGENT_MODEL", label: "Subagent Model", description: "Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost.", category: "model-effort", type: "select", defaultValue: null, options: [{ value: "haiku", label: "Haiku (cheapest)" }, { value: "sonnet", label: "Sonnet (balanced)" }, { value: "opus", label: "Opus (best)" }], placeholder: null, affectsUsage: true, impact: "high", costDirection: "variable", tokenEffect: { surface: "none", magnitude: "negligible", notes: "Affects cost per subagent call, not token surface" }, internal: false },
 
@@ -1817,7 +1817,8 @@ const SLIDER_DEFINITIONS = {
       { label: "Low", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "low", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1" }, costWeight: 1 },
       { label: "Medium", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "medium", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: "1" }, costWeight: 2 },
       { label: "High", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "high", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 3 },
-      { label: "Max", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "max", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 4 },
+      { label: "XHigh", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "xhigh", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 4 },
+      { label: "Max", flags: { CLAUDE_CODE_DISABLE_THINKING: null, CLAUDE_CODE_EFFORT_LEVEL: "max", CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: null }, costWeight: 5 },
     ],
   },
   context: {
@@ -2023,7 +2024,7 @@ function syntaxHighlightJSON(json) {
 }
 
 const COST_WEIGHTS = { thinking: 3, context: 2, output: 1.5, subagent: 1.5 };
-const COST_MAX_POS = { thinking: 4, context: 3, output: 2, subagent: 2 };
+const COST_MAX_POS = { thinking: 5, context: 3, output: 2, subagent: 2 };
 const COST_LABELS = { thinking: 'Thinking', context: 'Context', output: 'Output', subagent: 'Subagent' };
 
 const FLAG_IMPACT_WEIGHTS = { low: 0.5, medium: 1.0, high: 2.0 };
