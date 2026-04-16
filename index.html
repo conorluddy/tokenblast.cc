@@ -844,6 +844,16 @@
       margin-top: var(--space-1);
     }
 
+    .flag-default {
+      font-family: var(--font);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: var(--space-1);
+    }
+    .flag-default__value {
+      color: var(--text-secondary);
+    }
+
     .flag-control-wrapper {
       display: flex;
       align-items: center;
@@ -2239,6 +2249,14 @@ const ui = {
       ui.el('div', 'flag-name', { text: flag.key }),
       ui.el('div', 'flag-desc', { text: flag.description }),
     );
+    if (flag.defaultValue !== null && flag.defaultValue !== undefined) {
+      const def = ui.el('div', 'flag-default');
+      def.append(
+        document.createTextNode('default: '),
+        ui.el('span', 'flag-default__value', { text: JSON.stringify(flag.defaultValue) }),
+      );
+      info.append(def);
+    }
     if (flag.impact) {
       const badges = ui.el('div', 'flag-badges');
       const variant = { high: 'danger', medium: 'warning', low: 'success' }[flag.impact];
