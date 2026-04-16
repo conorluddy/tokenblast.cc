@@ -87,7 +87,7 @@
     {
       "key": "ANTHROPIC_API_KEY",
       "label": "API Key",
-      "description": "Anthropic API key for direct access.",
+      "description": "Direct API key for Anthropic inference — bypasses OAuth flow entirely.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -99,12 +99,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_AUTH_TOKEN",
       "label": "Auth Token",
-      "description": "Alternative authentication token.",
+      "description": "Bearer token used as an alternative credential, checked before OAuth sources.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -116,12 +121,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BASE_URL",
       "label": "Base URL",
-      "description": "Override Anthropic API base URL.",
+      "description": "Reroutes all API traffic to a custom endpoint, overriding the default api.anthropic.com.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -131,12 +141,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_UNIX_SOCKET",
       "label": "Unix Socket",
-      "description": "Unix socket for local API connections.",
+      "description": "Routes Anthropic API requests through a local Unix domain socket instead of TCP.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -148,12 +163,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCOUNT_TAGGED_ID",
       "label": "Account Tagged ID",
-      "description": "Internal account identifier for tagging/telemetry.",
+      "description": "Overrides the OTEL account ID tag used in telemetry metrics, falls back to a derived value.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -163,12 +183,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCOUNT_UUID",
       "label": "Account UUID",
-      "description": "Account UUID for auth/billing.",
+      "description": "Injects account UUID to pre-populate OAuth session without interactive login.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -178,12 +203,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_API_BASE_URL",
       "label": "API Base URL",
-      "description": "Override the API endpoint URL.",
+      "description": "Reroutes Files API calls to a custom base URL, falling back to ANTHROPIC_BASE_URL.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -193,12 +223,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR",
       "label": "API Key File Descriptor",
-      "description": "File descriptor for reading API key securely.",
+      "description": "Reads the API key from a file descriptor, enabling secure secret injection without env-var exposure.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -210,12 +245,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_API_KEY_HELPER_TTL_MS",
       "label": "API Key Helper TTL",
-      "description": "Cache TTL for the API key helper script.",
+      "description": "Controls how long the API key helper script result is cached before re-executing.",
       "category": "auth",
       "type": "number",
       "defaultValue": null,
@@ -228,12 +268,17 @@
         "auth-credential",
         "timeout"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ATTRIBUTION_HEADER",
       "label": "Attribution Header",
-      "description": "Custom attribution header for API requests.",
+      "description": "Suppresses the Claude Code attribution header appended to API requests when set.",
       "category": "auth",
       "type": "boolean",
       "defaultValue": null,
@@ -243,12 +288,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
       "label": "Custom OAuth URL",
-      "description": "Custom OAuth endpoint URL (must be approved).",
+      "description": "Overrides the OAuth base URL to an approved custom endpoint for non-production auth flows.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -260,12 +310,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
       "label": "OAuth Client ID",
-      "description": "OAuth client ID.",
+      "description": "Overrides the default OAuth client ID used during the authorization code flow.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -277,12 +332,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_REFRESH_TOKEN",
       "label": "OAuth Refresh Token",
-      "description": "OAuth refresh token.",
+      "description": "Seeds an OAuth refresh token directly, skipping the interactive browser login step.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -294,12 +354,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_SCOPES",
       "label": "OAuth Scopes",
-      "description": "OAuth scopes (space-separated).",
+      "description": "Declares space-separated OAuth scopes required when bootstrapping via a refresh token.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -311,12 +376,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_TOKEN",
       "label": "OAuth Token",
-      "description": "OAuth access token.",
+      "description": "Provides a pre-issued OAuth access token, bypassing device-flow login entirely.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -328,12 +398,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR",
       "label": "OAuth Token File Descriptor",
-      "description": "File descriptor for OAuth token.",
+      "description": "Reads the OAuth access token from a file descriptor for secure secret injection.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -345,12 +420,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ORGANIZATION_UUID",
       "label": "Organization UUID",
-      "description": "Organization UUID for multi-org accounts.",
+      "description": "Pins requests to a specific organization UUID, bypassing the profile-fetch lookup.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -360,12 +440,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
       "label": "Session Access Token",
-      "description": "Session-specific access token.",
+      "description": "Provides a session-scoped access token used by remote/bridge entrypoints instead of OAuth.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -377,12 +462,17 @@
       "tags": [
         "auth-credential"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USER_EMAIL",
       "label": "User Email",
-      "description": "User email for auth/attribution.",
+      "description": "Injects user email to pre-populate OAuth session alongside account UUID and org UUID.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -392,12 +482,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR",
       "label": "WebSocket Auth FD",
-      "description": "WebSocket authentication file descriptor.",
+      "description": "Reads the WebSocket session ingress token from a file descriptor for remote mode auth.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -409,12 +504,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD",
       "label": "Additional CLAUDE.md Dirs",
-      "description": "Extra directories to scan for CLAUDE.md files.",
+      "description": "Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -424,12 +524,18 @@
       "impact": "medium",
       "costDirection": "increase",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Each extra dir can add full CLAUDE.md content"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_COMPACT_WINDOW",
       "label": "Auto Compact Window",
-      "description": "Token threshold for auto-compaction. Lower = more aggressive.",
+      "description": "Token threshold for auto-compaction. Lower = more aggressive compaction.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -441,12 +547,18 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Governs when the context window is summarized"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
       "label": "Disable Auto Memory",
-      "description": "Disables auto-memory reads/writes. Removes memory from context.",
+      "description": "Disables automatic memory reads and writes, removing memory content from each turn's context.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -459,12 +571,18 @@
         "disable",
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Eliminates per-turn memory injection"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_CLAUDE_MDS",
       "label": "Disable CLAUDE.md Files",
-      "description": "Drops ALL CLAUDE.md content from system prompt. Nuclear option.",
+      "description": "Strips all CLAUDE.md file content from the system prompt entirely.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -476,12 +594,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Removes all project/user instruction context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS",
       "label": "Disable Git Instructions",
-      "description": "Strips built-in git workflow instructions from system prompt.",
+      "description": "Strips built-in git workflow instructions from the system prompt.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -494,12 +618,18 @@
         "disable",
         "vcs"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes ~1 section of built-in instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
       "label": "Disable Precompact Skip",
-      "description": "Forces full compaction pipeline instead of short-circuiting.",
+      "description": "Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -512,12 +642,17 @@
         "disable",
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_AWAY_SUMMARY",
       "label": "Enable Away Summary",
-      "description": "Show summary when returning from idle/away state.",
+      "description": "Enables an idle-return summary notification when resuming after an away period.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -529,12 +664,18 @@
       "tags": [
         "enable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Injects a short summary message on return"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDLE_THRESHOLD_MINUTES",
       "label": "Idle Threshold",
-      "description": "Minutes of inactivity before idle detection fires. Default 75.",
+      "description": "Controls the inactivity window (in minutes) before idle-state detection fires. Default 75.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -546,12 +687,17 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDLE_TOKEN_THRESHOLD",
       "label": "Idle Token Threshold",
-      "description": "Token count above which idle detection activates. Default 100000.",
+      "description": "Sets the minimum context token count required before idle-state detection activates. Default 100000.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -563,12 +709,17 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES",
       "label": "Include Partial Messages",
-      "description": "Include incomplete messages in context.",
+      "description": "Includes incomplete in-flight messages in the context window during streaming.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -578,12 +729,18 @@
       "impact": "low",
       "costDirection": "increase",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Adds partial assistant turn tokens to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_CONTEXT_TOKENS",
       "label": "Max Context Tokens",
-      "description": "Override max context window token limit (used with DISABLE_COMPACT).",
+      "description": "Overrides the model context window size, active only when DISABLE_COMPACT is also set.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -595,12 +752,18 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "User-supplied value sets the window ceiling"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_MEMORY_DIR",
       "label": "Remote Memory Dir",
-      "description": "Alternative directory for memory/session data in remote mode.",
+      "description": "Redirects memory and session storage to an alternative directory for remote deployments.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -613,12 +776,18 @@
         "context-management",
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Memory content injected from alternate path"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_FROM_SESSION",
       "label": "Resume From Session",
-      "description": "Hydrate context from a specific prior session ID.",
+      "description": "Hydrates conversation context from a specific prior session ID via the Sessions API.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -630,12 +799,18 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Loads a full prior session into context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_INTERRUPTED_TURN",
       "label": "Resume Interrupted Turn",
-      "description": "Auto-resume interrupted turns.",
+      "description": "Automatically resumes an interrupted turn by re-injecting its message content.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -647,12 +822,18 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Replays the last interrupted message"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_THRESHOLD_MINUTES",
       "label": "Resume Threshold",
-      "description": "Minutes since last message to trigger resume flow. Default 70.",
+      "description": "Sets minutes since the last message before the resume-session flow is offered. Default 70.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -664,12 +845,17 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_TOKEN_THRESHOLD",
       "label": "Resume Token Threshold",
-      "description": "Token count above which resume is offered. Default 100000.",
+      "description": "Sets the minimum token count required before the resume-session prompt appears. Default 100000.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -681,12 +867,17 @@
       "tags": [
         "context-management"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_PROMPT_HISTORY",
       "label": "Skip Prompt History",
-      "description": "Skip loading previous prompt history at session start.",
+      "description": "Skips loading persisted prompt history at session start, suppressing prior-turn entries.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -698,12 +889,18 @@
       "tags": [
         "skip"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Prevents prior session history from being loaded"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DEBUG_LOG_LEVEL",
       "label": "Debug Log Level",
-      "description": "Debug logging verbosity (verbose/debug/info/warn/error).",
+      "description": "Controls the minimum log severity written to the debug log file (verbose/debug/info/warn/error).",
       "category": "debug",
       "type": "select",
       "defaultValue": null,
@@ -736,12 +933,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DEBUG_LOGS_DIR",
       "label": "Debug Logs Dir",
-      "description": "Directory for debug log output.",
+      "description": "Redirects debug log output to a specific file path instead of the default session log.",
       "category": "debug",
       "type": "text",
       "defaultValue": null,
@@ -753,12 +955,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DEBUG_REPAINTS",
       "label": "Debug Repaints",
-      "description": "Debug UI repaint cycles.",
+      "description": "Enables UI repaint cycle tracking, surfacing which React components are re-rendering.",
       "category": "debug",
       "type": "boolean",
       "defaultValue": null,
@@ -770,12 +977,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DIAGNOSTICS_FILE",
       "label": "Diagnostics File",
-      "description": "Path to write diagnostic output.",
+      "description": "Writes structured diagnostic events to a specified file path for external analysis.",
       "category": "debug",
       "type": "text",
       "defaultValue": null,
@@ -787,12 +999,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME_TIMING_LOG",
       "label": "Frame Timing Log",
-      "description": "Logs UI frame timing.",
+      "description": "Logs per-frame render timing including phase breakdowns and RSS memory usage.",
       "category": "debug",
       "type": "boolean",
       "defaultValue": null,
@@ -804,12 +1021,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PERFETTO_TRACE",
       "label": "Perfetto Trace",
-      "description": "Enables Perfetto performance tracing.",
+      "description": "Enables Perfetto-format performance tracing for agent process and thread activity.",
       "category": "debug",
       "type": "boolean",
       "defaultValue": null,
@@ -821,12 +1043,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROFILE_QUERY",
       "label": "Profile Query",
-      "description": "Enables query profiling.",
+      "description": "Enables per-query profiling checkpoints, surfacing a timing report on demand.",
       "category": "debug",
       "type": "boolean",
       "defaultValue": null,
@@ -838,12 +1065,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROFILE_STARTUP",
       "label": "Profile Startup",
-      "description": "Enables detailed startup profiling.",
+      "description": "Enables detailed startup phase profiling and emits a startup-perf telemetry event.",
       "category": "debug",
       "type": "boolean",
       "defaultValue": null,
@@ -855,12 +1087,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS",
       "label": "Slow Op Threshold",
-      "description": "Threshold for slow operation warnings (ms).",
+      "description": "Sets the threshold (ms) above which operations are flagged as slow in diagnostics.",
       "category": "debug",
       "type": "number",
       "defaultValue": null,
@@ -872,12 +1109,17 @@
       "tags": [
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING",
       "label": "Stall Timeout (Testing)",
-      "description": "Stall detection timeout for testing.",
+      "description": "Overrides the stall-detection abort timeout for test harnesses.",
       "category": "debug",
       "type": "number",
       "defaultValue": null,
@@ -890,12 +1132,17 @@
         "timeout",
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_AUTO_CONNECT_IDE",
       "label": "Auto Connect IDE",
-      "description": "Auto-connect to IDE extensions on startup.",
+      "description": "Forces automatic IDE extension connection on startup, or explicitly disables it when false.",
       "category": "ide",
       "type": "boolean",
       "defaultValue": null,
@@ -907,12 +1154,18 @@
       "tags": [
         "ide"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "IDE connection adds tool schemas to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDE_HOST_OVERRIDE",
       "label": "IDE Host Override",
-      "description": "Override host address for IDE connections.",
+      "description": "Overrides the IDE host address, bypassing WSL gateway detection entirely.",
       "category": "ide",
       "type": "text",
       "defaultValue": null,
@@ -924,12 +1177,17 @@
       "tags": [
         "ide"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL",
       "label": "IDE Skip Auto Install",
-      "description": "Skip auto-install of IDE extensions.",
+      "description": "Prevents automatic IDE extension installation on startup.",
       "category": "ide",
       "type": "boolean",
       "defaultValue": null,
@@ -943,12 +1201,17 @@
         "ide",
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDE_SKIP_VALID_CHECK",
       "label": "IDE Skip Valid Check",
-      "description": "Skip workspace folder validation.",
+      "description": "Skips workspace-folder validation when discovering IDE connections.",
       "category": "ide",
       "type": "boolean",
       "defaultValue": null,
@@ -961,12 +1224,17 @@
         "skip",
         "ide"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_LIST_IN_MESSAGES",
       "label": "Agent List In Messages",
-      "description": "Inject agent type/tool info into messages.",
+      "description": "Injects agent-type and tool availability summaries into every message.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -978,12 +1246,18 @@
       "tags": [
         "agent"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Small per-turn block per agent registered"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_ADVISOR_TOOL",
       "label": "Disable Advisor Tool",
-      "description": "Removes advisor tool definition from context.",
+      "description": "Removes the advisor tool definition, preventing it from appearing in the tool list.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -995,12 +1269,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops one tool schema from context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_ATTACHMENTS",
       "label": "Disable Attachments",
-      "description": "Prevents file attachments entering context.",
+      "description": "Strips @-mentioned files, MCP resources, and agent-mention attachments from context.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1012,12 +1292,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Eliminates all pre-turn attachment loading"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_BACKGROUND_TASKS",
       "label": "Disable Background Tasks",
-      "description": "Prevents background tasks that consume tokens.",
+      "description": "Disables background agent execution and removes the run_in_background tool parameter.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1030,12 +1316,18 @@
         "disable",
         "planning"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes background task instruction block"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_CLAUDE_API_SKILL",
       "label": "Disable Claude API Skill",
-      "description": "Skips registration of the built-in Claude API skill.",
+      "description": "Skips registration of the built-in claude-api skill at startup.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1047,12 +1339,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops claude-api skill tool schema"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_CRON",
       "label": "Disable Cron",
-      "description": "Disables cron/scheduled task support.",
+      "description": "Disables scheduled and recurring cron task tools entirely.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1065,12 +1363,18 @@
         "disable",
         "automation"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops cron create/list/delete tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS",
       "label": "Disable Experimental Betas",
-      "description": "Disables all experimental beta features.",
+      "description": "Disables all experimental beta API features, including context management and tool streaming.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1082,12 +1386,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Prevents beta header and feature flag injection"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY",
       "label": "Disable Feedback Survey",
-      "description": "Disables feedback survey prompts.",
+      "description": "Suppresses in-session feedback survey prompts regardless of timing conditions.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1099,12 +1409,17 @@
       "tags": [
         "disable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING",
       "label": "Disable File Checkpointing",
-      "description": "Disables file state checkpointing.",
+      "description": "Disables file-state snapshot tracking, preventing undo/restore for file edits.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1116,12 +1431,17 @@
       "tags": [
         "disable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL",
       "label": "Disable Marketplace Autoinstall",
-      "description": "Prevents auto-install of marketplace plugins.",
+      "description": "Prevents automatic installation of plugins from the official marketplace on startup.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1134,12 +1454,18 @@
         "disable",
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Skipped marketplace plugins don't add tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_POLICY_SKILLS",
       "label": "Disable Policy Skills",
-      "description": "Skips loading admin/org-managed policy skills.",
+      "description": "Skips loading admin/org-managed policy skills from policySettings directories.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1151,12 +1477,18 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Each suppressed skill removes tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_CFC",
       "label": "Enable CFC",
-      "description": "Enables CFC feature (caching/function calling).",
+      "description": "Enables Claude-in-Chrome (CFC) mode, overriding the config-file default.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1168,12 +1500,17 @@
       "tags": [
         "enable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING",
       "label": "Fine Grained Tool Streaming",
-      "description": "Fine-grained streaming for tool results.",
+      "description": "Enables eager input streaming on tool calls, sending partial inputs before completion.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1185,12 +1522,18 @@
       "tags": [
         "enable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds eager_input_streaming field to tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION",
       "label": "Enable Prompt Suggestions",
-      "description": "AI-generated suggestions consume lightweight model calls.",
+      "description": "Controls AI-generated next-prompt suggestions; overrides the GrowthBook feature flag.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1202,12 +1545,18 @@
       "tags": [
         "enable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Each suggestion fires a lightweight model call"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING",
       "label": "SDK File Checkpointing",
-      "description": "File checkpointing in SDK mode.",
+      "description": "Enables file-state checkpointing in SDK (headless) mode, where it is otherwise off.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1219,12 +1568,17 @@
       "tags": [
         "enable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT",
       "label": "Token Usage Attachment",
-      "description": "Adds token usage stats per turn.",
+      "description": "Appends a token-usage block to every message, showing used/total/remaining counts.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1236,12 +1590,18 @@
       "tags": [
         "enable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Small per-turn stats block added to messages"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_XAA",
       "label": "Enable XAA",
-      "description": "Enables experimental extended agent actions.",
+      "description": "Enables XAA (external agent authentication) OIDC flow for MCP server OAuth.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1253,12 +1613,17 @@
       "tags": [
         "enable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXTRA_BODY",
       "label": "Extra Body",
-      "description": "Extra JSON fields for API request body.",
+      "description": "Merges a JSON object into every API request body, enabling unsupported API fields.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1268,12 +1633,18 @@
       "impact": "low",
       "costDirection": "variable",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Effect depends entirely on injected fields"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXTRA_METADATA",
       "label": "Extra Metadata",
-      "description": "Extra metadata attached to API requests.",
+      "description": "Injects custom JSON fields into the metadata object sent with every API request.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1283,12 +1654,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY",
       "label": "Max Tool Concurrency",
-      "description": "Max parallel tool calls per turn.",
+      "description": "Caps the number of tool calls that execute in parallel per turn; defaults to 10.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -1298,12 +1674,18 @@
       "impact": "low",
       "costDirection": "variable",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Higher = more concurrent tool results per turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MCP_ALLOWLIST_ENV",
       "label": "MCP Allowlist Env",
-      "description": "Allow all env vars to pass through to MCP servers.",
+      "description": "Passes the full host environment to MCP servers instead of a scrubbed subset.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1315,12 +1697,17 @@
       "tags": [
         "mcp"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MCP_SERVER_NAME",
       "label": "MCP Server Name",
-      "description": "Server name passed to MCP headersHelper subprocess.",
+      "description": "Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server name.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1332,12 +1719,17 @@
       "tags": [
         "mcp"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_MCP_SERVER_URL",
       "label": "MCP Server URL",
-      "description": "Server URL passed to MCP headersHelper subprocess.",
+      "description": "Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server URL.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1349,12 +1741,17 @@
       "tags": [
         "mcp"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_CACHE_DIR",
       "label": "Plugin Cache Dir",
-      "description": "Plugin cache directory path.",
+      "description": "Overrides the directory where downloaded plugin archives are cached.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1366,12 +1763,17 @@
       "tags": [
         "plugins"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS",
       "label": "Plugin Git Timeout",
-      "description": "Timeout for plugin git operations (ms).",
+      "description": "Sets the timeout for git clone/pull operations when installing marketplace plugins.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -1385,12 +1787,17 @@
         "plugins",
         "vcs"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_SEED_DIR",
       "label": "Plugin Seed Dir",
-      "description": "Seed directory for plugins.",
+      "description": "Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1402,12 +1809,18 @@
       "tags": [
         "plugins"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Each loaded plugin adds tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE",
       "label": "Plugin Zip Cache",
-      "description": "Use ZIP-based cache for plugins.",
+      "description": "Switches plugin storage to a ZIP-based cache, enabling faster cold installs.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1419,12 +1832,17 @@
       "tags": [
         "plugins"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V",
       "label": "Session Ingress Version",
-      "description": "Session ingress POST version.",
+      "description": "Set internally when spawning bridge sessions to select the v2 POST-based ingress transport.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1434,12 +1852,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB",
       "label": "Subprocess Env Scrub",
-      "description": "Scrub env vars from subprocesses.",
+      "description": "Enables environment-variable scrubbing and bubblewrap isolation for all subprocesses.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1451,12 +1874,17 @@
       "tags": [
         "shell"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL",
       "label": "Sync Plugin Install",
-      "description": "Synchronous plugin installation.",
+      "description": "Forces synchronous plugin installation, blocking the first prompt until all plugins load.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1469,12 +1897,18 @@
         "plugins",
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "All installed plugins add tool schemas before first turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS",
       "label": "Plugin Install Timeout",
-      "description": "Plugin install timeout (ms).",
+      "description": "Caps how long synchronous plugin installation may block before being aborted.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -1488,12 +1922,17 @@
         "plugins",
         "debugging"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BETAS",
       "label": "Betas",
-      "description": "Enable beta API features.",
+      "description": "Appends comma-separated beta feature identifiers to every API request's beta header.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1503,12 +1942,18 @@
       "impact": "low",
       "costDirection": "variable",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Header only; token impact depends on enabled beta"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_HEADERS",
       "label": "Custom Headers",
-      "description": "Custom HTTP headers for API requests.",
+      "description": "Injects newline-delimited HTTP headers into every Anthropic API request.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1518,12 +1963,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION",
       "label": "Custom Model Option",
-      "description": "Custom model option in the CLI model picker.",
+      "description": "Adds a custom model ID to the CLI model picker as a selectable option.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1535,12 +1985,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION",
       "label": "Custom Model Description",
-      "description": "Description for custom model option.",
+      "description": "Sets the picker description string shown for the custom model option.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1552,12 +2007,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME",
       "label": "Custom Model Name",
-      "description": "Display name for custom model option.",
+      "description": "Sets the display label shown for the custom model in the CLI model picker.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1569,12 +2029,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES",
       "label": "Custom Model Capabilities",
-      "description": "Capabilities for custom model option.",
+      "description": "Declares a comma-separated capability list for the custom model, enabling feature routing.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1586,12 +2051,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
       "label": "Default Haiku Model",
-      "description": "Override which model ID maps to 'haiku'.",
+      "description": "Remaps the 'haiku' model alias to a custom model ID, including Bedrock fallback IDs.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1603,12 +2073,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION",
       "label": "Haiku Model Description",
-      "description": "Description for default Haiku model.",
+      "description": "Sets the description shown in the model picker for the overridden Haiku model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1620,12 +2095,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME",
       "label": "Haiku Model Name",
-      "description": "Display name for default Haiku model.",
+      "description": "Sets the display label shown in the model picker for the overridden Haiku model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1637,12 +2117,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES",
       "label": "Haiku Model Capabilities",
-      "description": "Capabilities for default Haiku model.",
+      "description": "Declares capabilities for the overridden Haiku model, controlling feature routing.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1654,12 +2139,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_OPUS_MODEL",
       "label": "Default Opus Model",
-      "description": "Override which model ID maps to 'opus'.",
+      "description": "Remaps the 'opus' model alias to a custom model ID, including Bedrock fallback IDs.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1671,12 +2161,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION",
       "label": "Opus Model Description",
-      "description": "Description for default Opus model.",
+      "description": "Sets the description shown in the model picker for the overridden Opus model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1688,12 +2183,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME",
       "label": "Opus Model Name",
-      "description": "Display name for default Opus model.",
+      "description": "Sets the display label shown in the model picker for the overridden Opus model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1705,12 +2205,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES",
       "label": "Opus Model Capabilities",
-      "description": "Capabilities for default Opus model.",
+      "description": "Declares feature capabilities for the custom Opus model, overriding built-in detection.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1722,12 +2227,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_SONNET_MODEL",
       "label": "Default Sonnet Model",
-      "description": "Override which model ID maps to 'sonnet'.",
+      "description": "Overrides which model ID resolves when 'sonnet' tier is requested.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1739,12 +2249,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION",
       "label": "Sonnet Model Description",
-      "description": "Description for default Sonnet model.",
+      "description": "Sets the display description shown in the model picker for a custom Sonnet model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1756,12 +2271,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME",
       "label": "Sonnet Model Name",
-      "description": "Display name for default Sonnet model.",
+      "description": "Sets the display name shown in the model picker for a custom Sonnet model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1773,12 +2293,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES",
       "label": "Sonnet Model Capabilities",
-      "description": "Capabilities for default Sonnet model.",
+      "description": "Declares feature capabilities for the custom Sonnet model, overriding built-in detection.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1790,12 +2315,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_LOG",
       "label": "Log Level",
-      "description": "Anthropic SDK logging level.",
+      "description": "Controls Anthropic SDK log verbosity (error / warn / info / debug).",
       "category": "model-effort",
       "type": "select",
       "defaultValue": null,
@@ -1822,12 +2352,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_MODEL",
       "label": "Main Model Override",
-      "description": "Override the primary model entirely.",
+      "description": "Overrides the primary model entirely, replacing the default Sonnet selection.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1839,12 +2374,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_SMALL_FAST_MODEL",
       "label": "Small/Fast Model",
-      "description": "Model for hooks, classifiers, utility ops.",
+      "description": "Overrides the lightweight model used for hooks, classifiers, and background utility calls.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1856,12 +2396,18 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects cost, not token surface"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION",
       "label": "Small Model AWS Region",
-      "description": "AWS region for the small/fast model.",
+      "description": "Pins the small/fast model to a specific AWS Bedrock region, independent of the main model region.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -1873,12 +2419,17 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_COST_STEER",
       "label": "Agent Cost Steering",
-      "description": "Enables cost-steering behaviour for sub-agent model selection.",
+      "description": "Enables cost-steering logic that selects cheaper sub-agent models for Pro-tier users.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1891,12 +2442,18 @@
         "agent",
         "cost-control"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects model routing, not token volume"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ALWAYS_ENABLE_EFFORT",
       "label": "Always Enable Effort",
-      "description": "Forces effort control on all models, not just Opus/Sonnet.",
+      "description": "Forces effort-level controls on all models, bypassing the Opus/Sonnet-only gate.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1909,12 +2466,18 @@
         "enable",
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "medium",
+        "notes": "Unlocks thinking budget on models that normally skip it"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING",
       "label": "Disable Adaptive Thinking",
-      "description": "Switches from dynamic to fixed thinking budgets.",
+      "description": "Forces fixed thinking budgets on Opus/Sonnet-4-6, disabling the adaptive budget algorithm.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1927,12 +2490,18 @@
         "disable",
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "medium",
+        "notes": "May raise or lower thinking spend vs adaptive default"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_FAST_MODE",
       "label": "Disable Fast Mode",
-      "description": "Prevents fast mode from being enabled.",
+      "description": "Disables fast-mode inference, forcing the standard (slower) API path.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1944,12 +2513,17 @@
       "tags": [
         "disable"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP",
       "label": "Disable Legacy Model Remap",
-      "description": "Prevents remapping of legacy model names.",
+      "description": "Prevents automatic remapping of legacy model names (e.g. old Opus IDs) to current equivalents.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1962,12 +2536,17 @@
         "disable",
         "model-selection"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK",
       "label": "Disable Nonstreaming Fallback",
-      "description": "Disables fallback to non-streaming API calls.",
+      "description": "Prevents falling back to non-streaming API calls on stream timeout or idle errors.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1979,12 +2558,17 @@
       "tags": [
         "disable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_THINKING",
       "label": "Disable Thinking",
-      "description": "Completely disables extended thinking. Eliminates all thinking tokens.",
+      "description": "Eliminates extended-thinking tokens entirely by hard-disabling the thinking budget.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -1997,12 +2581,17 @@
         "disable",
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "high"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EFFORT_LEVEL",
       "label": "Effort Level",
-      "description": "Controls reasoning effort: low/medium/high/max.",
+      "description": "Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort.",
       "category": "model-effort",
       "type": "select",
       "defaultValue": null,
@@ -2031,12 +2620,18 @@
       "tags": [
         "model-selection"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "variable",
+        "notes": "Higher values proportionally increase thinking budget"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
       "label": "Max Output Tokens",
-      "description": "Hard cap on output tokens per response.",
+      "description": "Caps output tokens per response, applied as a hard upper limit before the model default.",
       "category": "model-effort",
       "type": "number",
       "defaultValue": null,
@@ -2048,12 +2643,17 @@
       "tags": [
         "token-limits"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "variable"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SUBAGENT_MODEL",
       "label": "Subagent Model",
-      "description": "Model for all subagent tasks. 'haiku' or 'sonnet' saves cost.",
+      "description": "Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost.",
       "category": "model-effort",
       "type": "select",
       "defaultValue": null,
@@ -2079,12 +2679,18 @@
         "model-selection",
         "agent"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects cost per subagent call, not token surface"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CERT_STORE",
       "label": "Cert Store",
-      "description": "CA cert sources (comma-separated, e.g. 'system').",
+      "description": "Specifies CA certificate sources (comma-separated 'bundled' and/or 'system') for TLS validation.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -2096,12 +2702,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CLIENT_CERT",
       "label": "Client Cert",
-      "description": "Client certificate for TLS/mTLS auth.",
+      "description": "Loads a PEM client certificate from the given path to enable mTLS for outbound API requests.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -2113,12 +2724,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CLIENT_KEY",
       "label": "Client Key",
-      "description": "Client key for mTLS auth.",
+      "description": "Loads a PEM private key from the given path to pair with the mTLS client certificate.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -2130,12 +2746,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CLIENT_KEY_PASSPHRASE",
       "label": "Client Key Passphrase",
-      "description": "Passphrase for the client key.",
+      "description": "Supplies the passphrase to decrypt an encrypted mTLS client private key.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -2147,12 +2768,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_HOST_HTTP_PROXY_PORT",
       "label": "HTTP Proxy Port",
-      "description": "HTTP proxy port for host networking.",
+      "description": "Sets the HTTP proxy port forwarded into the sandbox environment for host network access.",
       "category": "networking",
       "type": "number",
       "defaultValue": null,
@@ -2164,12 +2790,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_HOST_SOCKS_PROXY_PORT",
       "label": "SOCKS Proxy Port",
-      "description": "SOCKS proxy port for host networking.",
+      "description": "Sets the SOCKS proxy port forwarded into the sandbox environment for host network access.",
       "category": "networking",
       "type": "number",
       "defaultValue": null,
@@ -2181,12 +2812,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_PROXY_RESOLVES_HOSTS",
       "label": "Proxy Resolves Hosts",
-      "description": "Proxy handles DNS resolution.",
+      "description": "Delegates DNS resolution to the proxy agent, bypassing local resolver for outbound requests.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2198,12 +2834,17 @@
       "tags": [
         "network-security"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_BEDROCK_AUTH",
       "label": "Skip Bedrock Auth",
-      "description": "Skip AWS Bedrock authentication.",
+      "description": "Bypasses AWS Bedrock credential resolution, allowing unauthenticated or pre-signed requests.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2216,12 +2857,17 @@
         "skip",
         "aws-bedrock"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS",
       "label": "Skip Fast Mode Net Errors",
-      "description": "Skip network errors in fast mode.",
+      "description": "Suppresses the fast-mode unavailable warning when the status check returns a network error.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2233,12 +2879,17 @@
       "tags": [
         "skip"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_FOUNDRY_AUTH",
       "label": "Skip Foundry Auth",
-      "description": "Skip Foundry authentication.",
+      "description": "Bypasses Azure AD token acquisition for Microsoft Foundry, skipping DefaultAzureCredential flow.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2251,12 +2902,17 @@
         "skip",
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_MANTLE_AUTH",
       "label": "Skip Mantle Auth",
-      "description": "Skip Mantle authentication.",
+      "description": "Bypasses AWS credential resolution for the Amazon Bedrock Mantle endpoint.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2269,12 +2925,17 @@
         "skip",
         "mantle"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_VERTEX_AUTH",
       "label": "Skip Vertex Auth",
-      "description": "Skip Vertex AI authentication.",
+      "description": "Bypasses Google Cloud application-default credential acquisition for Vertex AI.",
       "category": "networking",
       "type": "boolean",
       "defaultValue": null,
@@ -2287,12 +2948,17 @@
         "skip",
         "gcp-vertex"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCESSIBILITY",
       "label": "Accessibility",
-      "description": "Enables accessibility mode for screen readers.",
+      "description": "Enables accessibility mode, suppressing animated TUI elements for screen-reader compatibility.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2302,12 +2968,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BRIEF",
       "label": "Brief Mode",
-      "description": "Encourages terse/condensed responses.",
+      "description": "Activates brief-only display mode, collapsing long assistant responses to head+tail summaries.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2319,12 +2990,18 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "UI rendering only; does not alter model output"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BRIEF_UPLOAD",
       "label": "Brief Upload",
-      "description": "Compact upload path for file attachments.",
+      "description": "Routes file attachment uploads through the compact REPL bridge path instead of the standard uploader.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2336,12 +3013,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COMMIT_LOG",
       "label": "Commit Log",
-      "description": "Path or flag for commit log output during rendering.",
+      "description": "Enables React render commit timing logs to the specified path, for UI performance profiling.",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -2351,12 +3033,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_DISABLE_MOUSE",
       "label": "Disable Mouse",
-      "description": "Disables mouse input support in terminal UI.",
+      "description": "Disables mouse event handling in the terminal UI, preventing click and scroll capture.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2369,12 +3056,17 @@
         "disable",
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_TERMINAL_TITLE",
       "label": "Disable Terminal Title",
-      "description": "Prevents updating terminal tab title.",
+      "description": "Prevents Claude Code from updating the terminal window or tab title during sessions.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2387,12 +3079,17 @@
         "disable",
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL",
       "label": "Disable Virtual Scroll",
-      "description": "Disables virtual scrolling in UI.",
+      "description": "Disables virtualised transcript rendering, forcing all messages to render simultaneously.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2405,12 +3102,17 @@
         "disable",
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EAGER_FLUSH",
       "label": "Eager Flush",
-      "description": "Flush output buffers immediately.",
+      "description": "Forces immediate stdout flush after each response chunk, useful for piped or cowork sessions.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2422,12 +3124,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER",
       "label": "Exit After First Render",
-      "description": "Exit after first UI render (testing).",
+      "description": "Exits the process immediately after the first UI render cycle completes, for startup testing.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2437,12 +3144,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_EXIT_AFTER_STOP_DELAY",
       "label": "Exit After Stop Delay",
-      "description": "Auto-exit delay after stop (ms).",
+      "description": "Auto-exits the CLI after the specified idle milliseconds following the last response stop.",
       "category": "output-display",
       "type": "number",
       "defaultValue": null,
@@ -2452,12 +3164,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_FULL_LOGO",
       "label": "Force Full Logo",
-      "description": "Forces full ASCII logo display.",
+      "description": "Forces the full ASCII logo to render regardless of terminal width or context.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2469,12 +3186,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_NO_FLICKER",
       "label": "No Flicker",
-      "description": "Forces flicker-free fullscreen rendering mode.",
+      "description": "Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2486,12 +3208,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_QUESTION_PREVIEW_FORMAT",
       "label": "Question Preview Format",
-      "description": "Format for question previews.",
+      "description": "Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults.",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -2503,12 +3230,18 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "negligible",
+        "notes": "Format only, no content change"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SCROLL_SPEED",
       "label": "Scroll Speed",
-      "description": "Terminal scroll speed multiplier (max 20). Default 1 (3 on Windows).",
+      "description": "Overrides terminal scroll speed multiplier; capped at 20, defaults to 1 (3 on Windows).",
       "category": "output-display",
       "type": "number",
       "defaultValue": null,
@@ -2520,12 +3253,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SIMPLE",
       "label": "Simple Mode",
-      "description": "Simplified output, minimal decorations.",
+      "description": "Enables bare/minimal output mode, suppressing decorations and disabling auto-memory.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2537,12 +3275,18 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Disables auto-memory injection"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNTAX_HIGHLIGHT",
       "label": "Syntax Highlight",
-      "description": "Controls syntax highlighting for code blocks.",
+      "description": "Controls syntax highlighting for code blocks; set to falsy to disable, or a BAT theme name to override.",
       "category": "output-display",
       "type": "boolean",
       "defaultValue": null,
@@ -2554,12 +3298,17 @@
       "tags": [
         "ui-display"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_NAME",
       "label": "Agent Name",
-      "description": "Name/identifier for an agent instance.",
+      "description": "Sets the identity name for this agent instance, required for multi-agent team broadcasts.",
       "category": "planning-tasks",
       "type": "text",
       "defaultValue": null,
@@ -2571,12 +3320,17 @@
       "tags": [
         "agent"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE",
       "label": "Blocking Limit Override",
-      "description": "Override turn/blocking limits.",
+      "description": "Overrides the token count at which the CLI blocks and refuses further turns.",
       "category": "planning-tasks",
       "type": "number",
       "defaultValue": null,
@@ -2588,12 +3342,18 @@
       "tags": [
         "ide"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Shifts the blocking threshold"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_TASKS",
       "label": "Enable Tasks",
-      "description": "Enables the task tracking system.",
+      "description": "Forces the task-tracking system on, bypassing the feature-flag gate.",
       "category": "planning-tasks",
       "type": "boolean",
       "defaultValue": null,
@@ -2606,12 +3366,18 @@
         "enable",
         "planning"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Task state injected per turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS",
       "label": "Agent Teams",
-      "description": "Multi-agent teams -- multiplies token usage.",
+      "description": "Enables multi-agent team spawning; multiplies token usage proportionally to team size.",
       "category": "planning-tasks",
       "type": "boolean",
       "defaultValue": null,
@@ -2624,12 +3390,18 @@
         "teams",
         "agent"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Each sub-agent gets full context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE",
       "label": "Plan Interview Phase",
-      "description": "Controls interview phase in plan mode.",
+      "description": "Enables the interview/clarification phase at the start of plan mode, overriding the feature flag.",
       "category": "planning-tasks",
       "type": "boolean",
       "defaultValue": null,
@@ -2641,12 +3413,18 @@
       "tags": [
         "planning"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Adds interview turns to conversation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLAN_MODE_REQUIRED",
       "label": "Plan Mode Required",
-      "description": "Forces plan mode before execution.",
+      "description": "Forces plan mode before any execution, blocking agentic tool use until a plan is approved.",
       "category": "planning-tasks",
       "type": "boolean",
       "defaultValue": null,
@@ -2658,12 +3436,18 @@
       "tags": [
         "planning"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Adds plan-mode instruction block"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLAN_V",
       "label": "Plan Version",
-      "description": "Plan mode version/variant.",
+      "description": "Selects the plan-mode implementation version or variant (e.g. v2).",
       "category": "planning-tasks",
       "type": "text",
       "defaultValue": null,
@@ -2675,12 +3459,18 @@
       "tags": [
         "planning"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Different versions inject different prompts"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TASK_LIST_ID",
       "label": "Task List ID",
-      "description": "Task list identifier.",
+      "description": "Pins the task-list namespace to a specific ID, overriding the team or session default.",
       "category": "planning-tasks",
       "type": "text",
       "defaultValue": null,
@@ -2692,12 +3482,17 @@
       "tags": [
         "planning"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_AWS_API_KEY",
       "label": "Anthropic AWS API Key",
-      "description": "API key for Anthropic-on-AWS backend.",
+      "description": "API key for the Anthropic-on-AWS platform, bypassing AWS credential chain resolution.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2710,12 +3505,17 @@
         "auth-credential",
         "anthropic-aws"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_AWS_BASE_URL",
       "label": "Anthropic AWS Base URL",
-      "description": "Custom base URL for Anthropic AWS backend.",
+      "description": "Reroutes Anthropic-on-AWS traffic to a custom endpoint, overriding the region-derived default.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2727,12 +3527,17 @@
       "tags": [
         "anthropic-aws"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_AWS_WORKSPACE_ID",
       "label": "Anthropic AWS Workspace ID",
-      "description": "Required workspace ID for Anthropic AWS platform.",
+      "description": "Required workspace ID sent as the anthropic-workspace-id header for Anthropic-on-AWS requests.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2744,12 +3549,17 @@
       "tags": [
         "anthropic-aws"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BEDROCK_BASE_URL",
       "label": "Bedrock Base URL",
-      "description": "AWS Bedrock endpoint URL.",
+      "description": "Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2761,12 +3571,17 @@
       "tags": [
         "aws-bedrock"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BEDROCK_MANTLE_API_KEY",
       "label": "Bedrock Mantle API Key",
-      "description": "API key for Bedrock Mantle backend.",
+      "description": "API key for the Amazon Bedrock Mantle managed-access backend.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2780,12 +3595,17 @@
         "aws-bedrock",
         "mantle"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BEDROCK_MANTLE_BASE_URL",
       "label": "Bedrock Mantle Base URL",
-      "description": "Custom base URL for Bedrock Mantle.",
+      "description": "Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2798,12 +3618,17 @@
         "aws-bedrock",
         "mantle"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_API_KEY",
       "label": "Foundry API Key",
-      "description": "Foundry-specific API key.",
+      "description": "API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2816,12 +3641,17 @@
         "auth-credential",
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_AUTH_TOKEN",
       "label": "Foundry Auth Token",
-      "description": "Foundry auth token.",
+      "description": "Auth token for Microsoft Azure Foundry client construction.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2834,12 +3664,17 @@
         "auth-credential",
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_BASE_URL",
       "label": "Foundry Base URL",
-      "description": "Foundry API endpoint.",
+      "description": "Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2851,12 +3686,17 @@
       "tags": [
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_RESOURCE",
       "label": "Foundry Resource",
-      "description": "Foundry resource identifier.",
+      "description": "Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2868,12 +3708,17 @@
       "tags": [
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_VERTEX_BASE_URL",
       "label": "Vertex Base URL",
-      "description": "Vertex AI endpoint URL.",
+      "description": "Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2885,12 +3730,17 @@
       "tags": [
         "gcp-vertex"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_VERTEX_PROJECT_ID",
       "label": "Vertex Project ID",
-      "description": "GCP project ID for Vertex AI.",
+      "description": "Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2902,12 +3752,17 @@
       "tags": [
         "gcp-vertex"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST",
       "label": "Provider Managed By Host",
-      "description": "Provider managed by host (enterprise).",
+      "description": "Signals that the host environment manages provider config, stripping auth env vars from subprocesses.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -2919,12 +3774,17 @@
       "tags": [
         "ide"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_ANTHROPIC_AWS",
       "label": "Use Anthropic AWS",
-      "description": "Route API calls through Anthropic's AWS platform (distinct from Bedrock).",
+      "description": "Routes all API calls through Anthropic's AWS platform (distinct from native Bedrock).",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -2936,12 +3796,17 @@
       "tags": [
         "anthropic-aws"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_BEDROCK",
       "label": "Use Bedrock",
-      "description": "Route API calls through AWS Bedrock.",
+      "description": "Routes all API calls through AWS Bedrock, disabling first-party error reporting.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -2953,12 +3818,17 @@
       "tags": [
         "aws-bedrock"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_CCR_V",
       "label": "Use CCR Version",
-      "description": "CCR version selector.",
+      "description": "Selects the CCR transport version (e.g. v2 switches to SSE-based streaming over WebSocket).",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -2968,12 +3838,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_FOUNDRY",
       "label": "Use Foundry",
-      "description": "Route API calls through Foundry.",
+      "description": "Routes all API calls through Microsoft Azure Foundry, disabling first-party error reporting.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -2985,12 +3860,17 @@
       "tags": [
         "foundry"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_MANTLE",
       "label": "Use Mantle",
-      "description": "Route API calls through Mantle (managed access layer).",
+      "description": "Routes all API calls through Bedrock Mantle managed-access layer.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -3002,12 +3882,17 @@
       "tags": [
         "mantle"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_VERTEX",
       "label": "Use Vertex",
-      "description": "Route API calls through Vertex AI.",
+      "description": "Routes all API calls through Google Vertex AI, disabling first-party error reporting.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -3019,12 +3904,17 @@
       "tags": [
         "gcp-vertex"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CONTAINER_ID",
       "label": "Container ID",
-      "description": "Container identifier.",
+      "description": "Sets the container ID forwarded as the x-claude-remote-container-id request header.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3036,12 +3926,17 @@
       "tags": [
         "remote"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENVIRONMENT_KIND",
       "label": "Environment Kind",
-      "description": "Environment type (local/remote/container).",
+      "description": "Declares the environment type (e.g. bridge, byoc, anthropic_cloud), affecting transport and control-flow.",
       "category": "remote-containers",
       "type": "select",
       "defaultValue": null,
@@ -3064,12 +3959,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION",
       "label": "Runner Version",
-      "description": "Environment runner version.",
+      "description": "Forwards a runner version string as the x-environment-runner-version header on remote connections.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3079,12 +3979,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_HOST_PLATFORM",
       "label": "Host Platform",
-      "description": "Override detected host platform.",
+      "description": "Overrides the detected host OS platform (win32, darwin, linux) for environment fingerprinting.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3094,12 +3999,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE",
       "label": "Remote",
-      "description": "Indicates remote session.",
+      "description": "Marks the session as remote, enabling disk persistence of credentials for subprocess access.",
       "category": "remote-containers",
       "type": "boolean",
       "defaultValue": null,
@@ -3111,12 +4021,17 @@
       "tags": [
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE",
       "label": "Remote Environment Type",
-      "description": "Remote environment type.",
+      "description": "Forwards the remote environment type in telemetry and enables brief-upload mode for attachments.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3128,12 +4043,17 @@
       "tags": [
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_SEND_KEEPALIVES",
       "label": "Remote Keepalives",
-      "description": "Send keepalives in remote sessions.",
+      "description": "Enables periodic keepalive heartbeats on the remote session connection to prevent idle disconnects.",
       "category": "remote-containers",
       "type": "boolean",
       "defaultValue": null,
@@ -3145,12 +4065,17 @@
       "tags": [
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_SESSION_ID",
       "label": "Remote Session ID",
-      "description": "Remote session identifier.",
+      "description": "Sets the remote session ID forwarded as the x-claude-remote-session-id request header.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3162,12 +4087,17 @@
       "tags": [
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_SETTINGS_PATH",
       "label": "Remote Settings Path",
-      "description": "Path to settings file in remote mode.",
+      "description": "Overrides remote settings with a local file path, bypassing the settings API fetch.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3179,12 +4109,18 @@
       "tags": [
         "remote"
       ],
-      "audience": "enterprise"
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "variable",
+        "notes": "Settings file content may inject instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WORKSPACE_HOST_PATHS",
       "label": "Workspace Host Paths",
-      "description": "Workspace host path mappings.",
+      "description": "Pipe-separated host path mappings attached to telemetry events as workspace.host_paths.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -3194,12 +4130,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ADDITIONAL_PROTECTION",
       "label": "Additional Protection",
-      "description": "Enables additional safety/protection layers.",
+      "description": "Adds the x-anthropic-additional-protection header to all API requests for enhanced server-side checks.",
       "category": "sandbox-security",
       "type": "boolean",
       "defaultValue": null,
@@ -3211,12 +4152,17 @@
       "tags": [
         "sandbox"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR",
       "label": "Sandbox Indicator",
-      "description": "Show visual indicator when sandbox is active.",
+      "description": "Renames the Bash tool to SandboxedBash in the UI when sandbox mode is active.",
       "category": "sandbox-security",
       "type": "boolean",
       "defaultValue": null,
@@ -3228,12 +4174,17 @@
       "tags": [
         "sandbox"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BUBBLEWRAP",
       "label": "Bubblewrap",
-      "description": "Bubblewrap sandbox configuration (Linux).",
+      "description": "Enables Bubblewrap sandbox isolation on Linux, blocking root bypass of permission checks.",
       "category": "sandbox-security",
       "type": "text",
       "defaultValue": null,
@@ -3245,12 +4196,17 @@
       "tags": [
         "sandbox"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SANDBOX",
       "label": "Force Sandbox",
-      "description": "Forces sandbox mode on.",
+      "description": "Forces sandbox mode on for bridge/remote sessions regardless of the sandbox option passed.",
       "category": "sandbox-security",
       "type": "boolean",
       "defaultValue": null,
@@ -3262,12 +4218,17 @@
       "tags": [
         "sandbox"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS",
       "label": "File Read Max Tokens",
-      "description": "Caps tokens from file reads. Default ~25,000.",
+      "description": "Caps the token output from file-read operations. Default 25,000.",
       "category": "search-filesystem",
       "type": "number",
       "defaultValue": null,
@@ -3280,12 +4241,18 @@
         "file-search",
         "token-limits"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Limits tokens injected per file read"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GLOB_HIDDEN",
       "label": "Glob Hidden Files",
-      "description": "Include dotfiles in glob searches.",
+      "description": "Forces glob searches to include dotfiles and hidden directories.",
       "category": "search-filesystem",
       "type": "boolean",
       "defaultValue": null,
@@ -3297,12 +4264,18 @@
       "tags": [
         "file-search"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "More paths surfaced per glob call"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GLOB_NO_IGNORE",
       "label": "Glob No Ignore",
-      "description": "Ignore .gitignore in glob searches.",
+      "description": "Bypasses .gitignore rules during glob file searches.",
       "category": "search-filesystem",
       "type": "boolean",
       "defaultValue": null,
@@ -3314,12 +4287,18 @@
       "tags": [
         "file-search"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Expands result set; ignored files enter context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GLOB_TIMEOUT_SECONDS",
       "label": "Glob Timeout",
-      "description": "Timeout for glob searches (seconds).",
+      "description": "Overrides the default ripgrep glob timeout in seconds.",
       "category": "search-filesystem",
       "type": "number",
       "defaultValue": null,
@@ -3332,12 +4311,17 @@
         "timeout",
         "file-search"
       ],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_NATIVE_FILE_SEARCH",
       "label": "Use Native File Search",
-      "description": "Uses native file search implementation instead of CLI fallback.",
+      "description": "Switches CLAUDE.md discovery from ripgrep to Node.js native filesystem traversal.",
       "category": "search-filesystem",
       "type": "boolean",
       "defaultValue": null,
@@ -3349,12 +4333,17 @@
       "tags": [
         "file-search"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACTION",
       "label": "Action",
-      "description": "Startup action identifier.",
+      "description": "Signals that Claude Code is running as a GitHub Actions workflow step.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -3364,12 +4353,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DONT_INHERIT_ENV",
       "label": "Don't Inherit Env",
-      "description": "Don't inherit parent shell env vars.",
+      "description": "Strips the parent shell's environment variables from subprocess execution.",
       "category": "session-lifecycle",
       "type": "boolean",
       "defaultValue": null,
@@ -3379,12 +4373,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENTRYPOINT",
       "label": "Entrypoint",
-      "description": "Entrypoint identifier (CLI/IDE/SDK).",
+      "description": "Identifies the launch surface (cli, sdk-cli, mcp, claude-desktop) used in version strings and telemetry.",
       "category": "session-lifecycle",
       "type": "select",
       "defaultValue": null,
@@ -3407,12 +4406,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GIT_BASH_PATH",
       "label": "Git Bash Path",
-      "description": "Path to git bash (Windows).",
+      "description": "Overrides the auto-detected Git Bash executable path on Windows.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -3425,12 +4429,17 @@
         "vcs",
         "shell"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_RETRIES",
       "label": "Max Retries",
-      "description": "Max retry attempts for failed API calls.",
+      "description": "Overrides the default maximum retry count for failed Anthropic API calls.",
       "category": "session-lifecycle",
       "type": "number",
       "defaultValue": null,
@@ -3440,12 +4449,17 @@
       "impact": "low",
       "costDirection": "variable",
       "tags": [],
-      "audience": "power-user"
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_NEW_INIT",
       "label": "New Init",
-      "description": "Changes /init to create multiple CLAUDE.md files.",
+      "description": "Switches the /init command to generate multiple scoped CLAUDE.md files instead of one.",
       "category": "session-lifecycle",
       "type": "boolean",
       "defaultValue": null,
@@ -3455,12 +4469,18 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Multiple CLAUDE.md files loaded at session start"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PERFORCE_MODE",
       "label": "Perforce Mode",
-      "description": "Enables Perforce VCS mode. Adjusts file-stat logic and injects Perforce context.",
+      "description": "Enables Perforce VCS mode, injecting p4 checkout instructions into the system context.",
       "category": "session-lifecycle",
       "type": "boolean",
       "defaultValue": null,
@@ -3472,12 +4492,18 @@
       "tags": [
         "vcs"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Appends Perforce workspace instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS",
       "label": "PowerShell Parse Timeout",
-      "description": "Timeout for PowerShell command parsing (ms).",
+      "description": "Overrides the timeout for PowerShell command parsing and result classification.",
       "category": "session-lifecycle",
       "type": "number",
       "defaultValue": null,
@@ -3489,12 +4515,17 @@
       "tags": [
         "timeout"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS",
       "label": "Session End Hooks Timeout",
-      "description": "Timeout for session-end hooks (ms).",
+      "description": "Caps the maximum wait time for session-end hooks before the process exits.",
       "category": "session-lifecycle",
       "type": "number",
       "defaultValue": null,
@@ -3506,12 +4537,17 @@
       "tags": [
         "timeout"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SHELL",
       "label": "Shell",
-      "description": "Override detected shell.",
+      "description": "Forces Claude Code to use a specific bash or zsh binary instead of auto-detecting.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -3523,12 +4559,17 @@
       "tags": [
         "shell"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SHELL_PREFIX",
       "label": "Shell Prefix",
-      "description": "Prefix commands run in shell.",
+      "description": "Prepends a custom command string before every shell invocation, including MCP stdio servers.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -3540,12 +4581,17 @@
       "tags": [
         "shell"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TMPDIR",
       "label": "Tmpdir",
-      "description": "Override temp directory.",
+      "description": "Overrides the temporary directory used for prompt files and shell snapshots.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -3555,12 +4601,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BASE_REF",
       "label": "Base Ref",
-      "description": "Base git ref for diff operations.",
+      "description": "Sets the git ref used as the merge-base for diff and PR review operations.",
       "category": "teams-collaboration",
       "type": "text",
       "defaultValue": null,
@@ -3572,12 +4623,18 @@
       "tags": [
         "vcs"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Determines scope of diff injected into context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BASE_REFS",
       "label": "Base Refs",
-      "description": "Multiple base git refs for diff operations.",
+      "description": "Provides a map of repo-path → base-ref pairs for multi-checkout diff operations.",
       "category": "teams-collaboration",
       "type": "text",
       "defaultValue": null,
@@ -3589,12 +4646,18 @@
       "tags": [
         "vcs"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Controls diff scope across multiple repos"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IS_COWORK",
       "label": "Is Cowork",
-      "description": "Indicates cowork/collaboration mode.",
+      "description": "Enables cowork collaboration mode, triggering eager cache flushes and shared settings.",
       "category": "teams-collaboration",
       "type": "boolean",
       "defaultValue": null,
@@ -3606,12 +4669,18 @@
       "tags": [
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Forces prompt-cache break on each flush"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SSE_PORT",
       "label": "SSE Port",
-      "description": "Server-sent events port.",
+      "description": "Pins the IDE SSE port used for auto-connecting to a running editor extension.",
       "category": "teams-collaboration",
       "type": "number",
       "defaultValue": null,
@@ -3623,12 +4692,17 @@
       "tags": [
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEAM_NAME",
       "label": "Team Name",
-      "description": "Team name for team sessions.",
+      "description": "Sets the team context name required for multi-agent broadcast and teammate messaging.",
       "category": "teams-collaboration",
       "type": "text",
       "defaultValue": null,
@@ -3640,12 +4714,17 @@
       "tags": [
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEAM_ONBOARDING",
       "label": "Team Onboarding",
-      "description": "Enables team onboarding flow.",
+      "description": "Controls team onboarding UI mode; accepts \"banner\" or \"step\" to activate the onboarding flow.",
       "category": "teams-collaboration",
       "type": "boolean",
       "defaultValue": null,
@@ -3657,12 +4736,18 @@
       "tags": [
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Onboarding prompt injected once per flow"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEAMMATE_COMMAND",
       "label": "Teammate Command",
-      "description": "Command for teammate agent invocation.",
+      "description": "Overrides the shell command used to spawn teammate sub-agents in a swarm.",
       "category": "teams-collaboration",
       "type": "text",
       "defaultValue": null,
@@ -3674,12 +4759,17 @@
       "tags": [
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_COWORK_PLUGINS",
       "label": "Use Cowork Plugins",
-      "description": "Enable cowork-specific plugins.",
+      "description": "Switches the plugin and settings file paths to the cowork-specific variants.",
       "category": "teams-collaboration",
       "type": "boolean",
       "defaultValue": null,
@@ -3692,12 +4782,18 @@
         "plugins",
         "teams"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Cowork plugins may add tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WORKER_EPOCH",
       "label": "Worker Epoch",
-      "description": "Worker epoch identifier.",
+      "description": "Supplies the worker epoch integer required to register a CCR bridge worker session.",
       "category": "teams-collaboration",
       "type": "text",
       "defaultValue": null,
@@ -3709,12 +4805,17 @@
       "tags": [
         "teams"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS",
       "label": "Datadog Flush Interval",
-      "description": "Datadog telemetry flush interval (ms).",
+      "description": "Overrides the Datadog log-batch flush interval in milliseconds. Default 15,000.",
       "category": "telemetry",
       "type": "number",
       "defaultValue": null,
@@ -3726,12 +4827,17 @@
       "tags": [
         "observability"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
       "label": "Disable Nonessential Traffic",
-      "description": "Disables telemetry/analytics network calls.",
+      "description": "Blocks all non-essential outbound network calls, including telemetry and analytics.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -3743,12 +4849,17 @@
       "tags": [
         "disable"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS",
       "label": "Emit Session State Events",
-      "description": "Emit session state events for SDK.",
+      "description": "Enables emission of session-state-changed events on the SDK output stream.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -3760,12 +4871,17 @@
       "tags": [
         "observability"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES",
       "label": "Emit Tool Use Summaries",
-      "description": "Emit tool usage summaries.",
+      "description": "Enables tool-use summary emission for SDK consumers tracking tool activity.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -3777,12 +4893,17 @@
       "tags": [
         "observability"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_TELEMETRY",
       "label": "Enable Telemetry",
-      "description": "Master switch for telemetry collection.",
+      "description": "Activates third-party OpenTelemetry trace and metric export for the session.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -3795,12 +4916,17 @@
         "enable",
         "observability"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA",
       "label": "Enhanced Telemetry Beta",
-      "description": "Enhanced telemetry beta.",
+      "description": "Opts into the enhanced beta tracing pipeline alongside ENABLE_ENHANCED_TELEMETRY_BETA.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -3812,12 +4938,17 @@
       "tags": [
         "observability"
       ],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS",
       "label": "OTel Flush Timeout",
-      "description": "OpenTelemetry flush timeout (ms).",
+      "description": "Caps the time allotted for OpenTelemetry to flush all spans before process exit. Default 5,000ms.",
       "category": "telemetry",
       "type": "number",
       "defaultValue": null,
@@ -3830,12 +4961,17 @@
         "timeout",
         "observability"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS",
       "label": "OTel Headers Debounce",
-      "description": "OTel headers helper debounce (ms).",
+      "description": "Sets the debounce window for re-executing the OTel headers helper script.",
       "category": "telemetry",
       "type": "number",
       "defaultValue": null,
@@ -3847,12 +4983,17 @@
       "tags": [
         "observability"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS",
       "label": "OTel Shutdown Timeout",
-      "description": "OTel shutdown timeout (ms).",
+      "description": "Caps the time allotted for graceful OpenTelemetry provider shutdown. Default 2,000ms.",
       "category": "telemetry",
       "type": "number",
       "defaultValue": null,
@@ -3865,12 +5006,17 @@
         "timeout",
         "observability"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TAGS",
       "label": "Tags",
-      "description": "Tags for session metadata.",
+      "description": "Attaches arbitrary tag strings to the session metadata sent with each API request.",
       "category": "telemetry",
       "type": "text",
       "defaultValue": null,
@@ -3880,12 +5026,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TMUX_PREFIX",
       "label": "Tmux Prefix",
-      "description": "Custom tmux prefix key.",
+      "description": "Records the active tmux prefix key for display in the detach hint UI.",
       "category": "terminal-mux",
       "type": "text",
       "defaultValue": null,
@@ -3897,12 +5048,17 @@
       "tags": [
         "tmux"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TMUX_PREFIX_CONFLICTS",
       "label": "Tmux Prefix Conflicts",
-      "description": "Tmux prefix conflict detection.",
+      "description": "Signals that the tmux prefix conflicts with a Claude keybinding, adjusting the detach hint.",
       "category": "terminal-mux",
       "type": "boolean",
       "defaultValue": null,
@@ -3914,12 +5070,17 @@
       "tags": [
         "tmux"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TMUX_SESSION",
       "label": "Tmux Session",
-      "description": "Tmux session name.",
+      "description": "Stores the name of the active tmux session for display in the status bar.",
       "category": "terminal-mux",
       "type": "text",
       "defaultValue": null,
@@ -3931,12 +5092,17 @@
       "tags": [
         "tmux"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TMUX_TRUECOLOR",
       "label": "Tmux Truecolor",
-      "description": "Enable truecolor in tmux.",
+      "description": "Prevents Claude from downgrading color depth to 256 colours inside a tmux session.",
       "category": "terminal-mux",
       "type": "boolean",
       "defaultValue": null,
@@ -3948,12 +5114,17 @@
       "tags": [
         "tmux"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REPL",
       "label": "Repl",
-      "description": "TODO: Add description",
+      "description": "Forces REPL mode on or off, overriding the GrowthBook feature-flag default.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -3965,12 +5136,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.109"
+      "addedInVersion": "2.1.109",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEST_FIXTURES_ROOT",
       "label": "Test Fixtures Root",
-      "description": "Root directory for test fixtures.",
+      "description": "Points the VCR fixture loader to a custom root directory for test recordings.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -3980,12 +5156,17 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "internal"
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_USE_POWERSHELL_TOOL",
       "label": "Use PowerShell Tool",
-      "description": "Use PowerShell instead of Bash tool.",
+      "description": "Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -3997,7 +5178,13 @@
       "tags": [
         "shell"
       ],
-      "audience": "standard"
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds PowerShell tool schema to tool list"
+      },
+      "internal": false
     }
   ]
 }
