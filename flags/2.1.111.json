@@ -1,0 +1,4189 @@
+{
+  "version": "2.1.111",
+  "generatedAt": "2026-04-16",
+  "totalFlags": 237,
+  "deprecatedFlags": 0,
+  "categories": {
+    "auth": {
+      "label": "Authentication & Identity",
+      "hasUsageFlags": false
+    },
+    "context-memory": {
+      "label": "Context & Memory",
+      "hasUsageFlags": true
+    },
+    "debug": {
+      "label": "Debugging & Diagnostics",
+      "hasUsageFlags": false
+    },
+    "ide": {
+      "label": "IDE & Editor Integration",
+      "hasUsageFlags": false
+    },
+    "model-effort": {
+      "label": "Model & Effort",
+      "hasUsageFlags": true
+    },
+    "mcp-plugins": {
+      "label": "MCP, Plugins & Features",
+      "hasUsageFlags": true
+    },
+    "networking": {
+      "label": "Networking & Proxy",
+      "hasUsageFlags": false
+    },
+    "output-display": {
+      "label": "Output & Display",
+      "hasUsageFlags": true
+    },
+    "planning-tasks": {
+      "label": "Planning & Tasks",
+      "hasUsageFlags": true
+    },
+    "provider-routing": {
+      "label": "Provider Routing",
+      "hasUsageFlags": false
+    },
+    "remote-containers": {
+      "label": "Remote & Containers",
+      "hasUsageFlags": false
+    },
+    "sandbox-security": {
+      "label": "Sandbox & Security",
+      "hasUsageFlags": false
+    },
+    "search-filesystem": {
+      "label": "Search & File System",
+      "hasUsageFlags": true
+    },
+    "session-lifecycle": {
+      "label": "Session & Lifecycle",
+      "hasUsageFlags": true
+    },
+    "teams-collaboration": {
+      "label": "Teams & Collaboration",
+      "hasUsageFlags": false
+    },
+    "telemetry": {
+      "label": "Telemetry & Observability",
+      "hasUsageFlags": false
+    },
+    "terminal-mux": {
+      "label": "Terminal Multiplexer",
+      "hasUsageFlags": false
+    },
+    "uncategorised": {
+      "label": "Uncategorised",
+      "hasUsageFlags": false
+    }
+  },
+  "audienceCounts": {
+    "power-user": 55,
+    "standard": 119,
+    "enterprise": 37,
+    "internal": 26
+  },
+  "flags": [
+    {
+      "key": "ANTHROPIC_API_KEY",
+      "label": "API Key",
+      "description": "Anthropic API key for direct access.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "sk-ant-...",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_AUTH_TOKEN",
+      "label": "Auth Token",
+      "description": "Alternative authentication token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_BASE_URL",
+      "label": "Base URL",
+      "description": "Override Anthropic API base URL.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "https://api.anthropic.com",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_UNIX_SOCKET",
+      "label": "Unix Socket",
+      "description": "Unix socket for local API connections.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ACCOUNT_TAGGED_ID",
+      "label": "Account Tagged ID",
+      "description": "Internal account identifier for tagging/telemetry.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ACCOUNT_UUID",
+      "label": "Account UUID",
+      "description": "Account UUID for auth/billing.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_API_BASE_URL",
+      "label": "API Base URL",
+      "description": "Override the API endpoint URL.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "https://api.anthropic.com",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR",
+      "label": "API Key File Descriptor",
+      "description": "File descriptor for reading API key securely.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_API_KEY_HELPER_TTL_MS",
+      "label": "API Key Helper TTL",
+      "description": "Cache TTL for the API key helper script.",
+      "category": "auth",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "timeout"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ATTRIBUTION_HEADER",
+      "label": "Attribution Header",
+      "description": "Custom attribution header for API requests.",
+      "category": "auth",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
+      "label": "Custom OAuth URL",
+      "description": "Custom OAuth endpoint URL (must be approved).",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER",
+      "label": "Enable Proxy Auth Helper",
+      "description": "TODO: Add description",
+      "category": "auth",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
+      "label": "OAuth Client ID",
+      "description": "OAuth client ID.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_REFRESH_TOKEN",
+      "label": "OAuth Refresh Token",
+      "description": "OAuth refresh token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_SCOPES",
+      "label": "OAuth Scopes",
+      "description": "OAuth scopes (space-separated).",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "user:profile user:inference",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_TOKEN",
+      "label": "OAuth Token",
+      "description": "OAuth access token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR",
+      "label": "OAuth Token File Descriptor",
+      "description": "File descriptor for OAuth token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ORGANIZATION_UUID",
+      "label": "Organization UUID",
+      "description": "Organization UUID for multi-org accounts.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS",
+      "label": "Proxy Auth Helper Ttl Ms",
+      "description": "TODO: Add description",
+      "category": "auth",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_AUTHENTICATE",
+      "label": "Proxy Authenticate",
+      "description": "TODO: Add description",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
+      "label": "Session Access Token",
+      "description": "Session-specific access token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_USER_EMAIL",
+      "label": "User Email",
+      "description": "User email for auth/attribution.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR",
+      "label": "WebSocket Auth FD",
+      "description": "WebSocket authentication file descriptor.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD",
+      "label": "Additional CLAUDE.md Dirs",
+      "description": "Extra directories to scan for CLAUDE.md files.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "/path/one,/path/two",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_AUTO_COMPACT_WINDOW",
+      "label": "Auto Compact Window",
+      "description": "Token threshold for auto-compaction. Lower = more aggressive.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 50000",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
+      "label": "Disable Auto Memory",
+      "description": "Disables auto-memory reads/writes. Removes memory from context.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CLAUDE_MDS",
+      "label": "Disable CLAUDE.md Files",
+      "description": "Drops ALL CLAUDE.md content from system prompt. Nuclear option.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS",
+      "label": "Disable Git Instructions",
+      "description": "Strips built-in git workflow instructions from system prompt.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "vcs"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
+      "label": "Disable Precompact Skip",
+      "description": "Forces full compaction pipeline instead of short-circuiting.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "disable",
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_AWAY_SUMMARY",
+      "label": "Enable Away Summary",
+      "description": "Show summary when returning from idle/away state.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_IDLE_THRESHOLD_MINUTES",
+      "label": "Idle Threshold",
+      "description": "Minutes of inactivity before idle detection fires. Default 75.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "75",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_IDLE_TOKEN_THRESHOLD",
+      "label": "Idle Token Threshold",
+      "description": "Token count above which idle detection activates. Default 100000.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "100000",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES",
+      "label": "Include Partial Messages",
+      "description": "Include incomplete messages in context.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_CONTEXT_TOKENS",
+      "label": "Max Context Tokens",
+      "description": "Override max context window token limit (used with DISABLE_COMPACT).",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 200000",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_MEMORY_DIR",
+      "label": "Remote Memory Dir",
+      "description": "Alternative directory for memory/session data in remote mode.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "context-management",
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_FROM_SESSION",
+      "label": "Resume From Session",
+      "description": "Hydrate context from a specific prior session ID.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "session-id",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_INTERRUPTED_TURN",
+      "label": "Resume Interrupted Turn",
+      "description": "Auto-resume interrupted turns.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_THRESHOLD_MINUTES",
+      "label": "Resume Threshold",
+      "description": "Minutes since last message to trigger resume flow. Default 70.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "70",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_TOKEN_THRESHOLD",
+      "label": "Resume Token Threshold",
+      "description": "Token count above which resume is offered. Default 100000.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "100000",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_PROMPT_HISTORY",
+      "label": "Skip Prompt History",
+      "description": "Skip loading previous prompt history at session start.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "skip"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_LOG_LEVEL",
+      "label": "Debug Log Level",
+      "description": "Debug logging verbosity (verbose/debug/info/warn/error).",
+      "category": "debug",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "verbose",
+          "label": "Verbose"
+        },
+        {
+          "value": "debug",
+          "label": "Debug"
+        },
+        {
+          "value": "info",
+          "label": "Info"
+        },
+        {
+          "value": "warn",
+          "label": "Warn"
+        },
+        {
+          "value": "error",
+          "label": "Error"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_LOGS_DIR",
+      "label": "Debug Logs Dir",
+      "description": "Directory for debug log output.",
+      "category": "debug",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "~/.claude/debug/",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_REPAINTS",
+      "label": "Debug Repaints",
+      "description": "Debug UI repaint cycles.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DIAGNOSTICS_FILE",
+      "label": "Diagnostics File",
+      "description": "Path to write diagnostic output.",
+      "category": "debug",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_FRAME_TIMING_LOG",
+      "label": "Frame Timing Log",
+      "description": "Logs UI frame timing.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PERFETTO_TRACE",
+      "label": "Perfetto Trace",
+      "description": "Enables Perfetto performance tracing.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PROFILE_QUERY",
+      "label": "Profile Query",
+      "description": "Enables query profiling.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PROFILE_STARTUP",
+      "label": "Profile Startup",
+      "description": "Enables detailed startup profiling.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS",
+      "label": "Slow Op Threshold",
+      "description": "Threshold for slow operation warnings (ms).",
+      "category": "debug",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING",
+      "label": "Stall Timeout (Testing)",
+      "description": "Stall detection timeout for testing.",
+      "category": "debug",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_AUTO_CONNECT_IDE",
+      "label": "Auto Connect IDE",
+      "description": "Auto-connect to IDE extensions on startup.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_HOST_OVERRIDE",
+      "label": "IDE Host Override",
+      "description": "Override host address for IDE connections.",
+      "category": "ide",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "127.0.0.1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL",
+      "label": "IDE Skip Auto Install",
+      "description": "Skip auto-install of IDE extensions.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "ide",
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_SKIP_VALID_CHECK",
+      "label": "IDE Skip Valid Check",
+      "description": "Skip workspace folder validation.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "ide"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_LIST_IN_MESSAGES",
+      "label": "Agent List In Messages",
+      "description": "Inject agent type/tool info into messages.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "agent"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ADVISOR_TOOL",
+      "label": "Disable Advisor Tool",
+      "description": "Removes advisor tool definition from context.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ATTACHMENTS",
+      "label": "Disable Attachments",
+      "description": "Prevents file attachments entering context.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_BACKGROUND_TASKS",
+      "label": "Disable Background Tasks",
+      "description": "Prevents background tasks that consume tokens.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "planning"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CLAUDE_API_SKILL",
+      "label": "Disable Claude API Skill",
+      "description": "Skips registration of the built-in Claude API skill.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CRON",
+      "label": "Disable Cron",
+      "description": "Disables cron/scheduled task support.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "automation"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS",
+      "label": "Disable Experimental Betas",
+      "description": "Disables all experimental beta features.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY",
+      "label": "Disable Feedback Survey",
+      "description": "Disables feedback survey prompts.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING",
+      "label": "Disable File Checkpointing",
+      "description": "Disables file state checkpointing.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL",
+      "label": "Disable Marketplace Autoinstall",
+      "description": "Prevents auto-install of marketplace plugins.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_POLICY_SKILLS",
+      "label": "Disable Policy Skills",
+      "description": "Skips loading admin/org-managed policy skills.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH",
+      "label": "Enable Background Plugin Refresh",
+      "description": "TODO: Add description",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_CFC",
+      "label": "Enable CFC",
+      "description": "Enables CFC feature (caching/function calling).",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING",
+      "label": "Fine Grained Tool Streaming",
+      "description": "Fine-grained streaming for tool results.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION",
+      "label": "Enable Prompt Suggestions",
+      "description": "AI-generated suggestions consume lightweight model calls.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING",
+      "label": "SDK File Checkpointing",
+      "description": "File checkpointing in SDK mode.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT",
+      "label": "Token Usage Attachment",
+      "description": "Adds token usage stats per turn.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_XAA",
+      "label": "Enable XAA",
+      "description": "Enables experimental extended agent actions.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_EXTRA_BODY",
+      "label": "Extra Body",
+      "description": "Extra JSON fields for API request body.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "{\"key\":\"value\"}",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_EXTRA_METADATA",
+      "label": "Extra Metadata",
+      "description": "Extra metadata attached to API requests.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY",
+      "label": "Max Tool Concurrency",
+      "description": "Max parallel tool calls per turn.",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 5",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_ALLOWLIST_ENV",
+      "label": "MCP Allowlist Env",
+      "description": "Allow all env vars to pass through to MCP servers.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_SERVER_NAME",
+      "label": "MCP Server Name",
+      "description": "Server name passed to MCP headersHelper subprocess.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_SERVER_URL",
+      "label": "MCP Server URL",
+      "description": "Server URL passed to MCP headersHelper subprocess.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_CACHE_DIR",
+      "label": "Plugin Cache Dir",
+      "description": "Plugin cache directory path.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS",
+      "label": "Plugin Git Timeout",
+      "description": "Timeout for plugin git operations (ms).",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "plugins",
+        "vcs"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_SEED_DIR",
+      "label": "Plugin Seed Dir",
+      "description": "Seed directory for plugins.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE",
+      "label": "Plugin Zip Cache",
+      "description": "Use ZIP-based cache for plugins.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V",
+      "label": "Session Ingress Version",
+      "description": "Session ingress POST version.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB",
+      "label": "Subprocess Env Scrub",
+      "description": "Scrub env vars from subprocesses.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL",
+      "label": "Sync Plugin Install",
+      "description": "Synchronous plugin installation.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins",
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS",
+      "label": "Plugin Install Timeout",
+      "description": "Plugin install timeout (ms).",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "plugins",
+        "debugging"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_BETAS",
+      "label": "Betas",
+      "description": "Enable beta API features.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_HEADERS",
+      "label": "Custom Headers",
+      "description": "Custom HTTP headers for API requests.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION",
+      "label": "Custom Model Option",
+      "description": "Custom model option in the CLI model picker.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION",
+      "label": "Custom Model Description",
+      "description": "Description for custom model option.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME",
+      "label": "Custom Model Name",
+      "description": "Display name for custom model option.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES",
+      "label": "Custom Model Capabilities",
+      "description": "Capabilities for custom model option.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+      "label": "Default Haiku Model",
+      "description": "Override which model ID maps to 'haiku'.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-haiku-4-5-20251001",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION",
+      "label": "Haiku Model Description",
+      "description": "Description for default Haiku model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME",
+      "label": "Haiku Model Name",
+      "description": "Display name for default Haiku model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Haiku Model Capabilities",
+      "description": "Capabilities for default Haiku model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL",
+      "label": "Default Opus Model",
+      "description": "Override which model ID maps to 'opus'.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-opus-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION",
+      "label": "Opus Model Description",
+      "description": "Description for default Opus model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME",
+      "label": "Opus Model Name",
+      "description": "Display name for default Opus model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Opus Model Capabilities",
+      "description": "Capabilities for default Opus model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL",
+      "label": "Default Sonnet Model",
+      "description": "Override which model ID maps to 'sonnet'.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-sonnet-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION",
+      "label": "Sonnet Model Description",
+      "description": "Description for default Sonnet model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME",
+      "label": "Sonnet Model Name",
+      "description": "Display name for default Sonnet model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Sonnet Model Capabilities",
+      "description": "Capabilities for default Sonnet model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_LOG",
+      "label": "Log Level",
+      "description": "Anthropic SDK logging level.",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "debug",
+          "label": "Debug"
+        },
+        {
+          "value": "info",
+          "label": "Info"
+        },
+        {
+          "value": "warn",
+          "label": "Warn"
+        },
+        {
+          "value": "error",
+          "label": "Error"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_MODEL",
+      "label": "Main Model Override",
+      "description": "Override the primary model entirely.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. claude-sonnet-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_SMALL_FAST_MODEL",
+      "label": "Small/Fast Model",
+      "description": "Model for hooks, classifiers, utility ops.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-haiku-4-5-20251001",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION",
+      "label": "Small Model AWS Region",
+      "description": "AWS region for the small/fast model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "us-east-1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_COST_STEER",
+      "label": "Agent Cost Steering",
+      "description": "Enables cost-steering behaviour for sub-agent model selection.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "agent",
+        "cost-control"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ALWAYS_ENABLE_EFFORT",
+      "label": "Always Enable Effort",
+      "description": "Forces effort control on all models, not just Opus/Sonnet.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable",
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING",
+      "label": "Disable Adaptive Thinking",
+      "description": "Switches from dynamic to fixed thinking budgets.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FAST_MODE",
+      "label": "Disable Fast Mode",
+      "description": "Prevents fast mode from being enabled.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP",
+      "label": "Disable Legacy Model Remap",
+      "description": "Prevents remapping of legacy model names.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK",
+      "label": "Disable Nonstreaming Fallback",
+      "description": "Disables fallback to non-streaming API calls.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_THINKING",
+      "label": "Disable Thinking",
+      "description": "Completely disables extended thinking. Eliminates all thinking tokens.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_EFFORT_LEVEL",
+      "label": "Effort Level",
+      "description": "Controls reasoning effort: low/medium/high/max.",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "low",
+          "label": "Low"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "high",
+          "label": "High"
+        },
+        {
+          "value": "max",
+          "label": "Max (Opus only)"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT",
+      "label": "Enable Append Subagent Prompt",
+      "description": "TODO: Add description",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
+      "label": "Max Output Tokens",
+      "description": "Hard cap on output tokens per response.",
+      "category": "model-effort",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 16000",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "token-limits"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_SUBAGENT_MODEL",
+      "label": "Subagent Model",
+      "description": "Model for all subagent tasks. 'haiku' or 'sonnet' saves cost.",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "haiku",
+          "label": "Haiku (cheapest)"
+        },
+        {
+          "value": "sonnet",
+          "label": "Sonnet (balanced)"
+        },
+        {
+          "value": "opus",
+          "label": "Opus (best)"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection",
+        "agent"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_CERT_STORE",
+      "label": "Cert Store",
+      "description": "CA cert sources (comma-separated, e.g. 'system').",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "system",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_CERT",
+      "label": "Client Cert",
+      "description": "Client certificate for TLS/mTLS auth.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_KEY",
+      "label": "Client Key",
+      "description": "Client key for mTLS auth.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_KEY_PASSPHRASE",
+      "label": "Client Key Passphrase",
+      "description": "Passphrase for the client key.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_HTTP_PROXY_PORT",
+      "label": "HTTP Proxy Port",
+      "description": "HTTP proxy port for host networking.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_SOCKS_PROXY_PORT",
+      "label": "SOCKS Proxy Port",
+      "description": "SOCKS proxy port for host networking.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_HOST",
+      "label": "Proxy Host",
+      "description": "TODO: Add description",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_RESOLVES_HOSTS",
+      "label": "Proxy Resolves Hosts",
+      "description": "Proxy handles DNS resolution.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_URL",
+      "label": "Proxy Url",
+      "description": "TODO: Add description",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_BEDROCK_AUTH",
+      "label": "Skip Bedrock Auth",
+      "description": "Skip AWS Bedrock authentication.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "aws-bedrock"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS",
+      "label": "Skip Fast Mode Net Errors",
+      "description": "Skip network errors in fast mode.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_FOUNDRY_AUTH",
+      "label": "Skip Foundry Auth",
+      "description": "Skip Foundry authentication.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_MANTLE_AUTH",
+      "label": "Skip Mantle Auth",
+      "description": "Skip Mantle authentication.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "mantle"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_VERTEX_AUTH",
+      "label": "Skip Vertex Auth",
+      "description": "Skip Vertex AI authentication.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "gcp-vertex"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_ACCESSIBILITY",
+      "label": "Accessibility",
+      "description": "Enables accessibility mode for screen readers.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BRIEF",
+      "label": "Brief Mode",
+      "description": "Encourages terse/condensed responses.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_BRIEF_UPLOAD",
+      "label": "Brief Upload",
+      "description": "Compact upload path for file attachments.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_COMMIT_LOG",
+      "label": "Commit Log",
+      "description": "Path or flag for commit log output during rendering.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_MOUSE",
+      "label": "Disable Mouse",
+      "description": "Disables mouse input support in terminal UI.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_TERMINAL_TITLE",
+      "label": "Disable Terminal Title",
+      "description": "Prevents updating terminal tab title.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL",
+      "label": "Disable Virtual Scroll",
+      "description": "Disables virtual scrolling in UI.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_EAGER_FLUSH",
+      "label": "Eager Flush",
+      "description": "Flush output buffers immediately.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER",
+      "label": "Exit After First Render",
+      "description": "Exit after first UI render (testing).",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_EXIT_AFTER_STOP_DELAY",
+      "label": "Exit After Stop Delay",
+      "description": "Auto-exit delay after stop (ms).",
+      "category": "output-display",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_FULL_LOGO",
+      "label": "Force Full Logo",
+      "description": "Forces full ASCII logo display.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_NO_FLICKER",
+      "label": "No Flicker",
+      "description": "Forces flicker-free fullscreen rendering mode.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_QUESTION_PREVIEW_FORMAT",
+      "label": "Question Preview Format",
+      "description": "Format for question previews.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SCROLL_SPEED",
+      "label": "Scroll Speed",
+      "description": "Terminal scroll speed multiplier (max 20). Default 1 (3 on Windows).",
+      "category": "output-display",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SIMPLE",
+      "label": "Simple Mode",
+      "description": "Simplified output, minimal decorations.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_SYNTAX_HIGHLIGHT",
+      "label": "Syntax Highlight",
+      "description": "Controls syntax highlighting for code blocks.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_NAME",
+      "label": "Agent Name",
+      "description": "Name/identifier for an agent instance.",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "agent"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE",
+      "label": "Blocking Limit Override",
+      "description": "Override turn/blocking limits.",
+      "category": "planning-tasks",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 50",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "ide"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TASKS",
+      "label": "Enable Tasks",
+      "description": "Enables the task tracking system.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "planning"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS",
+      "label": "Agent Teams",
+      "description": "Multi-agent teams -- multiplies token usage.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "increase",
+      "tags": [
+        "teams",
+        "agent"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE",
+      "label": "Plan Interview Phase",
+      "description": "Controls interview phase in plan mode.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "planning"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_MODE_REQUIRED",
+      "label": "Plan Mode Required",
+      "description": "Forces plan mode before execution.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "planning"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_V",
+      "label": "Plan Version",
+      "description": "Plan mode version/variant.",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "planning"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TASK_LIST_ID",
+      "label": "Task List ID",
+      "description": "Task list identifier.",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "planning"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "ANTHROPIC_AWS_API_KEY",
+      "label": "Anthropic AWS API Key",
+      "description": "API key for Anthropic-on-AWS backend.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "anthropic-aws"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_AWS_BASE_URL",
+      "label": "Anthropic AWS Base URL",
+      "description": "Custom base URL for Anthropic AWS backend.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_AWS_WORKSPACE_ID",
+      "label": "Anthropic AWS Workspace ID",
+      "description": "Required workspace ID for Anthropic AWS platform.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_BASE_URL",
+      "label": "Bedrock Base URL",
+      "description": "AWS Bedrock endpoint URL.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_MANTLE_API_KEY",
+      "label": "Bedrock Mantle API Key",
+      "description": "API key for Bedrock Mantle backend.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "aws-bedrock",
+        "mantle"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_MANTLE_BASE_URL",
+      "label": "Bedrock Mantle Base URL",
+      "description": "Custom base URL for Bedrock Mantle.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock",
+        "mantle"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_API_KEY",
+      "label": "Foundry API Key",
+      "description": "Foundry-specific API key.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_AUTH_TOKEN",
+      "label": "Foundry Auth Token",
+      "description": "Foundry auth token.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_BASE_URL",
+      "label": "Foundry Base URL",
+      "description": "Foundry API endpoint.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_RESOURCE",
+      "label": "Foundry Resource",
+      "description": "Foundry resource identifier.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_VERTEX_BASE_URL",
+      "label": "Vertex Base URL",
+      "description": "Vertex AI endpoint URL.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "ANTHROPIC_VERTEX_PROJECT_ID",
+      "label": "Vertex Project ID",
+      "description": "GCP project ID for Vertex AI.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST",
+      "label": "Provider Managed By Host",
+      "description": "Provider managed by host (enterprise).",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_ANTHROPIC_AWS",
+      "label": "Use Anthropic AWS",
+      "description": "Route API calls through Anthropic's AWS platform (distinct from Bedrock).",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_BEDROCK",
+      "label": "Use Bedrock",
+      "description": "Route API calls through AWS Bedrock.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_CCR_V",
+      "label": "Use CCR Version",
+      "description": "CCR version selector.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_FOUNDRY",
+      "label": "Use Foundry",
+      "description": "Route API calls through Foundry.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_MANTLE",
+      "label": "Use Mantle",
+      "description": "Route API calls through Mantle (managed access layer).",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mantle"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_VERTEX",
+      "label": "Use Vertex",
+      "description": "Route API calls through Vertex AI.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_CONTAINER_ID",
+      "label": "Container ID",
+      "description": "Container identifier.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ENVIRONMENT_KIND",
+      "label": "Environment Kind",
+      "description": "Environment type (local/remote/container).",
+      "category": "remote-containers",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "local",
+          "label": "Local"
+        },
+        {
+          "value": "remote",
+          "label": "Remote"
+        },
+        {
+          "value": "container",
+          "label": "Container"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION",
+      "label": "Runner Version",
+      "description": "Environment runner version.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_PLATFORM",
+      "label": "Host Platform",
+      "description": "Override detected host platform.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE",
+      "label": "Remote",
+      "description": "Indicates remote session.",
+      "category": "remote-containers",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE",
+      "label": "Remote Environment Type",
+      "description": "Remote environment type.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SEND_KEEPALIVES",
+      "label": "Remote Keepalives",
+      "description": "Send keepalives in remote sessions.",
+      "category": "remote-containers",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SESSION_ID",
+      "label": "Remote Session ID",
+      "description": "Remote session identifier.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SETTINGS_PATH",
+      "label": "Remote Settings Path",
+      "description": "Path to settings file in remote mode.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise"
+    },
+    {
+      "key": "CLAUDE_CODE_WORKSPACE_HOST_PATHS",
+      "label": "Workspace Host Paths",
+      "description": "Workspace host path mappings.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ADDITIONAL_PROTECTION",
+      "label": "Additional Protection",
+      "description": "Enables additional safety/protection layers.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR",
+      "label": "Sandbox Indicator",
+      "description": "Show visual indicator when sandbox is active.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BUBBLEWRAP",
+      "label": "Bubblewrap",
+      "description": "Bubblewrap sandbox configuration (Linux).",
+      "category": "sandbox-security",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_SANDBOX",
+      "label": "Force Sandbox",
+      "description": "Forces sandbox mode on.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS",
+      "label": "File Read Max Tokens",
+      "description": "Caps tokens from file reads. Default ~25,000.",
+      "category": "search-filesystem",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "25000",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "file-search",
+        "token-limits"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_HIDDEN",
+      "label": "Glob Hidden Files",
+      "description": "Include dotfiles in glob searches.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "file-search"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_NO_IGNORE",
+      "label": "Glob No Ignore",
+      "description": "Ignore .gitignore in glob searches.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "file-search"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_TIMEOUT_SECONDS",
+      "label": "Glob Timeout",
+      "description": "Timeout for glob searches (seconds).",
+      "category": "search-filesystem",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "20",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "timeout",
+        "file-search"
+      ],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_NATIVE_FILE_SEARCH",
+      "label": "Use Native File Search",
+      "description": "Uses native file search implementation instead of CLI fallback.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "file-search"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ACTION",
+      "label": "Action",
+      "description": "Startup action identifier.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DONT_INHERIT_ENV",
+      "label": "Don't Inherit Env",
+      "description": "Don't inherit parent shell env vars.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENTRYPOINT",
+      "label": "Entrypoint",
+      "description": "Entrypoint identifier (CLI/IDE/SDK).",
+      "category": "session-lifecycle",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "cli",
+          "label": "CLI"
+        },
+        {
+          "value": "ide",
+          "label": "IDE"
+        },
+        {
+          "value": "sdk",
+          "label": "SDK"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_GIT_BASH_PATH",
+      "label": "Git Bash Path",
+      "description": "Path to git bash (Windows).",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs",
+        "shell"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_RETRIES",
+      "label": "Max Retries",
+      "description": "Max retry attempts for failed API calls.",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 3",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user"
+    },
+    {
+      "key": "CLAUDE_CODE_NEW_INIT",
+      "label": "New Init",
+      "description": "Changes /init to create multiple CLAUDE.md files.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PERFORCE_MODE",
+      "label": "Perforce Mode",
+      "description": "Enables Perforce VCS mode. Adjusts file-stat logic and injects Perforce context.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS",
+      "label": "PowerShell Parse Timeout",
+      "description": "Timeout for PowerShell command parsing (ms).",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS",
+      "label": "Session End Hooks Timeout",
+      "description": "Timeout for session-end hooks (ms).",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SHELL",
+      "label": "Shell",
+      "description": "Override detected shell.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "/bin/zsh",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SHELL_PREFIX",
+      "label": "Shell Prefix",
+      "description": "Prefix commands run in shell.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TMPDIR",
+      "label": "Tmpdir",
+      "description": "Override temp directory.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BASE_REF",
+      "label": "Base Ref",
+      "description": "Base git ref for diff operations.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "main",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_BASE_REFS",
+      "label": "Base Refs",
+      "description": "Multiple base git refs for diff operations.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "main,develop",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_IS_COWORK",
+      "label": "Is Cowork",
+      "description": "Indicates cowork/collaboration mode.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_SSE_PORT",
+      "label": "SSE Port",
+      "description": "Server-sent events port.",
+      "category": "teams-collaboration",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TEAM_NAME",
+      "label": "Team Name",
+      "description": "Team name for team sessions.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TEAM_ONBOARDING",
+      "label": "Team Onboarding",
+      "description": "Enables team onboarding flow.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TEAMMATE_COMMAND",
+      "label": "Teammate Command",
+      "description": "Command for teammate agent invocation.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_COWORK_PLUGINS",
+      "label": "Use Cowork Plugins",
+      "description": "Enable cowork-specific plugins.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins",
+        "teams"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_WORKER_EPOCH",
+      "label": "Worker Epoch",
+      "description": "Worker epoch identifier.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS",
+      "label": "Datadog Flush Interval",
+      "description": "Datadog telemetry flush interval (ms).",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+      "label": "Disable Nonessential Traffic",
+      "description": "Disables telemetry/analytics network calls.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS",
+      "label": "Emit Session State Events",
+      "description": "Emit session state events for SDK.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES",
+      "label": "Emit Tool Use Summaries",
+      "description": "Emit tool usage summaries.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TELEMETRY",
+      "label": "Enable Telemetry",
+      "description": "Master switch for telemetry collection.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "observability"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA",
+      "label": "Enhanced Telemetry Beta",
+      "description": "Enhanced telemetry beta.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS",
+      "label": "OTel Flush Timeout",
+      "description": "OpenTelemetry flush timeout (ms).",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "observability"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS",
+      "label": "OTel Headers Debounce",
+      "description": "OTel headers helper debounce (ms).",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS",
+      "label": "OTel Shutdown Timeout",
+      "description": "OTel shutdown timeout (ms).",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "observability"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TAGS",
+      "label": "Tags",
+      "description": "Tags for session metadata.",
+      "category": "telemetry",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_PREFIX",
+      "label": "Tmux Prefix",
+      "description": "Custom tmux prefix key.",
+      "category": "terminal-mux",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_PREFIX_CONFLICTS",
+      "label": "Tmux Prefix Conflicts",
+      "description": "Tmux prefix conflict detection.",
+      "category": "terminal-mux",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_SESSION",
+      "label": "Tmux Session",
+      "description": "Tmux session name.",
+      "category": "terminal-mux",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_TRUECOLOR",
+      "label": "Tmux Truecolor",
+      "description": "Enable truecolor in tmux.",
+      "category": "terminal-mux",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL",
+      "label": "Enable Experimental Advisor Tool",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL",
+      "label": "Force Fullscreen Upsell",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_REPL",
+      "label": "Repl",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.109"
+    },
+    {
+      "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
+      "label": "System Prompt Gb Feature",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_TEST_FIXTURES_ROOT",
+      "label": "Test Fixtures Root",
+      "description": "Root directory for test fixtures.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal"
+    },
+    {
+      "key": "CLAUDE_CODE_TUI_JUST_SWITCHED",
+      "label": "Tui Just Switched",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_USE_POWERSHELL_TOOL",
+      "label": "Use PowerShell Tool",
+      "description": "Use PowerShell instead of Bash tool.",
+      "category": "uncategorised",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard"
+    }
+  ]
+}
