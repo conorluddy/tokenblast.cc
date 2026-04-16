@@ -78,10 +78,10 @@
     }
   },
   "audienceCounts": {
-    "power-user": 55,
-    "standard": 119,
-    "enterprise": 37,
-    "internal": 26
+    "power-user": 58,
+    "standard": 108,
+    "enterprise": 42,
+    "internal": 29
   },
   "flags": [
     {
@@ -263,23 +263,6 @@
       "audience": "internal"
     },
     {
-      "key": "CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER",
-      "label": "Enable Proxy Auth Helper",
-      "description": "TODO: Add description",
-      "category": "auth",
-      "type": "boolean",
-      "defaultValue": null,
-      "options": null,
-      "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
-      "isNew": true,
-      "addedInVersion": "2.1.111"
-    },
-    {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
       "label": "OAuth Client ID",
       "description": "OAuth client ID.",
@@ -378,40 +361,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "internal"
-    },
-    {
-      "key": "CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS",
-      "label": "Proxy Auth Helper Ttl Ms",
-      "description": "TODO: Add description",
-      "category": "auth",
-      "type": "number",
-      "defaultValue": null,
-      "options": null,
-      "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
-      "isNew": true,
-      "addedInVersion": "2.1.111"
-    },
-    {
-      "key": "CLAUDE_CODE_PROXY_AUTHENTICATE",
-      "label": "Proxy Authenticate",
-      "description": "TODO: Add description",
-      "category": "auth",
-      "type": "text",
-      "defaultValue": null,
-      "options": null,
-      "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
-      "isNew": true,
-      "addedInVersion": "2.1.111"
     },
     {
       "key": "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
@@ -1207,7 +1156,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH",
       "label": "Enable Background Plugin Refresh",
-      "description": "TODO: Add description",
+      "description": "Refresh plugins in the background instead of blocking the next tool call.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -1216,8 +1165,11 @@
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "enable",
+        "plugins"
+      ],
+      "audience": "power-user",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },
@@ -2104,17 +2056,39 @@
     {
       "key": "CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT",
       "label": "Enable Append Subagent Prompt",
-      "description": "TODO: Add description",
+      "description": "Append an extra system prompt to every Task-tool subagent; propagates to nested subagents.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
       "options": null,
       "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable",
+        "agent"
+      ],
+      "audience": "power-user",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL",
+      "label": "Enable Experimental Advisor Tool",
+      "description": "Force-enable the experimental advisor tool, overriding the server-side GrowthBook feature flag.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },
@@ -2235,6 +2209,27 @@
       "audience": "enterprise"
     },
     {
+      "key": "CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER",
+      "label": "Enable Proxy Auth Helper",
+      "description": "Enable a helper subprocess that fetches proxy auth credentials on demand (set to \"1\" to activate).",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "network-security",
+        "auth-credential"
+      ],
+      "audience": "enterprise",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
       "key": "CLAUDE_CODE_HOST_HTTP_PROXY_PORT",
       "label": "HTTP Proxy Port",
       "description": "HTTP proxy port for host networking.",
@@ -2269,19 +2264,61 @@
       "audience": "enterprise"
     },
     {
-      "key": "CLAUDE_CODE_PROXY_HOST",
-      "label": "Proxy Host",
-      "description": "TODO: Add description",
+      "key": "CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS",
+      "label": "Proxy Auth Helper Ttl Ms",
+      "description": "Cache lifetime (ms) for credentials fetched by the proxy auth helper before refetch.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "3600000",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security",
+        "timeout"
+      ],
+      "audience": "enterprise",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_AUTHENTICATE",
+      "label": "Proxy Authenticate",
+      "description": "Authentication credential passed to the proxy auth helper subprocess.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
       "options": null,
-      "placeholder": null,
+      "placeholder": "Bearer …",
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "network-security",
+        "auth-credential"
+      ],
+      "audience": "enterprise",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_HOST",
+      "label": "Proxy Host",
+      "description": "Proxy hostname forwarded to the auth helper. Auto-derived from CLAUDE_CODE_PROXY_URL when unset.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "proxy.corp.internal",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },
@@ -2305,17 +2342,19 @@
     {
       "key": "CLAUDE_CODE_PROXY_URL",
       "label": "Proxy Url",
-      "description": "TODO: Add description",
+      "description": "Proxy server URL for outbound API calls. Passed to the proxy auth helper and request agent.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
       "options": null,
-      "placeholder": null,
+      "placeholder": "http://proxy.corp:8080",
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },
@@ -2589,6 +2628,25 @@
         "ui-display"
       ],
       "audience": "standard"
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL",
+      "label": "Force Fullscreen Upsell",
+      "description": "Force-show the fullscreen-mode upsell prompt, bypassing seen-count and feature-flag gating. Testing only.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "internal",
+      "isNew": true,
+      "addedInVersion": "2.1.111"
     },
     {
       "key": "CLAUDE_CODE_NO_FLICKER",
@@ -4070,40 +4128,6 @@
       "audience": "standard"
     },
     {
-      "key": "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL",
-      "label": "Enable Experimental Advisor Tool",
-      "description": "TODO: Add description",
-      "category": "uncategorised",
-      "type": "boolean",
-      "defaultValue": null,
-      "options": null,
-      "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
-      "isNew": true,
-      "addedInVersion": "2.1.111"
-    },
-    {
-      "key": "CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL",
-      "label": "Force Fullscreen Upsell",
-      "description": "TODO: Add description",
-      "category": "uncategorised",
-      "type": "boolean",
-      "defaultValue": null,
-      "options": null,
-      "placeholder": null,
-      "affectsUsage": false,
-      "impact": null,
-      "costDirection": null,
-      "tags": [],
-      "audience": "standard",
-      "isNew": true,
-      "addedInVersion": "2.1.111"
-    },
-    {
       "key": "CLAUDE_CODE_REPL",
       "label": "Repl",
       "description": "TODO: Add description",
@@ -4122,7 +4146,7 @@
     {
       "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
       "label": "System Prompt Gb Feature",
-      "description": "TODO: Add description",
+      "description": "GrowthBook feature-flag key used to override the remote-mode system prompt. Internal.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -4132,7 +4156,7 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard",
+      "audience": "internal",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },
@@ -4154,7 +4178,7 @@
     {
       "key": "CLAUDE_CODE_TUI_JUST_SWITCHED",
       "label": "Tui Just Switched",
-      "description": "TODO: Add description",
+      "description": "Internal marker set by the CLI when relaunching into a new TUI mode (e.g. \"fullscreen\"). Not user-configurable.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -4164,7 +4188,7 @@
       "impact": null,
       "costDirection": null,
       "tags": [],
-      "audience": "standard",
+      "audience": "internal",
       "isNew": true,
       "addedInVersion": "2.1.111"
     },

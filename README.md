@@ -21,15 +21,12 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 | `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` | number | Cache TTL for the API key helper script. |
 | `CLAUDE_CODE_ATTRIBUTION_HEADER` | boolean | Custom attribution header for API requests. |
 | `CLAUDE_CODE_CUSTOM_OAUTH_URL` | text | Custom OAuth endpoint URL (must be approved). |
-| `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` 🆕 | boolean | — |
 | `CLAUDE_CODE_OAUTH_CLIENT_ID` | text | OAuth client ID. |
 | `CLAUDE_CODE_OAUTH_REFRESH_TOKEN` | text | OAuth refresh token. |
 | `CLAUDE_CODE_OAUTH_SCOPES` | text | OAuth scopes (space-separated). |
 | `CLAUDE_CODE_OAUTH_TOKEN` | text | OAuth access token. |
 | `CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR` | text | File descriptor for OAuth token. |
 | `CLAUDE_CODE_ORGANIZATION_UUID` | text | Organization UUID for multi-org accounts. |
-| `CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS` 🆕 | number | — |
-| `CLAUDE_CODE_PROXY_AUTHENTICATE` 🆕 | text | — |
 | `CLAUDE_CODE_SESSION_ACCESS_TOKEN` | text | Session-specific access token. |
 | `CLAUDE_CODE_USER_EMAIL` | text | User email for auth/attribution. |
 | `CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR` | text | WebSocket authentication file descriptor. |
@@ -114,7 +111,8 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK` | boolean | Disables fallback to non-streaming API calls. |
 | `CLAUDE_CODE_DISABLE_THINKING` | boolean | Completely disables extended thinking. Eliminates all thinking tokens. |
 | `CLAUDE_CODE_EFFORT_LEVEL` | select | Controls reasoning effort: low/medium/high/max. |
-| `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` 🆕 | boolean | — |
+| `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` 🆕 | boolean | Append an extra system prompt to every Task-tool subagent; propagates to nested subagents. |
+| `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` 🆕 | boolean | Force-enable the experimental advisor tool, overriding the server-side GrowthBook feature flag. |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Hard cap on output tokens per response. |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Model for all subagent tasks. 'haiku' or 'sonnet' saves cost. |
 
@@ -133,7 +131,7 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING` | boolean | Disables file state checkpointing. |
 | `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL` | boolean | Prevents auto-install of marketplace plugins. |
 | `CLAUDE_CODE_DISABLE_POLICY_SKILLS` | boolean | Skips loading admin/org-managed policy skills. |
-| `CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH` 🆕 | boolean | — |
+| `CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH` 🆕 | boolean | Refresh plugins in the background instead of blocking the next tool call. |
 | `CLAUDE_CODE_ENABLE_CFC` | boolean | Enables CFC feature (caching/function calling). |
 | `CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING` | boolean | Fine-grained streaming for tool results. |
 | `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` | boolean | AI-generated suggestions consume lightweight model calls. |
@@ -163,11 +161,14 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 | `CLAUDE_CODE_CLIENT_CERT` | text | Client certificate for TLS/mTLS auth. |
 | `CLAUDE_CODE_CLIENT_KEY` | text | Client key for mTLS auth. |
 | `CLAUDE_CODE_CLIENT_KEY_PASSPHRASE` | text | Passphrase for the client key. |
+| `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` 🆕 | boolean | Enable a helper subprocess that fetches proxy auth credentials on demand (set to "1" to activate). |
 | `CLAUDE_CODE_HOST_HTTP_PROXY_PORT` | number | HTTP proxy port for host networking. |
 | `CLAUDE_CODE_HOST_SOCKS_PROXY_PORT` | number | SOCKS proxy port for host networking. |
-| `CLAUDE_CODE_PROXY_HOST` 🆕 | text | — |
+| `CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS` 🆕 | number | Cache lifetime (ms) for credentials fetched by the proxy auth helper before refetch. |
+| `CLAUDE_CODE_PROXY_AUTHENTICATE` 🆕 | text | Authentication credential passed to the proxy auth helper subprocess. |
+| `CLAUDE_CODE_PROXY_HOST` 🆕 | text | Proxy hostname forwarded to the auth helper. Auto-derived from CLAUDE_CODE_PROXY_URL when unset. |
 | `CLAUDE_CODE_PROXY_RESOLVES_HOSTS` | boolean | Proxy handles DNS resolution. |
-| `CLAUDE_CODE_PROXY_URL` 🆕 | text | — |
+| `CLAUDE_CODE_PROXY_URL` 🆕 | text | Proxy server URL for outbound API calls. Passed to the proxy auth helper and request agent. |
 | `CLAUDE_CODE_SKIP_BEDROCK_AUTH` | boolean | Skip AWS Bedrock authentication. |
 | `CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS` | boolean | Skip network errors in fast mode. |
 | `CLAUDE_CODE_SKIP_FOUNDRY_AUTH` | boolean | Skip Foundry authentication. |
@@ -189,6 +190,7 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 | `CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER` | boolean | Exit after first UI render (testing). |
 | `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exit delay after stop (ms). |
 | `CLAUDE_CODE_FORCE_FULL_LOGO` | boolean | Forces full ASCII logo display. |
+| `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` 🆕 | boolean | Force-show the fullscreen-mode upsell prompt, bypassing seen-count and feature-flag gating. Testing only. |
 | `CLAUDE_CODE_NO_FLICKER` | boolean | Forces flicker-free fullscreen rendering mode. |
 | `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Format for question previews. |
 | `CLAUDE_CODE_SCROLL_SPEED` | number | Terminal scroll speed multiplier (max 20). Default 1 (3 on Windows). |
@@ -325,12 +327,10 @@ Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` 🆕 | boolean | — |
-| `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` 🆕 | boolean | — |
 | `CLAUDE_CODE_REPL` | text | — |
-| `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` 🆕 | text | — |
+| `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` 🆕 | text | GrowthBook feature-flag key used to override the remote-mode system prompt. Internal. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Root directory for test fixtures. |
-| `CLAUDE_CODE_TUI_JUST_SWITCHED` 🆕 | text | — |
+| `CLAUDE_CODE_TUI_JUST_SWITCHED` 🆕 | text | Internal marker set by the CLI when relaunching into a new TUI mode (e.g. "fullscreen"). Not user-configurable. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Use PowerShell instead of Bash tool. |
 
 ---
