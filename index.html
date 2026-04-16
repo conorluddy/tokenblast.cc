@@ -1254,6 +1254,23 @@
       font-size: var(--text-xs);
       color: var(--text-secondary);
     }
+    .compare-row__description {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      line-height: var(--leading-normal);
+    }
+    .compare-row__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      align-items: center;
+    }
+    .compare-row__meta-note {
+      font-size: var(--text-2xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
     .compare-row__fields {
       display: flex;
       flex-direction: column;
@@ -1294,6 +1311,8 @@
     }
     .compare-row--placeholder .compare-row__key,
     .compare-row--placeholder .compare-row__label,
+    .compare-row--placeholder .compare-row__description,
+    .compare-row--placeholder .compare-row__meta,
     .compare-row--placeholder .compare-row__fields { display: none; }
     .compare-row--placeholder::after {
       content: "—";
@@ -2987,6 +3006,35 @@ function buildCompareRow({ kind, flag, fields }) {
     label.textContent = flag.label;
     row.appendChild(label);
   }
+
+  if (flag.description) {
+    const desc = document.createElement('div');
+    desc.className = 'compare-row__description';
+    desc.textContent = flag.description;
+    row.appendChild(desc);
+  }
+
+  const meta = document.createElement('div');
+  meta.className = 'compare-row__meta';
+  if (flag.impact) {
+    const variant = { high: 'danger', medium: 'warning', low: 'success' }[flag.impact];
+    meta.appendChild(ui.badge(flag.impact + ' impact', variant));
+    if (flag.costDirection) {
+      const arrows = { increase: '↑ cost', decrease: '↓ cost', variable: '↕ cost' };
+      const dirVariant = { increase: 'danger', decrease: 'success', variable: 'warning' };
+      meta.appendChild(ui.badge(arrows[flag.costDirection] || '↕ cost', dirVariant[flag.costDirection]));
+    }
+  } else if (flag.affectsUsage) {
+    meta.appendChild(ui.badge('affects usage', 'warning'));
+  }
+  const te = flag.tokenEffect;
+  if (te && te.surface && te.surface !== 'none' && te.magnitude && te.magnitude !== 'negligible') {
+    const note = document.createElement('span');
+    note.className = 'compare-row__meta-note';
+    note.textContent = `${te.magnitude} · ${te.surface}`;
+    meta.appendChild(note);
+  }
+  if (meta.childElementCount > 0) row.appendChild(meta);
 
   const fieldsBlock = document.createElement('div');
   fieldsBlock.className = 'compare-row__fields';
