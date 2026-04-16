@@ -1,6 +1,5 @@
 {
   "name": "tokenblast.cc",
   "private": true,
-  "description": "Scripts for maintaining the TokenBlast flag catalogue. The site itself is static in index.html.",
-  "type": "module"
+  "description": "Scripts for maintaining the TokenBlast flag catalogue. The site itself is static in index.html."
 }
