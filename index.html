@@ -1364,12 +1364,12 @@
 <div class="container" style="position:relative">
 
   <div class="toolbar">
-    <button class="toolbar__item toolbar__mode active" id="mode-configure" data-mode="configure" type="button">Configure</button>
-    <button class="toolbar__item toolbar__mode" id="mode-compare" data-mode="compare" type="button">Compare</button>
-    <div class="toolbar__separator"></div>
     <select id="version-selector" class="toolbar__item version-select">
       <option>CC v...</option>
     </select>
+    <div class="toolbar__separator" id="version-separator"></div>
+    <button class="toolbar__item toolbar__mode active" id="mode-configure" data-mode="configure" type="button">Configure</button>
+    <button class="toolbar__item toolbar__mode" id="mode-compare" data-mode="compare" type="button">Compare</button>
     <div class="toolbar__separator"></div>
     <button class="toolbar__item" id="theme-toggle" aria-label="Toggle theme"></button>
     <div class="toolbar__separator"></div>
@@ -3235,6 +3235,7 @@ function setMode(mode) {
     configureView.classList.add('hidden');
     compareView.classList.remove('hidden');
     versionSelector.classList.add('hidden');
+    document.getElementById('version-separator')?.classList.add('hidden');
     if (mobileCostBar) mobileCostBar.classList.add('hidden');
     configureBtn.classList.remove('active');
     compareBtn.classList.add('active');
@@ -3243,6 +3244,7 @@ function setMode(mode) {
     configureView.classList.remove('hidden');
     compareView.classList.add('hidden');
     versionSelector.classList.remove('hidden');
+    document.getElementById('version-separator')?.classList.remove('hidden');
     if (mobileCostBar) mobileCostBar.classList.remove('hidden');
     configureBtn.classList.add('active');
     compareBtn.classList.remove('active');
