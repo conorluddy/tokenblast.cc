@@ -1504,8 +1504,8 @@ let FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_SESSION_ACCESS_TOKEN", label: "Session Access Token", description: "Session-specific access token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_USER_EMAIL", label: "User Email", description: "User email for auth/attribution.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR", label: "WebSocket Auth FD", description: "WebSocket authentication file descriptor.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_API_KEY", label: "API Key", description: "Anthropic API key for direct access.", category: "auth", type: "apikey", defaultValue: null, options: null, placeholder: "sk-ant-api03-...", affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_AUTH_TOKEN", label: "Auth Token", description: "Alternative authentication token.", category: "auth", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_AUTH_TOKEN", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_API_KEY", label: "API Key", description: "Anthropic API key for direct access.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "sk-ant-api03-...", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_AUTH_TOKEN", label: "Auth Token", description: "Alternative authentication token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "YOUR_AUTH_TOKEN", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BASE_URL", label: "Base URL", description: "Override Anthropic API base URL.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "https://api.anthropic.com", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_UNIX_SOCKET", label: "Unix Socket", description: "Unix socket for local API connections.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
 
@@ -1670,14 +1670,14 @@ let FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_USE_MANTLE", label: "Use Mantle", description: "Route API calls through Mantle (managed access layer).", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_USE_VERTEX", label: "Use Vertex", description: "Route API calls through Vertex AI.", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BEDROCK_BASE_URL", label: "Bedrock Base URL", description: "AWS Bedrock endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_FOUNDRY_API_KEY", label: "Foundry API Key", description: "Foundry-specific API key.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_FOUNDRY_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_API_KEY", label: "Foundry API Key", description: "Foundry-specific API key.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_FOUNDRY_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_AUTH_TOKEN", label: "Foundry Auth Token", description: "Foundry auth token.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_BASE_URL", label: "Foundry Base URL", description: "Foundry API endpoint.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_RESOURCE", label: "Foundry Resource", description: "Foundry resource identifier.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_AWS_API_KEY", label: "Anthropic AWS API Key", description: "API key for Anthropic-on-AWS backend.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_AWS_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_AWS_API_KEY", label: "Anthropic AWS API Key", description: "API key for Anthropic-on-AWS backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_AWS_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_AWS_BASE_URL", label: "Anthropic AWS Base URL", description: "Custom base URL for Anthropic AWS backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_AWS_WORKSPACE_ID", label: "Anthropic AWS Workspace ID", description: "Required workspace ID for Anthropic AWS platform.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_BEDROCK_MANTLE_API_KEY", label: "Bedrock Mantle API Key", description: "API key for Bedrock Mantle backend.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_MANTLE_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_BEDROCK_MANTLE_API_KEY", label: "Bedrock Mantle API Key", description: "API key for Bedrock Mantle backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_MANTLE_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BEDROCK_MANTLE_BASE_URL", label: "Bedrock Mantle Base URL", description: "Custom base URL for Bedrock Mantle.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_VERTEX_BASE_URL", label: "Vertex Base URL", description: "Vertex AI endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_VERTEX_PROJECT_ID", label: "Vertex Project ID", description: "GCP project ID for Vertex AI.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
@@ -1924,10 +1924,16 @@ let showBreakdown = false;
 // CORE LOGIC
 // ============================================================
 
+// Treat flags whose key ends in these suffixes as secrets: render a read-only
+// toggle + placeholder instead of a text input so real secrets can't be typed
+// into the site or encoded into the shareable hash.
+const APIKEY_KEY_PATTERN = /_(API_KEY|AUTH_TOKEN|OAUTH_TOKEN|REFRESH_TOKEN|ACCESS_TOKEN|PASSPHRASE)$/;
+function isApikeyFlag(key) { return APIKEY_KEY_PATTERN.test(key); }
+
 // Returns a map of apikey flags → placeholder strings, computed from current FLAG_REGISTRY
 function getApikeyFlags() {
   return new Map(
-    FLAG_REGISTRY.filter(f => f.type === 'apikey').map(f => [f.key, f.placeholder || 'YOUR_API_KEY'])
+    FLAG_REGISTRY.filter(f => isApikeyFlag(f.key)).map(f => [f.key, f.placeholder || 'YOUR_SECRET'])
   );
 }
 
@@ -2191,14 +2197,14 @@ const ui = {
   apikeyControl(flag) {
     const wrapper = ui.el('div', 'apikey-control');
     const toggle = ui.toggle(flag.key);
-    const display = ui.el('span', 'apikey-placeholder', { text: flag.placeholder || 'YOUR_API_KEY' });
+    const display = ui.el('span', 'apikey-placeholder', { text: flag.placeholder || 'YOUR_SECRET' });
     wrapper.append(toggle, display);
     return wrapper;
   },
 
   flagControl(flag) {
     if (flag.type === 'boolean') return ui.toggle(flag.key);
-    if (flag.type === 'apikey') return ui.apikeyControl(flag);
+    if (isApikeyFlag(flag.key)) return ui.apikeyControl(flag);
     if (flag.type === 'select' && flag.options) return ui.selectControl(flag.key, flag.options);
     return ui.textInput(flag.key, flag.type === 'number' ? 'number' : 'text', flag.placeholder);
   },
@@ -2224,7 +2230,7 @@ const ui = {
       }
       info.append(badges);
     }
-    if (flag.type === 'apikey') {
+    if (isApikeyFlag(flag.key)) {
       info.append(ui.el('div', 'apikey-warning', { text: '⚠ Never enter real keys into untrusted websites. Enable to include a placeholder in your exported config.' }));
     }
 
@@ -2798,8 +2804,8 @@ function renderCatalog() {
     if (!input) continue;
     if (document.activeElement === input) continue;
 
-    if (flag.type === "apikey") {
-      // For apikey flags the toggle checkbox drives inclusion; check state.flagOverrides directly
+    if (isApikeyFlag(flag.key)) {
+      // Secret flags: the toggle checkbox drives inclusion; check state.flagOverrides directly
       if (input.type === "checkbox") input.checked = state.flagOverrides[flag.key] === "1";
     } else if (input.type === "checkbox") {
       input.checked = effectiveVal === "1";
