@@ -1097,6 +1097,235 @@
       .preview-code { padding: var(--space-3); font-size: 0.7rem; }
       .btn--pill { padding: var(--space-1) var(--space-3); font-size: var(--text-sm); }
     }
+
+    /* ===== Compare View ===== */
+    .toolbar__mode {
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.03em;
+    }
+    .toolbar__mode.active {
+      color: var(--text-primary);
+      background: var(--accent-dim);
+    }
+
+    .compare-intro {
+      text-align: center;
+      padding: var(--space-2) 0 var(--space-6);
+    }
+    .compare-intro__title {
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--space-1);
+    }
+    .compare-intro__desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+
+    .compare-controls {
+      margin-bottom: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .compare-controls__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-4);
+      justify-content: space-between;
+    }
+    .compare-controls__row--filters {
+      gap: var(--space-3);
+    }
+    .compare-controls__pair {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .compare-controls__label {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .compare-controls__vs {
+      color: var(--text-muted);
+      font-size: var(--text-sm);
+      padding: 0 var(--space-1);
+    }
+    .compare-version-select {
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-3);
+      min-width: 9rem;
+    }
+    .compare-swap {
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--text-base);
+    }
+    .compare-swap:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+    }
+
+    .compare-filters {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .compare-search {
+      flex: 1;
+      min-width: 10rem;
+      max-width: 20rem;
+    }
+
+    .compare-summary {
+      display: flex;
+      gap: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+    .compare-summary__item { display: inline-flex; align-items: center; gap: var(--space-1); }
+    .compare-summary__count { font-weight: var(--weight-semibold); color: var(--text-primary); }
+    .compare-summary__item--added .compare-summary__count { color: var(--status-success); }
+    .compare-summary__item--removed .compare-summary__count { color: var(--status-danger); }
+    .compare-summary__item--changed .compare-summary__count { color: var(--status-warning); }
+
+    .compare-status {
+      padding: var(--space-4);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+    .compare-grid__heading {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--text-secondary);
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: sticky;
+      top: 0;
+      background: var(--bg-primary);
+      z-index: 1;
+    }
+
+    .compare-row {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      font-size: var(--text-sm);
+      min-width: 0;
+    }
+    .compare-row__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .compare-row__key {
+      font-family: var(--font);
+      font-size: var(--text-xs);
+      color: var(--text-primary);
+      font-weight: var(--weight-semibold);
+      word-break: break-all;
+    }
+    .compare-row__label {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+    }
+    .compare-row__fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      font-family: var(--font);
+    }
+    .compare-row__field {
+      display: flex;
+      gap: var(--space-2);
+      align-items: baseline;
+    }
+    .compare-row__field-label {
+      min-width: 5rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: var(--text-2xs);
+      letter-spacing: 0.04em;
+    }
+    .compare-row__field-value {
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+    .compare-row__field--highlight .compare-row__field-value {
+      color: var(--text-primary);
+      font-weight: var(--weight-semibold);
+    }
+
+    .compare-row--added { border-color: var(--status-success); background: var(--status-success-bg); }
+    .compare-row--removed { border-color: var(--status-danger); background: var(--status-danger-bg); }
+    .compare-row--changed { border-color: var(--status-warning); background: var(--status-warning-bg); }
+    .compare-row--placeholder {
+      background: transparent;
+      border-style: dashed;
+      border-color: var(--border);
+      opacity: 0.35;
+    }
+    .compare-row--placeholder .compare-row__key,
+    .compare-row--placeholder .compare-row__label,
+    .compare-row--placeholder .compare-row__fields { display: none; }
+    .compare-row--placeholder::after {
+      content: "—";
+      color: var(--text-muted);
+      font-size: var(--text-sm);
+      align-self: center;
+      opacity: 0.5;
+    }
+
+    /* Filter visibility via classes on #compare-view */
+    #compare-view.filter-added .compare-pair:not([data-kind="added"]) { display: none; }
+    #compare-view.filter-removed .compare-pair:not([data-kind="removed"]) { display: none; }
+    #compare-view.filter-changed .compare-pair:not([data-kind="changed"]) { display: none; }
+    .compare-pair { display: contents; }
+    .compare-pair.hidden-by-search { display: none; }
+
+    .compare-empty {
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+    }
+
+    @media (max-width: 750px) {
+      .compare-grid { grid-template-columns: 1fr; }
+      .compare-grid__heading { display: none; }
+      .compare-row--placeholder { display: none; }
+      .compare-controls__row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .compare-controls__pair { justify-content: center; }
+      .compare-search { max-width: none; }
+    }
   </style>
 </head>
 <body>
@@ -1104,6 +1333,9 @@
 <div class="container" style="position:relative">
 
   <div class="toolbar">
+    <button class="toolbar__item toolbar__mode active" id="mode-configure" data-mode="configure" type="button">Configure</button>
+    <button class="toolbar__item toolbar__mode" id="mode-compare" data-mode="compare" type="button">Compare</button>
+    <div class="toolbar__separator"></div>
     <select id="version-selector" class="toolbar__item version-select">
       <option>CC v...</option>
     </select>
@@ -1121,48 +1353,95 @@
     <p>Config generator for Claude Code environment flags</p>
   </header>
 
-  <!-- Global search -->
-  <div class="global-search">
-    <input class="input input--pill catalog-search" type="search" id="catalog-search" placeholder="Search 226 flags...">
-  </div>
+  <!-- Configure view (the original configurator) -->
+  <div id="configure-view">
 
-  <!-- Primary: Category Tabs -->
-  <div class="tab-bar tab-bar--primary" id="tab-bar"></div>
+    <!-- Global search -->
+    <div class="global-search">
+      <input class="input input--pill catalog-search" type="search" id="catalog-search" placeholder="Search 226 flags...">
+    </div>
 
-  <!-- Main: Left column (tab content) + Right column (sticky preview) -->
-  <div class="main-grid">
-    <div class="left-column">
-      <div id="tab-content">
-        <div id="slider-section" class="slider-section">
-          <nav class="preset-bar" id="preset-bar"></nav>
-          <div class="slider-panel" id="slider-panel"></div>
+    <!-- Primary: Category Tabs -->
+    <div class="tab-bar tab-bar--primary" id="tab-bar"></div>
+
+    <!-- Main: Left column (tab content) + Right column (sticky preview) -->
+    <div class="main-grid">
+      <div class="left-column">
+        <div id="tab-content">
+          <div id="slider-section" class="slider-section">
+            <nav class="preset-bar" id="preset-bar"></nav>
+            <div class="slider-panel" id="slider-panel"></div>
+          </div>
+          <div id="flag-groups"></div>
+          <div class="search-footer hidden" id="search-footer">
+            <button class="btn btn--pill" id="search-footer-clear">Clear Search</button>
+          </div>
+          <div class="search-empty" id="search-empty">
+            <p>No flags matching your search</p>
+            <button class="btn btn--pill" id="search-clear">Clear search</button>
+          </div>
         </div>
-        <div id="flag-groups"></div>
-        <div class="search-footer hidden" id="search-footer">
-          <button class="btn btn--pill" id="search-footer-clear">Clear Search</button>
-        </div>
-        <div class="search-empty" id="search-empty">
-          <p>No flags matching your search</p>
-          <button class="btn btn--pill" id="search-clear">Clear search</button>
+      </div>
+
+      <div class="preview-panel" id="preview-panel">
+        <div id="cost-slot"></div>
+        <div class="card preview-box">
+          <div class="preview-header">
+            <span class="preview-title">settings.json</span>
+            <div class="preview-actions">
+              <button class="btn btn--sm btn--ghost breakdown-btn" id="breakdown-btn">Breakdown</button>
+              <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
+              <button class="btn btn--sm copy-btn" id="save-btn">Save</button>
+              <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
+            </div>
+          </div>
+          <div class="preview-code" id="preview-code"></div>
+          <div class="preview-hint">Paste into <code>~/.claude/settings.json</code> or the <code>/update-config</code> skill. Config encoded in URL hash for sharing.</div>
         </div>
       </div>
     </div>
 
-    <div class="preview-panel" id="preview-panel">
-      <div id="cost-slot"></div>
-      <div class="card preview-box">
-        <div class="preview-header">
-          <span class="preview-title">settings.json</span>
-          <div class="preview-actions">
-            <button class="btn btn--sm btn--ghost breakdown-btn" id="breakdown-btn">Breakdown</button>
-            <button class="btn btn--sm btn--ghost reset-btn" id="reset-btn">Reset</button>
-            <button class="btn btn--sm copy-btn" id="save-btn">Save</button>
-            <button class="btn btn--sm copy-btn" id="copy-btn">Copy</button>
-          </div>
+  </div>
+
+  <!-- Compare view (version diff) -->
+  <div id="compare-view" class="hidden">
+    <div class="compare-intro">
+      <h2 class="compare-intro__title">Compare flag versions</h2>
+      <p class="compare-intro__desc">See which flags were added, removed, or restructured between Claude Code releases.</p>
+    </div>
+
+    <div class="card card--padded compare-controls">
+      <div class="compare-controls__row">
+        <div class="compare-controls__pair">
+          <label class="compare-controls__label" for="compare-a">From</label>
+          <select id="compare-a" class="input compare-version-select"></select>
+          <span class="compare-controls__vs" aria-hidden="true">&rarr;</span>
+          <label class="compare-controls__label" for="compare-b">To</label>
+          <select id="compare-b" class="input compare-version-select"></select>
+          <button class="btn btn--sm compare-swap" id="compare-swap" type="button" aria-label="Swap versions">&#8646;</button>
         </div>
-        <div class="preview-code" id="preview-code"></div>
-        <div class="preview-hint">Paste into <code>~/.claude/settings.json</code> or the <code>/update-config</code> skill. Config encoded in URL hash for sharing.</div>
+        <div class="compare-summary" id="compare-summary"></div>
       </div>
+      <div class="compare-controls__row compare-controls__row--filters">
+        <div class="compare-filters" role="tablist">
+          <button class="btn btn--pill active" data-compare-filter="all" type="button">All changes</button>
+          <button class="btn btn--pill" data-compare-filter="added" type="button">Added</button>
+          <button class="btn btn--pill" data-compare-filter="removed" type="button">Removed</button>
+          <button class="btn btn--pill" data-compare-filter="changed" type="button">Changed</button>
+        </div>
+        <input id="compare-search" class="input input--pill compare-search" type="search" placeholder="Filter by flag name...">
+      </div>
+    </div>
+
+    <div class="compare-status hidden" id="compare-status" role="status"></div>
+
+    <div class="compare-grid" id="compare-grid">
+      <div class="compare-grid__heading" id="compare-heading-a"></div>
+      <div class="compare-grid__heading" id="compare-heading-b"></div>
+    </div>
+
+    <div class="compare-empty hidden" id="compare-empty">
+      <p>No flag differences match this filter.</p>
     </div>
   </div>
 
@@ -1225,8 +1504,8 @@ let FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_SESSION_ACCESS_TOKEN", label: "Session Access Token", description: "Session-specific access token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_USER_EMAIL", label: "User Email", description: "User email for auth/attribution.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR", label: "WebSocket Auth FD", description: "WebSocket authentication file descriptor.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_API_KEY", label: "API Key", description: "Anthropic API key for direct access.", category: "auth", type: "apikey", defaultValue: null, options: null, placeholder: "sk-ant-api03-...", affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_AUTH_TOKEN", label: "Auth Token", description: "Alternative authentication token.", category: "auth", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_AUTH_TOKEN", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_API_KEY", label: "API Key", description: "Anthropic API key for direct access.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "sk-ant-api03-...", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_AUTH_TOKEN", label: "Auth Token", description: "Alternative authentication token.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "YOUR_AUTH_TOKEN", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BASE_URL", label: "Base URL", description: "Override Anthropic API base URL.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: "https://api.anthropic.com", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_UNIX_SOCKET", label: "Unix Socket", description: "Unix socket for local API connections.", category: "auth", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
 
@@ -1391,14 +1670,14 @@ let FLAG_REGISTRY = [
   { key: "CLAUDE_CODE_USE_MANTLE", label: "Use Mantle", description: "Route API calls through Mantle (managed access layer).", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "CLAUDE_CODE_USE_VERTEX", label: "Use Vertex", description: "Route API calls through Vertex AI.", category: "provider-routing", type: "boolean", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BEDROCK_BASE_URL", label: "Bedrock Base URL", description: "AWS Bedrock endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_FOUNDRY_API_KEY", label: "Foundry API Key", description: "Foundry-specific API key.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_FOUNDRY_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_FOUNDRY_API_KEY", label: "Foundry API Key", description: "Foundry-specific API key.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_FOUNDRY_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_AUTH_TOKEN", label: "Foundry Auth Token", description: "Foundry auth token.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_BASE_URL", label: "Foundry Base URL", description: "Foundry API endpoint.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_FOUNDRY_RESOURCE", label: "Foundry Resource", description: "Foundry resource identifier.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_AWS_API_KEY", label: "Anthropic AWS API Key", description: "API key for Anthropic-on-AWS backend.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_AWS_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_AWS_API_KEY", label: "Anthropic AWS API Key", description: "API key for Anthropic-on-AWS backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_AWS_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_AWS_BASE_URL", label: "Anthropic AWS Base URL", description: "Custom base URL for Anthropic AWS backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_AWS_WORKSPACE_ID", label: "Anthropic AWS Workspace ID", description: "Required workspace ID for Anthropic AWS platform.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
-  { key: "ANTHROPIC_BEDROCK_MANTLE_API_KEY", label: "Bedrock Mantle API Key", description: "API key for Bedrock Mantle backend.", category: "provider-routing", type: "apikey", defaultValue: null, options: null, placeholder: "YOUR_MANTLE_API_KEY", affectsUsage: false, impact: null, costDirection: null },
+  { key: "ANTHROPIC_BEDROCK_MANTLE_API_KEY", label: "Bedrock Mantle API Key", description: "API key for Bedrock Mantle backend.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: "YOUR_MANTLE_API_KEY", affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_BEDROCK_MANTLE_BASE_URL", label: "Bedrock Mantle Base URL", description: "Custom base URL for Bedrock Mantle.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_VERTEX_BASE_URL", label: "Vertex Base URL", description: "Vertex AI endpoint URL.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
   { key: "ANTHROPIC_VERTEX_PROJECT_ID", label: "Vertex Project ID", description: "GCP project ID for Vertex AI.", category: "provider-routing", type: "text", defaultValue: null, options: null, placeholder: null, affectsUsage: false, impact: null, costDirection: null },
@@ -1507,15 +1786,20 @@ let CATEGORIES = {
 const INLINE_VERSION = "2.1.109";
 let currentVersion = INLINE_VERSION;
 const versionCache = {};
+// Seed cache so compare/other consumers can reuse inline data without refetching
+versionCache[INLINE_VERSION] = { flags: FLAG_REGISTRY.slice(), categories: { ...CATEGORIES } };
 
-async function loadVersion(version) {
-  if (versionCache[version]) {
-    applyVersionData(version, versionCache[version]);
-    return;
-  }
+async function fetchVersion(version) {
+  if (versionCache[version]) return versionCache[version];
   const res = await fetch(`flags/${version}.json`);
+  if (!res.ok) throw new Error(`Failed to fetch flags/${version}.json`);
   const data = await res.json();
   versionCache[version] = data;
+  return data;
+}
+
+async function loadVersion(version) {
+  const data = await fetchVersion(version);
   applyVersionData(version, data);
 }
 
@@ -1629,6 +1913,8 @@ const state = {
   flagOverrides: {},
   activePreset: "balanced",
   activeTab: "presets",
+  mode: "configure",
+  compare: { a: null, b: null },
 };
 
 let syncLock = false;
@@ -1638,10 +1924,16 @@ let showBreakdown = false;
 // CORE LOGIC
 // ============================================================
 
+// Treat flags whose key ends in these suffixes as secrets: render a read-only
+// toggle + placeholder instead of a text input so real secrets can't be typed
+// into the site or encoded into the shareable hash.
+const APIKEY_KEY_PATTERN = /_(API_KEY|AUTH_TOKEN|OAUTH_TOKEN|REFRESH_TOKEN|ACCESS_TOKEN|PASSPHRASE)$/;
+function isApikeyFlag(key) { return APIKEY_KEY_PATTERN.test(key); }
+
 // Returns a map of apikey flags → placeholder strings, computed from current FLAG_REGISTRY
 function getApikeyFlags() {
   return new Map(
-    FLAG_REGISTRY.filter(f => f.type === 'apikey').map(f => [f.key, f.placeholder || 'YOUR_API_KEY'])
+    FLAG_REGISTRY.filter(f => isApikeyFlag(f.key)).map(f => [f.key, f.placeholder || 'YOUR_SECRET'])
   );
 }
 
@@ -1815,6 +2107,9 @@ function detectActivePreset(st) {
 // ============================================================
 
 function stateToHash(st) {
+  if (st.mode === 'compare') {
+    return btoa(JSON.stringify({ m: 'compare', ca: st.compare.a || null, cb: st.compare.b || null }));
+  }
   const s = [st.sliders.thinking, st.sliders.context, st.sliders.output, st.sliders.subagent].join("");
   const payload = { s };
   if (st.activePreset) payload.p = st.activePreset;
@@ -1826,8 +2121,12 @@ function stateToHash(st) {
 function hashToState(hash) {
   try {
     const payload = JSON.parse(atob(hash));
+    if (payload.m === 'compare') {
+      return { mode: 'compare', compare: { a: payload.ca || null, b: payload.cb || null } };
+    }
     const s = payload.s || "2210";
     return {
+      mode: 'configure',
       sliders: { thinking: +s[0], context: +s[1], output: +s[2], subagent: +s[3] },
       flagOverrides: payload.a || {},
       activePreset: payload.p || null,
@@ -1898,14 +2197,14 @@ const ui = {
   apikeyControl(flag) {
     const wrapper = ui.el('div', 'apikey-control');
     const toggle = ui.toggle(flag.key);
-    const display = ui.el('span', 'apikey-placeholder', { text: flag.placeholder || 'YOUR_API_KEY' });
+    const display = ui.el('span', 'apikey-placeholder', { text: flag.placeholder || 'YOUR_SECRET' });
     wrapper.append(toggle, display);
     return wrapper;
   },
 
   flagControl(flag) {
     if (flag.type === 'boolean') return ui.toggle(flag.key);
-    if (flag.type === 'apikey') return ui.apikeyControl(flag);
+    if (isApikeyFlag(flag.key)) return ui.apikeyControl(flag);
     if (flag.type === 'select' && flag.options) return ui.selectControl(flag.key, flag.options);
     return ui.textInput(flag.key, flag.type === 'number' ? 'number' : 'text', flag.placeholder);
   },
@@ -1931,7 +2230,7 @@ const ui = {
       }
       info.append(badges);
     }
-    if (flag.type === 'apikey') {
+    if (isApikeyFlag(flag.key)) {
       info.append(ui.el('div', 'apikey-warning', { text: '⚠ Never enter real keys into untrusted websites. Enable to include a placeholder in your exported config.' }));
     }
 
@@ -2505,8 +2804,8 @@ function renderCatalog() {
     if (!input) continue;
     if (document.activeElement === input) continue;
 
-    if (flag.type === "apikey") {
-      // For apikey flags the toggle checkbox drives inclusion; check state.flagOverrides directly
+    if (isApikeyFlag(flag.key)) {
+      // Secret flags: the toggle checkbox drives inclusion; check state.flagOverrides directly
       if (input.type === "checkbox") input.checked = state.flagOverrides[flag.key] === "1";
     } else if (input.type === "checkbox") {
       input.checked = effectiveVal === "1";
@@ -2598,21 +2897,368 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 });
 
 // ============================================================
+// COMPARE VIEW
+// ============================================================
+
+let manifestData = null;
+
+async function ensureManifest() {
+  if (manifestData) return manifestData;
+  manifestData = await fetch('flags/manifest.json').then(r => r.json());
+  return manifestData;
+}
+
+function sameDefault(a, b) {
+  if (a === b) return true;
+  if ((a === null || a === undefined) && (b === null || b === undefined)) return true;
+  return false;
+}
+
+function sameOptions(a, b) {
+  if (a === b) return true;
+  if (!a && !b) return true;
+  if (!a || !b) return false;
+  if (a.length !== b.length) return false;
+  const setA = new Set(a.map(o => String(o.value ?? '')));
+  for (const o of b) if (!setA.has(String(o.value ?? ''))) return false;
+  return true;
+}
+
+function diffRegistries(registryA, registryB) {
+  const byKeyA = new Map(registryA.map(f => [f.key, f]));
+  const byKeyB = new Map(registryB.map(f => [f.key, f]));
+  const added = [], removed = [], changed = [], unchanged = [];
+
+  for (const [key, fa] of byKeyA) {
+    const fb = byKeyB.get(key);
+    if (!fb) { removed.push(fa); continue; }
+    const fields = [];
+    if (fa.type !== fb.type) fields.push('type');
+    if (!sameDefault(fa.defaultValue, fb.defaultValue)) fields.push('defaultValue');
+    if (!sameOptions(fa.options, fb.options)) fields.push('options');
+    if (fields.length) changed.push({ key, from: fa, to: fb, fields });
+    else unchanged.push({ key, flag: fb });
+  }
+  for (const [key, fb] of byKeyB) if (!byKeyA.has(key)) added.push(fb);
+
+  const byKeyAsc = (x, y) => (x.key || '').localeCompare(y.key || '');
+  added.sort(byKeyAsc);
+  removed.sort(byKeyAsc);
+  changed.sort(byKeyAsc);
+  return { added, removed, changed, unchanged };
+}
+
+function describeFieldValue(flag, field) {
+  if (field === 'type') return flag.type || '—';
+  if (field === 'defaultValue') {
+    if (flag.defaultValue === null || flag.defaultValue === undefined) return 'none';
+    return String(flag.defaultValue);
+  }
+  if (field === 'options') {
+    if (!flag.options || flag.options.length === 0) return 'none';
+    return flag.options.map(o => o.value).join(', ');
+  }
+  return '—';
+}
+
+function buildCompareRow({ kind, flag, fields }) {
+  const row = document.createElement('div');
+  row.className = `compare-row compare-row--${kind}`;
+  if (kind === 'placeholder') return row;
+
+  const header = document.createElement('div');
+  header.className = 'compare-row__header';
+  const key = document.createElement('span');
+  key.className = 'compare-row__key';
+  key.textContent = flag.key;
+  header.appendChild(key);
+
+  const badgeText = { added: '+ added', removed: '− removed', changed: '~ changed' }[kind];
+  const badgeVariant = { added: 'success', removed: 'danger', changed: 'warning' }[kind];
+  const badge = document.createElement('span');
+  badge.className = `badge badge--${badgeVariant}`;
+  badge.textContent = badgeText;
+  header.appendChild(badge);
+  row.appendChild(header);
+
+  if (flag.label) {
+    const label = document.createElement('div');
+    label.className = 'compare-row__label';
+    label.textContent = flag.label;
+    row.appendChild(label);
+  }
+
+  const fieldsBlock = document.createElement('div');
+  fieldsBlock.className = 'compare-row__fields';
+  const changedSet = new Set(fields || []);
+  const candidates = kind === 'changed'
+    ? Array.from(changedSet)
+    : ['type', 'defaultValue'];
+  for (const f of candidates) {
+    if (kind !== 'changed' && f === 'defaultValue' && (flag.defaultValue === null || flag.defaultValue === undefined)) continue;
+    const fieldRow = document.createElement('div');
+    fieldRow.className = 'compare-row__field' + (changedSet.has(f) ? ' compare-row__field--highlight' : '');
+    const fLabel = document.createElement('span');
+    fLabel.className = 'compare-row__field-label';
+    fLabel.textContent = f === 'defaultValue' ? 'default' : f;
+    const fValue = document.createElement('span');
+    fValue.className = 'compare-row__field-value';
+    fValue.textContent = describeFieldValue(flag, f);
+    fieldRow.append(fLabel, fValue);
+    fieldsBlock.appendChild(fieldRow);
+  }
+  if (fieldsBlock.childElementCount > 0) row.appendChild(fieldsBlock);
+
+  return row;
+}
+
+function buildPair({ kind, flagA, flagB, fields }) {
+  const pair = document.createElement('div');
+  pair.className = 'compare-pair';
+  pair.dataset.kind = kind;
+  pair.dataset.key = ((flagA || flagB || {}).key || '').toLowerCase();
+  pair.dataset.label = ((flagA || flagB || {}).label || '').toLowerCase();
+
+  const left = kind === 'added'
+    ? buildCompareRow({ kind: 'placeholder' })
+    : buildCompareRow({ kind, flag: flagA, fields });
+  const right = kind === 'removed'
+    ? buildCompareRow({ kind: 'placeholder' })
+    : buildCompareRow({ kind, flag: flagB, fields });
+
+  pair.append(left, right);
+  return pair;
+}
+
+function renderCompareGrid() {
+  const grid = document.getElementById('compare-grid');
+  const headingA = document.getElementById('compare-heading-a');
+  const headingB = document.getElementById('compare-heading-b');
+  const summary = document.getElementById('compare-summary');
+  const empty = document.getElementById('compare-empty');
+  const { a, b } = state.compare;
+  if (!a || !b) return;
+
+  const registryA = versionCache[a]?.flags || [];
+  const registryB = versionCache[b]?.flags || [];
+
+  headingA.textContent = `v${a}`;
+  headingB.textContent = `v${b}`;
+  grid.querySelectorAll('.compare-pair').forEach(n => n.remove());
+
+  if (a === b) {
+    summary.innerHTML = '<span class="compare-summary__item">Identical version</span>';
+    empty.classList.remove('hidden');
+    empty.querySelector('p').textContent = 'Same version on both sides — pick two different releases to see a diff.';
+    return;
+  }
+
+  const diff = diffRegistries(registryA, registryB);
+
+  summary.innerHTML = '';
+  const mkCount = (label, n, variant) => {
+    const span = document.createElement('span');
+    span.className = `compare-summary__item compare-summary__item--${variant}`;
+    span.innerHTML = `<span class="compare-summary__count">${n}</span> ${label}`;
+    summary.appendChild(span);
+  };
+  mkCount('added', diff.added.length, 'added');
+  mkCount('removed', diff.removed.length, 'removed');
+  mkCount('changed', diff.changed.length, 'changed');
+
+  for (const flag of diff.added) grid.appendChild(buildPair({ kind: 'added', flagB: flag }));
+  for (const flag of diff.removed) grid.appendChild(buildPair({ kind: 'removed', flagA: flag }));
+  for (const change of diff.changed) grid.appendChild(buildPair({ kind: 'changed', flagA: change.from, flagB: change.to, fields: change.fields }));
+
+  applyCompareFilters();
+}
+
+function applyCompareFilters() {
+  const view = document.getElementById('compare-view');
+  const q = document.getElementById('compare-search').value.toLowerCase().trim();
+  const pairs = view.querySelectorAll('.compare-pair');
+  for (const pair of pairs) {
+    const match = !q || pair.dataset.key.includes(q) || pair.dataset.label.includes(q);
+    pair.classList.toggle('hidden-by-search', !match);
+  }
+  const activeFilter = view.className.match(/filter-(added|removed|changed)/);
+  const filteredVisible = Array.from(pairs).filter(p => {
+    if (p.classList.contains('hidden-by-search')) return false;
+    if (activeFilter && p.dataset.kind !== activeFilter[1]) return false;
+    return true;
+  }).length;
+  const empty = document.getElementById('compare-empty');
+  const sameVersion = state.compare.a === state.compare.b;
+  if (sameVersion) return;
+  empty.classList.toggle('hidden', filteredVisible > 0 || pairs.length === 0);
+  if (filteredVisible === 0) {
+    empty.querySelector('p').textContent = pairs.length === 0
+      ? 'No flag differences between these versions.'
+      : 'No flag differences match this filter.';
+  }
+}
+
+function populateCompareDropdowns() {
+  const selA = document.getElementById('compare-a');
+  const selB = document.getElementById('compare-b');
+  if (selA.options.length && selA.options[0].value) return;
+  selA.innerHTML = '';
+  selB.innerHTML = '';
+  for (const snap of manifestData.snapshots.slice().reverse()) {
+    const label = `v${snap.version}${snap.version === manifestData.latest ? ' (latest)' : ''}`;
+    const a = document.createElement('option');
+    a.value = snap.version; a.textContent = label;
+    selA.appendChild(a);
+    const b = document.createElement('option');
+    b.value = snap.version; b.textContent = label;
+    selB.appendChild(b);
+  }
+  if (manifestData.snapshots.length < 2) {
+    const btn = document.getElementById('mode-compare');
+    btn.disabled = true;
+    btn.title = 'Need at least two snapshots to compare';
+  }
+}
+
+async function ensureCompareView() {
+  const status = document.getElementById('compare-status');
+  try {
+    await ensureManifest();
+    populateCompareDropdowns();
+
+    const snaps = manifestData.snapshots;
+    if (!state.compare.a || !state.compare.b) {
+      if (snaps.length >= 2) {
+        state.compare.a = snaps[snaps.length - 2].version;
+        state.compare.b = snaps[snaps.length - 1].version;
+      } else if (snaps.length === 1) {
+        state.compare.a = snaps[0].version;
+        state.compare.b = snaps[0].version;
+      }
+    }
+    document.getElementById('compare-a').value = state.compare.a || '';
+    document.getElementById('compare-b').value = state.compare.b || '';
+
+    status.classList.remove('hidden');
+    status.textContent = 'Loading versions…';
+    await Promise.all([
+      fetchVersion(state.compare.a),
+      fetchVersion(state.compare.b),
+    ]);
+    status.classList.add('hidden');
+    renderCompareGrid();
+    updateHash();
+  } catch (err) {
+    status.classList.remove('hidden');
+    status.textContent = 'Failed to load version data.';
+  }
+}
+
+function setMode(mode) {
+  if (mode !== 'configure' && mode !== 'compare') mode = 'configure';
+  state.mode = mode;
+  const configureView = document.getElementById('configure-view');
+  const compareView = document.getElementById('compare-view');
+  const mobileCostBar = document.getElementById('mobile-cost-bar');
+  const versionSelector = document.getElementById('version-selector');
+  const configureBtn = document.getElementById('mode-configure');
+  const compareBtn = document.getElementById('mode-compare');
+
+  if (mode === 'compare') {
+    configureView.classList.add('hidden');
+    compareView.classList.remove('hidden');
+    versionSelector.classList.add('hidden');
+    if (mobileCostBar) mobileCostBar.classList.add('hidden');
+    configureBtn.classList.remove('active');
+    compareBtn.classList.add('active');
+    ensureCompareView();
+  } else {
+    configureView.classList.remove('hidden');
+    compareView.classList.add('hidden');
+    versionSelector.classList.remove('hidden');
+    if (mobileCostBar) mobileCostBar.classList.remove('hidden');
+    configureBtn.classList.add('active');
+    compareBtn.classList.remove('active');
+  }
+  updateHash();
+}
+
+document.getElementById('mode-configure').addEventListener('click', () => setMode('configure'));
+document.getElementById('mode-compare').addEventListener('click', () => setMode('compare'));
+
+document.getElementById('compare-a').addEventListener('change', async (e) => {
+  state.compare.a = e.target.value;
+  const status = document.getElementById('compare-status');
+  status.classList.remove('hidden'); status.textContent = 'Loading…';
+  try {
+    await fetchVersion(state.compare.a);
+    status.classList.add('hidden');
+    renderCompareGrid();
+  } catch { status.textContent = 'Failed to load version.'; }
+  updateHash();
+});
+
+document.getElementById('compare-b').addEventListener('change', async (e) => {
+  state.compare.b = e.target.value;
+  const status = document.getElementById('compare-status');
+  status.classList.remove('hidden'); status.textContent = 'Loading…';
+  try {
+    await fetchVersion(state.compare.b);
+    status.classList.add('hidden');
+    renderCompareGrid();
+  } catch { status.textContent = 'Failed to load version.'; }
+  updateHash();
+});
+
+document.getElementById('compare-swap').addEventListener('click', () => {
+  const tmp = state.compare.a;
+  state.compare.a = state.compare.b;
+  state.compare.b = tmp;
+  document.getElementById('compare-a').value = state.compare.a || '';
+  document.getElementById('compare-b').value = state.compare.b || '';
+  renderCompareGrid();
+  updateHash();
+});
+
+document.querySelectorAll('#compare-view [data-compare-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.compareFilter;
+    const view = document.getElementById('compare-view');
+    view.classList.remove('filter-added', 'filter-removed', 'filter-changed');
+    if (filter !== 'all') view.classList.add(`filter-${filter}`);
+    document.querySelectorAll('#compare-view [data-compare-filter]').forEach(b => {
+      b.classList.toggle('active', b === btn);
+    });
+    applyCompareFilters();
+  });
+});
+
+document.getElementById('compare-search').addEventListener('input', applyCompareFilters);
+
+// ============================================================
 // INIT
 // ============================================================
 
 // Synchronous first render using inline data
 const hashState = hashToState(window.location.hash.slice(1));
 if (hashState) {
-  const { version, ...rest } = hashState;
-  Object.assign(state, rest);
+  if (hashState.mode === 'compare') {
+    state.mode = 'compare';
+    state.compare = hashState.compare || { a: null, b: null };
+  } else {
+    const { version, mode, ...rest } = hashState;
+    Object.assign(state, rest);
+    state.mode = 'configure';
+  }
 }
 recomputeFlagBudget();
 render();
 
+if (state.mode === 'compare') setMode('compare');
+
 // Async: fetch manifest to populate version selector, load non-default version if needed
 (async () => {
-  const manifest = await fetch('flags/manifest.json').then(r => r.json());
+  const manifest = await ensureManifest();
   const selector = document.getElementById('version-selector');
   selector.innerHTML = '';
 
@@ -2623,7 +3269,7 @@ render();
     selector.appendChild(opt);
   });
 
-  const requestedVersion = hashState?.version || manifest.latest;
+  const requestedVersion = (hashState && hashState.mode !== 'compare' && hashState.version) || manifest.latest;
   selector.value = requestedVersion;
 
   // Only fetch if hash requests a different version than what's inlined
@@ -2632,6 +3278,12 @@ render();
   }
 
   selector.addEventListener('change', () => loadVersion(selector.value));
+
+  if (manifest.snapshots.length < 2) {
+    const btn = document.getElementById('mode-compare');
+    btn.disabled = true;
+    btn.title = 'Need at least two snapshots to compare';
+  }
 })();
 </script>
 
