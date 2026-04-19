@@ -78,10 +78,10 @@
     }
   },
   "audienceCounts": {
-    "power-user": 58,
-    "standard": 110,
+    "power-user": 60,
+    "standard": 107,
     "enterprise": 42,
-    "internal": 29
+    "internal": 30
   },
   "flags": [
     {
@@ -5340,7 +5340,7 @@
     {
       "key": "CLAUDE_CODE_AGENT_RULE_DISABLED",
       "label": "Agent Rule Disabled",
-      "description": "TODO: Add description",
+      "description": "Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5349,16 +5349,23 @@
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "subprocess-sentinel"
+      ],
+      "audience": "internal",
       "isNew": true,
-      "addedInVersion": "2.1.114"
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_BS_AS_CTRL_BACKSPACE",
       "label": "Bs As Ctrl Backspace",
-      "description": "TODO: Add description",
-      "category": "uncategorised",
+      "description": "TUI input tweak: maps a plain Backspace keypress to Ctrl+Backspace (delete-previous-word) in the prompt editor. Intended for terminals — notably mintty/cygwin on Windows — that can't distinguish the two key events, letting word-delete work without a custom keymap.",
+      "category": "output-display",
       "type": "text",
       "defaultValue": null,
       "options": null,
@@ -5366,16 +5373,24 @@
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "tui-input",
+        "terminal-compat"
+      ],
+      "audience": "power-user",
       "isNew": true,
-      "addedInVersion": "2.1.114"
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DECSTBM",
       "label": "Decstbm",
-      "description": "TODO: Add description",
-      "category": "uncategorised",
+      "description": "Gates the DECSTBM (VT 'Set Top and Bottom Margins' / scroll-region) fast path in the new marlin_porch TUI renderer. When enabled, the renderer uses scroll-region escapes for partial screen updates instead of full redraws; when gated, it falls back to the safe redraw path. Emits 'DECSTBM: enabled' or 'DECSTBM: gated' at startup based on terminal capability probing.",
+      "category": "output-display",
       "type": "text",
       "defaultValue": null,
       "options": null,
@@ -5383,10 +5398,18 @@
       "affectsUsage": false,
       "impact": null,
       "costDirection": null,
-      "tags": [],
-      "audience": "standard",
+      "tags": [
+        "tui-renderer",
+        "terminal-compat"
+      ],
+      "audience": "power-user",
       "isNew": true,
-      "addedInVersion": "2.1.114"
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REPL",
