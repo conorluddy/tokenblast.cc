@@ -4,334 +4,344 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.111** — 237 flags across 18 categories.
+Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 
 ## Authentication & Identity
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `ANTHROPIC_API_KEY` | text | Anthropic API key for direct access. |
-| `ANTHROPIC_AUTH_TOKEN` | text | Alternative authentication token. |
-| `ANTHROPIC_BASE_URL` | text | Override Anthropic API base URL. |
-| `ANTHROPIC_UNIX_SOCKET` | text | Unix socket for local API connections. |
-| `CLAUDE_CODE_ACCOUNT_TAGGED_ID` | text | Internal account identifier for tagging/telemetry. |
-| `CLAUDE_CODE_ACCOUNT_UUID` | text | Account UUID for auth/billing. |
-| `CLAUDE_CODE_API_BASE_URL` | text | Override the API endpoint URL. |
-| `CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR` | text | File descriptor for reading API key securely. |
-| `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` | number | Cache TTL for the API key helper script. |
-| `CLAUDE_CODE_ATTRIBUTION_HEADER` | boolean | Custom attribution header for API requests. |
-| `CLAUDE_CODE_CUSTOM_OAUTH_URL` | text | Custom OAuth endpoint URL (must be approved). |
-| `CLAUDE_CODE_OAUTH_CLIENT_ID` | text | OAuth client ID. |
-| `CLAUDE_CODE_OAUTH_REFRESH_TOKEN` | text | OAuth refresh token. |
-| `CLAUDE_CODE_OAUTH_SCOPES` | text | OAuth scopes (space-separated). |
-| `CLAUDE_CODE_OAUTH_TOKEN` | text | OAuth access token. |
-| `CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR` | text | File descriptor for OAuth token. |
-| `CLAUDE_CODE_ORGANIZATION_UUID` | text | Organization UUID for multi-org accounts. |
-| `CLAUDE_CODE_SESSION_ACCESS_TOKEN` | text | Session-specific access token. |
-| `CLAUDE_CODE_USER_EMAIL` | text | User email for auth/attribution. |
-| `CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR` | text | WebSocket authentication file descriptor. |
+| `ANTHROPIC_API_KEY` | text | Direct API key for Anthropic inference — bypasses OAuth flow entirely. |
+| `ANTHROPIC_AUTH_TOKEN` | text | Bearer token used as an alternative credential, checked before OAuth sources. |
+| `ANTHROPIC_BASE_URL` | text | Reroutes all API traffic to a custom endpoint, overriding the default api.anthropic.com. |
+| `ANTHROPIC_UNIX_SOCKET` | text | Routes Anthropic API requests through a local Unix domain socket instead of TCP. |
+| `CLAUDE_CODE_ACCOUNT_TAGGED_ID` | text | Overrides the OTEL account ID tag used in telemetry metrics, falls back to a derived value. |
+| `CLAUDE_CODE_ACCOUNT_UUID` | text | Injects account UUID to pre-populate OAuth session without interactive login. |
+| `CLAUDE_CODE_API_BASE_URL` | text | Reroutes Files API calls to a custom base URL, falling back to ANTHROPIC_BASE_URL. |
+| `CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR` | text | Reads the API key from a file descriptor, enabling secure secret injection without env-var exposure. |
+| `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` | number | Controls how long the API key helper script result is cached before re-executing. |
+| `CLAUDE_CODE_ATTRIBUTION_HEADER` | boolean | Suppresses the Claude Code attribution header appended to API requests when set. |
+| `CLAUDE_CODE_CUSTOM_OAUTH_URL` | text | Overrides the OAuth base URL to an approved custom endpoint for non-production auth flows. |
+| `CLAUDE_CODE_OAUTH_CLIENT_ID` | text | Overrides the default OAuth client ID used during the authorization code flow. |
+| `CLAUDE_CODE_OAUTH_REFRESH_TOKEN` | text | Seeds an OAuth refresh token directly, skipping the interactive browser login step. |
+| `CLAUDE_CODE_OAUTH_SCOPES` | text | Declares space-separated OAuth scopes required when bootstrapping via a refresh token. |
+| `CLAUDE_CODE_OAUTH_TOKEN` | text | Provides a pre-issued OAuth access token, bypassing device-flow login entirely. |
+| `CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR` | text | Reads the OAuth access token from a file descriptor for secure secret injection. |
+| `CLAUDE_CODE_ORGANIZATION_UUID` | text | Pins requests to a specific organization UUID, bypassing the profile-fetch lookup. |
+| `CLAUDE_CODE_SESSION_ACCESS_TOKEN` | text | Provides a session-scoped access token used by remote/bridge entrypoints instead of OAuth. |
+| `CLAUDE_CODE_USER_EMAIL` | text | Injects user email to pre-populate OAuth session alongside account UUID and org UUID. |
+| `CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR` | text | Reads the WebSocket session ingress token from a file descriptor for remote mode auth. |
 
 ## Context & Memory
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` | text | Extra directories to scan for CLAUDE.md files. |
-| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | number | Token threshold for auto-compaction. Lower = more aggressive. |
-| `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables auto-memory reads/writes. Removes memory from context. |
-| `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Drops ALL CLAUDE.md content from system prompt. Nuclear option. |
-| `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from system prompt. |
-| `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces full compaction pipeline instead of short-circuiting. |
-| `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Show summary when returning from idle/away state. |
-| `CLAUDE_CODE_IDLE_THRESHOLD_MINUTES` | number | Minutes of inactivity before idle detection fires. Default 75. |
-| `CLAUDE_CODE_IDLE_TOKEN_THRESHOLD` | number | Token count above which idle detection activates. Default 100000. |
-| `CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES` | boolean | Include incomplete messages in context. |
-| `CLAUDE_CODE_MAX_CONTEXT_TOKENS` | number | Override max context window token limit (used with DISABLE_COMPACT). |
-| `CLAUDE_CODE_REMOTE_MEMORY_DIR` | text | Alternative directory for memory/session data in remote mode. |
-| `CLAUDE_CODE_RESUME_FROM_SESSION` | text | Hydrate context from a specific prior session ID. |
-| `CLAUDE_CODE_RESUME_INTERRUPTED_TURN` | boolean | Auto-resume interrupted turns. |
-| `CLAUDE_CODE_RESUME_THRESHOLD_MINUTES` | number | Minutes since last message to trigger resume flow. Default 70. |
-| `CLAUDE_CODE_RESUME_TOKEN_THRESHOLD` | number | Token count above which resume is offered. Default 100000. |
-| `CLAUDE_CODE_SKIP_PROMPT_HISTORY` | boolean | Skip loading previous prompt history at session start. |
+| `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` | text | Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context. |
+| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | number | Token threshold for auto-compaction. Lower = more aggressive compaction. |
+| `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables automatic memory reads and writes, removing memory content from each turn's context. |
+| `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Strips all CLAUDE.md file content from the system prompt entirely. |
+| `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
+| `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts. |
+| `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Enables an idle-return summary notification when resuming after an away period. |
+| `CLAUDE_CODE_IDLE_THRESHOLD_MINUTES` | number | Controls the inactivity window (in minutes) before idle-state detection fires. Default 75. |
+| `CLAUDE_CODE_IDLE_TOKEN_THRESHOLD` | number | Sets the minimum context token count required before idle-state detection activates. Default 100000. |
+| `CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES` | boolean | Includes incomplete in-flight messages in the context window during streaming. |
+| `CLAUDE_CODE_MAX_CONTEXT_TOKENS` | number | Overrides the model context window size, active only when DISABLE_COMPACT is also set. |
+| `CLAUDE_CODE_REMOTE_MEMORY_DIR` | text | Redirects memory and session storage to an alternative directory for remote deployments. |
+| `CLAUDE_CODE_RESUME_FROM_SESSION` | text | Hydrates conversation context from a specific prior session ID via the Sessions API. |
+| `CLAUDE_CODE_RESUME_INTERRUPTED_TURN` | boolean | Automatically resumes an interrupted turn by re-injecting its message content. |
+| `CLAUDE_CODE_RESUME_THRESHOLD_MINUTES` | number | Sets minutes since the last message before the resume-session flow is offered. Default 70. |
+| `CLAUDE_CODE_RESUME_TOKEN_THRESHOLD` | number | Sets the minimum token count required before the resume-session prompt appears. Default 100000. |
+| `CLAUDE_CODE_SKIP_PROMPT_HISTORY` | boolean | Skips loading persisted prompt history at session start, suppressing prior-turn entries. |
 
 ## Debugging & Diagnostics
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_DEBUG_LOG_LEVEL` | select | Debug logging verbosity (verbose/debug/info/warn/error). |
-| `CLAUDE_CODE_DEBUG_LOGS_DIR` | text | Directory for debug log output. |
-| `CLAUDE_CODE_DEBUG_REPAINTS` | boolean | Debug UI repaint cycles. |
-| `CLAUDE_CODE_DIAGNOSTICS_FILE` | text | Path to write diagnostic output. |
-| `CLAUDE_CODE_FRAME_TIMING_LOG` | boolean | Logs UI frame timing. |
-| `CLAUDE_CODE_PERFETTO_TRACE` | boolean | Enables Perfetto performance tracing. |
-| `CLAUDE_CODE_PROFILE_QUERY` | boolean | Enables query profiling. |
-| `CLAUDE_CODE_PROFILE_STARTUP` | boolean | Enables detailed startup profiling. |
-| `CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS` | number | Threshold for slow operation warnings (ms). |
-| `CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING` | number | Stall detection timeout for testing. |
+| `CLAUDE_CODE_DEBUG_LOG_LEVEL` | select | Controls the minimum log severity written to the debug log file (verbose/debug/info/warn/error). |
+| `CLAUDE_CODE_DEBUG_LOGS_DIR` | text | Redirects debug log output to a specific file path instead of the default session log. |
+| `CLAUDE_CODE_DEBUG_REPAINTS` | boolean | Enables UI repaint cycle tracking, surfacing which React components are re-rendering. |
+| `CLAUDE_CODE_DIAGNOSTICS_FILE` | text | Writes structured diagnostic events to a specified file path for external analysis. |
+| `CLAUDE_CODE_FRAME_TIMING_LOG` | boolean | Logs per-frame render timing including phase breakdowns and RSS memory usage. |
+| `CLAUDE_CODE_PERFETTO_TRACE` | boolean | Enables Perfetto-format performance tracing for agent process and thread activity. |
+| `CLAUDE_CODE_PROFILE_QUERY` | boolean | Enables per-query profiling checkpoints, surfacing a timing report on demand. |
+| `CLAUDE_CODE_PROFILE_STARTUP` | boolean | Enables detailed startup phase profiling and emits a startup-perf telemetry event. |
+| `CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS` | number | Sets the threshold (ms) above which operations are flagged as slow in diagnostics. |
+| `CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING` | number | Overrides the stall-detection abort timeout for test harnesses. |
 
 ## IDE & Editor Integration
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Auto-connect to IDE extensions on startup. |
-| `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Override host address for IDE connections. |
-| `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Skip auto-install of IDE extensions. |
-| `CLAUDE_CODE_IDE_SKIP_VALID_CHECK` | boolean | Skip workspace folder validation. |
+| `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
+| `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Overrides the IDE host address, bypassing WSL gateway detection entirely. |
+| `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Prevents automatic IDE extension installation on startup. |
+| `CLAUDE_CODE_IDE_SKIP_VALID_CHECK` | boolean | Skips workspace-folder validation when discovering IDE connections. |
 
 ## Model & Effort
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `ANTHROPIC_BETAS` | text | Enable beta API features. |
-| `ANTHROPIC_CUSTOM_HEADERS` | text | Custom HTTP headers for API requests. |
-| `ANTHROPIC_CUSTOM_MODEL_OPTION` | text | Custom model option in the CLI model picker. |
-| `ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION` | text | Description for custom model option. |
-| `ANTHROPIC_CUSTOM_MODEL_OPTION_NAME` | text | Display name for custom model option. |
-| `ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES` | text | Capabilities for custom model option. |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | text | Override which model ID maps to 'haiku'. |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION` | text | Description for default Haiku model. |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` | text | Display name for default Haiku model. |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES` | text | Capabilities for default Haiku model. |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL` | text | Override which model ID maps to 'opus'. |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION` | text | Description for default Opus model. |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_NAME` | text | Display name for default Opus model. |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES` | text | Capabilities for default Opus model. |
-| `ANTHROPIC_DEFAULT_SONNET_MODEL` | text | Override which model ID maps to 'sonnet'. |
-| `ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION` | text | Description for default Sonnet model. |
-| `ANTHROPIC_DEFAULT_SONNET_MODEL_NAME` | text | Display name for default Sonnet model. |
-| `ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES` | text | Capabilities for default Sonnet model. |
-| `ANTHROPIC_LOG` | select | Anthropic SDK logging level. |
-| `ANTHROPIC_MODEL` | text | Override the primary model entirely. |
-| `ANTHROPIC_SMALL_FAST_MODEL` | text | Model for hooks, classifiers, utility ops. |
-| `ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION` | text | AWS region for the small/fast model. |
-| `CLAUDE_CODE_AGENT_COST_STEER` | boolean | Enables cost-steering behaviour for sub-agent model selection. |
-| `CLAUDE_CODE_ALWAYS_ENABLE_EFFORT` | boolean | Forces effort control on all models, not just Opus/Sonnet. |
-| `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING` | boolean | Switches from dynamic to fixed thinking budgets. |
-| `CLAUDE_CODE_DISABLE_FAST_MODE` | boolean | Prevents fast mode from being enabled. |
-| `CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP` | boolean | Prevents remapping of legacy model names. |
-| `CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK` | boolean | Disables fallback to non-streaming API calls. |
-| `CLAUDE_CODE_DISABLE_THINKING` | boolean | Completely disables extended thinking. Eliminates all thinking tokens. |
-| `CLAUDE_CODE_EFFORT_LEVEL` | select | Controls reasoning effort: low/medium/high/max. |
-| `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` 🆕 | boolean | Append an extra system prompt to every Task-tool subagent; propagates to nested subagents. |
-| `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` 🆕 | boolean | Force-enable the experimental advisor tool, overriding the server-side GrowthBook feature flag. |
-| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Hard cap on output tokens per response. |
-| `CLAUDE_CODE_SUBAGENT_MODEL` | select | Model for all subagent tasks. 'haiku' or 'sonnet' saves cost. |
+| `ANTHROPIC_BETAS` | text | Appends comma-separated beta feature identifiers to every API request's beta header. |
+| `ANTHROPIC_CUSTOM_HEADERS` | text | Injects newline-delimited HTTP headers into every Anthropic API request. |
+| `ANTHROPIC_CUSTOM_MODEL_OPTION` | text | Adds a custom model ID to the CLI model picker as a selectable option. |
+| `ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION` | text | Sets the picker description string shown for the custom model option. |
+| `ANTHROPIC_CUSTOM_MODEL_OPTION_NAME` | text | Sets the display label shown for the custom model in the CLI model picker. |
+| `ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES` | text | Declares a comma-separated capability list for the custom model, enabling feature routing. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | text | Remaps the 'haiku' model alias to a custom model ID, including Bedrock fallback IDs. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION` | text | Sets the description shown in the model picker for the overridden Haiku model. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` | text | Sets the display label shown in the model picker for the overridden Haiku model. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES` | text | Declares capabilities for the overridden Haiku model, controlling feature routing. |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | text | Remaps the 'opus' model alias to a custom model ID, including Bedrock fallback IDs. |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION` | text | Sets the description shown in the model picker for the overridden Opus model. |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_NAME` | text | Sets the display label shown in the model picker for the overridden Opus model. |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES` | text | Declares feature capabilities for the custom Opus model, overriding built-in detection. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL` | text | Overrides which model ID resolves when 'sonnet' tier is requested. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION` | text | Sets the display description shown in the model picker for a custom Sonnet model. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL_NAME` | text | Sets the display name shown in the model picker for a custom Sonnet model. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES` | text | Declares feature capabilities for the custom Sonnet model, overriding built-in detection. |
+| `ANTHROPIC_LOG` | select | Controls Anthropic SDK log verbosity (error / warn / info / debug). |
+| `ANTHROPIC_MODEL` | text | Overrides the primary model entirely, replacing the default Sonnet selection. |
+| `ANTHROPIC_SMALL_FAST_MODEL` | text | Overrides the lightweight model used for hooks, classifiers, and background utility calls. |
+| `ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION` | text | Pins the small/fast model to a specific AWS Bedrock region, independent of the main model region. |
+| `CLAUDE_CODE_AGENT_COST_STEER` | boolean | Enables cost-steering logic that selects cheaper sub-agent models for Pro-tier users. |
+| `CLAUDE_CODE_ALWAYS_ENABLE_EFFORT` | boolean | Forces effort-level controls on all models, bypassing the Opus/Sonnet-only gate. |
+| `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING` | boolean | Forces fixed thinking budgets on Opus/Sonnet-4-6, disabling the adaptive budget algorithm. |
+| `CLAUDE_CODE_DISABLE_FAST_MODE` | boolean | Disables fast-mode inference, forcing the standard (slower) API path. |
+| `CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP` | boolean | Prevents automatic remapping of legacy model names (e.g. old Opus IDs) to current equivalents. |
+| `CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK` | boolean | Prevents falling back to non-streaming API calls on stream timeout or idle errors. |
+| `CLAUDE_CODE_DISABLE_THINKING` | boolean | Eliminates extended-thinking tokens entirely by hard-disabling the thinking budget. |
+| `CLAUDE_CODE_EFFORT_LEVEL` | select | Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort. |
+| `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` | boolean | Enables appending an extra system prompt to every Task-tool subagent and its nested descendants. |
+| `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
+| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
 
 ## MCP, Plugins & Features
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_AGENT_LIST_IN_MESSAGES` | boolean | Inject agent type/tool info into messages. |
-| `CLAUDE_CODE_DISABLE_ADVISOR_TOOL` | boolean | Removes advisor tool definition from context. |
-| `CLAUDE_CODE_DISABLE_ATTACHMENTS` | boolean | Prevents file attachments entering context. |
-| `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` | boolean | Prevents background tasks that consume tokens. |
-| `CLAUDE_CODE_DISABLE_CLAUDE_API_SKILL` | boolean | Skips registration of the built-in Claude API skill. |
-| `CLAUDE_CODE_DISABLE_CRON` | boolean | Disables cron/scheduled task support. |
-| `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` | boolean | Disables all experimental beta features. |
-| `CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY` | boolean | Disables feedback survey prompts. |
-| `CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING` | boolean | Disables file state checkpointing. |
-| `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL` | boolean | Prevents auto-install of marketplace plugins. |
-| `CLAUDE_CODE_DISABLE_POLICY_SKILLS` | boolean | Skips loading admin/org-managed policy skills. |
-| `CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH` 🆕 | boolean | Refresh plugins in the background instead of blocking the next tool call. |
-| `CLAUDE_CODE_ENABLE_CFC` | boolean | Enables CFC feature (caching/function calling). |
-| `CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING` | boolean | Fine-grained streaming for tool results. |
-| `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` | boolean | AI-generated suggestions consume lightweight model calls. |
-| `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` | boolean | File checkpointing in SDK mode. |
-| `CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT` | boolean | Adds token usage stats per turn. |
-| `CLAUDE_CODE_ENABLE_XAA` | boolean | Enables experimental extended agent actions. |
-| `CLAUDE_CODE_EXTRA_BODY` | text | Extra JSON fields for API request body. |
-| `CLAUDE_CODE_EXTRA_METADATA` | text | Extra metadata attached to API requests. |
-| `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY` | number | Max parallel tool calls per turn. |
-| `CLAUDE_CODE_MCP_ALLOWLIST_ENV` | boolean | Allow all env vars to pass through to MCP servers. |
-| `CLAUDE_CODE_MCP_SERVER_NAME` | text | Server name passed to MCP headersHelper subprocess. |
-| `CLAUDE_CODE_MCP_SERVER_URL` | text | Server URL passed to MCP headersHelper subprocess. |
-| `CLAUDE_CODE_PLUGIN_CACHE_DIR` | text | Plugin cache directory path. |
-| `CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS` | number | Timeout for plugin git operations (ms). |
-| `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Seed directory for plugins. |
-| `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Use ZIP-based cache for plugins. |
-| `CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V` | text | Session ingress POST version. |
-| `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` | boolean | Scrub env vars from subprocesses. |
-| `CLAUDE_CODE_SYNC_PLUGIN_INSTALL` | boolean | Synchronous plugin installation. |
-| `CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS` | number | Plugin install timeout (ms). |
+| `CLAUDE_CODE_AGENT_LIST_IN_MESSAGES` | boolean | Injects agent-type and tool availability summaries into every message. |
+| `CLAUDE_CODE_DISABLE_ADVISOR_TOOL` | boolean | Removes the advisor tool definition, preventing it from appearing in the tool list. |
+| `CLAUDE_CODE_DISABLE_ATTACHMENTS` | boolean | Strips @-mentioned files, MCP resources, and agent-mention attachments from context. |
+| `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` | boolean | Disables background agent execution and removes the run_in_background tool parameter. |
+| `CLAUDE_CODE_DISABLE_CLAUDE_API_SKILL` | boolean | Skips registration of the built-in claude-api skill at startup. |
+| `CLAUDE_CODE_DISABLE_CRON` | boolean | Disables scheduled and recurring cron task tools entirely. |
+| `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` | boolean | Disables all experimental beta API features, including context management and tool streaming. |
+| `CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY` | boolean | Suppresses in-session feedback survey prompts regardless of timing conditions. |
+| `CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING` | boolean | Disables file-state snapshot tracking, preventing undo/restore for file edits. |
+| `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL` | boolean | Prevents automatic installation of plugins from the official marketplace on startup. |
+| `CLAUDE_CODE_DISABLE_POLICY_SKILLS` | boolean | Skips loading admin/org-managed policy skills from policySettings directories. |
+| `CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH` | boolean | Triggers a plugin reload in the background after an install completes, instead of blocking. |
+| `CLAUDE_CODE_ENABLE_CFC` | boolean | Enables Claude-in-Chrome (CFC) mode, overriding the config-file default. |
+| `CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING` | boolean | Enables eager input streaming on tool calls, sending partial inputs before completion. |
+| `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` | boolean | Controls AI-generated next-prompt suggestions; overrides the GrowthBook feature flag. |
+| `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` | boolean | Enables file-state checkpointing in SDK (headless) mode, where it is otherwise off. |
+| `CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT` | boolean | Appends a token-usage block to every message, showing used/total/remaining counts. |
+| `CLAUDE_CODE_ENABLE_XAA` | boolean | Enables XAA (external agent authentication) OIDC flow for MCP server OAuth. |
+| `CLAUDE_CODE_EXTRA_BODY` | text | Merges a JSON object into every API request body, enabling unsupported API fields. |
+| `CLAUDE_CODE_EXTRA_METADATA` | text | Injects custom JSON fields into the metadata object sent with every API request. |
+| `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY` | number | Caps the number of tool calls that execute in parallel per turn; defaults to 10. |
+| `CLAUDE_CODE_MCP_ALLOWLIST_ENV` | boolean | Passes the full host environment to MCP servers instead of a scrubbed subset. |
+| `CLAUDE_CODE_MCP_SERVER_NAME` | text | Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server name. |
+| `CLAUDE_CODE_MCP_SERVER_URL` | text | Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server URL. |
+| `CLAUDE_CODE_PLUGIN_CACHE_DIR` | text | Overrides the directory where downloaded plugin archives are cached. |
+| `CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS` | number | Sets the timeout for git clone/pull operations when installing marketplace plugins. |
+| `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads. |
+| `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Switches plugin storage to a ZIP-based cache, enabling faster cold installs. |
+| `CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V` | text | Set internally when spawning bridge sessions to select the v2 POST-based ingress transport. |
+| `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` | boolean | Enables environment-variable scrubbing and bubblewrap isolation for all subprocesses. |
+| `CLAUDE_CODE_SYNC_PLUGIN_INSTALL` | boolean | Forces synchronous plugin installation, blocking the first prompt until all plugins load. |
+| `CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS` | number | Caps how long synchronous plugin installation may block before being aborted. |
 
 ## Networking & Proxy
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_CERT_STORE` | text | CA cert sources (comma-separated, e.g. 'system'). |
-| `CLAUDE_CODE_CLIENT_CERT` | text | Client certificate for TLS/mTLS auth. |
-| `CLAUDE_CODE_CLIENT_KEY` | text | Client key for mTLS auth. |
-| `CLAUDE_CODE_CLIENT_KEY_PASSPHRASE` | text | Passphrase for the client key. |
-| `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` 🆕 | boolean | Enable a helper subprocess that fetches proxy auth credentials on demand (set to "1" to activate). |
-| `CLAUDE_CODE_HOST_HTTP_PROXY_PORT` | number | HTTP proxy port for host networking. |
-| `CLAUDE_CODE_HOST_SOCKS_PROXY_PORT` | number | SOCKS proxy port for host networking. |
-| `CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS` 🆕 | number | Cache lifetime (ms) for credentials fetched by the proxy auth helper before refetch. |
-| `CLAUDE_CODE_PROXY_AUTHENTICATE` 🆕 | text | Authentication credential passed to the proxy auth helper subprocess. |
-| `CLAUDE_CODE_PROXY_HOST` 🆕 | text | Proxy hostname forwarded to the auth helper. Auto-derived from CLAUDE_CODE_PROXY_URL when unset. |
-| `CLAUDE_CODE_PROXY_RESOLVES_HOSTS` | boolean | Proxy handles DNS resolution. |
-| `CLAUDE_CODE_PROXY_URL` 🆕 | text | Proxy server URL for outbound API calls. Passed to the proxy auth helper and request agent. |
-| `CLAUDE_CODE_SKIP_BEDROCK_AUTH` | boolean | Skip AWS Bedrock authentication. |
-| `CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS` | boolean | Skip network errors in fast mode. |
-| `CLAUDE_CODE_SKIP_FOUNDRY_AUTH` | boolean | Skip Foundry authentication. |
-| `CLAUDE_CODE_SKIP_MANTLE_AUTH` | boolean | Skip Mantle authentication. |
-| `CLAUDE_CODE_SKIP_VERTEX_AUTH` | boolean | Skip Vertex AI authentication. |
+| `CLAUDE_CODE_CERT_STORE` | text | Specifies CA certificate sources (comma-separated 'bundled' and/or 'system') for TLS validation. |
+| `CLAUDE_CODE_CLIENT_CERT` | text | Loads a PEM client certificate from the given path to enable mTLS for outbound API requests. |
+| `CLAUDE_CODE_CLIENT_KEY` | text | Loads a PEM private key from the given path to pair with the mTLS client certificate. |
+| `CLAUDE_CODE_CLIENT_KEY_PASSPHRASE` | text | Supplies the passphrase to decrypt an encrypted mTLS client private key. |
+| `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` | boolean | Activates the proxy auth helper subprocess that fetches credentials on demand; requires value '1'. |
+| `CLAUDE_CODE_HOST_HTTP_PROXY_PORT` | number | Sets the HTTP proxy port forwarded into the sandbox environment for host network access. |
+| `CLAUDE_CODE_HOST_SOCKS_PROXY_PORT` | number | Sets the SOCKS proxy port forwarded into the sandbox environment for host network access. |
+| `CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS` | number | Controls how long (ms) proxy auth credentials are cached before the helper subprocess is re-invoked. |
+| `CLAUDE_CODE_PROXY_AUTHENTICATE` | text | Passes an authentication credential into the proxy auth helper subprocess as an environment variable. |
+| `CLAUDE_CODE_PROXY_HOST` | text | Forwards the proxy hostname to the auth helper subprocess; auto-derived from CLAUDE_CODE_PROXY_URL when unset. |
+| `CLAUDE_CODE_PROXY_RESOLVES_HOSTS` | boolean | Delegates DNS resolution to the proxy agent, bypassing local resolver for outbound requests. |
+| `CLAUDE_CODE_PROXY_URL` | text | Reroutes all outbound API traffic through the specified proxy server URL. |
+| `CLAUDE_CODE_SKIP_BEDROCK_AUTH` | boolean | Bypasses AWS Bedrock credential resolution, allowing unauthenticated or pre-signed requests. |
+| `CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS` | boolean | Suppresses the fast-mode unavailable warning when the status check returns a network error. |
+| `CLAUDE_CODE_SKIP_FOUNDRY_AUTH` | boolean | Bypasses Azure AD token acquisition for Microsoft Foundry, skipping DefaultAzureCredential flow. |
+| `CLAUDE_CODE_SKIP_MANTLE_AUTH` | boolean | Bypasses AWS credential resolution for the Amazon Bedrock Mantle endpoint. |
+| `CLAUDE_CODE_SKIP_VERTEX_AUTH` | boolean | Bypasses Google Cloud application-default credential acquisition for Vertex AI. |
 
 ## Output & Display
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_ACCESSIBILITY` | boolean | Enables accessibility mode for screen readers. |
-| `CLAUDE_CODE_BRIEF` | boolean | Encourages terse/condensed responses. |
-| `CLAUDE_CODE_BRIEF_UPLOAD` | boolean | Compact upload path for file attachments. |
-| `CLAUDE_CODE_COMMIT_LOG` | text | Path or flag for commit log output during rendering. |
-| `CLAUDE_CODE_DISABLE_MOUSE` | boolean | Disables mouse input support in terminal UI. |
-| `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` | boolean | Prevents updating terminal tab title. |
-| `CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL` | boolean | Disables virtual scrolling in UI. |
-| `CLAUDE_CODE_EAGER_FLUSH` | boolean | Flush output buffers immediately. |
-| `CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER` | boolean | Exit after first UI render (testing). |
-| `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exit delay after stop (ms). |
-| `CLAUDE_CODE_FORCE_FULL_LOGO` | boolean | Forces full ASCII logo display. |
-| `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` 🆕 | boolean | Force-show the fullscreen-mode upsell prompt, bypassing seen-count and feature-flag gating. Testing only. |
-| `CLAUDE_CODE_NO_FLICKER` | boolean | Forces flicker-free fullscreen rendering mode. |
-| `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Format for question previews. |
-| `CLAUDE_CODE_SCROLL_SPEED` | number | Terminal scroll speed multiplier (max 20). Default 1 (3 on Windows). |
-| `CLAUDE_CODE_SIMPLE` | boolean | Simplified output, minimal decorations. |
-| `CLAUDE_CODE_SYNTAX_HIGHLIGHT` | boolean | Controls syntax highlighting for code blocks. |
+| `CLAUDE_CODE_ACCESSIBILITY` | boolean | Enables accessibility mode, suppressing animated TUI elements for screen-reader compatibility. |
+| `CLAUDE_CODE_BRIEF` | boolean | Activates brief-only display mode, collapsing long assistant responses to head+tail summaries. |
+| `CLAUDE_CODE_BRIEF_UPLOAD` | boolean | Routes file attachment uploads through the compact REPL bridge path instead of the standard uploader. |
+| `CLAUDE_CODE_COMMIT_LOG` | text | Enables React render commit timing logs to the specified path, for UI performance profiling. |
+| `CLAUDE_CODE_DISABLE_MOUSE` | boolean | Disables mouse event handling in the terminal UI, preventing click and scroll capture. |
+| `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` | boolean | Prevents Claude Code from updating the terminal window or tab title during sessions. |
+| `CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL` | boolean | Disables virtualised transcript rendering, forcing all messages to render simultaneously. |
+| `CLAUDE_CODE_EAGER_FLUSH` | boolean | Forces immediate stdout flush after each response chunk, useful for piped or cowork sessions. |
+| `CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER` | boolean | Exits the process immediately after the first UI render cycle completes, for startup testing. |
+| `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exits the CLI after the specified idle milliseconds following the last response stop. |
+| `CLAUDE_CODE_FORCE_FULL_LOGO` | boolean | Forces the full ASCII logo to render regardless of terminal width or context. |
+| `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` | boolean | Forces the fullscreen-mode upsell prompt regardless of seen-count or feature-flag gate. |
+| `CLAUDE_CODE_NO_FLICKER` | boolean | Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it. |
+| `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults. |
+| `CLAUDE_CODE_SCROLL_SPEED` | number | Overrides terminal scroll speed multiplier; capped at 20, defaults to 1 (3 on Windows). |
+| `CLAUDE_CODE_SIMPLE` | boolean | Enables bare/minimal output mode, suppressing decorations and disabling auto-memory. |
+| `CLAUDE_CODE_SYNTAX_HIGHLIGHT` | boolean | Controls syntax highlighting for code blocks; set to falsy to disable, or a BAT theme name to override. |
 
 ## Planning & Tasks
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_AGENT_NAME` | text | Name/identifier for an agent instance. |
-| `CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE` | number | Override turn/blocking limits. |
-| `CLAUDE_CODE_ENABLE_TASKS` | boolean | Enables the task tracking system. |
-| `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` | boolean | Multi-agent teams -- multiplies token usage. |
-| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | boolean | Controls interview phase in plan mode. |
-| `CLAUDE_CODE_PLAN_MODE_REQUIRED` | boolean | Forces plan mode before execution. |
-| `CLAUDE_CODE_PLAN_V` | text | Plan mode version/variant. |
-| `CLAUDE_CODE_TASK_LIST_ID` | text | Task list identifier. |
+| `CLAUDE_CODE_AGENT_NAME` | text | Sets the identity name for this agent instance, required for multi-agent team broadcasts. |
+| `CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE` | number | Overrides the token count at which the CLI blocks and refuses further turns. |
+| `CLAUDE_CODE_ENABLE_TASKS` | boolean | Forces the task-tracking system on, bypassing the feature-flag gate. |
+| `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` | boolean | Enables multi-agent team spawning; multiplies token usage proportionally to team size. |
+| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | boolean | Enables the interview/clarification phase at the start of plan mode, overriding the feature flag. |
+| `CLAUDE_CODE_PLAN_MODE_REQUIRED` | boolean | Forces plan mode before any execution, blocking agentic tool use until a plan is approved. |
+| `CLAUDE_CODE_PLAN_V` | text | Selects the plan-mode implementation version or variant (e.g. v2). |
+| `CLAUDE_CODE_TASK_LIST_ID` | text | Pins the task-list namespace to a specific ID, overriding the team or session default. |
 
 ## Provider Routing
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `ANTHROPIC_AWS_API_KEY` | text | API key for Anthropic-on-AWS backend. |
-| `ANTHROPIC_AWS_BASE_URL` | text | Custom base URL for Anthropic AWS backend. |
-| `ANTHROPIC_AWS_WORKSPACE_ID` | text | Required workspace ID for Anthropic AWS platform. |
-| `ANTHROPIC_BEDROCK_BASE_URL` | text | AWS Bedrock endpoint URL. |
-| `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | text | API key for Bedrock Mantle backend. |
-| `ANTHROPIC_BEDROCK_MANTLE_BASE_URL` | text | Custom base URL for Bedrock Mantle. |
-| `ANTHROPIC_FOUNDRY_API_KEY` | text | Foundry-specific API key. |
-| `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | text | Foundry auth token. |
-| `ANTHROPIC_FOUNDRY_BASE_URL` | text | Foundry API endpoint. |
-| `ANTHROPIC_FOUNDRY_RESOURCE` | text | Foundry resource identifier. |
-| `ANTHROPIC_VERTEX_BASE_URL` | text | Vertex AI endpoint URL. |
-| `ANTHROPIC_VERTEX_PROJECT_ID` | text | GCP project ID for Vertex AI. |
-| `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` | boolean | Provider managed by host (enterprise). |
-| `CLAUDE_CODE_USE_ANTHROPIC_AWS` | boolean | Route API calls through Anthropic's AWS platform (distinct from Bedrock). |
-| `CLAUDE_CODE_USE_BEDROCK` | boolean | Route API calls through AWS Bedrock. |
-| `CLAUDE_CODE_USE_CCR_V` | text | CCR version selector. |
-| `CLAUDE_CODE_USE_FOUNDRY` | boolean | Route API calls through Foundry. |
-| `CLAUDE_CODE_USE_MANTLE` | boolean | Route API calls through Mantle (managed access layer). |
-| `CLAUDE_CODE_USE_VERTEX` | boolean | Route API calls through Vertex AI. |
+| `ANTHROPIC_AWS_API_KEY` | text | API key for the Anthropic-on-AWS platform, bypassing AWS credential chain resolution. |
+| `ANTHROPIC_AWS_BASE_URL` | text | Reroutes Anthropic-on-AWS traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_AWS_WORKSPACE_ID` | text | Required workspace ID sent as the anthropic-workspace-id header for Anthropic-on-AWS requests. |
+| `ANTHROPIC_BEDROCK_BASE_URL` | text | Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | text | API key for the Amazon Bedrock Mantle managed-access backend. |
+| `ANTHROPIC_BEDROCK_MANTLE_BASE_URL` | text | Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_FOUNDRY_API_KEY` | text | API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider. |
+| `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | text | Auth token for Microsoft Azure Foundry client construction. |
+| `ANTHROPIC_FOUNDRY_BASE_URL` | text | Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set. |
+| `ANTHROPIC_FOUNDRY_RESOURCE` | text | Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided. |
+| `ANTHROPIC_VERTEX_BASE_URL` | text | Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_VERTEX_PROJECT_ID` | text | Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present. |
+| `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` | boolean | Signals that the host environment manages provider config, stripping auth env vars from subprocesses. |
+| `CLAUDE_CODE_USE_ANTHROPIC_AWS` | boolean | Routes all API calls through Anthropic's AWS platform (distinct from native Bedrock). |
+| `CLAUDE_CODE_USE_BEDROCK` | boolean | Routes all API calls through AWS Bedrock, disabling first-party error reporting. |
+| `CLAUDE_CODE_USE_CCR_V` | text | Selects the CCR transport version (e.g. v2 switches to SSE-based streaming over WebSocket). |
+| `CLAUDE_CODE_USE_FOUNDRY` | boolean | Routes all API calls through Microsoft Azure Foundry, disabling first-party error reporting. |
+| `CLAUDE_CODE_USE_MANTLE` | boolean | Routes all API calls through Bedrock Mantle managed-access layer. |
+| `CLAUDE_CODE_USE_VERTEX` | boolean | Routes all API calls through Google Vertex AI, disabling first-party error reporting. |
 
 ## Remote & Containers
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_CONTAINER_ID` | text | Container identifier. |
-| `CLAUDE_CODE_ENVIRONMENT_KIND` | select | Environment type (local/remote/container). |
-| `CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION` | text | Environment runner version. |
-| `CLAUDE_CODE_HOST_PLATFORM` | text | Override detected host platform. |
-| `CLAUDE_CODE_REMOTE` | boolean | Indicates remote session. |
-| `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` | text | Remote environment type. |
-| `CLAUDE_CODE_REMOTE_SEND_KEEPALIVES` | boolean | Send keepalives in remote sessions. |
-| `CLAUDE_CODE_REMOTE_SESSION_ID` | text | Remote session identifier. |
-| `CLAUDE_CODE_REMOTE_SETTINGS_PATH` | text | Path to settings file in remote mode. |
-| `CLAUDE_CODE_WORKSPACE_HOST_PATHS` | text | Workspace host path mappings. |
+| `CLAUDE_CODE_CONTAINER_ID` | text | Sets the container ID forwarded as the x-claude-remote-container-id request header. |
+| `CLAUDE_CODE_ENVIRONMENT_KIND` | select | Declares the environment type (e.g. bridge, byoc, anthropic_cloud), affecting transport and control-flow. |
+| `CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION` | text | Forwards a runner version string as the x-environment-runner-version header on remote connections. |
+| `CLAUDE_CODE_HOST_PLATFORM` | text | Overrides the detected host OS platform (win32, darwin, linux) for environment fingerprinting. |
+| `CLAUDE_CODE_REMOTE` | boolean | Marks the session as remote, enabling disk persistence of credentials for subprocess access. |
+| `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` | text | Forwards the remote environment type in telemetry and enables brief-upload mode for attachments. |
+| `CLAUDE_CODE_REMOTE_SEND_KEEPALIVES` | boolean | Enables periodic keepalive heartbeats on the remote session connection to prevent idle disconnects. |
+| `CLAUDE_CODE_REMOTE_SESSION_ID` | text | Sets the remote session ID forwarded as the x-claude-remote-session-id request header. |
+| `CLAUDE_CODE_REMOTE_SETTINGS_PATH` | text | Overrides remote settings with a local file path, bypassing the settings API fetch. |
+| `CLAUDE_CODE_WORKSPACE_HOST_PATHS` | text | Pipe-separated host path mappings attached to telemetry events as workspace.host_paths. |
 
 ## Sandbox & Security
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_ADDITIONAL_PROTECTION` | boolean | Enables additional safety/protection layers. |
-| `CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR` | boolean | Show visual indicator when sandbox is active. |
-| `CLAUDE_CODE_BUBBLEWRAP` | text | Bubblewrap sandbox configuration (Linux). |
-| `CLAUDE_CODE_FORCE_SANDBOX` | boolean | Forces sandbox mode on. |
+| `CLAUDE_CODE_ADDITIONAL_PROTECTION` | boolean | Adds the x-anthropic-additional-protection header to all API requests for enhanced server-side checks. |
+| `CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR` | boolean | Renames the Bash tool to SandboxedBash in the UI when sandbox mode is active. |
+| `CLAUDE_CODE_BUBBLEWRAP` | text | Enables Bubblewrap sandbox isolation on Linux, blocking root bypass of permission checks. |
+| `CLAUDE_CODE_FORCE_SANDBOX` | boolean | Forces sandbox mode on for bridge/remote sessions regardless of the sandbox option passed. |
 
 ## Search & File System
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` | number | Caps tokens from file reads. Default ~25,000. |
-| `CLAUDE_CODE_GLOB_HIDDEN` | boolean | Include dotfiles in glob searches. |
-| `CLAUDE_CODE_GLOB_NO_IGNORE` | boolean | Ignore .gitignore in glob searches. |
-| `CLAUDE_CODE_GLOB_TIMEOUT_SECONDS` | number | Timeout for glob searches (seconds). |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | boolean | Uses native file search implementation instead of CLI fallback. |
+| `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` | number | Caps the token output from file-read operations. Default 25,000. |
+| `CLAUDE_CODE_GLOB_HIDDEN` | boolean | Forces glob searches to include dotfiles and hidden directories. |
+| `CLAUDE_CODE_GLOB_NO_IGNORE` | boolean | Bypasses .gitignore rules during glob file searches. |
+| `CLAUDE_CODE_GLOB_TIMEOUT_SECONDS` | number | Overrides the default ripgrep glob timeout in seconds. |
 
 ## Session & Lifecycle
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_ACTION` | text | Startup action identifier. |
-| `CLAUDE_CODE_DONT_INHERIT_ENV` | boolean | Don't inherit parent shell env vars. |
-| `CLAUDE_CODE_ENTRYPOINT` | select | Entrypoint identifier (CLI/IDE/SDK). |
-| `CLAUDE_CODE_GIT_BASH_PATH` | text | Path to git bash (Windows). |
-| `CLAUDE_CODE_MAX_RETRIES` | number | Max retry attempts for failed API calls. |
-| `CLAUDE_CODE_NEW_INIT` | boolean | Changes /init to create multiple CLAUDE.md files. |
-| `CLAUDE_CODE_PERFORCE_MODE` | boolean | Enables Perforce VCS mode. Adjusts file-stat logic and injects Perforce context. |
-| `CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS` | number | Timeout for PowerShell command parsing (ms). |
-| `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` | number | Timeout for session-end hooks (ms). |
-| `CLAUDE_CODE_SHELL` | text | Override detected shell. |
-| `CLAUDE_CODE_SHELL_PREFIX` | text | Prefix commands run in shell. |
-| `CLAUDE_CODE_TMPDIR` | text | Override temp directory. |
+| `CLAUDE_CODE_ACTION` | text | Signals that Claude Code is running as a GitHub Actions workflow step. |
+| `CLAUDE_CODE_DONT_INHERIT_ENV` | boolean | Strips the parent shell's environment variables from subprocess execution. |
+| `CLAUDE_CODE_ENTRYPOINT` | select | Identifies the launch surface (cli, sdk-cli, mcp, claude-desktop) used in version strings and telemetry. |
+| `CLAUDE_CODE_GIT_BASH_PATH` | text | Overrides the auto-detected Git Bash executable path on Windows. |
+| `CLAUDE_CODE_MAX_RETRIES` | number | Overrides the default maximum retry count for failed Anthropic API calls. |
+| `CLAUDE_CODE_NEW_INIT` | boolean | Switches the /init command to generate multiple scoped CLAUDE.md files instead of one. |
+| `CLAUDE_CODE_PERFORCE_MODE` | boolean | Enables Perforce VCS mode, injecting p4 checkout instructions into the system context. |
+| `CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS` | number | Overrides the timeout for PowerShell command parsing and result classification. |
+| `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` | number | Caps the maximum wait time for session-end hooks before the process exits. |
+| `CLAUDE_CODE_SHELL` | text | Forces Claude Code to use a specific bash or zsh binary instead of auto-detecting. |
+| `CLAUDE_CODE_SHELL_PREFIX` | text | Prepends a custom command string before every shell invocation, including MCP stdio servers. |
+| `CLAUDE_CODE_TMPDIR` | text | Overrides the temporary directory used for prompt files and shell snapshots. |
 
 ## Teams & Collaboration
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_BASE_REF` | text | Base git ref for diff operations. |
-| `CLAUDE_CODE_BASE_REFS` | text | Multiple base git refs for diff operations. |
-| `CLAUDE_CODE_IS_COWORK` | boolean | Indicates cowork/collaboration mode. |
-| `CLAUDE_CODE_SSE_PORT` | number | Server-sent events port. |
-| `CLAUDE_CODE_TEAM_NAME` | text | Team name for team sessions. |
-| `CLAUDE_CODE_TEAM_ONBOARDING` | boolean | Enables team onboarding flow. |
-| `CLAUDE_CODE_TEAMMATE_COMMAND` | text | Command for teammate agent invocation. |
-| `CLAUDE_CODE_USE_COWORK_PLUGINS` | boolean | Enable cowork-specific plugins. |
-| `CLAUDE_CODE_WORKER_EPOCH` | text | Worker epoch identifier. |
+| `CLAUDE_CODE_BASE_REF` | text | Sets the git ref used as the merge-base for diff and PR review operations. |
+| `CLAUDE_CODE_BASE_REFS` | text | Provides a map of repo-path → base-ref pairs for multi-checkout diff operations. |
+| `CLAUDE_CODE_IS_COWORK` | boolean | Enables cowork collaboration mode, triggering eager cache flushes and shared settings. |
+| `CLAUDE_CODE_SSE_PORT` | number | Pins the IDE SSE port used for auto-connecting to a running editor extension. |
+| `CLAUDE_CODE_TEAM_NAME` | text | Sets the team context name required for multi-agent broadcast and teammate messaging. |
+| `CLAUDE_CODE_TEAM_ONBOARDING` | boolean | Controls team onboarding UI mode; accepts "banner" or "step" to activate the onboarding flow. |
+| `CLAUDE_CODE_TEAMMATE_COMMAND` | text | Overrides the shell command used to spawn teammate sub-agents in a swarm. |
+| `CLAUDE_CODE_USE_COWORK_PLUGINS` | boolean | Switches the plugin and settings file paths to the cowork-specific variants. |
+| `CLAUDE_CODE_WORKER_EPOCH` | text | Supplies the worker epoch integer required to register a CCR bridge worker session. |
 
 ## Telemetry & Observability
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS` | number | Datadog telemetry flush interval (ms). |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | boolean | Disables telemetry/analytics network calls. |
-| `CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS` | boolean | Emit session state events for SDK. |
-| `CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES` | boolean | Emit tool usage summaries. |
-| `CLAUDE_CODE_ENABLE_TELEMETRY` | boolean | Master switch for telemetry collection. |
-| `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` | boolean | Enhanced telemetry beta. |
-| `CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS` | number | OpenTelemetry flush timeout (ms). |
-| `CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS` | number | OTel headers helper debounce (ms). |
-| `CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS` | number | OTel shutdown timeout (ms). |
-| `CLAUDE_CODE_TAGS` | text | Tags for session metadata. |
+| `CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS` | number | Overrides the Datadog log-batch flush interval in milliseconds. Default 15,000. |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | boolean | Blocks all non-essential outbound network calls, including telemetry and analytics. |
+| `CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS` | boolean | Enables emission of session-state-changed events on the SDK output stream. |
+| `CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES` | boolean | Enables tool-use summary emission for SDK consumers tracking tool activity. |
+| `CLAUDE_CODE_ENABLE_TELEMETRY` | boolean | Activates third-party OpenTelemetry trace and metric export for the session. |
+| `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` | boolean | Opts into the enhanced beta tracing pipeline alongside ENABLE_ENHANCED_TELEMETRY_BETA. |
+| `CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS` | number | Caps the time allotted for OpenTelemetry to flush all spans before process exit. Default 5,000ms. |
+| `CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS` | number | Sets the debounce window for re-executing the OTel headers helper script. |
+| `CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS` | number | Caps the time allotted for graceful OpenTelemetry provider shutdown. Default 2,000ms. |
+| `CLAUDE_CODE_TAGS` | text | Attaches arbitrary tag strings to the session metadata sent with each API request. |
 
 ## Terminal Multiplexer
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_TMUX_PREFIX` | text | Custom tmux prefix key. |
-| `CLAUDE_CODE_TMUX_PREFIX_CONFLICTS` | boolean | Tmux prefix conflict detection. |
-| `CLAUDE_CODE_TMUX_SESSION` | text | Tmux session name. |
-| `CLAUDE_CODE_TMUX_TRUECOLOR` | boolean | Enable truecolor in tmux. |
+| `CLAUDE_CODE_TMUX_PREFIX` | text | Records the active tmux prefix key for display in the detach hint UI. |
+| `CLAUDE_CODE_TMUX_PREFIX_CONFLICTS` | boolean | Signals that the tmux prefix conflicts with a Claude keybinding, adjusting the detach hint. |
+| `CLAUDE_CODE_TMUX_SESSION` | text | Stores the name of the active tmux session for display in the status bar. |
+| `CLAUDE_CODE_TMUX_TRUECOLOR` | boolean | Prevents Claude from downgrading color depth to 256 colours inside a tmux session. |
 
 ## Uncategorised
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_REPL` | text | — |
-| `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` 🆕 | text | GrowthBook feature-flag key used to override the remote-mode system prompt. Internal. |
-| `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Root directory for test fixtures. |
-| `CLAUDE_CODE_TUI_JUST_SWITCHED` 🆕 | text | Internal marker set by the CLI when relaunching into a new TUI mode (e.g. "fullscreen"). Not user-configurable. |
-| `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Use PowerShell instead of Bash tool. |
+| `CLAUDE_CODE_AGENT_RULE_DISABLED` 🆕 | text | — |
+| `CLAUDE_CODE_BS_AS_CTRL_BACKSPACE` 🆕 | text | — |
+| `CLAUDE_CODE_DECSTBM` 🆕 | text | — |
+| `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
+| `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
+| `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
+| `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
+| `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
+
+## Deprecated
+
+These flags were present in earlier versions but have been removed.
+
+| Flag | Removed in |
+|------|------------|
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.114 |
 
 ---
 
