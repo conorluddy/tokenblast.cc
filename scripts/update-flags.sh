@@ -25,11 +25,16 @@ cd "$TMP_DIR"
 npm init -y --silent > /dev/null 2>&1
 npm install @anthropic-ai/claude-code --silent 2>/dev/null
 
-CLI_JS="$TMP_DIR/node_modules/@anthropic-ai/claude-code/cli.js"
-if [[ ! -f "$CLI_JS" ]]; then
-  echo "ERROR: cli.js not found. Package structure may have changed."
+# The npm package ships a native ELF binary (no cli.js since ~2.1.9x).
+BINARY="$TMP_DIR/node_modules/@anthropic-ai/claude-code/bin/claude.exe"
+if [[ ! -f "$BINARY" ]]; then
+  echo "ERROR: Binary not found at $BINARY. Package structure may have changed."
   exit 1
 fi
+
+# Cache extracted strings once — strings(1) on the binary is not cheap.
+STRINGS_FILE="$TMP_DIR/binary_strings.txt"
+strings "$BINARY" > "$STRINGS_FILE"
 
 # Get installed version
 NEW_VERSION=$(node -e "console.log(require('./node_modules/@anthropic-ai/claude-code/package.json').version)")
@@ -37,7 +42,7 @@ echo "Installed version: $NEW_VERSION"
 
 # === 2. Extract flag keys from source ===
 echo "Extracting flag keys..."
-grep -oE '(CLAUDE_CODE_|ANTHROPIC_)[A-Z_]+' "$CLI_JS" | sort -u > "$TMP_DIR/source_keys.txt"
+grep -oE '(CLAUDE_CODE_|ANTHROPIC_)[A-Z_]+' "$STRINGS_FILE" | sort -u > "$TMP_DIR/source_keys.txt"
 
 # Filter out regex artifacts and known internal-only flags
 grep -v -E '^CLAUDE_CODE_DISABLE_$|^CLAUDE_CODE_$|^CLAUDE_CODE_EXECPATH$|^CLAUDE_CODE_SANDBOXED$|^CLAUDE_CODE_SCRIPT_CAPS$|^CLAUDE_CODE_SDK_HAS_OAUTH_REFRESH$|^CLAUDE_CODE_SIMULATE_PROXY_USAGE$|^CLAUDE_CODE_ULTRAREVIEW_PREFLIGHT_FIXTURE$|^CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH$|^CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK$|^CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE$|^CLAUDE_CODE_REPO_CHECKOUTS$|^ANTHROPIC_AWS$' \
@@ -102,7 +107,7 @@ if [[ $ADDED_COUNT -gt 0 ]]; then
     [[ -z "$key" ]] && continue
     echo ""
     echo "## $key"
-    grep -o ".\{0,80\}$key.\{0,80\}" "$CLI_JS" | head -2
+    grep -o ".\{0,80\}$key.\{0,80\}" "$STRINGS_FILE" | head -2
   done <<< "$ADDED"
 fi
 
