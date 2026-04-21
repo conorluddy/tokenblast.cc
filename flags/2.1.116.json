@@ -151,7 +151,7 @@
     {
       "key": "ANTHROPIC_IDENTITY_TOKEN",
       "label": "Identity Token",
-      "description": "TODO: Add description",
+      "description": "Inline OIDC federation identity token used for token-exchange auth when no identity_token_file path is configured.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -917,7 +917,7 @@
     {
       "key": "ANTHROPIC_PROFILE",
       "label": "Profile",
-      "description": "TODO: Add description",
+      "description": "Selects which profile file to load from <config_dir>/configs/<profile>.json, overriding the active_config pointer and defaulting to \"default\".",
       "category": "debug",
       "type": "text",
       "defaultValue": null,
@@ -1176,7 +1176,7 @@
     {
       "key": "ANTHROPIC_IDENTITY_TOKEN_FILE",
       "label": "Identity Token File",
-      "description": "TODO: Add description",
+      "description": "Path to a file containing the OIDC federation identity token, preferred over the inline ANTHROPIC_IDENTITY_TOKEN value.",
       "category": "ide",
       "type": "text",
       "defaultValue": null,
@@ -2969,8 +2969,8 @@
     },
     {
       "key": "CLAUDE_CODE_HTTP_PROXY",
-      "label": "Http Proxy",
-      "description": "TODO: Add description",
+      "label": "HTTP Proxy",
+      "description": "Fallback HTTP proxy URL used when HTTP_PROXY/http_proxy are unset, and propagated to subprocess tooling (npm, Yarn, Docker, JVM).",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -2986,8 +2986,8 @@
     },
     {
       "key": "CLAUDE_CODE_HTTPS_PROXY",
-      "label": "Https Proxy",
-      "description": "TODO: Add description",
+      "label": "HTTPS Proxy",
+      "description": "Fallback HTTPS proxy URL used when HTTPS_PROXY/https_proxy are unset, and propagated to subprocess tooling (npm, Yarn, Docker, JVM).",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -3633,7 +3633,7 @@
     {
       "key": "CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT",
       "label": "Simple System Prompt",
-      "description": "TODO: Add description",
+      "description": "Swaps the full system prompt for a minimal identity-only prompt, dropping all dynamic sections (alias of CLAUDE_CODE_SIMPLE).",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -5490,7 +5490,7 @@
     {
       "key": "ANTHROPIC_CONFIG_DIR",
       "label": "Config Dir",
-      "description": "TODO: Add description",
+      "description": "Overrides the Anthropic config directory root, bypassing the default XDG_CONFIG_HOME/APPDATA-derived path used to locate profiles and credentials.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5506,8 +5506,8 @@
     },
     {
       "key": "ANTHROPIC_FEDERATION_RULE_ID",
-      "label": "Federation Rule Id",
-      "description": "TODO: Add description",
+      "label": "Federation Rule ID",
+      "description": "Sets the OIDC federation rule ID for token exchange; profile-level authentication.federation_rule_id takes precedence.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5523,8 +5523,8 @@
     },
     {
       "key": "ANTHROPIC_ORGANIZATION_ID",
-      "label": "Organization Id",
-      "description": "TODO: Add description",
+      "label": "Organization ID",
+      "description": "Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5541,7 +5541,7 @@
     {
       "key": "ANTHROPIC_SCOPE",
       "label": "Scope",
-      "description": "TODO: Add description",
+      "description": "Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5557,8 +5557,8 @@
     },
     {
       "key": "ANTHROPIC_SERVICE_ACCOUNT_ID",
-      "label": "Service Account Id",
-      "description": "TODO: Add description",
+      "label": "Service Account ID",
+      "description": "Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5619,7 +5619,7 @@
     {
       "key": "CLAUDE_CODE_RETRY_WATCHDOG",
       "label": "Retry Watchdog",
-      "description": "TODO: Add description",
+      "description": "Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
