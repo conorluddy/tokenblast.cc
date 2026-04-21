@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
+Generated from Claude Code **v2.1.116** — 251 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -13,6 +13,7 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 | `ANTHROPIC_API_KEY` | text | Direct API key for Anthropic inference — bypasses OAuth flow entirely. |
 | `ANTHROPIC_AUTH_TOKEN` | text | Bearer token used as an alternative credential, checked before OAuth sources. |
 | `ANTHROPIC_BASE_URL` | text | Reroutes all API traffic to a custom endpoint, overriding the default api.anthropic.com. |
+| `ANTHROPIC_IDENTITY_TOKEN` 🆕 | text | — |
 | `ANTHROPIC_UNIX_SOCKET` | text | Routes Anthropic API requests through a local Unix domain socket instead of TCP. |
 | `CLAUDE_CODE_ACCOUNT_TAGGED_ID` | text | Overrides the OTEL account ID tag used in telemetry metrics, falls back to a derived value. |
 | `CLAUDE_CODE_ACCOUNT_UUID` | text | Injects account UUID to pre-populate OAuth session without interactive login. |
@@ -57,6 +58,7 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
+| `ANTHROPIC_PROFILE` 🆕 | text | — |
 | `CLAUDE_CODE_DEBUG_LOG_LEVEL` | select | Controls the minimum log severity written to the debug log file (verbose/debug/info/warn/error). |
 | `CLAUDE_CODE_DEBUG_LOGS_DIR` | text | Redirects debug log output to a specific file path instead of the default session log. |
 | `CLAUDE_CODE_DEBUG_REPAINTS` | boolean | Enables UI repaint cycle tracking, surfacing which React components are re-rendering. |
@@ -72,6 +74,7 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
+| `ANTHROPIC_IDENTITY_TOKEN_FILE` 🆕 | text | — |
 | `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
 | `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Overrides the IDE host address, bypassing WSL gateway detection entirely. |
 | `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Prevents automatic IDE extension installation on startup. |
@@ -164,6 +167,8 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` | boolean | Activates the proxy auth helper subprocess that fetches credentials on demand; requires value '1'. |
 | `CLAUDE_CODE_HOST_HTTP_PROXY_PORT` | number | Sets the HTTP proxy port forwarded into the sandbox environment for host network access. |
 | `CLAUDE_CODE_HOST_SOCKS_PROXY_PORT` | number | Sets the SOCKS proxy port forwarded into the sandbox environment for host network access. |
+| `CLAUDE_CODE_HTTP_PROXY` 🆕 | text | — |
+| `CLAUDE_CODE_HTTPS_PROXY` 🆕 | text | — |
 | `CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS` | number | Controls how long (ms) proxy auth credentials are cached before the helper subprocess is re-invoked. |
 | `CLAUDE_CODE_PROXY_AUTHENTICATE` | text | Passes an authentication credential into the proxy auth helper subprocess as an environment variable. |
 | `CLAUDE_CODE_PROXY_HOST` | text | Forwards the proxy hostname to the auth helper subprocess; auto-derived from CLAUDE_CODE_PROXY_URL when unset. |
@@ -182,7 +187,9 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 | `CLAUDE_CODE_ACCESSIBILITY` | boolean | Enables accessibility mode, suppressing animated TUI elements for screen-reader compatibility. |
 | `CLAUDE_CODE_BRIEF` | boolean | Activates brief-only display mode, collapsing long assistant responses to head+tail summaries. |
 | `CLAUDE_CODE_BRIEF_UPLOAD` | boolean | Routes file attachment uploads through the compact REPL bridge path instead of the standard uploader. |
+| `CLAUDE_CODE_BS_AS_CTRL_BACKSPACE` | text | TUI input tweak: maps a plain Backspace keypress to Ctrl+Backspace (delete-previous-word) in the prompt editor. Intended for terminals — notably mintty/cygwin on Windows — that can't distinguish the two key events, letting word-delete work without a custom keymap. |
 | `CLAUDE_CODE_COMMIT_LOG` | text | Enables React render commit timing logs to the specified path, for UI performance profiling. |
+| `CLAUDE_CODE_DECSTBM` | text | Gates the DECSTBM (VT 'Set Top and Bottom Margins' / scroll-region) fast path in the new marlin_porch TUI renderer. When enabled, the renderer uses scroll-region escapes for partial screen updates instead of full redraws; when gated, it falls back to the safe redraw path. Emits 'DECSTBM: enabled' or 'DECSTBM: gated' at startup based on terminal capability probing. |
 | `CLAUDE_CODE_DISABLE_MOUSE` | boolean | Disables mouse event handling in the terminal UI, preventing click and scroll capture. |
 | `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` | boolean | Prevents Claude Code from updating the terminal window or tab title during sessions. |
 | `CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL` | boolean | Disables virtualised transcript rendering, forcing all messages to render simultaneously. |
@@ -195,6 +202,7 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 | `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults. |
 | `CLAUDE_CODE_SCROLL_SPEED` | number | Overrides terminal scroll speed multiplier; capped at 20, defaults to 1 (3 on Windows). |
 | `CLAUDE_CODE_SIMPLE` | boolean | Enables bare/minimal output mode, suppressing decorations and disabling auto-memory. |
+| `CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT` 🆕 | text | — |
 | `CLAUDE_CODE_SYNTAX_HIGHLIGHT` | boolean | Controls syntax highlighting for code blocks; set to falsy to disable, or a BAT theme name to override. |
 
 ## Planning & Tasks
@@ -326,10 +334,14 @@ Generated from Claude Code **v2.1.114** — 239 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_AGENT_RULE_DISABLED` 🆕 | text | — |
-| `CLAUDE_CODE_BS_AS_CTRL_BACKSPACE` 🆕 | text | — |
-| `CLAUDE_CODE_DECSTBM` 🆕 | text | — |
+| `ANTHROPIC_CONFIG_DIR` 🆕 | text | — |
+| `ANTHROPIC_FEDERATION_RULE_ID` 🆕 | text | — |
+| `ANTHROPIC_ORGANIZATION_ID` 🆕 | text | — |
+| `ANTHROPIC_SCOPE` 🆕 | text | — |
+| `ANTHROPIC_SERVICE_ACCOUNT_ID` 🆕 | text | — |
+| `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
+| `CLAUDE_CODE_RETRY_WATCHDOG` 🆕 | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
@@ -341,7 +353,7 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.114 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.116 |
 
 ---
 
