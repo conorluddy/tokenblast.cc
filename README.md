@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.117** — 254 flags across 18 categories.
+Generated from Claude Code **v2.1.118** — 252 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -116,7 +116,7 @@ Generated from Claude Code **v2.1.117** — 254 flags across 18 categories.
 | `CLAUDE_CODE_EFFORT_LEVEL` | select | Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort. |
 | `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` | boolean | Enables appending an extra system prompt to every Task-tool subagent and its nested descendants. |
 | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
-| `CLAUDE_CODE_FORK_SUBAGENT` 🆕 | text | — |
+| `CLAUDE_CODE_FORK_SUBAGENT` | text | — |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
 
@@ -210,7 +210,6 @@ Generated from Claude Code **v2.1.117** — 254 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
-| `CLAUDE_CODE_AGENT_NAME` | text | Sets the identity name for this agent instance, required for multi-agent team broadcasts. |
 | `CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE` | number | Overrides the token count at which the CLI blocks and refuses further turns. |
 | `CLAUDE_CODE_ENABLE_TASKS` | boolean | Forces the task-tracking system on, bypassing the feature-flag gate. |
 | `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` | boolean | Enables multi-agent team spawning; multiplies token usage proportionally to team size. |
@@ -301,7 +300,6 @@ Generated from Claude Code **v2.1.117** — 254 flags across 18 categories.
 | `CLAUDE_CODE_BASE_REFS` | text | Provides a map of repo-path → base-ref pairs for multi-checkout diff operations. |
 | `CLAUDE_CODE_IS_COWORK` | boolean | Enables cowork collaboration mode, triggering eager cache flushes and shared settings. |
 | `CLAUDE_CODE_SSE_PORT` | number | Pins the IDE SSE port used for auto-connecting to a running editor extension. |
-| `CLAUDE_CODE_TEAM_NAME` | text | Sets the team context name required for multi-agent broadcast and teammate messaging. |
 | `CLAUDE_CODE_TEAM_ONBOARDING` | boolean | Controls team onboarding UI mode; accepts "banner" or "step" to activate the onboarding flow. |
 | `CLAUDE_CODE_TEAMMATE_COMMAND` | text | Overrides the shell command used to spawn teammate sub-agents in a swarm. |
 | `CLAUDE_CODE_USE_COWORK_PLUGINS` | boolean | Switches the plugin and settings file paths to the cowork-specific variants. |
@@ -341,10 +339,10 @@ Generated from Claude Code **v2.1.117** — 254 flags across 18 categories.
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
-| `CLAUDE_CODE_RATE_LIMIT_TIER` 🆕 | text | — |
+| `CLAUDE_CODE_RATE_LIMIT_TIER` | text | — |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
-| `CLAUDE_CODE_SUBSCRIPTION_TYPE` 🆕 | text | — |
+| `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
@@ -356,7 +354,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.117 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.118 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.118 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.118 |
 
 ---
 
