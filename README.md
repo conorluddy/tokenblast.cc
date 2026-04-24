@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.118** — 252 flags across 18 categories.
+Generated from Claude Code **v2.1.119** — 260 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -76,6 +76,7 @@ Generated from Claude Code **v2.1.118** — 252 flags across 18 categories.
 |------|------|-------------|
 | `ANTHROPIC_IDENTITY_TOKEN_FILE` | text | Path to a file containing the OIDC federation identity token, preferred over the inline ANTHROPIC_IDENTITY_TOKEN value. |
 | `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
+| `CLAUDE_CODE_HIDE_CWD` 🆕 | text | — |
 | `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Overrides the IDE host address, bypassing WSL gateway detection entirely. |
 | `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Prevents automatic IDE extension installation on startup. |
 | `CLAUDE_CODE_IDE_SKIP_VALID_CHECK` | boolean | Skips workspace-folder validation when discovering IDE connections. |
@@ -338,15 +339,22 @@ Generated from Claude Code **v2.1.118** — 252 flags across 18 categories.
 | `ANTHROPIC_ORGANIZATION_ID` | text | Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile. |
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
+| `CLAUDE_CODE_AGENT` 🆕 | text | — |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
+| `CLAUDE_CODE_CLASSIFIER_SUMMARY` 🆕 | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | — |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
+| `CLAUDE_CODE_SESSION_ID` 🆕 | text | — |
+| `CLAUDE_CODE_SESSION_KIND` 🆕 | text | — |
+| `CLAUDE_CODE_SESSION_LOG` 🆕 | text | — |
+| `CLAUDE_CODE_SESSION_NAME` 🆕 | text | — |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
+| `CLAUDE_CODE_VERIFY_PROMPT` 🆕 | text | — |
 
 ## Deprecated
 
@@ -354,9 +362,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.118 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.118 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.118 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.119 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.119 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.119 |
 
 ---
 
