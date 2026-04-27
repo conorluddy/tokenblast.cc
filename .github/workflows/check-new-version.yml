@@ -117,6 +117,6 @@ jobs:
           EOF
           )")
 
-          gh pr merge --squash --auto "$PR_URL"
+          gh pr merge --squash --auto "$PR_URL" || gh pr merge --squash "$PR_URL"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
