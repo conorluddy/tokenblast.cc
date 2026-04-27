@@ -81,6 +81,14 @@ jobs:
           BRANCH="flags/update-${{ env.INSTALLED_VERSION }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Clean up any stale remote branch / open PR from a prior failed run
+          if gh pr view "$BRANCH" --json state --jq .state >/dev/null 2>&1; then
+            gh pr close "$BRANCH" --delete-branch || true
+          elif git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git push origin --delete "$BRANCH" || true
+          fi
+
           git checkout -b "$BRANCH"
           git add flags/ README.md
           git commit -m "Update flags to Claude Code v${{ env.INSTALLED_VERSION }}"
