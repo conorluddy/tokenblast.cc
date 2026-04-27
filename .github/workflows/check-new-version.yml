@@ -82,10 +82,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Clean up any stale remote branch / open PR from a prior failed run
-          if gh pr view "$BRANCH" --json state --jq .state >/dev/null 2>&1; then
-            gh pr close "$BRANCH" --delete-branch || true
-          elif git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+          # Clean up any stale remote branch from a prior failed run.
+          # Close any *open* PR for it first; merged/closed PRs are left alone.
+          PR_STATE=$(gh pr view "$BRANCH" --json state --jq .state 2>/dev/null || echo "")
+          if [[ "$PR_STATE" == "OPEN" ]]; then
+            gh pr close "$BRANCH" || true
+          fi
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
             git push origin --delete "$BRANCH" || true
           fi
 
