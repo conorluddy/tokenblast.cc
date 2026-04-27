@@ -90,6 +90,16 @@
       "added": 0,
       "removed": 3,
       "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.119",
+      "file": "2.1.119.json",
+      "date": "2026-04-27",
+      "claudeCodeVersion": "2.1.119",
+      "totalFlags": 260,
+      "added": 0,
+      "removed": 3,
+      "notes": "Auto-generated snapshot"
     }
   ]
 }
