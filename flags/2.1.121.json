@@ -1,0 +1,5925 @@
+{
+  "version": "2.1.121",
+  "generatedAt": "2026-04-28",
+  "totalFlags": 262,
+  "deprecatedFlags": 3,
+  "categories": {
+    "auth": {
+      "label": "Authentication & Identity",
+      "hasUsageFlags": false
+    },
+    "context-memory": {
+      "label": "Context & Memory",
+      "hasUsageFlags": true
+    },
+    "debug": {
+      "label": "Debugging & Diagnostics",
+      "hasUsageFlags": false
+    },
+    "ide": {
+      "label": "IDE & Editor Integration",
+      "hasUsageFlags": false
+    },
+    "model-effort": {
+      "label": "Model & Effort",
+      "hasUsageFlags": true
+    },
+    "mcp-plugins": {
+      "label": "MCP, Plugins & Features",
+      "hasUsageFlags": true
+    },
+    "networking": {
+      "label": "Networking & Proxy",
+      "hasUsageFlags": false
+    },
+    "output-display": {
+      "label": "Output & Display",
+      "hasUsageFlags": true
+    },
+    "planning-tasks": {
+      "label": "Planning & Tasks",
+      "hasUsageFlags": true
+    },
+    "provider-routing": {
+      "label": "Provider Routing",
+      "hasUsageFlags": false
+    },
+    "remote-containers": {
+      "label": "Remote & Containers",
+      "hasUsageFlags": false
+    },
+    "sandbox-security": {
+      "label": "Sandbox & Security",
+      "hasUsageFlags": false
+    },
+    "search-filesystem": {
+      "label": "Search & File System",
+      "hasUsageFlags": true
+    },
+    "session-lifecycle": {
+      "label": "Session & Lifecycle",
+      "hasUsageFlags": true
+    },
+    "teams-collaboration": {
+      "label": "Teams & Collaboration",
+      "hasUsageFlags": false
+    },
+    "telemetry": {
+      "label": "Telemetry & Observability",
+      "hasUsageFlags": false
+    },
+    "terminal-mux": {
+      "label": "Terminal Multiplexer",
+      "hasUsageFlags": false
+    },
+    "uncategorised": {
+      "label": "Uncategorised",
+      "hasUsageFlags": false
+    }
+  },
+  "audienceCounts": {
+    "power-user": 60,
+    "standard": 130,
+    "enterprise": 42,
+    "internal": 30
+  },
+  "flags": [
+    {
+      "key": "ANTHROPIC_API_KEY",
+      "label": "API Key",
+      "description": "Direct API key for Anthropic inference — bypasses OAuth flow entirely.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "sk-ant-...",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_AUTH_TOKEN",
+      "label": "Auth Token",
+      "description": "Bearer token used as an alternative credential, checked before OAuth sources.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_BASE_URL",
+      "label": "Base URL",
+      "description": "Reroutes all API traffic to a custom endpoint, overriding the default api.anthropic.com.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "https://api.anthropic.com",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_IDENTITY_TOKEN",
+      "label": "Identity Token",
+      "description": "Inline OIDC federation identity token used for token-exchange auth when no identity_token_file path is configured.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "ANTHROPIC_UNIX_SOCKET",
+      "label": "Unix Socket",
+      "description": "Routes Anthropic API requests through a local Unix domain socket instead of TCP.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ACCOUNT_TAGGED_ID",
+      "label": "Account Tagged ID",
+      "description": "Overrides the OTEL account ID tag used in telemetry metrics, falls back to a derived value.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ACCOUNT_UUID",
+      "label": "Account UUID",
+      "description": "Injects account UUID to pre-populate OAuth session without interactive login.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_API_BASE_URL",
+      "label": "API Base URL",
+      "description": "Reroutes Files API calls to a custom base URL, falling back to ANTHROPIC_BASE_URL.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": "https://api.anthropic.com",
+      "options": null,
+      "placeholder": "https://api.anthropic.com",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR",
+      "label": "API Key File Descriptor",
+      "description": "Reads the API key from a file descriptor, enabling secure secret injection without env-var exposure.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_API_KEY_HELPER_TTL_MS",
+      "label": "API Key Helper TTL",
+      "description": "Controls how long the API key helper script result is cached before re-executing.",
+      "category": "auth",
+      "type": "number",
+      "defaultValue": 300000,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "timeout"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ATTRIBUTION_HEADER",
+      "label": "Attribution Header",
+      "description": "Suppresses the Claude Code attribution header appended to API requests when set.",
+      "category": "auth",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
+      "label": "Custom OAuth URL",
+      "description": "Overrides the OAuth base URL to an approved custom endpoint for non-production auth flows.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
+      "label": "OAuth Client ID",
+      "description": "Overrides the default OAuth client ID used during the authorization code flow.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_REFRESH_TOKEN",
+      "label": "OAuth Refresh Token",
+      "description": "Seeds an OAuth refresh token directly, skipping the interactive browser login step.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_SCOPES",
+      "label": "OAuth Scopes",
+      "description": "Declares space-separated OAuth scopes required when bootstrapping via a refresh token.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "user:profile user:inference",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_TOKEN",
+      "label": "OAuth Token",
+      "description": "Provides a pre-issued OAuth access token, bypassing device-flow login entirely.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR",
+      "label": "OAuth Token File Descriptor",
+      "description": "Reads the OAuth access token from a file descriptor for secure secret injection.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ORGANIZATION_UUID",
+      "label": "Organization UUID",
+      "description": "Pins requests to a specific organization UUID, bypassing the profile-fetch lookup.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
+      "label": "Session Access Token",
+      "description": "Provides a session-scoped access token used by remote/bridge entrypoints instead of OAuth.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USER_EMAIL",
+      "label": "User Email",
+      "description": "Injects user email to pre-populate OAuth session alongside account UUID and org UUID.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR",
+      "label": "WebSocket Auth FD",
+      "description": "Reads the WebSocket session ingress token from a file descriptor for remote mode auth.",
+      "category": "auth",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD",
+      "label": "Additional CLAUDE.md Dirs",
+      "description": "Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "/path/one,/path/two",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Each extra dir can add full CLAUDE.md content"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_AUTO_COMPACT_WINDOW",
+      "label": "Auto Compact Window",
+      "description": "Token threshold for auto-compaction. Lower = more aggressive compaction.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 50000",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Governs when the context window is summarized"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
+      "label": "Disable Auto Memory",
+      "description": "Disables automatic memory reads and writes, removing memory content from each turn's context.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Eliminates per-turn memory injection"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CLAUDE_MDS",
+      "label": "Disable CLAUDE.md Files",
+      "description": "Strips all CLAUDE.md file content from the system prompt entirely.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Removes all project/user instruction context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS",
+      "label": "Disable Git Instructions",
+      "description": "Strips built-in git workflow instructions from the system prompt.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "vcs"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes ~1 section of built-in instructions"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
+      "label": "Disable Precompact Skip",
+      "description": "Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "disable",
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_AWAY_SUMMARY",
+      "label": "Enable Away Summary",
+      "description": "Enables an idle-return summary notification when resuming after an away period.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Injects a short summary message on return"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_IDLE_THRESHOLD_MINUTES",
+      "label": "Idle Threshold",
+      "description": "Controls the inactivity window (in minutes) before idle-state detection fires. Default 75.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": 75,
+      "options": null,
+      "placeholder": "75",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_IDLE_TOKEN_THRESHOLD",
+      "label": "Idle Token Threshold",
+      "description": "Sets the minimum context token count required before idle-state detection activates. Default 100000.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": 100000,
+      "options": null,
+      "placeholder": "100000",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES",
+      "label": "Include Partial Messages",
+      "description": "Includes incomplete in-flight messages in the context window during streaming.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Adds partial assistant turn tokens to context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_CONTEXT_TOKENS",
+      "label": "Max Context Tokens",
+      "description": "Overrides the model context window size, active only when DISABLE_COMPACT is also set.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": 200000,
+      "options": null,
+      "placeholder": "e.g. 200000",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "User-supplied value sets the window ceiling"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_MEMORY_DIR",
+      "label": "Remote Memory Dir",
+      "description": "Redirects memory and session storage to an alternative directory for remote deployments.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "context-management",
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Memory content injected from alternate path"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_FROM_SESSION",
+      "label": "Resume From Session",
+      "description": "Hydrates conversation context from a specific prior session ID via the Sessions API.",
+      "category": "context-memory",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "session-id",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Loads a full prior session into context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_INTERRUPTED_TURN",
+      "label": "Resume Interrupted Turn",
+      "description": "Automatically resumes an interrupted turn by re-injecting its message content.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Replays the last interrupted message"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_THRESHOLD_MINUTES",
+      "label": "Resume Threshold",
+      "description": "Sets minutes since the last message before the resume-session flow is offered. Default 70.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": 70,
+      "options": null,
+      "placeholder": "70",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_RESUME_TOKEN_THRESHOLD",
+      "label": "Resume Token Threshold",
+      "description": "Sets the minimum token count required before the resume-session prompt appears. Default 100000.",
+      "category": "context-memory",
+      "type": "number",
+      "defaultValue": 100000,
+      "options": null,
+      "placeholder": "100000",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "context-management"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_PROMPT_HISTORY",
+      "label": "Skip Prompt History",
+      "description": "Skips loading persisted prompt history at session start, suppressing prior-turn entries.",
+      "category": "context-memory",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "skip"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Prevents prior session history from being loaded"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_PROFILE",
+      "label": "Profile",
+      "description": "Selects which profile file to load from <config_dir>/configs/<profile>.json, overriding the active_config pointer and defaulting to \"default\".",
+      "category": "debug",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_LOG_LEVEL",
+      "label": "Debug Log Level",
+      "description": "Controls the minimum log severity written to the debug log file (verbose/debug/info/warn/error).",
+      "category": "debug",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "verbose",
+          "label": "Verbose"
+        },
+        {
+          "value": "debug",
+          "label": "Debug"
+        },
+        {
+          "value": "info",
+          "label": "Info"
+        },
+        {
+          "value": "warn",
+          "label": "Warn"
+        },
+        {
+          "value": "error",
+          "label": "Error"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_LOGS_DIR",
+      "label": "Debug Logs Dir",
+      "description": "Redirects debug log output to a specific file path instead of the default session log.",
+      "category": "debug",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "~/.claude/debug/",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DEBUG_REPAINTS",
+      "label": "Debug Repaints",
+      "description": "Enables UI repaint cycle tracking, surfacing which React components are re-rendering.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DIAGNOSTICS_FILE",
+      "label": "Diagnostics File",
+      "description": "Writes structured diagnostic events to a specified file path for external analysis.",
+      "category": "debug",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FRAME_TIMING_LOG",
+      "label": "Frame Timing Log",
+      "description": "Logs per-frame render timing including phase breakdowns and RSS memory usage.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PERFETTO_TRACE",
+      "label": "Perfetto Trace",
+      "description": "Enables Perfetto-format performance tracing for agent process and thread activity.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PROFILE_QUERY",
+      "label": "Profile Query",
+      "description": "Enables per-query profiling checkpoints, surfacing a timing report on demand.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PROFILE_STARTUP",
+      "label": "Profile Startup",
+      "description": "Enables detailed startup phase profiling and emits a startup-perf telemetry event.",
+      "category": "debug",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS",
+      "label": "Slow Op Threshold",
+      "description": "Sets the threshold (ms) above which operations are flagged as slow in diagnostics.",
+      "category": "debug",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTING",
+      "label": "Stall Timeout (Testing)",
+      "description": "Overrides the stall-detection abort timeout for test harnesses.",
+      "category": "debug",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "ANTHROPIC_IDENTITY_TOKEN_FILE",
+      "label": "Identity Token File",
+      "description": "Path to a file containing the OIDC federation identity token, preferred over the inline ANTHROPIC_IDENTITY_TOKEN value.",
+      "category": "ide",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_AUTO_CONNECT_IDE",
+      "label": "Auto Connect IDE",
+      "description": "Forces automatic IDE extension connection on startup, or explicitly disables it when false.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "IDE connection adds tool schemas to context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_HIDE_CWD",
+      "label": "Hide Cwd",
+      "description": "TODO: Add description",
+      "category": "ide",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_HOST_OVERRIDE",
+      "label": "IDE Host Override",
+      "description": "Overrides the IDE host address, bypassing WSL gateway detection entirely.",
+      "category": "ide",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "127.0.0.1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL",
+      "label": "IDE Skip Auto Install",
+      "description": "Prevents automatic IDE extension installation on startup.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "ide",
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_IDE_SKIP_VALID_CHECK",
+      "label": "IDE Skip Valid Check",
+      "description": "Skips workspace-folder validation when discovering IDE connections.",
+      "category": "ide",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "ide"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_LIST_IN_MESSAGES",
+      "label": "Agent List In Messages",
+      "description": "Injects agent-type and tool availability summaries into every message.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "agent"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Small per-turn block per agent registered"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ADVISOR_TOOL",
+      "label": "Disable Advisor Tool",
+      "description": "Removes the advisor tool definition, preventing it from appearing in the tool list.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops one tool schema from context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ATTACHMENTS",
+      "label": "Disable Attachments",
+      "description": "Strips @-mentioned files, MCP resources, and agent-mention attachments from context.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Eliminates all pre-turn attachment loading"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_BACKGROUND_TASKS",
+      "label": "Disable Background Tasks",
+      "description": "Disables background agent execution and removes the run_in_background tool parameter.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "planning"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes background task instruction block"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CLAUDE_API_SKILL",
+      "label": "Disable Claude API Skill",
+      "description": "Skips registration of the built-in claude-api skill at startup.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops claude-api skill tool schema"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_CRON",
+      "label": "Disable Cron",
+      "description": "Disables scheduled and recurring cron task tools entirely.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "automation"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Drops cron create/list/delete tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS",
+      "label": "Disable Experimental Betas",
+      "description": "Disables all experimental beta API features, including context management and tool streaming.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Prevents beta header and feature flag injection"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY",
+      "label": "Disable Feedback Survey",
+      "description": "Suppresses in-session feedback survey prompts regardless of timing conditions.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING",
+      "label": "Disable File Checkpointing",
+      "description": "Disables file-state snapshot tracking, preventing undo/restore for file edits.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL",
+      "label": "Disable Marketplace Autoinstall",
+      "description": "Prevents automatic installation of plugins from the official marketplace on startup.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Skipped marketplace plugins don't add tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_POLICY_SKILLS",
+      "label": "Disable Policy Skills",
+      "description": "Skips loading admin/org-managed policy skills from policySettings directories.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Each suppressed skill removes tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_BACKGROUND_PLUGIN_REFRESH",
+      "label": "Enable Background Plugin Refresh",
+      "description": "Triggers a plugin reload in the background after an install completes, instead of blocking.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "plugins"
+      ],
+      "audience": "power-user",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_CFC",
+      "label": "Enable CFC",
+      "description": "Enables Claude-in-Chrome (CFC) mode, overriding the config-file default.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING",
+      "label": "Fine Grained Tool Streaming",
+      "description": "Enables eager input streaming on tool calls, sending partial inputs before completion.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds eager_input_streaming field to tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION",
+      "label": "Enable Prompt Suggestions",
+      "description": "Controls AI-generated next-prompt suggestions; overrides the GrowthBook feature flag.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Each suggestion fires a lightweight model call"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING",
+      "label": "SDK File Checkpointing",
+      "description": "Enables file-state checkpointing in SDK (headless) mode, where it is otherwise off.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT",
+      "label": "Token Usage Attachment",
+      "description": "Appends a token-usage block to every message, showing used/total/remaining counts.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Small per-turn stats block added to messages"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_XAA",
+      "label": "Enable XAA",
+      "description": "Enables XAA (external agent authentication) OIDC flow for MCP server OAuth.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EXTRA_BODY",
+      "label": "Extra Body",
+      "description": "Merges a JSON object into every API request body, enabling unsupported API fields.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "{\"key\":\"value\"}",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Effect depends entirely on injected fields"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EXTRA_METADATA",
+      "label": "Extra Metadata",
+      "description": "Injects custom JSON fields into the metadata object sent with every API request.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY",
+      "label": "Max Tool Concurrency",
+      "description": "Caps the number of tool calls that execute in parallel per turn; defaults to 10.",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 5",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Higher = more concurrent tool results per turn"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_ALLOWLIST_ENV",
+      "label": "MCP Allowlist Env",
+      "description": "Passes the full host environment to MCP servers instead of a scrubbed subset.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_SERVER_NAME",
+      "label": "MCP Server Name",
+      "description": "Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server name.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_MCP_SERVER_URL",
+      "label": "MCP Server URL",
+      "description": "Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server URL.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mcp"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_CACHE_DIR",
+      "label": "Plugin Cache Dir",
+      "description": "Overrides the directory where downloaded plugin archives are cached.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS",
+      "label": "Plugin Git Timeout",
+      "description": "Sets the timeout for git clone/pull operations when installing marketplace plugins.",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": 120000,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "plugins",
+        "vcs"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_SEED_DIR",
+      "label": "Plugin Seed Dir",
+      "description": "Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Each loaded plugin adds tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE",
+      "label": "Plugin Zip Cache",
+      "description": "Switches plugin storage to a ZIP-based cache, enabling faster cold installs.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V",
+      "label": "Session Ingress Version",
+      "description": "Set internally when spawning bridge sessions to select the v2 POST-based ingress transport.",
+      "category": "mcp-plugins",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB",
+      "label": "Subprocess Env Scrub",
+      "description": "Enables environment-variable scrubbing and bubblewrap isolation for all subprocesses.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL",
+      "label": "Sync Plugin Install",
+      "description": "Forces synchronous plugin installation, blocking the first prompt until all plugins load.",
+      "category": "mcp-plugins",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins",
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "All installed plugins add tool schemas before first turn"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SYNC_PLUGIN_INSTALL_TIMEOUT_MS",
+      "label": "Plugin Install Timeout",
+      "description": "Caps how long synchronous plugin installation may block before being aborted.",
+      "category": "mcp-plugins",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "plugins",
+        "debugging"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_BETAS",
+      "label": "Betas",
+      "description": "Appends comma-separated beta feature identifiers to every API request's beta header.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Header only; token impact depends on enabled beta"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_HEADERS",
+      "label": "Custom Headers",
+      "description": "Injects newline-delimited HTTP headers into every Anthropic API request.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION",
+      "label": "Custom Model Option",
+      "description": "Adds a custom model ID to the CLI model picker as a selectable option.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION",
+      "label": "Custom Model Description",
+      "description": "Sets the picker description string shown for the custom model option.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME",
+      "label": "Custom Model Name",
+      "description": "Sets the display label shown for the custom model in the CLI model picker.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES",
+      "label": "Custom Model Capabilities",
+      "description": "Declares a comma-separated capability list for the custom model, enabling feature routing.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+      "label": "Default Haiku Model",
+      "description": "Remaps the 'haiku' model alias to a custom model ID, including Bedrock fallback IDs.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-haiku-4-5-20251001",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION",
+      "label": "Haiku Model Description",
+      "description": "Sets the description shown in the model picker for the overridden Haiku model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": "Custom Haiku model",
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME",
+      "label": "Haiku Model Name",
+      "description": "Sets the display label shown in the model picker for the overridden Haiku model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Haiku Model Capabilities",
+      "description": "Declares capabilities for the overridden Haiku model, controlling feature routing.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL",
+      "label": "Default Opus Model",
+      "description": "Remaps the 'opus' model alias to a custom model ID, including Bedrock fallback IDs.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-opus-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION",
+      "label": "Opus Model Description",
+      "description": "Sets the description shown in the model picker for the overridden Opus model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME",
+      "label": "Opus Model Name",
+      "description": "Sets the display label shown in the model picker for the overridden Opus model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Opus Model Capabilities",
+      "description": "Declares feature capabilities for the custom Opus model, overriding built-in detection.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL",
+      "label": "Default Sonnet Model",
+      "description": "Overrides which model ID resolves when 'sonnet' tier is requested.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-sonnet-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION",
+      "label": "Sonnet Model Description",
+      "description": "Sets the display description shown in the model picker for a custom Sonnet model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME",
+      "label": "Sonnet Model Name",
+      "description": "Sets the display name shown in the model picker for a custom Sonnet model.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_DEFAULT_SONNET_MODEL_SUPPORTED_CAPABILITIES",
+      "label": "Sonnet Model Capabilities",
+      "description": "Declares feature capabilities for the custom Sonnet model, overriding built-in detection.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_LOG",
+      "label": "Log Level",
+      "description": "Controls Anthropic SDK log verbosity (error / warn / info / debug).",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "debug",
+          "label": "Debug"
+        },
+        {
+          "value": "info",
+          "label": "Info"
+        },
+        {
+          "value": "warn",
+          "label": "Warn"
+        },
+        {
+          "value": "error",
+          "label": "Error"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_MODEL",
+      "label": "Main Model Override",
+      "description": "Overrides the primary model entirely, replacing the default Sonnet selection.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. claude-sonnet-4-6-20250514",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_SMALL_FAST_MODEL",
+      "label": "Small/Fast Model",
+      "description": "Overrides the lightweight model used for hooks, classifiers, and background utility calls.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "claude-haiku-4-5-20251001",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects cost, not token surface"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION",
+      "label": "Small Model AWS Region",
+      "description": "Pins the small/fast model to a specific AWS Bedrock region, independent of the main model region.",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "us-east-1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_COST_STEER",
+      "label": "Agent Cost Steering",
+      "description": "Enables cost-steering logic that selects cheaper sub-agent models for Pro-tier users.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "agent",
+        "cost-control"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects model routing, not token volume"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ALWAYS_ENABLE_EFFORT",
+      "label": "Always Enable Effort",
+      "description": "Forces effort-level controls on all models, bypassing the Opus/Sonnet-only gate.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "enable",
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "medium",
+        "notes": "Unlocks thinking budget on models that normally skip it"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING",
+      "label": "Disable Adaptive Thinking",
+      "description": "Forces fixed thinking budgets on Opus/Sonnet-4-6, disabling the adaptive budget algorithm.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "medium",
+        "notes": "May raise or lower thinking spend vs adaptive default"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_FAST_MODE",
+      "label": "Disable Fast Mode",
+      "description": "Disables fast-mode inference, forcing the standard (slower) API path.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "disable"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP",
+      "label": "Disable Legacy Model Remap",
+      "description": "Prevents automatic remapping of legacy model names (e.g. old Opus IDs) to current equivalents.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK",
+      "label": "Disable Nonstreaming Fallback",
+      "description": "Prevents falling back to non-streaming API calls on stream timeout or idle errors.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_THINKING",
+      "label": "Disable Thinking",
+      "description": "Eliminates extended-thinking tokens entirely by hard-disabling the thinking budget.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "disable",
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "high"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EFFORT_LEVEL",
+      "label": "Effort Level",
+      "description": "Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort.",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "low",
+          "label": "Low"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "high",
+          "label": "High"
+        },
+        {
+          "value": "max",
+          "label": "Max (Opus only)"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "thinking",
+        "magnitude": "variable",
+        "notes": "Higher values proportionally increase thinking budget"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT",
+      "label": "Enable Append Subagent Prompt",
+      "description": "Enables appending an extra system prompt to every Task-tool subagent and its nested descendants.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "enable",
+        "agent"
+      ],
+      "audience": "power-user",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Repeated each subagent call; propagates recursively"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL",
+      "label": "Enable Experimental Advisor Tool",
+      "description": "Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag.",
+      "category": "model-effort",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "increase",
+      "tags": [
+        "enable"
+      ],
+      "audience": "power-user",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FORK_SUBAGENT",
+      "label": "Fork Subagent",
+      "description": "TODO: Add description",
+      "category": "model-effort",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.117"
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
+      "label": "Max Output Tokens",
+      "description": "Caps output tokens per response, applied as a hard upper limit before the model default.",
+      "category": "model-effort",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 16000",
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "decrease",
+      "tags": [
+        "token-limits"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "variable"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SUBAGENT_MODEL",
+      "label": "Subagent Model",
+      "description": "Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost.",
+      "category": "model-effort",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "haiku",
+          "label": "Haiku (cheapest)"
+        },
+        {
+          "value": "sonnet",
+          "label": "Sonnet (balanced)"
+        },
+        {
+          "value": "opus",
+          "label": "Opus (best)"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "variable",
+      "tags": [
+        "model-selection",
+        "agent"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects cost per subagent call, not token surface"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CERT_STORE",
+      "label": "Cert Store",
+      "description": "Specifies CA certificate sources (comma-separated 'bundled' and/or 'system') for TLS validation.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "system",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_CERT",
+      "label": "Client Cert",
+      "description": "Loads a PEM client certificate from the given path to enable mTLS for outbound API requests.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_KEY",
+      "label": "Client Key",
+      "description": "Loads a PEM private key from the given path to pair with the mTLS client certificate.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CLIENT_KEY_PASSPHRASE",
+      "label": "Client Key Passphrase",
+      "description": "Supplies the passphrase to decrypt an encrypted mTLS client private key.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER",
+      "label": "Enable Proxy Auth Helper",
+      "description": "Activates the proxy auth helper subprocess that fetches credentials on demand; requires value '1'.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "network-security",
+        "auth-credential"
+      ],
+      "audience": "enterprise",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_HTTP_PROXY_PORT",
+      "label": "HTTP Proxy Port",
+      "description": "Sets the HTTP proxy port forwarded into the sandbox environment for host network access.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_SOCKS_PROXY_PORT",
+      "label": "SOCKS Proxy Port",
+      "description": "Sets the SOCKS proxy port forwarded into the sandbox environment for host network access.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_HTTP_PROXY",
+      "label": "HTTP Proxy",
+      "description": "Fallback HTTP proxy URL used when HTTP_PROXY/http_proxy are unset, and propagated to subprocess tooling (npm, Yarn, Docker, JVM).",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_HTTPS_PROXY",
+      "label": "HTTPS Proxy",
+      "description": "Fallback HTTPS proxy URL used when HTTPS_PROXY/https_proxy are unset, and propagated to subprocess tooling (npm, Yarn, Docker, JVM).",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_AUTH_HELPER_TTL_MS",
+      "label": "Proxy Auth Helper Ttl Ms",
+      "description": "Controls how long (ms) proxy auth credentials are cached before the helper subprocess is re-invoked.",
+      "category": "networking",
+      "type": "number",
+      "defaultValue": 300000,
+      "options": null,
+      "placeholder": "3600000",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security",
+        "timeout"
+      ],
+      "audience": "enterprise",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_AUTHENTICATE",
+      "label": "Proxy Authenticate",
+      "description": "Passes an authentication credential into the proxy auth helper subprocess as an environment variable.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "Bearer …",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security",
+        "auth-credential"
+      ],
+      "audience": "enterprise",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_HOST",
+      "label": "Proxy Host",
+      "description": "Forwards the proxy hostname to the auth helper subprocess; auto-derived from CLAUDE_CODE_PROXY_URL when unset.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "proxy.corp.internal",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_RESOLVES_HOSTS",
+      "label": "Proxy Resolves Hosts",
+      "description": "Delegates DNS resolution to the proxy agent, bypassing local resolver for outbound requests.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PROXY_URL",
+      "label": "Proxy Url",
+      "description": "Reroutes all outbound API traffic through the specified proxy server URL.",
+      "category": "networking",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "http://proxy.corp:8080",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "network-security"
+      ],
+      "audience": "enterprise",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_BEDROCK_AUTH",
+      "label": "Skip Bedrock Auth",
+      "description": "Bypasses AWS Bedrock credential resolution, allowing unauthenticated or pre-signed requests.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "aws-bedrock"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_FAST_MODE_NETWORK_ERRORS",
+      "label": "Skip Fast Mode Net Errors",
+      "description": "Suppresses the fast-mode unavailable warning when the status check returns a network error.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_FOUNDRY_AUTH",
+      "label": "Skip Foundry Auth",
+      "description": "Bypasses Azure AD token acquisition for Microsoft Foundry, skipping DefaultAzureCredential flow.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_MANTLE_AUTH",
+      "label": "Skip Mantle Auth",
+      "description": "Bypasses AWS credential resolution for the Amazon Bedrock Mantle endpoint.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "mantle"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SKIP_VERTEX_AUTH",
+      "label": "Skip Vertex Auth",
+      "description": "Bypasses Google Cloud application-default credential acquisition for Vertex AI.",
+      "category": "networking",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "skip",
+        "gcp-vertex"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ACCESSIBILITY",
+      "label": "Accessibility",
+      "description": "Enables accessibility mode, suppressing animated TUI elements for screen-reader compatibility.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BRIEF",
+      "label": "Brief Mode",
+      "description": "Activates brief-only display mode, collapsing long assistant responses to head+tail summaries.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "UI rendering only; does not alter model output"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BRIEF_UPLOAD",
+      "label": "Brief Upload",
+      "description": "Routes file attachment uploads through the compact REPL bridge path instead of the standard uploader.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BS_AS_CTRL_BACKSPACE",
+      "label": "Bs As Ctrl Backspace",
+      "description": "TUI input tweak: maps a plain Backspace keypress to Ctrl+Backspace (delete-previous-word) in the prompt editor. Intended for terminals — notably mintty/cygwin on Windows — that can't distinguish the two key events, letting word-delete work without a custom keymap.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tui-input",
+        "terminal-compat"
+      ],
+      "audience": "power-user",
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_COMMIT_LOG",
+      "label": "Commit Log",
+      "description": "Enables React render commit timing logs to the specified path, for UI performance profiling.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_DECSTBM",
+      "label": "Decstbm",
+      "description": "Gates the DECSTBM (VT 'Set Top and Bottom Margins' / scroll-region) fast path in the new marlin_porch TUI renderer. When enabled, the renderer uses scroll-region escapes for partial screen updates instead of full redraws; when gated, it falls back to the safe redraw path. Emits 'DECSTBM: enabled' or 'DECSTBM: gated' at startup based on terminal capability probing.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tui-renderer",
+        "terminal-compat"
+      ],
+      "audience": "power-user",
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_MOUSE",
+      "label": "Disable Mouse",
+      "description": "Disables mouse event handling in the terminal UI, preventing click and scroll capture.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_TERMINAL_TITLE",
+      "label": "Disable Terminal Title",
+      "description": "Prevents Claude Code from updating the terminal window or tab title during sessions.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL",
+      "label": "Disable Virtual Scroll",
+      "description": "Disables virtualised transcript rendering, forcing all messages to render simultaneously.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable",
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EAGER_FLUSH",
+      "label": "Eager Flush",
+      "description": "Forces immediate stdout flush after each response chunk, useful for piped or cowork sessions.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER",
+      "label": "Exit After First Render",
+      "description": "Exits the process immediately after the first UI render cycle completes, for startup testing.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_EXIT_AFTER_STOP_DELAY",
+      "label": "Exit After Stop Delay",
+      "description": "Auto-exits the CLI after the specified idle milliseconds following the last response stop.",
+      "category": "output-display",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_FULL_LOGO",
+      "label": "Force Full Logo",
+      "description": "Forces the full ASCII logo to render regardless of terminal width or context.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL",
+      "label": "Force Fullscreen Upsell",
+      "description": "Forces the fullscreen-mode upsell prompt regardless of seen-count or feature-flag gate.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "internal",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_NO_FLICKER",
+      "label": "No Flicker",
+      "description": "Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_QUESTION_PREVIEW_FORMAT",
+      "label": "Question Preview Format",
+      "description": "Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults.",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "negligible",
+        "notes": "Format only, no content change"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SCROLL_SPEED",
+      "label": "Scroll Speed",
+      "description": "Overrides terminal scroll speed multiplier; capped at 20, defaults to 1 (3 on Windows).",
+      "category": "output-display",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "1",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SIMPLE",
+      "label": "Simple Mode",
+      "description": "Enables bare/minimal output mode, suppressing decorations and disabling auto-memory.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "decrease",
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Disables auto-memory injection"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT",
+      "label": "Simple System Prompt",
+      "description": "Swaps the full system prompt for a minimal identity-only prompt, dropping all dynamic sections (alias of CLAUDE_CODE_SIMPLE).",
+      "category": "output-display",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_SYNTAX_HIGHLIGHT",
+      "label": "Syntax Highlight",
+      "description": "Controls syntax highlighting for code blocks; set to falsy to disable, or a BAT theme name to override.",
+      "category": "output-display",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ui-display"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_NAME",
+      "label": "Agent Name",
+      "description": "Sets the identity name for this agent instance, required for multi-agent team broadcasts.",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "agent"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false,
+      "deprecated": true,
+      "deprecatedInVersion": "2.1.121"
+    },
+    {
+      "key": "CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE",
+      "label": "Blocking Limit Override",
+      "description": "Overrides the token count at which the CLI blocks and refuses further turns.",
+      "category": "planning-tasks",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "e.g. 50",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "variable",
+      "tags": [
+        "ide"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Shifts the blocking threshold"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TASKS",
+      "label": "Enable Tasks",
+      "description": "Forces the task-tracking system on, bypassing the feature-flag gate.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "planning"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Task state injected per turn"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS",
+      "label": "Agent Teams",
+      "description": "Enables multi-agent team spawning; multiplies token usage proportionally to team size.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "high",
+      "costDirection": "increase",
+      "tags": [
+        "teams",
+        "agent"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Each sub-agent gets full context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE",
+      "label": "Plan Interview Phase",
+      "description": "Enables the interview/clarification phase at the start of plan mode, overriding the feature flag.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "planning"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Adds interview turns to conversation"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_MODE_REQUIRED",
+      "label": "Plan Mode Required",
+      "description": "Forces plan mode before any execution, blocking agentic tool use until a plan is approved.",
+      "category": "planning-tasks",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "planning"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Adds plan-mode instruction block"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PLAN_V",
+      "label": "Plan Version",
+      "description": "Selects the plan-mode implementation version or variant (e.g. v2).",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "planning"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Different versions inject different prompts"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TASK_LIST_ID",
+      "label": "Task List ID",
+      "description": "Pins the task-list namespace to a specific ID, overriding the team or session default.",
+      "category": "planning-tasks",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "planning"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_AWS_API_KEY",
+      "label": "Anthropic AWS API Key",
+      "description": "API key for the Anthropic-on-AWS platform, bypassing AWS credential chain resolution.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "anthropic-aws"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_AWS_BASE_URL",
+      "label": "Anthropic AWS Base URL",
+      "description": "Reroutes Anthropic-on-AWS traffic to a custom endpoint, overriding the region-derived default.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_AWS_WORKSPACE_ID",
+      "label": "Anthropic AWS Workspace ID",
+      "description": "Required workspace ID sent as the anthropic-workspace-id header for Anthropic-on-AWS requests.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_BASE_URL",
+      "label": "Bedrock Base URL",
+      "description": "Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_MANTLE_API_KEY",
+      "label": "Bedrock Mantle API Key",
+      "description": "API key for the Amazon Bedrock Mantle managed-access backend.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "aws-bedrock",
+        "mantle"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_BEDROCK_MANTLE_BASE_URL",
+      "label": "Bedrock Mantle Base URL",
+      "description": "Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock",
+        "mantle"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_API_KEY",
+      "label": "Foundry API Key",
+      "description": "API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_AUTH_TOKEN",
+      "label": "Foundry Auth Token",
+      "description": "Auth token for Microsoft Azure Foundry client construction.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "auth-credential",
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_BASE_URL",
+      "label": "Foundry Base URL",
+      "description": "Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_FOUNDRY_RESOURCE",
+      "label": "Foundry Resource",
+      "description": "Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_VERTEX_BASE_URL",
+      "label": "Vertex Base URL",
+      "description": "Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_VERTEX_PROJECT_ID",
+      "label": "Vertex Project ID",
+      "description": "Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present.",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST",
+      "label": "Provider Managed By Host",
+      "description": "Signals that the host environment manages provider config, stripping auth env vars from subprocesses.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "ide"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_ANTHROPIC_AWS",
+      "label": "Use Anthropic AWS",
+      "description": "Routes all API calls through Anthropic's AWS platform (distinct from native Bedrock).",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "anthropic-aws"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_BEDROCK",
+      "label": "Use Bedrock",
+      "description": "Routes all API calls through AWS Bedrock, disabling first-party error reporting.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "aws-bedrock"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_CCR_V",
+      "label": "Use CCR Version",
+      "description": "Selects the CCR transport version (e.g. v2 switches to SSE-based streaming over WebSocket).",
+      "category": "provider-routing",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_FOUNDRY",
+      "label": "Use Foundry",
+      "description": "Routes all API calls through Microsoft Azure Foundry, disabling first-party error reporting.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "foundry"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_MANTLE",
+      "label": "Use Mantle",
+      "description": "Routes all API calls through Bedrock Mantle managed-access layer.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "mantle"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_VERTEX",
+      "label": "Use Vertex",
+      "description": "Routes all API calls through Google Vertex AI, disabling first-party error reporting.",
+      "category": "provider-routing",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "gcp-vertex"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_CONTAINER_ID",
+      "label": "Container ID",
+      "description": "Sets the container ID forwarded as the x-claude-remote-container-id request header.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENVIRONMENT_KIND",
+      "label": "Environment Kind",
+      "description": "Declares the environment type (e.g. bridge, byoc, anthropic_cloud), affecting transport and control-flow.",
+      "category": "remote-containers",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "local",
+          "label": "Local"
+        },
+        {
+          "value": "remote",
+          "label": "Remote"
+        },
+        {
+          "value": "container",
+          "label": "Container"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENVIRONMENT_RUNNER_VERSION",
+      "label": "Runner Version",
+      "description": "Forwards a runner version string as the x-environment-runner-version header on remote connections.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_HOST_PLATFORM",
+      "label": "Host Platform",
+      "description": "Overrides the detected host OS platform (win32, darwin, linux) for environment fingerprinting.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE",
+      "label": "Remote",
+      "description": "Marks the session as remote, enabling disk persistence of credentials for subprocess access.",
+      "category": "remote-containers",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE",
+      "label": "Remote Environment Type",
+      "description": "Forwards the remote environment type in telemetry and enables brief-upload mode for attachments.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SEND_KEEPALIVES",
+      "label": "Remote Keepalives",
+      "description": "Enables periodic keepalive heartbeats on the remote session connection to prevent idle disconnects.",
+      "category": "remote-containers",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SESSION_ID",
+      "label": "Remote Session ID",
+      "description": "Sets the remote session ID forwarded as the x-claude-remote-session-id request header.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_REMOTE_SETTINGS_PATH",
+      "label": "Remote Settings Path",
+      "description": "Overrides remote settings with a local file path, bypassing the settings API fetch.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "remote"
+      ],
+      "audience": "enterprise",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "variable",
+        "notes": "Settings file content may inject instructions"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_WORKSPACE_HOST_PATHS",
+      "label": "Workspace Host Paths",
+      "description": "Pipe-separated host path mappings attached to telemetry events as workspace.host_paths.",
+      "category": "remote-containers",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ADDITIONAL_PROTECTION",
+      "label": "Additional Protection",
+      "description": "Adds the x-anthropic-additional-protection header to all API requests for enhanced server-side checks.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BASH_SANDBOX_SHOW_INDICATOR",
+      "label": "Sandbox Indicator",
+      "description": "Renames the Bash tool to SandboxedBash in the UI when sandbox mode is active.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BUBBLEWRAP",
+      "label": "Bubblewrap",
+      "description": "Enables Bubblewrap sandbox isolation on Linux, blocking root bypass of permission checks.",
+      "category": "sandbox-security",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FORCE_SANDBOX",
+      "label": "Force Sandbox",
+      "description": "Forces sandbox mode on for bridge/remote sessions regardless of the sandbox option passed.",
+      "category": "sandbox-security",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "sandbox"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS",
+      "label": "File Read Max Tokens",
+      "description": "Caps the token output from file-read operations. Default 25,000.",
+      "category": "search-filesystem",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "25000",
+      "affectsUsage": true,
+      "impact": "medium",
+      "costDirection": "decrease",
+      "tags": [
+        "file-search",
+        "token-limits"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Limits tokens injected per file read"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_HIDDEN",
+      "label": "Glob Hidden Files",
+      "description": "Forces glob searches to include dotfiles and hidden directories.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "file-search"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "More paths surfaced per glob call"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_NO_IGNORE",
+      "label": "Glob No Ignore",
+      "description": "Bypasses .gitignore rules during glob file searches.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "increase",
+      "tags": [
+        "file-search"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Expands result set; ignored files enter context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_GLOB_TIMEOUT_SECONDS",
+      "label": "Glob Timeout",
+      "description": "Overrides the default ripgrep glob timeout in seconds.",
+      "category": "search-filesystem",
+      "type": "number",
+      "defaultValue": 0,
+      "options": null,
+      "placeholder": "20",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [
+        "timeout",
+        "file-search"
+      ],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_NATIVE_FILE_SEARCH",
+      "label": "Use Native File Search",
+      "description": "Switches CLAUDE.md discovery from ripgrep to Node.js native filesystem traversal.",
+      "category": "search-filesystem",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "file-search"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false,
+      "deprecated": true,
+      "deprecatedInVersion": "2.1.121"
+    },
+    {
+      "key": "CLAUDE_CODE_ACTION",
+      "label": "Action",
+      "description": "Signals that Claude Code is running as a GitHub Actions workflow step.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DONT_INHERIT_ENV",
+      "label": "Don't Inherit Env",
+      "description": "Strips the parent shell's environment variables from subprocess execution.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENTRYPOINT",
+      "label": "Entrypoint",
+      "description": "Identifies the launch surface (cli, sdk-cli, mcp, claude-desktop) used in version strings and telemetry.",
+      "category": "session-lifecycle",
+      "type": "select",
+      "defaultValue": null,
+      "options": [
+        {
+          "value": "cli",
+          "label": "CLI"
+        },
+        {
+          "value": "ide",
+          "label": "IDE"
+        },
+        {
+          "value": "sdk",
+          "label": "SDK"
+        }
+      ],
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_GIT_BASH_PATH",
+      "label": "Git Bash Path",
+      "description": "Overrides the auto-detected Git Bash executable path on Windows.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs",
+        "shell"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_MAX_RETRIES",
+      "label": "Max Retries",
+      "description": "Overrides the default maximum retry count for failed Anthropic API calls.",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": 10,
+      "options": null,
+      "placeholder": "e.g. 3",
+      "affectsUsage": true,
+      "impact": "low",
+      "costDirection": "variable",
+      "tags": [],
+      "audience": "power-user",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_NEW_INIT",
+      "label": "New Init",
+      "description": "Switches the /init command to generate multiple scoped CLAUDE.md files instead of one.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Multiple CLAUDE.md files loaded at session start"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PERFORCE_MODE",
+      "label": "Perforce Mode",
+      "description": "Enables Perforce VCS mode, injecting p4 checkout instructions into the system context.",
+      "category": "session-lifecycle",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Appends Perforce workspace instructions"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS",
+      "label": "PowerShell Parse Timeout",
+      "description": "Overrides the timeout for PowerShell command parsing and result classification.",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": 5000,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS",
+      "label": "Session End Hooks Timeout",
+      "description": "Caps the maximum wait time for session-end hooks before the process exits.",
+      "category": "session-lifecycle",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SHELL",
+      "label": "Shell",
+      "description": "Forces Claude Code to use a specific bash or zsh binary instead of auto-detecting.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "/bin/zsh",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SHELL_PREFIX",
+      "label": "Shell Prefix",
+      "description": "Prepends a custom command string before every shell invocation, including MCP stdio servers.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TMPDIR",
+      "label": "Tmpdir",
+      "description": "Overrides the temporary directory used for prompt files and shell snapshots.",
+      "category": "session-lifecycle",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BASE_REF",
+      "label": "Base Ref",
+      "description": "Sets the git ref used as the merge-base for diff and PR review operations.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "main",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Determines scope of diff injected into context"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_BASE_REFS",
+      "label": "Base Refs",
+      "description": "Provides a map of repo-path → base-ref pairs for multi-checkout diff operations.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "main,develop",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "vcs"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Controls diff scope across multiple repos"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_IS_COWORK",
+      "label": "Is Cowork",
+      "description": "Enables cowork collaboration mode, triggering eager cache flushes and shared settings.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Forces prompt-cache break on each flush"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_SSE_PORT",
+      "label": "SSE Port",
+      "description": "Pins the IDE SSE port used for auto-connecting to a running editor extension.",
+      "category": "teams-collaboration",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TEAM_NAME",
+      "label": "Team Name",
+      "description": "Sets the team context name required for multi-agent broadcast and teammate messaging.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false,
+      "deprecated": true,
+      "deprecatedInVersion": "2.1.121"
+    },
+    {
+      "key": "CLAUDE_CODE_TEAM_ONBOARDING",
+      "label": "Team Onboarding",
+      "description": "Controls team onboarding UI mode; accepts \"banner\" or \"step\" to activate the onboarding flow.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Onboarding prompt injected once per flow"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TEAMMATE_COMMAND",
+      "label": "Teammate Command",
+      "description": "Overrides the shell command used to spawn teammate sub-agents in a swarm.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_USE_COWORK_PLUGINS",
+      "label": "Use Cowork Plugins",
+      "description": "Switches the plugin and settings file paths to the cowork-specific variants.",
+      "category": "teams-collaboration",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "plugins",
+        "teams"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Cowork plugins may add tool schemas"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_WORKER_EPOCH",
+      "label": "Worker Epoch",
+      "description": "Supplies the worker epoch integer required to register a CCR bridge worker session.",
+      "category": "teams-collaboration",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "teams"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS",
+      "label": "Datadog Flush Interval",
+      "description": "Overrides the Datadog log-batch flush interval in milliseconds. Default 15,000.",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+      "label": "Disable Nonessential Traffic",
+      "description": "Blocks all non-essential outbound network calls, including telemetry and analytics.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "disable"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS",
+      "label": "Emit Session State Events",
+      "description": "Enables emission of session-state-changed events on the SDK output stream.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES",
+      "label": "Emit Tool Use Summaries",
+      "description": "Enables tool-use summary emission for SDK consumers tracking tool activity.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENABLE_TELEMETRY",
+      "label": "Enable Telemetry",
+      "description": "Activates third-party OpenTelemetry trace and metric export for the session.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "enable",
+        "observability"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_ENHANCED_TELEMETRY_BETA",
+      "label": "Enhanced Telemetry Beta",
+      "description": "Opts into the enhanced beta tracing pipeline alongside ENABLE_ENHANCED_TELEMETRY_BETA.",
+      "category": "telemetry",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS",
+      "label": "OTel Flush Timeout",
+      "description": "Caps the time allotted for OpenTelemetry to flush all spans before process exit. Default 5,000ms.",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "observability"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS",
+      "label": "OTel Headers Debounce",
+      "description": "Sets the debounce window for re-executing the OTel headers helper script.",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "observability"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_OTEL_SHUTDOWN_TIMEOUT_MS",
+      "label": "OTel Shutdown Timeout",
+      "description": "Caps the time allotted for graceful OpenTelemetry provider shutdown. Default 2,000ms.",
+      "category": "telemetry",
+      "type": "number",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": "ms",
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "timeout",
+        "observability"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TAGS",
+      "label": "Tags",
+      "description": "Attaches arbitrary tag strings to the session metadata sent with each API request.",
+      "category": "telemetry",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_PREFIX",
+      "label": "Tmux Prefix",
+      "description": "Records the active tmux prefix key for display in the detach hint UI.",
+      "category": "terminal-mux",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_PREFIX_CONFLICTS",
+      "label": "Tmux Prefix Conflicts",
+      "description": "Signals that the tmux prefix conflicts with a Claude keybinding, adjusting the detach hint.",
+      "category": "terminal-mux",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_SESSION",
+      "label": "Tmux Session",
+      "description": "Stores the name of the active tmux session for display in the status bar.",
+      "category": "terminal-mux",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_TMUX_TRUECOLOR",
+      "label": "Tmux Truecolor",
+      "description": "Prevents Claude from downgrading color depth to 256 colours inside a tmux session.",
+      "category": "terminal-mux",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "tmux"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "ANTHROPIC_CONFIG_DIR",
+      "label": "Config Dir",
+      "description": "Overrides the Anthropic config directory root, bypassing the default XDG_CONFIG_HOME/APPDATA-derived path used to locate profiles and credentials.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "ANTHROPIC_FEDERATION_RULE_ID",
+      "label": "Federation Rule ID",
+      "description": "Sets the OIDC federation rule ID for token exchange; profile-level authentication.federation_rule_id takes precedence.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "ANTHROPIC_ORGANIZATION_ID",
+      "label": "Organization ID",
+      "description": "Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "ANTHROPIC_SCOPE",
+      "label": "Scope",
+      "description": "Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "ANTHROPIC_SERVICE_ACCOUNT_ID",
+      "label": "Service Account ID",
+      "description": "Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT",
+      "label": "Agent",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_AGENT_RULE_DISABLED",
+      "label": "Agent Rule Disabled",
+      "description": "Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "subprocess-sentinel"
+      ],
+      "audience": "internal",
+      "addedInVersion": "2.1.114",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_CLASSIFIER_SUMMARY",
+      "label": "Classifier Summary",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_DAEMON_COLD_START",
+      "label": "Daemon Cold Start",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.121"
+    },
+    {
+      "key": "CLAUDE_CODE_DISABLE_AGENTS_FLEET",
+      "label": "Disable Agents Fleet",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "boolean",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "isNew": true,
+      "addedInVersion": "2.1.121"
+    },
+    {
+      "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
+      "label": "Rate Limit Tier",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.117"
+    },
+    {
+      "key": "CLAUDE_CODE_REPL",
+      "label": "Repl",
+      "description": "Forces REPL mode on or off, overriding the GrowthBook feature-flag default.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.109",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_RETRY_WATCHDOG",
+      "label": "Retry Watchdog",
+      "description": "Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.116"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_ID",
+      "label": "Session Id",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_KIND",
+      "label": "Session Kind",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_LOG",
+      "label": "Session Log",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_SESSION_NAME",
+      "label": "Session Name",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    },
+    {
+      "key": "CLAUDE_CODE_SUBSCRIPTION_TYPE",
+      "label": "Subscription Type",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.117"
+    },
+    {
+      "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
+      "label": "System Prompt Gb Feature",
+      "description": "Overrides the remote-mode system prompt via a GrowthBook feature-flag key.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Replaces entire system prompt when set"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_TEST_FIXTURES_ROOT",
+      "label": "Test Fixtures Root",
+      "description": "Points the VCR fixture loader to a custom root directory for test recordings.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_TUI_JUST_SWITCHED",
+      "label": "Tui Just Switched",
+      "description": "Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen.",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "internal",
+      "addedInVersion": "2.1.111",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
+    },
+    {
+      "key": "CLAUDE_CODE_USE_POWERSHELL_TOOL",
+      "label": "Use PowerShell Tool",
+      "description": "Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists.",
+      "category": "uncategorised",
+      "type": "boolean",
+      "defaultValue": false,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [
+        "shell"
+      ],
+      "audience": "standard",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds PowerShell tool schema to tool list"
+      },
+      "internal": false
+    },
+    {
+      "key": "CLAUDE_CODE_VERIFY_PROMPT",
+      "label": "Verify Prompt",
+      "description": "TODO: Add description",
+      "category": "uncategorised",
+      "type": "text",
+      "defaultValue": null,
+      "options": null,
+      "placeholder": null,
+      "affectsUsage": false,
+      "impact": null,
+      "costDirection": null,
+      "tags": [],
+      "audience": "standard",
+      "addedInVersion": "2.1.119"
+    }
+  ]
+}
