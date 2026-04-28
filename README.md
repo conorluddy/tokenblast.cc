@@ -76,7 +76,7 @@ Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
 |------|------|-------------|
 | `ANTHROPIC_IDENTITY_TOKEN_FILE` | text | Path to a file containing the OIDC federation identity token, preferred over the inline ANTHROPIC_IDENTITY_TOKEN value. |
 | `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
-| `CLAUDE_CODE_HIDE_CWD` | text | — |
+| `CLAUDE_CODE_HIDE_CWD` | text | Hides the current working directory from the TUI status header. |
 | `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Overrides the IDE host address, bypassing WSL gateway detection entirely. |
 | `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Prevents automatic IDE extension installation on startup. |
 | `CLAUDE_CODE_IDE_SKIP_VALID_CHECK` | boolean | Skips workspace-folder validation when discovering IDE connections. |
@@ -117,7 +117,7 @@ Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
 | `CLAUDE_CODE_EFFORT_LEVEL` | select | Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort. |
 | `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` | boolean | Enables appending an extra system prompt to every Task-tool subagent and its nested descendants. |
 | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
-| `CLAUDE_CODE_FORK_SUBAGENT` | text | — |
+| `CLAUDE_CODE_FORK_SUBAGENT` | text | Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate. |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
 
@@ -339,24 +339,24 @@ Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
 | `ANTHROPIC_ORGANIZATION_ID` | text | Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile. |
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
-| `CLAUDE_CODE_AGENT` | text | — |
+| `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
-| `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | — |
-| `CLAUDE_CODE_DAEMON_COLD_START` 🆕 | text | — |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` 🆕 | boolean | — |
-| `CLAUDE_CODE_RATE_LIMIT_TIER` | text | — |
+| `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
+| `CLAUDE_CODE_DAEMON_COLD_START` 🆕 | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` 🆕 | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
+| `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
-| `CLAUDE_CODE_SESSION_ID` | text | — |
-| `CLAUDE_CODE_SESSION_KIND` | text | — |
-| `CLAUDE_CODE_SESSION_LOG` | text | — |
-| `CLAUDE_CODE_SESSION_NAME` | text | — |
-| `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | — |
+| `CLAUDE_CODE_SESSION_ID` | text | Internal session identifier propagated to child processes for telemetry. |
+| `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
+| `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
+| `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
+| `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
-| `CLAUDE_CODE_VERIFY_PROMPT` | text | — |
+| `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
 
 ## Deprecated
 

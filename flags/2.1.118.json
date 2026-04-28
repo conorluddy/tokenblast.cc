@@ -2751,7 +2751,7 @@
     {
       "key": "CLAUDE_CODE_FORK_SUBAGENT",
       "label": "Fork Subagent",
-      "description": "TODO: Add description",
+      "description": "Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2762,7 +2762,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Enables Task-tool fork-self capability"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
@@ -5607,7 +5613,7 @@
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
       "label": "Rate Limit Tier",
-      "description": "TODO: Add description",
+      "description": "Pins the OAuth rate-limit tier passed to forked background sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5618,7 +5624,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_REPL",
@@ -5660,7 +5671,7 @@
     {
       "key": "CLAUDE_CODE_SUBSCRIPTION_TYPE",
       "label": "Subscription Type",
-      "description": "TODO: Add description",
+      "description": "Pins the OAuth subscription tier passed to forked background sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5671,7 +5682,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
