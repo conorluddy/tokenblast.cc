@@ -1213,7 +1213,7 @@
     {
       "key": "CLAUDE_CODE_HIDE_CWD",
       "label": "Hide Cwd",
-      "description": "TODO: Add description",
+      "description": "Hides the current working directory from the TUI status header.",
       "category": "ide",
       "type": "text",
       "defaultValue": null,
@@ -1224,7 +1224,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDE_HOST_OVERRIDE",
@@ -2767,7 +2772,7 @@
     {
       "key": "CLAUDE_CODE_FORK_SUBAGENT",
       "label": "Fork Subagent",
-      "description": "TODO: Add description",
+      "description": "Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2778,7 +2783,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Enables Task-tool fork-self capability"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
@@ -5600,7 +5611,7 @@
     {
       "key": "CLAUDE_CODE_AGENT",
       "label": "Agent",
-      "description": "TODO: Add description",
+      "description": "Labels the current session with its parent agent name during concurrent-session registration.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5611,7 +5622,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_AGENT_RULE_DISABLED",
@@ -5639,7 +5655,7 @@
     {
       "key": "CLAUDE_CODE_CLASSIFIER_SUMMARY",
       "label": "Classifier Summary",
-      "description": "TODO: Add description",
+      "description": "Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5650,12 +5666,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "LLM mode adds a small classifier call per turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
       "label": "Rate Limit Tier",
-      "description": "TODO: Add description",
+      "description": "Pins the OAuth rate-limit tier passed to forked background sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5666,7 +5688,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_REPL",
@@ -5708,7 +5735,7 @@
     {
       "key": "CLAUDE_CODE_SESSION_ID",
       "label": "Session Id",
-      "description": "TODO: Add description",
+      "description": "Internal session identifier propagated to child processes for telemetry.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5719,12 +5746,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SESSION_KIND",
       "label": "Session Kind",
-      "description": "TODO: Add description",
+      "description": "Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5735,12 +5767,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SESSION_LOG",
       "label": "Session Log",
-      "description": "TODO: Add description",
+      "description": "Path to the per-session log file; set when forking background sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5751,12 +5788,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SESSION_NAME",
       "label": "Session Name",
-      "description": "TODO: Add description",
+      "description": "Human-readable name attached to a forked background session.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5767,12 +5809,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SUBSCRIPTION_TYPE",
       "label": "Subscription Type",
-      "description": "TODO: Add description",
+      "description": "Pins the OAuth subscription tier passed to forked background sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5783,7 +5830,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.117"
+      "addedInVersion": "2.1.117",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
@@ -5874,7 +5926,7 @@
     {
       "key": "CLAUDE_CODE_VERIFY_PROMPT",
       "label": "Verify Prompt",
-      "description": "TODO: Add description",
+      "description": "Arms an experimental verify-prompt pass that re-checks the model's response.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5885,7 +5937,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.119"
+      "addedInVersion": "2.1.119",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "medium",
+        "notes": "Adds a verification turn per response"
+      },
+      "internal": false
     }
   ]
 }
