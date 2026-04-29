@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
+Generated from Claude Code **v2.1.123** — 264 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -229,6 +229,7 @@ Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
 | `ANTHROPIC_BEDROCK_BASE_URL` | text | Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | text | API key for the Amazon Bedrock Mantle managed-access backend. |
 | `ANTHROPIC_BEDROCK_MANTLE_BASE_URL` | text | Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_BEDROCK_SERVICE_TIER` 🆕 | text | — |
 | `ANTHROPIC_FOUNDRY_API_KEY` | text | API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider. |
 | `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | text | Auth token for Microsoft Azure Foundry client construction. |
 | `ANTHROPIC_FOUNDRY_BASE_URL` | text | Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set. |
@@ -342,8 +343,9 @@ Generated from Claude Code **v2.1.121** — 262 flags across 18 categories.
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
-| `CLAUDE_CODE_DAEMON_COLD_START` 🆕 | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` 🆕 | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
+| `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
+| `CLAUDE_CODE_INVESTIGATE_FIRST` 🆕 | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
@@ -364,9 +366,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.121 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.121 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.121 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.123 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.123 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.123 |
 
 ---
 
