@@ -1,6 +1,6 @@
 {
   "version": "2.1.123",
-  "generatedAt": "2026-04-29",
+  "generatedAt": "2026-04-30",
   "totalFlags": 264,
   "deprecatedFlags": 3,
   "categories": {
@@ -4042,7 +4042,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.123"
     },
     {
@@ -5747,7 +5746,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.123"
     },
     {
