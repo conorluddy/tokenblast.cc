@@ -229,7 +229,7 @@ Generated from Claude Code **v2.1.123** — 264 flags across 18 categories.
 | `ANTHROPIC_BEDROCK_BASE_URL` | text | Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | text | API key for the Amazon Bedrock Mantle managed-access backend. |
 | `ANTHROPIC_BEDROCK_MANTLE_BASE_URL` | text | Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default. |
-| `ANTHROPIC_BEDROCK_SERVICE_TIER` 🆕 | text | — |
+| `ANTHROPIC_BEDROCK_SERVICE_TIER` | text | — |
 | `ANTHROPIC_FOUNDRY_API_KEY` | text | API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider. |
 | `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | text | Auth token for Microsoft Azure Foundry client construction. |
 | `ANTHROPIC_FOUNDRY_BASE_URL` | text | Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set. |
@@ -345,7 +345,7 @@ Generated from Claude Code **v2.1.123** — 264 flags across 18 categories.
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
-| `CLAUDE_CODE_INVESTIGATE_FIRST` 🆕 | text | — |
+| `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
