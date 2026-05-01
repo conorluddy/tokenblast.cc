@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.123** — 264 flags across 18 categories.
+Generated from Claude Code **v2.1.126** — 265 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -38,6 +38,7 @@ Generated from Claude Code **v2.1.123** — 264 flags across 18 categories.
 |------|------|-------------|
 | `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` | text | Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context. |
 | `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | number | Token threshold for auto-compaction. Lower = more aggressive compaction. |
+| `CLAUDE_CODE_COLD_COMPACT` 🆕 | text | — |
 | `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables automatic memory reads and writes, removing memory content from each turn's context. |
 | `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Strips all CLAUDE.md file content from the system prompt entirely. |
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
@@ -366,9 +367,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.123 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.123 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.123 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.126 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.126 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.126 |
 
 ---
 
