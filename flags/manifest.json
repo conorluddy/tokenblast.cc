@@ -150,6 +150,16 @@
       "added": 0,
       "removed": 3,
       "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.126",
+      "file": "2.1.126.json",
+      "date": "2026-05-03",
+      "claudeCodeVersion": "2.1.126",
+      "totalFlags": 265,
+      "added": 0,
+      "removed": 3,
+      "notes": "Auto-generated snapshot"
     }
   ]
 }
