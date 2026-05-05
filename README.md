@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.126** — 265 flags across 18 categories.
+Generated from Claude Code **v2.1.128** — 266 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -347,6 +347,7 @@ Generated from Claude Code **v2.1.126** — 265 flags across 18 categories.
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
+| `CLAUDE_CODE_PROACTIVE` 🆕 | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
@@ -367,9 +368,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.126 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.126 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.126 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.128 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.128 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.128 |
 
 ---
 
