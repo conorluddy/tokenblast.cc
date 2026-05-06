@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.128** — 266 flags across 18 categories.
+Generated from Claude Code **v2.1.131** — 271 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -118,6 +118,7 @@ Generated from Claude Code **v2.1.128** — 266 flags across 18 categories.
 | `CLAUDE_CODE_EFFORT_LEVEL` | select | Sets reasoning effort for supported models: low / medium / high / xhigh; overrides per-session effort. |
 | `CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPT` | boolean | Enables appending an extra system prompt to every Task-tool subagent and its nested descendants. |
 | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
+| `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` 🆕 | boolean | — |
 | `CLAUDE_CODE_FORK_SUBAGENT` | text | Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate. |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
@@ -346,8 +347,12 @@ Generated from Claude Code **v2.1.128** — 266 flags across 18 categories.
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
+| `CLAUDE_CODE_ENABLE_OPUS_` 🆕 | boolean | — |
+| `CLAUDE_CODE_FORCE_SYNC_OUTPUT` 🆕 | boolean | — |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
-| `CLAUDE_CODE_PROACTIVE` 🆕 | text | — |
+| `CLAUDE_CODE_LOOP_PERSISTENT` 🆕 | text | — |
+| `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` 🆕 | text | — |
+| `CLAUDE_CODE_PROACTIVE` | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
@@ -368,9 +373,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.128 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.128 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.128 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.131 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.131 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.131 |
 
 ---
 
