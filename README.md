@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.133** — 273 flags across 18 categories.
+Generated from Claude Code **v2.1.138** — 279 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -313,10 +313,12 @@ Generated from Claude Code **v2.1.133** — 273 flags across 18 categories.
 
 | Flag | Type | Description |
 |------|------|-------------|
+| `CLAUDE_CODE_BYOC_ENABLE_DATADOG` 🆕 | boolean | — |
 | `CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS` | number | Overrides the Datadog log-batch flush interval in milliseconds. Default 15,000. |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | boolean | Blocks all non-essential outbound network calls, including telemetry and analytics. |
 | `CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS` | boolean | Enables emission of session-state-changed events on the SDK output stream. |
 | `CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES` | boolean | Enables tool-use summary emission for SDK consumers tracking tool activity. |
+| `CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` 🆕 | boolean | — |
 | `CLAUDE_CODE_ENABLE_TELEMETRY` | boolean | Activates third-party OpenTelemetry trace and metric export for the session. |
 | `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` | boolean | Opts into the enhanced beta tracing pipeline alongside ENABLE_ENHANCED_TELEMETRY_BETA. |
 | `CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS` | number | Caps the time allotted for OpenTelemetry to flush all spans before process exit. Default 5,000ms. |
@@ -345,6 +347,7 @@ Generated from Claude Code **v2.1.133** — 273 flags across 18 categories.
 | `ANTHROPIC_WEBHOOK_SIGNING_KEY` | text | — |
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
+| `CLAUDE_CODE_BENCH_LIVE_COUNTS` 🆕 | text | — |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
@@ -353,6 +356,8 @@ Generated from Claude Code **v2.1.133** — 273 flags across 18 categories.
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | — |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | — |
+| `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` 🆕 | text | — |
+| `CLAUDE_CODE_NATIVE_CURSOR` 🆕 | text | — |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | — |
 | `CLAUDE_CODE_PROACTIVE` | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
@@ -368,6 +373,7 @@ Generated from Claude Code **v2.1.133** — 273 flags across 18 categories.
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
 | `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
+| `CLAUDE_CODE_VERSION` 🆕 | text | — |
 
 ## Deprecated
 
@@ -375,9 +381,9 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.133 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.133 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.133 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.138 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.138 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.138 |
 
 ---
 
