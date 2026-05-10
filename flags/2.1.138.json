@@ -1,6 +1,6 @@
 {
   "version": "2.1.138",
-  "generatedAt": "2026-05-09",
+  "generatedAt": "2026-05-10",
   "totalFlags": 279,
   "deprecatedFlags": 3,
   "categories": {
@@ -5281,7 +5281,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     },
     {
@@ -5386,7 +5385,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     },
     {
@@ -5764,7 +5762,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     },
     {
@@ -5925,7 +5922,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     },
     {
@@ -5942,7 +5938,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     },
     {
@@ -6262,7 +6257,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.138"
     }
   ]
