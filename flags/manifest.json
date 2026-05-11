@@ -230,6 +230,16 @@
       "added": 0,
       "removed": 3,
       "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.138",
+      "file": "2.1.138.json",
+      "date": "2026-05-11",
+      "claudeCodeVersion": "2.1.138",
+      "totalFlags": 279,
+      "added": 0,
+      "removed": 3,
+      "notes": "Auto-generated snapshot"
     }
   ]
 }
