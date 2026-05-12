@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.138** — 279 flags across 18 categories.
+Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -350,12 +350,13 @@ Generated from Claude Code **v2.1.138** — 279 flags across 18 categories.
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | — |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | boolean | Disables the background-agents fleet (claude agents, --bg, /background, on-demand daemon). |
+| `CLAUDE_CODE_DISABLE_AGENT_VIEW` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | boolean | — |
 | `CLAUDE_CODE_ENABLE_OPUS_` | boolean | — |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | — |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | — |
+| `CLAUDE_CODE_MAX_TURNS` 🆕 | number | — |
 | `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | text | — |
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | — |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | — |
@@ -368,7 +369,9 @@ Generated from Claude Code **v2.1.138** — 279 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
+| `CLAUDE_CODE_SUPERVISED` 🆕 | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
+| `CLAUDE_CODE_TEE_SDK_STDOUT` 🆕 | text | — |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
@@ -381,9 +384,10 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.138 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.138 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.138 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.139 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.139 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.139 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.139 |
 
 ---
 
