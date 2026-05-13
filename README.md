@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
+Generated from Claude Code **v2.1.140** — 283 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -51,6 +51,7 @@ Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
 | `CLAUDE_CODE_REMOTE_MEMORY_DIR` | text | Redirects memory and session storage to an alternative directory for remote deployments. |
 | `CLAUDE_CODE_RESUME_FROM_SESSION` | text | Hydrates conversation context from a specific prior session ID via the Sessions API. |
 | `CLAUDE_CODE_RESUME_INTERRUPTED_TURN` | boolean | Automatically resumes an interrupted turn by re-injecting its message content. |
+| `CLAUDE_CODE_RESUME_PROMPT` 🆕 | text | — |
 | `CLAUDE_CODE_RESUME_THRESHOLD_MINUTES` | number | Sets minutes since the last message before the resume-session flow is offered. Default 70. |
 | `CLAUDE_CODE_RESUME_TOKEN_THRESHOLD` | number | Sets the minimum token count required before the resume-session prompt appears. Default 100000. |
 | `CLAUDE_CODE_SKIP_PROMPT_HISTORY` | boolean | Skips loading persisted prompt history at session start, suppressing prior-turn entries. |
@@ -108,7 +109,6 @@ Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
 | `ANTHROPIC_MODEL` | text | Overrides the primary model entirely, replacing the default Sonnet selection. |
 | `ANTHROPIC_SMALL_FAST_MODEL` | text | Overrides the lightweight model used for hooks, classifiers, and background utility calls. |
 | `ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION` | text | Pins the small/fast model to a specific AWS Bedrock region, independent of the main model region. |
-| `CLAUDE_CODE_AGENT_COST_STEER` | boolean | Enables cost-steering logic that selects cheaper sub-agent models for Pro-tier users. |
 | `CLAUDE_CODE_ALWAYS_ENABLE_EFFORT` | boolean | Forces effort-level controls on all models, bypassing the Opus/Sonnet-only gate. |
 | `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING` | boolean | Forces fixed thinking budgets on Opus/Sonnet-4-6, disabling the adaptive budget algorithm. |
 | `CLAUDE_CODE_DISABLE_FAST_MODE` | boolean | Disables fast-mode inference, forcing the standard (slower) API path. |
@@ -350,15 +350,16 @@ Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | — |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
-| `CLAUDE_CODE_DISABLE_AGENT_VIEW` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_AGENT_VIEW` | boolean | — |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | boolean | — |
 | `CLAUDE_CODE_ENABLE_OPUS_` | boolean | — |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | — |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | — |
-| `CLAUDE_CODE_MAX_TURNS` 🆕 | number | — |
+| `CLAUDE_CODE_MAX_TURNS` | number | — |
 | `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | text | — |
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | — |
+| `CLAUDE_CODE_OPUS_` 🆕 | text | — |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | — |
 | `CLAUDE_CODE_PROACTIVE` | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
@@ -369,9 +370,9 @@ Generated from Claude Code **v2.1.139** — 282 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
-| `CLAUDE_CODE_SUPERVISED` 🆕 | text | — |
+| `CLAUDE_CODE_SUPERVISED` | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
-| `CLAUDE_CODE_TEE_SDK_STDOUT` 🆕 | text | — |
+| `CLAUDE_CODE_TEE_SDK_STDOUT` | text | — |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
@@ -384,10 +385,11 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.139 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.139 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.139 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.139 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.140 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.140 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.140 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.140 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.140 |
 
 ---
 
