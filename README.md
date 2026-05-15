@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.141** — 287 flags across 18 categories.
+Generated from Claude Code **v2.1.142** — 286 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -153,7 +153,7 @@ Generated from Claude Code **v2.1.141** — 287 flags across 18 categories.
 | `CLAUDE_CODE_MCP_SERVER_URL` | text | Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server URL. |
 | `CLAUDE_CODE_PLUGIN_CACHE_DIR` | text | Overrides the directory where downloaded plugin archives are cached. |
 | `CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS` | number | Sets the timeout for git clone/pull operations when installing marketplace plugins. |
-| `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` 🆕 | text | — |
+| `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` | text | — |
 | `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads. |
 | `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Switches plugin storage to a ZIP-based cache, enabling faster cold installs. |
 | `CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V` | text | Set internally when spawning bridge sessions to select the v2 POST-based ingress transport. |
@@ -346,16 +346,15 @@ Generated from Claude Code **v2.1.141** — 287 flags across 18 categories.
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
 | `ANTHROPIC_WEBHOOK_SIGNING_KEY` | text | — |
-| `ANTHROPIC_WORKSPACE_ID` 🆕 | text | — |
+| `ANTHROPIC_WORKSPACE_ID` | text | — |
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
-| `CLAUDE_CODE_AGENT_VIEW_RELAUNCH` 🆕 | text | — |
+| `CLAUDE_CODE_AGENT_VIEW_RELAUNCH` | text | — |
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | — |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENT_VIEW` | boolean | — |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | boolean | — |
-| `CLAUDE_CODE_ENABLE_OPUS_` | boolean | — |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | — |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | — |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | — |
@@ -381,7 +380,7 @@ Generated from Claude Code **v2.1.141** — 287 flags across 18 categories.
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
 | `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
 | `CLAUDE_CODE_VERSION` | text | — |
-| `CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED` 🆕 | text | — |
+| `CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED` | text | — |
 
 ## Deprecated
 
@@ -389,11 +388,12 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.141 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.141 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.141 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.141 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.141 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.142 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.142 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.142 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.142 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.142 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.142 |
 
 ---
 
