@@ -574,7 +574,7 @@
     {
       "key": "CLAUDE_CODE_COLD_COMPACT",
       "label": "Cold Compact",
-      "description": "TODO: Add description",
+      "description": "Forces a cold compaction run regardless of current context fill level.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -585,7 +585,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.126"
+      "addedInVersion": "2.1.126",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Triggers immediate compaction, discarding older context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
@@ -4047,7 +4053,7 @@
     {
       "key": "ANTHROPIC_BEDROCK_SERVICE_TIER",
       "label": "Bedrock Service Tier",
-      "description": "TODO: Add description",
+      "description": "Sets the AWS Bedrock service tier header for capacity and priority routing.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -4058,7 +4064,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_API_KEY",
@@ -5751,7 +5762,7 @@
     {
       "key": "CLAUDE_CODE_INVESTIGATE_FIRST",
       "label": "Investigate First",
-      "description": "TODO: Add description",
+      "description": "Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5762,12 +5773,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Additive mode prepends investigation block to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
       "label": "Proactive",
-      "description": "TODO: Add description",
+      "description": "Enables Kairos proactive/assistant mode for idle-triggered suggestions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5779,7 +5796,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.128"
+      "addedInVersion": "2.1.128",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Injects idle-return hint prompts into conversation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",

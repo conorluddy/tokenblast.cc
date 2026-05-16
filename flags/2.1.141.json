@@ -574,7 +574,7 @@
     {
       "key": "CLAUDE_CODE_COLD_COMPACT",
       "label": "Cold Compact",
-      "description": "TODO: Add description",
+      "description": "Forces a cold compaction run regardless of current context fill level.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -585,7 +585,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.126"
+      "addedInVersion": "2.1.126",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Triggers immediate compaction, discarding older context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
@@ -865,7 +871,7 @@
     {
       "key": "CLAUDE_CODE_RESUME_PROMPT",
       "label": "Resume Prompt",
-      "description": "TODO: Add description",
+      "description": "Overrides the default message injected when resuming an interrupted session.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -876,7 +882,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.140"
+      "addedInVersion": "2.1.140",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Single injected string per resumed session"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_THRESHOLD_MINUTES",
@@ -1922,7 +1934,7 @@
     {
       "key": "CLAUDE_CODE_PLUGIN_PREFER_HTTPS",
       "label": "Plugin Prefer Https",
-      "description": "TODO: Add description",
+      "description": "Forces plugin Git clones to use HTTPS instead of SSH.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -1934,7 +1946,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.141"
+      "addedInVersion": "2.1.141",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_SEED_DIR",
@@ -2823,7 +2840,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY",
       "label": "Enable Gateway Model Discovery",
-      "description": "TODO: Add description",
+      "description": "Enables fetching available models from a gateway endpoint via /v1/models.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -2834,7 +2851,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORK_SUBAGENT",
@@ -4098,7 +4120,7 @@
     {
       "key": "ANTHROPIC_BEDROCK_SERVICE_TIER",
       "label": "Bedrock Service Tier",
-      "description": "TODO: Add description",
+      "description": "Sets the AWS Bedrock service tier header for capacity and priority routing.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -4109,7 +4131,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_API_KEY",
@@ -5305,7 +5332,7 @@
     {
       "key": "CLAUDE_CODE_BYOC_ENABLE_DATADOG",
       "label": "Byoc Enable Datadog",
-      "description": "TODO: Add description",
+      "description": "Enables Datadog telemetry in BYOC environment mode.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -5316,7 +5343,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DATADOG_FLUSH_INTERVAL_MS",
@@ -5409,7 +5441,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL",
       "label": "Enable Feedback Survey For Otel",
-      "description": "TODO: Add description",
+      "description": "Enables in-session feedback survey events sent via OpenTelemetry.",
       "category": "telemetry",
       "type": "boolean",
       "defaultValue": null,
@@ -5420,7 +5452,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_TELEMETRY",
@@ -5726,7 +5763,7 @@
     {
       "key": "ANTHROPIC_WEBHOOK_SIGNING_KEY",
       "label": "Webhook Signing Key",
-      "description": "TODO: Add description",
+      "description": "Webhook secret for verifying incoming Anthropic webhook payload signatures.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5737,12 +5774,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.132"
+      "addedInVersion": "2.1.132",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_WORKSPACE_ID",
       "label": "Workspace Id",
-      "description": "TODO: Add description",
+      "description": "Scopes OIDC federation authentication to a specific Anthropic workspace.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5754,7 +5796,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.141"
+      "addedInVersion": "2.1.141",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT",
@@ -5803,7 +5850,7 @@
     {
       "key": "CLAUDE_CODE_AGENT_VIEW_RELAUNCH",
       "label": "Agent View Relaunch",
-      "description": "TODO: Add description",
+      "description": "Internal marker consumed on relaunch to restore agent view state.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5815,12 +5862,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.141"
+      "addedInVersion": "2.1.141",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_BENCH_LIVE_COUNTS",
       "label": "Bench Live Counts",
-      "description": "TODO: Add description",
+      "description": "Enables live token/turn counters in the terminal UI for benchmarking.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5831,7 +5883,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CLASSIFIER_SUMMARY",
@@ -5902,7 +5959,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_AGENT_VIEW",
       "label": "Disable Agent View",
-      "description": "TODO: Add description",
+      "description": "Disables the agent view including background daemon and /background command.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5913,12 +5970,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.139"
+      "addedInVersion": "2.1.139",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN",
       "label": "Disable Alternate Screen",
-      "description": "TODO: Add description",
+      "description": "Disables alternate terminal screen buffer, preventing fullscreen TUI mode.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5929,12 +5991,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.132"
+      "addedInVersion": "2.1.132",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_OPUS_",
       "label": "Enable Opus ",
-      "description": "TODO: Add description",
+      "description": "Enables Opus model availability; trailing underscore suggests a version suffix variant.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5945,12 +6012,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SYNC_OUTPUT",
       "label": "Force Sync Output",
-      "description": "TODO: Add description",
+      "description": "Forces synchronous terminal output rendering, bypassing async buffering.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5961,12 +6033,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_INVESTIGATE_FIRST",
       "label": "Investigate First",
-      "description": "TODO: Add description",
+      "description": "Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5977,12 +6054,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Additive mode prepends investigation block to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_LOOP_PERSISTENT",
       "label": "Loop Persistent",
-      "description": "TODO: Add description",
+      "description": "Enables persistent autonomous loop mode, continuing across blocked decisions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5993,12 +6076,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Longer preamble injected for persistent loop variant"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_TURNS",
       "label": "Max Turns",
-      "description": "TODO: Add description",
+      "description": "Caps the maximum number of agentic turns before the session halts.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -6009,12 +6098,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.139"
+      "addedInVersion": "2.1.139",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MID_CONVERSATION_SYSTEM",
       "label": "Mid Conversation System",
-      "description": "TODO: Add description",
+      "description": "Specifies a model name substring to enable mid-conversation system prompt injection.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6025,12 +6119,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Injects system block mid-thread for matched models"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_NATIVE_CURSOR",
       "label": "Native Cursor",
-      "description": "TODO: Add description",
+      "description": "Enables native terminal cursor when accessibility mode is not already active.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6041,12 +6141,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OPUS_",
       "label": "Opus ",
-      "description": "TODO: Add description",
+      "description": "Selects Opus 4.6 fast-mode override; trailing underscore indicates version suffix variant.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6057,12 +6162,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.140"
+      "addedInVersion": "2.1.140",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE",
       "label": "Package Manager Auto Update",
-      "description": "TODO: Add description",
+      "description": "Enables automatic Claude Code self-update via Homebrew or winget.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6073,12 +6183,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
       "label": "Proactive",
-      "description": "TODO: Add description",
+      "description": "Enables Kairos proactive/assistant mode for idle-triggered suggestions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6089,7 +6204,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.128"
+      "addedInVersion": "2.1.128",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Injects idle-return hint prompts into conversation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
@@ -6257,7 +6378,7 @@
     {
       "key": "CLAUDE_CODE_SUPERVISED",
       "label": "Supervised",
-      "description": "TODO: Add description",
+      "description": "Marks session as supervised, causing clean exit on uncaught exceptions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6268,7 +6389,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.139"
+      "addedInVersion": "2.1.139",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE",
@@ -6295,7 +6421,7 @@
     {
       "key": "CLAUDE_CODE_TEE_SDK_STDOUT",
       "label": "Tee Sdk Stdout",
-      "description": "TODO: Add description",
+      "description": "Mirrors SDK bridge stdout to stderr for debugging in bridge environment mode.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6306,7 +6432,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.139"
+      "addedInVersion": "2.1.139",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEST_FIXTURES_ROOT",
@@ -6397,7 +6528,7 @@
     {
       "key": "CLAUDE_CODE_VERSION",
       "label": "Version",
-      "description": "TODO: Add description",
+      "description": "Exposes the current CLI version string to policy helper subprocesses.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6408,12 +6539,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.138"
+      "addedInVersion": "2.1.138",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED",
       "label": "Voice Forward Interims Typed",
-      "description": "TODO: Add description",
+      "description": "Enables typed interim transcription results from the voice stream connection.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6425,7 +6561,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.141"
+      "addedInVersion": "2.1.141",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     }
   ]
 }

@@ -574,7 +574,7 @@
     {
       "key": "CLAUDE_CODE_COLD_COMPACT",
       "label": "Cold Compact",
-      "description": "TODO: Add description",
+      "description": "Forces a cold compaction run regardless of current context fill level.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -585,7 +585,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.126"
+      "addedInVersion": "2.1.126",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Triggers immediate compaction, discarding older context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
@@ -2788,7 +2794,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY",
       "label": "Enable Gateway Model Discovery",
-      "description": "TODO: Add description",
+      "description": "Enables fetching available models from a gateway endpoint via /v1/models.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -2799,7 +2805,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORK_SUBAGENT",
@@ -4063,7 +4074,7 @@
     {
       "key": "ANTHROPIC_BEDROCK_SERVICE_TIER",
       "label": "Bedrock Service Tier",
-      "description": "TODO: Add description",
+      "description": "Sets the AWS Bedrock service tier header for capacity and priority routing.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -4074,7 +4085,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_API_KEY",
@@ -5659,7 +5675,7 @@
     {
       "key": "ANTHROPIC_WEBHOOK_SIGNING_KEY",
       "label": "Webhook Signing Key",
-      "description": "TODO: Add description",
+      "description": "Webhook secret for verifying incoming Anthropic webhook payload signatures.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5670,7 +5686,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.132"
+      "addedInVersion": "2.1.132",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT",
@@ -5783,7 +5804,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN",
       "label": "Disable Alternate Screen",
-      "description": "TODO: Add description",
+      "description": "Disables alternate terminal screen buffer, preventing fullscreen TUI mode.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5794,12 +5815,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.132"
+      "addedInVersion": "2.1.132",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_OPUS_",
       "label": "Enable Opus ",
-      "description": "TODO: Add description",
+      "description": "Enables Opus model availability; trailing underscore suggests a version suffix variant.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5810,12 +5836,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SYNC_OUTPUT",
       "label": "Force Sync Output",
-      "description": "TODO: Add description",
+      "description": "Forces synchronous terminal output rendering, bypassing async buffering.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -5826,12 +5857,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_INVESTIGATE_FIRST",
       "label": "Investigate First",
-      "description": "TODO: Add description",
+      "description": "Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5842,12 +5878,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Additive mode prepends investigation block to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_LOOP_PERSISTENT",
       "label": "Loop Persistent",
-      "description": "TODO: Add description",
+      "description": "Enables persistent autonomous loop mode, continuing across blocked decisions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5858,12 +5900,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Longer preamble injected for persistent loop variant"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE",
       "label": "Package Manager Auto Update",
-      "description": "TODO: Add description",
+      "description": "Enables automatic Claude Code self-update via Homebrew or winget.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5874,12 +5922,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.131"
+      "addedInVersion": "2.1.131",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
       "label": "Proactive",
-      "description": "TODO: Add description",
+      "description": "Enables Kairos proactive/assistant mode for idle-triggered suggestions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5890,7 +5943,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.128"
+      "addedInVersion": "2.1.128",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Injects idle-return hint prompts into conversation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
