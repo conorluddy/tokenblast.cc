@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.142** — 286 flags across 18 categories.
+Generated from Claude Code **v2.1.143** — 288 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -291,6 +291,7 @@ Generated from Claude Code **v2.1.142** — 286 flags across 18 categories.
 | `CLAUDE_CODE_MAX_RETRIES` | number | Overrides the default maximum retry count for failed Anthropic API calls. |
 | `CLAUDE_CODE_NEW_INIT` | boolean | Switches the /init command to generate multiple scoped CLAUDE.md files instead of one. |
 | `CLAUDE_CODE_PERFORCE_MODE` | boolean | Enables Perforce VCS mode, injecting p4 checkout instructions into the system context. |
+| `CLAUDE_CODE_POWERSHELL_RESPECT_EXECUTION_POLICY` 🆕 | text | — |
 | `CLAUDE_CODE_PWSH_PARSE_TIMEOUT_MS` | number | Overrides the timeout for PowerShell command parsing and result classification. |
 | `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` | number | Caps the maximum wait time for session-end hooks before the process exits. |
 | `CLAUDE_CODE_SHELL` | text | Forces Claude Code to use a specific bash or zsh binary instead of auto-detecting. |
@@ -371,6 +372,7 @@ Generated from Claude Code **v2.1.142** — 286 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
+| `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` 🆕 | text | — |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SUPERVISED` | text | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
@@ -388,12 +390,12 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.142 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.142 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.142 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.142 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.142 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.142 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.143 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.143 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.143 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.143 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.143 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.143 |
 
 ---
 
