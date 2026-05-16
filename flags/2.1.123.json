@@ -4031,7 +4031,7 @@
     {
       "key": "ANTHROPIC_BEDROCK_SERVICE_TIER",
       "label": "Bedrock Service Tier",
-      "description": "TODO: Add description",
+      "description": "Sets the AWS Bedrock service tier header for capacity and priority routing.",
       "category": "provider-routing",
       "type": "text",
       "defaultValue": null,
@@ -4042,7 +4042,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FOUNDRY_API_KEY",
@@ -5735,7 +5740,7 @@
     {
       "key": "CLAUDE_CODE_INVESTIGATE_FIRST",
       "label": "Investigate First",
-      "description": "TODO: Add description",
+      "description": "Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5746,7 +5751,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.123"
+      "addedInVersion": "2.1.123",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Additive mode prepends investigation block to context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RATE_LIMIT_TIER",
