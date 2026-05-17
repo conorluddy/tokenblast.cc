@@ -1,6 +1,6 @@
 {
   "version": "2.1.143",
-  "generatedAt": "2026-05-16",
+  "generatedAt": "2026-05-17",
   "totalFlags": 288,
   "deprecatedFlags": 6,
   "categories": {
@@ -5028,7 +5028,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.143",
       "tokenEffect": {
         "surface": "none",
@@ -6389,7 +6388,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.143",
       "tokenEffect": {
         "surface": "none",
