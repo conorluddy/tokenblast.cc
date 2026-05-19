@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.143** — 288 flags across 18 categories.
+Generated from Claude Code **v2.1.144** — 289 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -351,6 +351,7 @@ Generated from Claude Code **v2.1.143** — 288 flags across 18 categories.
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
 | `CLAUDE_CODE_AGENT_VIEW_RELAUNCH` | text | Internal marker consumed on relaunch to restore agent view state. |
+| `CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT` 🆕 | text | — |
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | Enables live token/turn counters in the terminal UI for benchmarking. |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
@@ -390,12 +391,12 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.143 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.143 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.143 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.143 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.143 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.143 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.144 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.144 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.144 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.144 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.144 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.144 |
 
 ---
 
