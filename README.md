@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.145** — 295 flags across 18 categories.
+Generated from Claude Code **v2.1.146** — 296 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -22,15 +22,15 @@ Generated from Claude Code **v2.1.145** — 295 flags across 18 categories.
 | `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` | number | Controls how long the API key helper script result is cached before re-executing. |
 | `CLAUDE_CODE_ATTRIBUTION_HEADER` | boolean | Suppresses the Claude Code attribution header appended to API requests when set. |
 | `CLAUDE_CODE_CUSTOM_OAUTH_URL` | text | Overrides the OAuth base URL to an approved custom endpoint for non-production auth flows. |
-| `CLAUDE_CODE_HOST_AUTH_ENV_VAR` 🆕 | text | — |
-| `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MS` 🆕 | number | — |
+| `CLAUDE_CODE_HOST_AUTH_ENV_VAR` | text | — |
+| `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MS` | number | — |
 | `CLAUDE_CODE_OAUTH_CLIENT_ID` | text | Overrides the default OAuth client ID used during the authorization code flow. |
 | `CLAUDE_CODE_OAUTH_REFRESH_TOKEN` | text | Seeds an OAuth refresh token directly, skipping the interactive browser login step. |
 | `CLAUDE_CODE_OAUTH_SCOPES` | text | Declares space-separated OAuth scopes required when bootstrapping via a refresh token. |
 | `CLAUDE_CODE_OAUTH_TOKEN` | text | Provides a pre-issued OAuth access token, bypassing device-flow login entirely. |
 | `CLAUDE_CODE_OAUTH_TOKEN_FILE_DESCRIPTOR` | text | Reads the OAuth access token from a file descriptor for secure secret injection. |
 | `CLAUDE_CODE_ORGANIZATION_UUID` | text | Pins requests to a specific organization UUID, bypassing the profile-fetch lookup. |
-| `CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH` 🆕 | text | — |
+| `CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH` | text | — |
 | `CLAUDE_CODE_SESSION_ACCESS_TOKEN` | text | Provides a session-scoped access token used by remote/bridge entrypoints instead of OAuth. |
 | `CLAUDE_CODE_USER_EMAIL` | text | Injects user email to pre-populate OAuth session alongside account UUID and org UUID. |
 | `CLAUDE_CODE_WEBSOCKET_AUTH_FILE_DESCRIPTOR` | text | Reads the WebSocket session ingress token from a file descriptor for remote mode auth. |
@@ -344,15 +344,15 @@ Generated from Claude Code **v2.1.145** — 295 flags across 18 categories.
 | Flag | Type | Description |
 |------|------|-------------|
 | `ANTHROPIC_CONFIG_DIR` | text | Overrides the Anthropic config directory root, bypassing the default XDG_CONFIG_HOME/APPDATA-derived path used to locate profiles and credentials. |
-| `ANTHROPIC_ENVIRONMENT_ID` 🆕 | text | — |
-| `ANTHROPIC_ENVIRONMENT_KEY` 🆕 | text | — |
+| `ANTHROPIC_ENVIRONMENT_ID` | text | — |
+| `ANTHROPIC_ENVIRONMENT_KEY` | text | — |
 | `ANTHROPIC_FEDERATION_RULE_ID` | text | Sets the OIDC federation rule ID for token exchange; profile-level authentication.federation_rule_id takes precedence. |
 | `ANTHROPIC_ORGANIZATION_ID` | text | Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile. |
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
-| `ANTHROPIC_SESSION_ID` 🆕 | text | — |
+| `ANTHROPIC_SESSION_ID` | text | — |
 | `ANTHROPIC_WEBHOOK_SIGNING_KEY` | text | Webhook secret for verifying incoming Anthropic webhook payload signatures. |
-| `ANTHROPIC_WORK_ID` 🆕 | text | — |
+| `ANTHROPIC_WORK_ID` | text | — |
 | `ANTHROPIC_WORKSPACE_ID` | text | Scopes OIDC federation authentication to a specific Anthropic workspace. |
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
@@ -390,6 +390,7 @@ Generated from Claude Code **v2.1.145** — 295 flags across 18 categories.
 | `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
 | `CLAUDE_CODE_VERSION` | text | Exposes the current CLI version string to policy helper subprocesses. |
 | `CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED` | text | Enables typed interim transcription results from the voice stream connection. |
+| `CLAUDE_CODE_WORKFLOWS` 🆕 | text | — |
 
 ## Deprecated
 
@@ -397,13 +398,13 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.145 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.145 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.145 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.145 |
-| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.145 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.145 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.145 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.146 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.146 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.146 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.146 |
+| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.146 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.146 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.146 |
 
 ---
 
