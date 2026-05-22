@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.146** — 296 flags across 18 categories.
+Generated from Claude Code **v2.1.148** — 297 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -70,6 +70,7 @@ Generated from Claude Code **v2.1.146** — 296 flags across 18 categories.
 | `CLAUDE_CODE_DIAGNOSTICS_FILE` | text | Writes structured diagnostic events to a specified file path for external analysis. |
 | `CLAUDE_CODE_FRAME_TIMING_LOG` | boolean | Logs per-frame render timing including phase breakdowns and RSS memory usage. |
 | `CLAUDE_CODE_PERFETTO_TRACE` | boolean | Enables Perfetto-format performance tracing for agent process and thread activity. |
+| `CLAUDE_CODE_PERFETTO_TRACEY` 🆕 | text | — |
 | `CLAUDE_CODE_PROFILE_QUERY` | boolean | Enables per-query profiling checkpoints, surfacing a timing report on demand. |
 | `CLAUDE_CODE_PROFILE_STARTUP` | boolean | Enables detailed startup phase profiling and emits a startup-perf telemetry event. |
 | `CLAUDE_CODE_SLOW_OPERATION_THRESHOLD_MS` | number | Sets the threshold (ms) above which operations are flagged as slow in diagnostics. |
@@ -390,7 +391,7 @@ Generated from Claude Code **v2.1.146** — 296 flags across 18 categories.
 | `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
 | `CLAUDE_CODE_VERSION` | text | Exposes the current CLI version string to policy helper subprocesses. |
 | `CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED` | text | Enables typed interim transcription results from the voice stream connection. |
-| `CLAUDE_CODE_WORKFLOWS` 🆕 | text | — |
+| `CLAUDE_CODE_WORKFLOWS` | text | — |
 
 ## Deprecated
 
@@ -398,13 +399,13 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.146 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.146 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.146 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.146 |
-| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.146 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.146 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.146 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.148 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.148 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.148 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.148 |
+| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.148 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.148 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.148 |
 
 ---
 
