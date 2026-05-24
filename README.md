@@ -382,13 +382,13 @@ Generated from Claude Code **v2.1.150** — 299 flags across 18 categories.
 | `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` | text | Raises the maximum number of times a stop hook can block turn completion. |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SUPERVISED` | text | Marks session as supervised, causing clean exit on uncaught exceptions. |
-| `CLAUDE_CODE_SYNC_SKILLS` 🆕 | text | — |
-| `CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS` 🆕 | number | — |
+| `CLAUDE_CODE_SYNC_SKILLS` | text | — |
+| `CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS` | number | — |
 | `CLAUDE_CODE_SYSTEM_PROMPT_GB_FEATURE` | text | Overrides the remote-mode system prompt via a GrowthBook feature-flag key. |
 | `CLAUDE_CODE_TEE_SDK_STDOUT` | text | Mirrors SDK bridge stdout to stderr for debugging in bridge environment mode. |
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
-| `CLAUDE_CODE_USE_GATEWAY` 🆕 | text | — |
+| `CLAUDE_CODE_USE_GATEWAY` | text | — |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
 | `CLAUDE_CODE_VERIFY_PROMPT` | text | Arms an experimental verify-prompt pass that re-checks the model's response. |
 | `CLAUDE_CODE_VERSION` | text | Exposes the current CLI version string to policy helper subprocesses. |
