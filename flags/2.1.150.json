@@ -1,6 +1,6 @@
 {
   "version": "2.1.150",
-  "generatedAt": "2026-05-23",
+  "generatedAt": "2026-05-24",
   "totalFlags": 299,
   "deprecatedFlags": 8,
   "categories": {
@@ -6600,7 +6600,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.150"
     },
     {
@@ -6617,7 +6616,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.150"
     },
     {
@@ -6718,7 +6716,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.150"
     },
     {
