@@ -336,7 +336,7 @@
     {
       "key": "CLAUDE_CODE_HOST_AUTH_ENV_VAR",
       "label": "Host Auth Env Var",
-      "description": "TODO: Add description",
+      "description": "Names the environment variable holding the host authentication token.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -347,12 +347,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MS",
       "label": "Host Auth Refresh Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Controls how long to wait for a host auth token refresh before timing out.",
       "category": "auth",
       "type": "number",
       "defaultValue": null,
@@ -363,7 +368,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
@@ -498,7 +508,7 @@
     {
       "key": "CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH",
       "label": "Sdk Has Host Auth Refresh",
-      "description": "TODO: Add description",
+      "description": "Signals that the embedding SDK provides a host auth token refresh callback.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -509,7 +519,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
@@ -5769,7 +5784,7 @@
     {
       "key": "ANTHROPIC_ENVIRONMENT_ID",
       "label": "Environment Id",
-      "description": "TODO: Add description",
+      "description": "Identifies the managed-agents environment; injected into worker containers by the orchestrator.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5780,12 +5795,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_ENVIRONMENT_KEY",
       "label": "Environment Key",
-      "description": "TODO: Add description",
+      "description": "Authentication key for the EnvironmentWorker API, scoped to a specific managed environment.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5796,7 +5816,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_FEDERATION_RULE_ID",
@@ -5865,7 +5890,7 @@
     {
       "key": "ANTHROPIC_SESSION_ID",
       "label": "Session Id",
-      "description": "TODO: Add description",
+      "description": "Identifies the active session inside a managed-agents worker container.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5876,7 +5901,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_WEBHOOK_SIGNING_KEY",
@@ -5902,7 +5932,7 @@
     {
       "key": "ANTHROPIC_WORK_ID",
       "label": "Work Id",
-      "description": "TODO: Add description",
+      "description": "Identifies the work-queue item being processed inside a managed-agents worker container.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5913,7 +5943,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.145"
+      "addedInVersion": "2.1.145",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_WORKSPACE_ID",
@@ -6004,7 +6039,7 @@
     {
       "key": "CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT",
       "label": "Alt Screen Full Repaint",
-      "description": "TODO: Add description",
+      "description": "Forces full repaints in alt-screen mode instead of incremental diff-based updates.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6015,7 +6050,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.144"
+      "addedInVersion": "2.1.144",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BENCH_LIVE_COUNTS",
@@ -6741,7 +6781,7 @@
     {
       "key": "CLAUDE_CODE_WORKFLOWS",
       "label": "Workflows",
-      "description": "TODO: Add description",
+      "description": "Enables the Workflows feature and specifies which workflow definitions are active.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6753,7 +6793,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.146"
+      "addedInVersion": "2.1.146",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Active workflow definitions are injected into the system prompt."
+      },
+      "internal": false
     }
   ]
 }
