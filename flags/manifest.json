@@ -1,5 +1,5 @@
 {
-  "latest": "2.1.152",
+  "latest": "2.1.153",
   "snapshots": [
     {
       "version": "2.1.107",
@@ -398,6 +398,16 @@
       "claudeCodeVersion": "2.1.152",
       "totalFlags": 303,
       "added": 4,
+      "removed": 8,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.153",
+      "file": "2.1.153.json",
+      "date": "2026-05-28",
+      "claudeCodeVersion": "2.1.153",
+      "totalFlags": 303,
+      "added": 0,
       "removed": 8,
       "notes": "Auto-generated snapshot"
     }
