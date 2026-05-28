@@ -5890,7 +5890,7 @@
     {
       "key": "CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT",
       "label": "Alt Screen Full Repaint",
-      "description": "TODO: Add description",
+      "description": "Forces full repaints in alt-screen mode instead of incremental diff-based updates.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -5902,7 +5902,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.144"
+      "addedInVersion": "2.1.144",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BENCH_LIVE_COUNTS",
