@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.153** — 303 flags across 18 categories.
+Generated from Claude Code **v2.1.156** — 306 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -364,12 +364,13 @@ Generated from Claude Code **v2.1.153** — 303 flags across 18 categories.
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DISABLE_AGENT_VIEW` | boolean | Disables the agent view including background daemon and /background command. |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | boolean | Disables alternate terminal screen buffer, preventing fullscreen TUI mode. |
+| `CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_WORKFLOWS` | boolean | Disables the Workflows feature entirely, removing workflow instructions from the system prompt. |
+| `CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM` 🆕 | boolean | — |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off. |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | Enables persistent autonomous loop mode, continuing across blocked decisions. |
 | `CLAUDE_CODE_MAX_TURNS` | number | Caps the maximum number of agentic turns before the session halts. |
-| `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | text | Specifies a model name substring to enable mid-conversation system prompt injection. |
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | Enables native terminal cursor when accessibility mode is not already active. |
 | `CLAUDE_CODE_OPUS_` | text | Selects Opus 4.6 fast-mode override; trailing underscore indicates version suffix variant. |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | Enables automatic Claude Code self-update via Homebrew or winget. |
@@ -382,6 +383,8 @@ Generated from Claude Code **v2.1.153** — 303 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
+| `CLAUDE_CODE_SKILL_DESCRIPTION` 🆕 | text | — |
+| `CLAUDE_CODE_SKILL_NAME` 🆕 | text | — |
 | `CLAUDE_CODE_SPAWN_TIMESTAMP_MS` | number | Records the Unix millisecond timestamp at process spawn for startup-latency telemetry. |
 | `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` | text | Raises the maximum number of times a stop hook can block turn completion. |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
@@ -405,14 +408,15 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.153 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.153 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.153 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.153 |
-| `CLAUDE_CODE_PERFETTO_TRACEY` | 2.1.153 |
-| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.153 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.153 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.153 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.156 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.156 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.156 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.156 |
+| `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | 2.1.156 |
+| `CLAUDE_CODE_PERFETTO_TRACEY` | 2.1.156 |
+| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.156 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.156 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.156 |
 
 ---
 
