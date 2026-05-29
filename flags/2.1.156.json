@@ -6258,7 +6258,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL",
       "label": "Disable Claude Code Skill",
-      "description": "TODO: Add description",
+      "description": "Disables the built-in slash command for Claude Code documentation.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6270,7 +6270,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.156"
+      "addedInVersion": "2.1.156",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes skill registration from system prompt"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_WORKFLOWS",
@@ -6297,7 +6303,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM",
       "label": "Force Mid Conversation System",
-      "description": "TODO: Add description",
+      "description": "Forces mid-conversation system prompt re-injection on all model versions.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6309,7 +6315,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.156"
+      "addedInVersion": "2.1.156",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Repeats system tokens each turn on newer models"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SYNC_OUTPUT",
@@ -6672,7 +6684,7 @@
     {
       "key": "CLAUDE_CODE_SKILL_DESCRIPTION",
       "label": "Skill Description",
-      "description": "TODO: Add description",
+      "description": "Overrides the trigger description text injected for the Claude Code docs skill.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6684,12 +6696,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.156"
+      "addedInVersion": "2.1.156",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Replaces default skill trigger block in system prompt"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKILL_NAME",
       "label": "Skill Name",
-      "description": "TODO: Add description",
+      "description": "Overrides the default slash command name for the Claude Code docs skill.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6701,7 +6719,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.156"
+      "addedInVersion": "2.1.156",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SPAWN_TIMESTAMP_MS",
