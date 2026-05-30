@@ -2177,7 +2177,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS",
       "label": "Sync Plugins",
-      "description": "TODO: Add description",
+      "description": "Controls which plugins are synced synchronously at startup, alongside install and MCP timeout settings.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -2189,7 +2189,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.158"
+      "addedInVersion": "2.1.158",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds plugin tool schemas before first prompt"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BETAS",
@@ -6253,7 +6259,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS_INSTALL_TIMEOUT_MS",
       "label": "Sync Plugins Install Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps the millisecond timeout for plugin package installation during sync.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -6265,12 +6271,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.158"
+      "addedInVersion": "2.1.158",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS_MCP_TIMEOUT_MS",
       "label": "Sync Plugins Mcp Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps the millisecond timeout for MCP server startup during plugin sync.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -6282,7 +6293,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.158"
+      "addedInVersion": "2.1.158",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COORDINATOR_MODE",
@@ -6353,7 +6369,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_AUTO_MODE",
       "label": "Enable Auto Mode",
-      "description": "TODO: Add description",
+      "description": "Enables automatic model-selection mode, allowing the CLI to pick the optimal Claude model.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6365,7 +6381,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.158"
+      "addedInVersion": "2.1.158",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM",
@@ -6435,7 +6456,7 @@
     {
       "key": "CLAUDE_CODE_LOOP_KEEPALIVE",
       "label": "Loop Keepalive",
-      "description": "TODO: Add description",
+      "description": "Enables keepalive pings in the autonomous loop to prevent idle-timeout disconnection.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6447,7 +6468,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.158"
+      "addedInVersion": "2.1.158",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_LOOP_PERSISTENT",
