@@ -1,6 +1,6 @@
 {
   "version": "2.1.158",
-  "generatedAt": "2026-05-30",
+  "generatedAt": "2026-05-31",
   "totalFlags": 311,
   "deprecatedFlags": 9,
   "categories": {
@@ -2188,7 +2188,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.158",
       "tokenEffect": {
         "surface": "tools",
@@ -6270,7 +6269,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.158",
       "tokenEffect": {
         "surface": "none",
@@ -6292,7 +6290,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.158",
       "tokenEffect": {
         "surface": "none",
@@ -6380,7 +6377,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.158",
       "tokenEffect": {
         "surface": "none",
@@ -6467,7 +6463,6 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "isNew": true,
       "addedInVersion": "2.1.158",
       "tokenEffect": {
         "surface": "none",
