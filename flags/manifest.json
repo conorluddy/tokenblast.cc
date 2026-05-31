@@ -430,6 +430,16 @@
       "added": 5,
       "removed": 9,
       "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.158",
+      "file": "2.1.158.json",
+      "date": "2026-05-31",
+      "claudeCodeVersion": "2.1.158",
+      "totalFlags": 311,
+      "added": 0,
+      "removed": 9,
+      "notes": "Auto-generated snapshot"
     }
   ]
 }
