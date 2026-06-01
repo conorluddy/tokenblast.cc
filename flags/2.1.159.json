@@ -6603,7 +6603,7 @@
     {
       "key": "CLAUDE_CODE_PEWTER_OWL",
       "label": "Pewter Owl",
-      "description": "TODO: Add description",
+      "description": "Activates the Pewter Owl experiment cohort, enabling its associated feature variant.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6615,7 +6615,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.159"
+      "addedInVersion": "2.1.159",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
