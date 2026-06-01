@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.158** — 311 flags across 18 categories.
+Generated from Claude Code **v2.1.159** — 312 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -379,6 +379,7 @@ Generated from Claude Code **v2.1.158** — 311 flags across 18 categories.
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | Enables native terminal cursor when accessibility mode is not already active. |
 | `CLAUDE_CODE_OPUS_` | text | Selects Opus 4.6 fast-mode override; trailing underscore indicates version suffix variant. |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | Enables automatic Claude Code self-update via Homebrew or winget. |
+| `CLAUDE_CODE_PEWTER_OWL` 🆕 | text | — |
 | `CLAUDE_CODE_PROACTIVE` | text | Enables Kairos proactive/assistant mode for idle-triggered suggestions. |
 | `CLAUDE_CODE_PROPAGATE_TRACEPARENT` | text | Forwards a W3C traceparent header on outbound API requests for distributed trace correlation. |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
@@ -413,15 +414,15 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
-| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.158 |
-| `CLAUDE_CODE_AGENT_NAME` | 2.1.158 |
-| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.158 |
-| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.158 |
-| `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | 2.1.158 |
-| `CLAUDE_CODE_PERFETTO_TRACEY` | 2.1.158 |
-| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.158 |
-| `CLAUDE_CODE_TEAM_NAME` | 2.1.158 |
-| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.158 |
+| `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.159 |
+| `CLAUDE_CODE_AGENT_NAME` | 2.1.159 |
+| `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.159 |
+| `CLAUDE_CODE_ENABLE_OPUS_` | 2.1.159 |
+| `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | 2.1.159 |
+| `CLAUDE_CODE_PERFETTO_TRACEY` | 2.1.159 |
+| `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.159 |
+| `CLAUDE_CODE_TEAM_NAME` | 2.1.159 |
+| `CLAUDE_CODE_USE_NATIVE_FILE_SEARCH` | 2.1.159 |
 
 ---
 
