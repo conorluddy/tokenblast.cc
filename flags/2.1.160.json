@@ -6540,7 +6540,7 @@
     {
       "key": "CLAUDE_CODE_HFI_BEARER_TOKEN",
       "label": "Hfi Bearer Token",
-      "description": "TODO: Add description",
+      "description": "Authenticates requests to the Human Feedback Interface service via bearer token.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -6552,12 +6552,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_EVALUATE_MEMORY",
       "label": "Force Evaluate Memory",
-      "description": "TODO: Add description",
+      "description": "Forces memory evaluation on every turn, bypassing normal trigger conditions.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -6569,12 +6574,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Injects memory content each turn unconditionally"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_MEMORY_SURVEY",
       "label": "Force Memory Survey",
-      "description": "TODO: Add description",
+      "description": "Forces the memory-save survey to appear regardless of normal eligibility checks.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -6586,12 +6597,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Survey prompt adds a small context overhead"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_MEMORY_WRITE_SURVEY",
       "label": "Force Memory Write Survey",
-      "description": "TODO: Add description",
+      "description": "Forces the memory-write confirmation survey on every session end.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -6603,12 +6620,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Write-survey prompt adds minor context overhead"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MEMORY_WRITE_SURVEY_TIMEOUT_MS",
       "label": "Memory Write Survey Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Controls how long the memory-write survey waits before timing out.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -6620,12 +6643,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PERFETTO_WRITE_INTERVAL_S",
       "label": "Perfetto Write Interval S",
-      "description": "TODO: Add description",
+      "description": "Controls the flush interval in seconds for Perfetto performance trace output.",
       "category": "debug",
       "type": "number",
       "defaultValue": null,
@@ -6637,12 +6665,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OVERRIDE_DATE",
       "label": "Override Date",
-      "description": "TODO: Add description",
+      "description": "Overrides the current date used by the CLI, enabling time-dependent behaviour testing.",
       "category": "ide",
       "type": "text",
       "defaultValue": null,
@@ -6654,12 +6687,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_MODEL",
       "label": "Auto Mode Model",
-      "description": "TODO: Add description",
+      "description": "Overrides the model used when Claude Code operates in auto mode.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -6671,12 +6709,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Model selection does not itself consume tokens"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BG_CLASSIFIER_MODEL",
       "label": "Bg Classifier Model",
-      "description": "TODO: Add description",
+      "description": "Overrides the model used for background intent-classification inference.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -6688,12 +6732,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Controls classifier model, not token budget"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORK_SUBAGENT_DEFAULT_ON",
       "label": "Fork Subagent Default On",
-      "description": "TODO: Add description",
+      "description": "Enables fork-subagent behaviour by default without explicit per-request opt-in.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -6705,12 +6755,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Activates Task-tool fork-self by default"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TERMINAL_RECORDING",
       "label": "Terminal Recording",
-      "description": "TODO: Add description",
+      "description": "Enables terminal session recording to a file for replay or audit.",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -6722,12 +6778,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MOCK_REMOTE_SETTINGS",
       "label": "Mock Remote Settings",
-      "description": "TODO: Add description",
+      "description": "Injects mock remote-settings payload, bypassing live remote-config fetch.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -6739,12 +6800,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_REMOTE_RAW_EVENTS_FILE",
       "label": "Remote Raw Events File",
-      "description": "TODO: Add description",
+      "description": "Redirects raw remote-container events to a file path for offline inspection.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -6756,12 +6822,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_SETTINGS_POLL_MS",
       "label": "Remote Settings Poll Ms",
-      "description": "TODO: Add description",
+      "description": "Controls polling interval in milliseconds for remote-settings refresh.",
       "category": "remote-containers",
       "type": "number",
       "defaultValue": null,
@@ -6773,12 +6844,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEST_NO_GIT_BASH",
       "label": "Test No Git Bash",
-      "description": "TODO: Add description",
+      "description": "Disables git-bash detection in tests, simulating a non-git-bash environment.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -6790,12 +6866,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EXTERNAL_PERMISSIONS",
       "label": "Auto Mode External Permissions",
-      "description": "TODO: Add description",
+      "description": "Controls which external tool permissions are granted automatically in auto mode.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6807,12 +6888,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DD_ERROR_TRACKING_FLUSH_INTERVAL_MS",
       "label": "Dd Error Tracking Flush Interval Ms",
-      "description": "TODO: Add description",
+      "description": "Controls the flush interval in milliseconds for Datadog error-tracking batches.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -6824,12 +6910,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DEV_RAW_CHANGELOG_URL",
       "label": "Dev Raw Changelog Url",
-      "description": "TODO: Add description",
+      "description": "Overrides the raw changelog URL fetched at startup, pointing to a dev endpoint.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6841,12 +6932,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGE",
       "label": "Force Bridge",
-      "description": "TODO: Add description",
+      "description": "Forces the REPL bridge transport path regardless of environment detection.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6858,12 +6954,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_TIP_ID",
       "label": "Force Tip Id",
-      "description": "TODO: Add description",
+      "description": "Forces a specific onboarding tip to display, bypassing seen-state checks.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6875,12 +6976,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME",
       "label": "Frame",
-      "description": "TODO: Add description",
+      "description": "Sets the embedding-frame identifier, signalling which host shell or IDE wraps the CLI.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6892,12 +6998,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME_MODE",
       "label": "Frame Mode",
-      "description": "TODO: Add description",
+      "description": "Controls the embedding context mode — e.g. ide, web, or standalone.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6909,12 +7020,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
       "label": "Gb Base Url",
-      "description": "TODO: Add description",
+      "description": "Overrides the GrowthBook feature-flag server base URL for experimentation.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6926,12 +7042,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_GB_REFRESH_INTERVAL_MS",
       "label": "Gb Refresh Interval Ms",
-      "description": "TODO: Add description",
+      "description": "Controls how often GrowthBook feature flags are re-fetched in milliseconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -6943,12 +7064,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_JSONL_TRANSCRIPT",
       "label": "Jsonl Transcript",
-      "description": "TODO: Add description",
+      "description": "Writes full conversation transcript as JSONL to the specified file path.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6960,12 +7086,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MANAGED_SETTINGS_PATH",
       "label": "Managed Settings Path",
-      "description": "TODO: Add description",
+      "description": "Loads org-managed settings from a custom path, overriding user-level config.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6977,12 +7108,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Managed settings may inject policy instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_METRICS_ENDPOINT",
       "label": "Metrics Endpoint",
-      "description": "TODO: Add description",
+      "description": "Reroutes usage and telemetry metrics to a custom endpoint URL.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6994,12 +7131,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MOCK_TRIAL",
       "label": "Mock Trial",
-      "description": "TODO: Add description",
+      "description": "Simulates a trial subscription state, bypassing live entitlement checks.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7011,7 +7153,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_NATIVE_CURSOR",
@@ -7328,7 +7475,7 @@
     {
       "key": "CLAUDE_CODE_SKIP_HFI_VERSION_CHECK",
       "label": "Skip Hfi Version Check",
-      "description": "TODO: Add description",
+      "description": "Skips HFI protocol version compatibility check on startup.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7340,12 +7487,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_PROJECT_BACKFILL",
       "label": "Skip Project Backfill",
-      "description": "TODO: Add description",
+      "description": "Disables automatic backfill of project metadata at session start.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7357,12 +7509,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_REPO_UPLOAD",
       "label": "Skip Repo Upload",
-      "description": "TODO: Add description",
+      "description": "Prevents repository content from being uploaded to remote context store.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7374,7 +7531,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Suppresses repo upload that would populate remote context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SPAWN_TIMESTAMP_MS",
@@ -7528,7 +7691,7 @@
     {
       "key": "CLAUDE_CODE_TAG_ISMETA_MESSAGES",
       "label": "Tag Ismeta Messages",
-      "description": "TODO: Add description",
+      "description": "Tags specified message types as isMeta to exclude them from context.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7540,7 +7703,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Meta-tagged messages may be stripped from window"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEE_SDK_STDOUT",
@@ -7586,7 +7755,7 @@
     {
       "key": "CLAUDE_CODE_TEST_FORCE_DENY",
       "label": "Test Force Deny",
-      "description": "TODO: Add description",
+      "description": "Forces all permission checks to deny — used in test harnesses only.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7598,12 +7767,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TEST_NO_PWSH",
       "label": "Test No Pwsh",
-      "description": "TODO: Add description",
+      "description": "Disables PowerShell detection in tests, simulating a non-Windows environment.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7615,7 +7789,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TUI_JUST_SWITCHED",
@@ -7641,7 +7820,7 @@
     {
       "key": "CLAUDE_CODE_TWO_STAGE_CLASSIFIER",
       "label": "Two Stage Classifier",
-      "description": "TODO: Add description",
+      "description": "Enables two-stage intent classification pipeline for permission decisions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7653,7 +7832,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.160"
+      "addedInVersion": "2.1.160",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds a classifier pass before tool execution"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_GATEWAY",
