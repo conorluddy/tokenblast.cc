@@ -730,7 +730,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE",
       "label": "Disable Memory Bulk Inflate",
-      "description": "TODO: Add description",
+      "description": "Disables bulk pre-loading of memory entries into context, reducing upfront token usage.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -742,7 +742,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.161"
+      "addedInVersion": "2.1.161",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Prevents batch memory expansion; entries load individually instead"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
@@ -6941,7 +6947,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK",
       "label": "Disable Refusal Fallback",
-      "description": "TODO: Add description",
+      "description": "Disables automatic retry or alternative handling when a model refuses a request.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6953,7 +6959,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.161"
+      "addedInVersion": "2.1.161",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "No token impact; affects control flow only"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGE",
@@ -7211,7 +7223,7 @@
     {
       "key": "CLAUDE_CODE_OWNERSHIP_FRAME",
       "label": "Ownership Frame",
-      "description": "TODO: Add description",
+      "description": "Injects a custom ownership framing string into the system prompt for org or project identity.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7223,7 +7235,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.161"
+      "addedInVersion": "2.1.161",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Adds ownership context tokens to every session"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE",
@@ -7646,7 +7664,7 @@
     {
       "key": "CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION",
       "label": "Suppress Session Attribution",
-      "description": "TODO: Add description",
+      "description": "Strips or replaces session attribution metadata injected into context by the CLI.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7658,7 +7676,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.161"
+      "addedInVersion": "2.1.161",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Removes attribution tokens added per session"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS",
