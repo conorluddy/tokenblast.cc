@@ -6042,7 +6042,7 @@
     {
       "key": "CLAUDE_CODE_ACT_DONT_REDERIVE",
       "label": "Act Dont Rederive",
-      "description": "TODO: Add description",
+      "description": "Skips re-deriving the agentic action plan between turns, trading plan freshness for speed.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6054,7 +6054,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.162"
+      "addedInVersion": "2.1.162",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Avoids recomputing action-plan context each turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT",
@@ -6491,7 +6497,7 @@
     {
       "key": "CLAUDE_CODE_INVOKED_SKILLS",
       "label": "Invoked Skills",
-      "description": "TODO: Add description",
+      "description": "Internal runtime register tracking which skills have fired and their per-invoke costs.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6503,12 +6509,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.162"
+      "addedInVersion": "2.1.162",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Each skill invocation adds context overhead"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_KB_COHESION_FIXES",
       "label": "Kb Cohesion Fixes",
-      "description": "TODO: Add description",
+      "description": "Enables cohesion patches for knowledge-base content injected into the system prompt.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6520,7 +6532,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.162"
+      "addedInVersion": "2.1.162",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_LOOP_KEEPALIVE",
