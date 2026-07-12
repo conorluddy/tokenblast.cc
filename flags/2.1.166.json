@@ -314,7 +314,7 @@
     {
       "key": "CLAUDE_CODE_AUTH_FAIL_EXIT_MS",
       "label": "Auth Fail Exit Ms",
-      "description": "TODO: Add description",
+      "description": "Forces remote child sessions to exit after sustained auth failure; default ten minutes.",
       "category": "auth",
       "type": "number",
       "defaultValue": null,
@@ -325,7 +325,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
@@ -415,7 +420,7 @@
     {
       "key": "CLAUDE_CODE_OAUTH_",
       "label": "Oauth ",
-      "description": "TODO: Add description",
+      "description": "Overrides OAuth credentials (token, client ID, scopes) used for authentication.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -426,7 +431,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
@@ -3666,7 +3676,7 @@
     {
       "key": "CLAUDE_CODE_WEBFETCH_PROXY_PATH",
       "label": "Webfetch Proxy Path",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebFetch traffic through a custom proxy path.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -3678,7 +3688,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCESSIBILITY",
@@ -4883,7 +4898,7 @@
     {
       "key": "CLAUDE_CODE_REMOTE_HERMETIC_MODE",
       "label": "Remote Hermetic Mode",
-      "description": "TODO: Add description",
+      "description": "Restricts remote sessions to SDK MCP servers, dropping external ones.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -4894,7 +4909,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Drops non-SDK MCP tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_RAW_EVENTS_FILE",
@@ -6366,7 +6387,7 @@
     {
       "key": "CLAUDE_CODE_ARTIFACT",
       "label": "Artifact",
-      "description": "TODO: Add description",
+      "description": "Enables Artifact publishing support for the current session.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6378,7 +6399,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds Artifact tool schema"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EXTERNAL_PERMISSIONS",
@@ -6661,7 +6688,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_DESIGN_SYNC",
       "label": "Enable Design Sync",
-      "description": "TODO: Add description",
+      "description": "Enables syncing Claude Design assets, requiring a separate design login.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6673,12 +6700,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_MENU_KIND_LANES",
       "label": "Enable Menu Kind Lanes",
-      "description": "TODO: Add description",
+      "description": "Enables grouped kind lanes in slash-command menu listings.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6689,7 +6721,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGE",
@@ -6800,7 +6837,7 @@
     {
       "key": "CLAUDE_CODE_FRAME_AUTO_OPEN",
       "label": "Frame Auto Open",
-      "description": "TODO: Add description",
+      "description": "Auto-opens the Frame preview when a session starts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6812,7 +6849,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
@@ -7599,7 +7641,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_INSTALL_TIMEOUT_MS",
       "label": "Sync Skills Install Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps skill installation time during workspace sync; default thirty seconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -7610,7 +7652,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS",
@@ -7850,7 +7897,7 @@
     {
       "key": "CLAUDE_CODE_VELVET_FALCON",
       "label": "Velvet Falcon",
-      "description": "TODO: Add description",
+      "description": "Force-enables an undocumented codename experiment gate.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7861,7 +7908,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_VERIFY_PROMPT",

@@ -314,7 +314,7 @@
     {
       "key": "CLAUDE_CODE_AUTH_FAIL_EXIT_MS",
       "label": "Auth Fail Exit Ms",
-      "description": "TODO: Add description",
+      "description": "Forces remote child sessions to exit after sustained auth failure; default ten minutes.",
       "category": "auth",
       "type": "number",
       "defaultValue": null,
@@ -325,7 +325,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
@@ -415,7 +420,7 @@
     {
       "key": "CLAUDE_CODE_OAUTH_",
       "label": "Oauth ",
-      "description": "TODO: Add description",
+      "description": "Overrides OAuth credentials (token, client ID, scopes) used for authentication.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -426,7 +431,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
@@ -2025,7 +2035,7 @@
     {
       "key": "CLAUDE_CODE_FRAME_MCP",
       "label": "Frame Mcp",
-      "description": "TODO: Add description",
+      "description": "Enables the experimental Frame MCP tool integration.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -2037,7 +2047,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds Frame tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY",
@@ -3683,7 +3699,7 @@
     {
       "key": "CLAUDE_CODE_WEBFETCH_USE_CCR_PROXY",
       "label": "Webfetch Use Ccr Proxy",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebFetch traffic through the Claude Code Remote proxy.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -3695,7 +3711,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCESSIBILITY",
@@ -4900,7 +4921,7 @@
     {
       "key": "CLAUDE_CODE_REMOTE_HERMETIC_MODE",
       "label": "Remote Hermetic Mode",
-      "description": "TODO: Add description",
+      "description": "Restricts remote sessions to SDK MCP servers, dropping external ones.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -4911,7 +4932,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Drops non-SDK MCP tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_RAW_EVENTS_FILE",
@@ -6383,7 +6410,7 @@
     {
       "key": "CLAUDE_CODE_ARTIFACT",
       "label": "Artifact",
-      "description": "TODO: Add description",
+      "description": "Enables Artifact publishing support for the current session.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6394,12 +6421,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds Artifact tool schema"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL",
       "label": "Assume First Party Base Url",
-      "description": "TODO: Add description",
+      "description": "Treats a custom base URL as first-party Anthropic infrastructure.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6411,7 +6444,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EXTERNAL_PERMISSIONS",
@@ -6607,7 +6645,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_BUNDLED_SKILLS",
       "label": "Disable Bundled Skills",
-      "description": "TODO: Add description",
+      "description": "Strips bundled skills and workflows, hiding built-in slash commands from the model.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6619,7 +6657,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Removes bundled skill listings from the prompt"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL",
@@ -6711,7 +6755,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_DESIGN_SYNC",
       "label": "Enable Design Sync",
-      "description": "TODO: Add description",
+      "description": "Enables syncing Claude Design assets, requiring a separate design login.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6722,12 +6766,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_MENU_KIND_LANES",
       "label": "Enable Menu Kind Lanes",
-      "description": "TODO: Add description",
+      "description": "Enables grouped kind lanes in slash-command menu listings.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6738,7 +6787,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGE",
@@ -6786,7 +6840,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_SESSION_PERSISTENCE",
       "label": "Force Session Persistence",
-      "description": "TODO: Add description",
+      "description": "Forces transcript persistence even in child sessions that normally skip it.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -6798,7 +6852,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SYNC_OUTPUT",
@@ -6866,7 +6925,7 @@
     {
       "key": "CLAUDE_CODE_FRAME_AUTO_OPEN",
       "label": "Frame Auto Open",
-      "description": "TODO: Add description",
+      "description": "Auto-opens the Frame preview when a session starts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6877,7 +6936,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
@@ -7244,7 +7308,7 @@
     {
       "key": "CLAUDE_CODE_PEWTER_OWL_TOOL",
       "label": "Pewter Owl Tool",
-      "description": "TODO: Add description",
+      "description": "Overrides the GrowthBook gate for the experimental pewter-owl tool.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7256,7 +7320,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds experimental tool schema"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
@@ -7362,7 +7432,7 @@
     {
       "key": "CLAUDE_CODE_SAFE_MODE",
       "label": "Safe Mode",
-      "description": "TODO: Add description",
+      "description": "Disables all customizations (CLAUDE.md, hooks, skills) for troubleshooting broken configs.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7374,7 +7444,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Strips CLAUDE.md and custom instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SESSION_ID",
@@ -7698,7 +7774,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_INSTALL_TIMEOUT_MS",
       "label": "Sync Skills Install Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps skill installation time during workspace sync; default thirty seconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -7709,7 +7785,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS",
@@ -7949,7 +8030,7 @@
     {
       "key": "CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS",
       "label": "User Dialog Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Overrides how long user dialogs wait before timing out, in milliseconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -7961,12 +8042,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_VELVET_FALCON",
       "label": "Velvet Falcon",
-      "description": "TODO: Add description",
+      "description": "Force-enables an undocumented codename experiment gate.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7977,7 +8063,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_VERIFY_PROMPT",
@@ -8188,7 +8279,7 @@
     {
       "key": "CLAUDE_CODE_WEBFETCH_PROXY_PATH",
       "label": "Webfetch Proxy Path",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebFetch traffic through a custom proxy path.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -8202,7 +8293,12 @@
       "isNew": true,
       "addedInVersion": "2.1.166",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.169"
+      "deprecatedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_NAME",

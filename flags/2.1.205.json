@@ -314,7 +314,7 @@
     {
       "key": "CLAUDE_CODE_AUTH_FAIL_EXIT_MS",
       "label": "Auth Fail Exit Ms",
-      "description": "TODO: Add description",
+      "description": "Forces remote child sessions to exit after sustained auth failure; default ten minutes.",
       "category": "auth",
       "type": "number",
       "defaultValue": null,
@@ -325,7 +325,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CUSTOM_OAUTH_URL",
@@ -352,7 +357,7 @@
     {
       "key": "CLAUDE_CODE_DESIGN_OAUTH_CLIENT_ID",
       "label": "Design Oauth Client Id",
-      "description": "TODO: Add description",
+      "description": "Overrides the registered OAuth client id used for Claude Design login.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -363,7 +368,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.178"
+      "addedInVersion": "2.1.178",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_HFI_BEARER_TOKEN",
@@ -431,7 +441,7 @@
     {
       "key": "CLAUDE_CODE_OAUTH_",
       "label": "Oauth ",
-      "description": "TODO: Add description",
+      "description": "Overrides OAuth credentials (token, client ID, scopes) used for authentication.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -442,7 +452,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_CLIENT_ID",
@@ -706,7 +721,7 @@
     {
       "key": "CLAUDE_CODE_AUTO_MODE_PRIOR_ASSISTANT_CONTEXT",
       "label": "Auto Mode Prior Assistant Context",
-      "description": "TODO: Add description",
+      "description": "Includes prior assistant turns in auto-mode permission evaluation.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -717,12 +732,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Extra assistant history per auto-mode check"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_SIBLING_CONTEXT",
       "label": "Auto Mode Sibling Context",
-      "description": "TODO: Add description",
+      "description": "Shares same-turn sibling agent context during auto-mode permission decisions.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -733,7 +754,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Sibling transcript context added per turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COLD_COMPACT",
@@ -760,7 +787,7 @@
     {
       "key": "CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY",
       "label": "Coordinator Propagate Nested Memory",
-      "description": "TODO: Add description",
+      "description": "Propagates nested CLAUDE.md files loaded by subagents into the coordinator's context.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -771,7 +798,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.193"
+      "addedInVersion": "2.1.193",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Adds subagent-discovered CLAUDE.md content per trigger"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
@@ -869,7 +902,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC",
       "label": "Disable Memory Periodic Resync",
-      "description": "TODO: Add description",
+      "description": "Disables the periodic background resync of the on-disk memory store.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -880,12 +913,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.178"
+      "addedInVersion": "2.1.178",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects disk sync, not context contents"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE",
       "label": "Disable Nested Chain Idle",
-      "description": "TODO: Add description",
+      "description": "Disables idle-state tracking for nested agent chains blocked on user input.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -896,7 +935,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.200"
+      "addedInVersion": "2.1.200",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
@@ -1079,7 +1123,7 @@
     {
       "key": "CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT",
       "label": "Mcp Tool Idle Timeout",
-      "description": "TODO: Add description",
+      "description": "Caps silent MCP tool runtime in milliseconds; 0 disables the timeout.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -1090,7 +1134,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.187"
+      "addedInVersion": "2.1.187",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_MEMORY_DIR",
@@ -1401,7 +1450,7 @@
     {
       "key": "CLAUDE_CODE_FRAME_TIMING_SAMPLE_EVERY",
       "label": "Frame Timing Sample Every",
-      "description": "TODO: Add description",
+      "description": "Samples every Nth frame when frame-timing logging is enabled.",
       "category": "debug",
       "type": "text",
       "defaultValue": null,
@@ -1412,7 +1461,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.195"
+      "addedInVersion": "2.1.195",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PERFETTO_TRACE",
@@ -1609,7 +1663,7 @@
     {
       "key": "CLAUDE_CODE_HIDE_SETTINGS_HINT",
       "label": "Hide Settings Hint",
-      "description": "TODO: Add description",
+      "description": "Hides the settings hint from the startup interface.",
       "category": "ide",
       "type": "text",
       "defaultValue": null,
@@ -1620,7 +1674,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.174"
+      "addedInVersion": "2.1.174",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_IDE_HOST_OVERRIDE",
@@ -1992,7 +2051,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_DESIGN_MCP",
       "label": "Enable Design Mcp",
-      "description": "TODO: Add description",
+      "description": "Enables the bundled Design MCP server and its tools.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -2003,7 +2062,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.179"
+      "addedInVersion": "2.1.179",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Adds MCP tool schemas to every request"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING",
@@ -2205,7 +2270,7 @@
     {
       "key": "CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS",
       "label": "Mcp Auto Background Ms",
-      "description": "TODO: Add description",
+      "description": "Controls how long MCP tool calls run before auto-backgrounding, in milliseconds.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -2216,7 +2281,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MCP_SERVER_NAME",
@@ -2265,7 +2335,7 @@
     {
       "key": "CLAUDE_CODE_PLUGIN_BINARY_ASSETS",
       "label": "Plugin Binary Assets",
-      "description": "TODO: Add description",
+      "description": "Enables downloading platform-specific binary assets bundled with plugins.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -2276,7 +2346,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.196"
+      "addedInVersion": "2.1.196",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PLUGIN_CACHE_DIR",
@@ -2413,7 +2488,7 @@
     {
       "key": "CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS",
       "label": "Skip Plugin Mcp Servers",
-      "description": "TODO: Add description",
+      "description": "Skips plugin MCP server discovery, dropping their tool schemas.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -2424,12 +2499,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Removes plugin tool schemas from requests"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS_EXCEPT",
       "label": "Skip Plugin Mcp Servers Except",
-      "description": "TODO: Add description",
+      "description": "Exempts named plugins when plugin MCP server loading is skipped.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -2440,7 +2521,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.199"
+      "addedInVersion": "2.1.199",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Exempted servers re-add tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB",
@@ -2537,7 +2624,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS_BUFFERED_DOWNLOAD",
       "label": "Sync Plugins Buffered Download",
-      "description": "TODO: Add description",
+      "description": "Forces plugin sync downloads to buffer fully instead of streaming.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -2548,12 +2635,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.179"
+      "addedInVersion": "2.1.179",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS_DOWNLOAD_STALL_MS",
       "label": "Sync Plugins Download Stall Ms",
-      "description": "TODO: Add description",
+      "description": "Overrides the stall timeout for synced plugin downloads, in milliseconds.",
       "category": "mcp-plugins",
       "type": "number",
       "defaultValue": null,
@@ -2564,7 +2656,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.179"
+      "addedInVersion": "2.1.179",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_PLUGINS_INSTALL_TIMEOUT_MS",
@@ -2611,7 +2708,7 @@
     {
       "key": "CLAUDE_CODE_TERMINAL_MCP_TOOLS",
       "label": "Terminal Mcp Tools",
-      "description": "TODO: Add description",
+      "description": "Designates MCP tools whose text input streams to the interactive terminal.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -2622,7 +2719,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.181"
+      "addedInVersion": "2.1.181",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_BETAS",
@@ -2756,7 +2858,7 @@
     {
       "key": "ANTHROPIC_DEFAULT_FABLE_MODEL",
       "label": "Default Fable Model",
-      "description": "TODO: Add description",
+      "description": "Overrides the model ID used for the Fable model tier.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2767,12 +2869,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.170"
+      "addedInVersion": "2.1.170",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_FABLE_MODEL_DESCRIPTION",
       "label": "Default Fable Model Description",
-      "description": "TODO: Add description",
+      "description": "Overrides model-picker description text for a custom Fable model.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2783,12 +2890,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.170"
+      "addedInVersion": "2.1.170",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME",
       "label": "Default Fable Model Name",
-      "description": "TODO: Add description",
+      "description": "Overrides the display label shown for a custom Fable model in the picker.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2799,12 +2911,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.170"
+      "addedInVersion": "2.1.170",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_FABLE_MODEL_SUPPORTED_CAPABILITIES",
       "label": "Default Fable Model Supported Capabilities",
-      "description": "TODO: Add description",
+      "description": "Declares supported capabilities for a custom Fable model override.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2815,7 +2932,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.170"
+      "addedInVersion": "2.1.170",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Can gate thinking support for overridden model"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
@@ -3523,7 +3646,7 @@
     {
       "key": "CLAUDE_CODE_SUBAGENT_CACHE_EVICT",
       "label": "Subagent Cache Evict",
-      "description": "TODO: Add description",
+      "description": "Forces prompt-cache eviction for completed subagent transcripts.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -3534,7 +3657,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects cache billing, not token volume"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SUBAGENT_MODEL",
@@ -3576,7 +3705,7 @@
     {
       "key": "CLAUDE_CODE_AGENT_PROXY_GH_SHIM",
       "label": "Agent Proxy Gh Shim",
-      "description": "TODO: Add description",
+      "description": "Enables a gh CLI shim routing GitHub calls through the agent proxy.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -3587,12 +3716,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.202"
+      "addedInVersion": "2.1.202",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_PROXY_GIT_CONFIG",
       "label": "Agent Proxy Git Config",
-      "description": "TODO: Add description",
+      "description": "Appends governed agent-proxy settings to git configuration.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -3603,7 +3737,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.202"
+      "addedInVersion": "2.1.202",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_CERT_STORE",
@@ -4027,7 +4166,7 @@
     {
       "key": "CLAUDE_CODE_WEBFETCH_USE_CCR_PROXY",
       "label": "Webfetch Use Ccr Proxy",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebFetch traffic through the Claude Code Remote proxy.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -4038,12 +4177,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WEBSEARCH_USE_CCR_PROXY",
       "label": "Websearch Use Ccr Proxy",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebSearch traffic through the Claude Code Remote agent proxy.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -4054,7 +4198,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.182"
+      "addedInVersion": "2.1.182",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACCESSIBILITY",
@@ -4413,7 +4562,7 @@
     {
       "key": "CLAUDE_CODE_RELAUNCH_TERMINAL_SIZE",
       "label": "Relaunch Terminal Size",
-      "description": "TODO: Add description",
+      "description": "Internal marker preserving terminal dimensions across CLI relaunch.",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -4424,7 +4573,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.203"
+      "addedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SCROLL_SPEED",
@@ -4533,7 +4687,7 @@
     {
       "key": "CLAUDE_CODE_BG_TASKS_REPORT_RUNNING",
       "label": "Bg Tasks Report Running",
-      "description": "TODO: Add description",
+      "description": "Reports sessions with running background tasks or teammates as still active.",
       "category": "planning-tasks",
       "type": "text",
       "defaultValue": null,
@@ -4544,7 +4698,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.181"
+      "addedInVersion": "2.1.181",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE",
@@ -4572,7 +4731,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_EXPLORE_PLAN_AGENTS",
       "label": "Disable Explore Plan Agents",
-      "description": "TODO: Add description",
+      "description": "Disables built-in Explore and Plan subagents, forcing inline exploration instead.",
       "category": "planning-tasks",
       "type": "boolean",
       "defaultValue": null,
@@ -4583,7 +4742,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Shifts subagent token spend into main context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_TASKS",
@@ -5126,7 +5291,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_REMOTE_RECAP",
       "label": "Enable Remote Recap",
-      "description": "TODO: Add description",
+      "description": "Enables recap generation for remote (CCR) Claude Code sessions.",
       "category": "remote-containers",
       "type": "boolean",
       "defaultValue": null,
@@ -5137,7 +5302,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.174"
+      "addedInVersion": "2.1.174",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "medium",
+        "notes": "Extra summarization requests"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENVIRONMENT_KIND",
@@ -5280,7 +5451,7 @@
     {
       "key": "CLAUDE_CODE_REMOTE_HERMETIC_MODE",
       "label": "Remote Hermetic Mode",
-      "description": "TODO: Add description",
+      "description": "Restricts remote sessions to SDK MCP servers, dropping external ones.",
       "category": "remote-containers",
       "type": "text",
       "defaultValue": null,
@@ -5291,7 +5462,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "medium",
+        "notes": "Drops non-SDK MCP tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REMOTE_RAW_EVENTS_FILE",
@@ -5626,7 +5803,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP",
       "label": "Disable Bg Shell Pressure Reap",
-      "description": "TODO: Add description",
+      "description": "Disables killing idle background shells under memory pressure.",
       "category": "session-lifecycle",
       "type": "boolean",
       "defaultValue": null,
@@ -5637,7 +5814,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.193"
+      "addedInVersion": "2.1.193",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DONT_INHERIT_ENV",
@@ -6266,7 +6448,7 @@
     {
       "key": "CLAUDE_CODE_OTEL_DIAG_STDERR",
       "label": "Otel Diag Stderr",
-      "description": "TODO: Add description",
+      "description": "Enables OpenTelemetry diagnostic logging to stderr for debugging exporters.",
       "category": "telemetry",
       "type": "text",
       "defaultValue": null,
@@ -6277,7 +6459,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.179"
+      "addedInVersion": "2.1.179",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS",
@@ -6772,7 +6959,7 @@
     {
       "key": "CLAUDE_CODE_ALTGR_AS_TEXT",
       "label": "Altgr As Text",
-      "description": "TODO: Add description",
+      "description": "Forces AltGr keypresses to insert literal text instead of shortcuts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6783,12 +6970,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.179"
+      "addedInVersion": "2.1.179",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ARTIFACT",
       "label": "Artifact",
-      "description": "TODO: Add description",
+      "description": "Enables Artifact publishing support for the current session.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6799,12 +6991,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds Artifact tool schema"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ARTIFACT_AUTO_OPEN",
       "label": "Artifact Auto Open",
-      "description": "TODO: Add description",
+      "description": "Controls automatic browser opening of freshly published artifacts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6815,12 +7013,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ARTIFACT_DIRECT_UPLOAD",
       "label": "Artifact Direct Upload",
-      "description": "TODO: Add description",
+      "description": "Forces artifact deploys onto the inline direct-upload path, skipping signed-URL init.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6831,12 +7034,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ARTIFACTS_API_BASE_URL",
       "label": "Artifacts Api Base Url",
-      "description": "TODO: Add description",
+      "description": "Reroutes artifact upload traffic to a custom API endpoint.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6847,12 +7055,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.181"
+      "addedInVersion": "2.1.181",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL",
       "label": "Assume First Party Base Url",
-      "description": "TODO: Add description",
+      "description": "Treats a custom base URL as first-party Anthropic infrastructure.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6863,12 +7076,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_BACKGROUND_TIMEOUT_MS",
       "label": "Auto Background Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps foreground wait before bash commands auto-background; minimum two seconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -6879,12 +7097,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_CLASSIFY_EDITS",
       "label": "Auto Mode Classify Edits",
-      "description": "TODO: Add description",
+      "description": "Enables classifier checks catching edits that circumvent deny rules.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6895,12 +7118,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.203"
+      "addedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Extra classifier model call per screened edit"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL",
       "label": "Auto Mode Edit Removal",
-      "description": "TODO: Add description",
+      "description": "Overrides the GrowthBook gate controlling auto-mode edit-removal visibility.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6911,12 +7140,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL_CAP",
       "label": "Auto Mode Edit Removal Cap",
-      "description": "TODO: Add description",
+      "description": "Caps how much auto-mode edits may remove before extra visibility triggers.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6927,7 +7161,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_EXTERNAL_PERMISSIONS",
@@ -6953,7 +7192,7 @@
     {
       "key": "CLAUDE_CODE_AUTO_MODE_GIT_STATUS",
       "label": "Auto Mode Git Status",
-      "description": "TODO: Add description",
+      "description": "Injects git status into the auto-mode classifier prompt.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6965,12 +7204,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Feeds classifier, not main conversation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_GIT_STATUS_LIMIT",
       "label": "Auto Mode Git Status Limit",
-      "description": "TODO: Add description",
+      "description": "Caps git-status lines injected into auto-mode context.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6982,12 +7227,18 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "Truncation limit dictates injected size"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_GIT_STATUS_UPLOADS",
       "label": "Auto Mode Git Status Uploads",
-      "description": "TODO: Add description",
+      "description": "Enables uploading git status snapshots in auto mode.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -6999,12 +7250,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_OUTCOME_CODES",
       "label": "Auto Mode Outcome Codes",
-      "description": "TODO: Add description",
+      "description": "Overrides the GrowthBook gate controlling auto-mode permission outcome-code visibility.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7015,12 +7271,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_REPO_VISIBILITY",
       "label": "Auto Mode Repo Visibility",
-      "description": "TODO: Add description",
+      "description": "Enables repo visibility lookups when auto mode evaluates permission safety.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7032,12 +7293,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_TEMPERATURE",
       "label": "Auto Mode Temperature",
-      "description": "TODO: Add description",
+      "description": "Overrides sampling temperature for the auto-mode classifier model.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7048,12 +7314,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BASALT_COVE",
       "label": "Basalt Cove",
-      "description": "TODO: Add description",
+      "description": "Force-enables the experimental basalt_cove per-model prompt behaviour gate.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7065,7 +7336,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Undocumented prompt-variant experiment"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_BENCH_LIVE_COUNTS",
@@ -7091,7 +7368,7 @@
     {
       "key": "CLAUDE_CODE_BRIDGE_SESSION_ID",
       "label": "Bridge Session Id",
-      "description": "TODO: Add description",
+      "description": "Set internally to link child processes to their bridge session.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7102,12 +7379,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.199"
+      "addedInVersion": "2.1.199",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_CHILD_SESSION",
       "label": "Child Session",
-      "description": "TODO: Add description",
+      "description": "Internal marker identifying tmux child sessions spawned by Claude Code.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7118,7 +7400,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_CLASSIFIER_SUMMARY",
@@ -7145,7 +7432,7 @@
     {
       "key": "CLAUDE_CODE_COORDINATOR_EXTRA_TOOLS",
       "label": "Coordinator Extra Tools",
-      "description": "TODO: Add description",
+      "description": "Whitelists extra tools past the coordinator agent's tool filter.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7156,7 +7443,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.178"
+      "addedInVersion": "2.1.178",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "More tool schemas loaded per listed tool"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COORDINATOR_MODE",
@@ -7288,7 +7581,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_ARTIFACT",
       "label": "Disable Artifact",
-      "description": "TODO: Add description",
+      "description": "Disables the Artifact tool, removing its schema from requests.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7299,12 +7592,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.172"
+      "addedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Removes Artifact tool schema"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_BG_EXIT_HANDOFF",
       "label": "Disable Bg Exit Handoff",
-      "description": "TODO: Add description",
+      "description": "Disables handing off running background tasks when exiting.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7315,12 +7614,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.196"
+      "addedInVersion": "2.1.196",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_BUNDLED_SKILLS",
       "label": "Disable Bundled Skills",
-      "description": "TODO: Add description",
+      "description": "Strips bundled skills and workflows, hiding built-in slash commands from the model.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7331,7 +7635,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Removes bundled skill listings from the prompt"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL",
@@ -7358,7 +7668,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_LAUNCH_COMPOSER",
       "label": "Disable Launch Composer",
-      "description": "TODO: Add description",
+      "description": "Disables the launch composer UI at startup.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7369,12 +7679,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.186"
+      "addedInVersion": "2.1.186",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_MOUSE_CLICKS",
       "label": "Disable Mouse Clicks",
-      "description": "TODO: Add description",
+      "description": "Disables mouse click handling while keeping scroll support.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7385,12 +7700,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.195"
+      "addedInVersion": "2.1.195",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK",
       "label": "Disable Notification Presence Check",
-      "description": "TODO: Add description",
+      "description": "Sends push notifications even when the user appears present.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7401,7 +7721,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.193"
+      "addedInVersion": "2.1.193",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK",
@@ -7450,7 +7775,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_WORKING_SYNC",
       "label": "Disable Working Sync",
-      "description": "TODO: Add description",
+      "description": "Disables working-file sync for remote SDK sessions.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7461,12 +7786,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DOWNLOAD_DEADLINE_MS_FOR_TESTING",
       "label": "Download Deadline Ms For Testing",
-      "description": "TODO: Add description",
+      "description": "Testing-only override for the update download deadline in milliseconds.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7478,7 +7808,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.205"
+      "addedInVersion": "2.1.205",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_ENABLE_AUTO_MODE",
@@ -7504,7 +7839,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_DESIGN_SYNC",
       "label": "Enable Design Sync",
-      "description": "TODO: Add description",
+      "description": "Enables syncing Claude Design assets, requiring a separate design login.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7515,12 +7850,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.166"
+      "addedInVersion": "2.1.166",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_LAUNCH_COMPOSER",
       "label": "Enable Launch Composer",
-      "description": "TODO: Add description",
+      "description": "Enables the experimental launch composer startup interface.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7531,12 +7871,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.193"
+      "addedInVersion": "2.1.193",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_MENU_KIND_LANES",
       "label": "Enable Menu Kind Lanes",
-      "description": "TODO: Add description",
+      "description": "Enables grouped kind lanes in slash-command menu listings.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7547,12 +7892,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXPERIMENTAL_OBSERVER_AGENTS",
       "label": "Experimental Observer Agents",
-      "description": "TODO: Add description",
+      "description": "Enables background observer agents that watch active agents.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7563,12 +7913,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.200"
+      "addedInVersion": "2.1.200",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Observer runs consume separate agent contexts"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FABLE_BRIDGE_DIALOG_TIMEOUT_MS",
       "label": "Fable Bridge Dialog Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps how long the Fable bridge classifier dialog waits; default sixty seconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -7579,12 +7935,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.178"
+      "addedInVersion": "2.1.178",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FLEET_PAST_SESSIONS",
       "label": "Fleet Past Sessions",
-      "description": "TODO: Add description",
+      "description": "Enables past-session history in the fleet sessions view.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7595,7 +7956,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.203"
+      "addedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGE",
@@ -7643,7 +8009,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_STRIKETHROUGH",
       "label": "Force Strikethrough",
-      "description": "TODO: Add description",
+      "description": "Forces strikethrough rendering regardless of terminal capability detection.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -7654,7 +8020,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.186"
+      "addedInVersion": "2.1.186",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_SYNC_OUTPUT",
@@ -7743,7 +8114,7 @@
     {
       "key": "CLAUDE_CODE_GZIP_REQUEST_BODIES",
       "label": "Gzip Request Bodies",
-      "description": "TODO: Add description",
+      "description": "Compresses API request bodies with gzip, cutting upload bandwidth only.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7754,12 +8125,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.199"
+      "addedInVersion": "2.1.199",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_HOST_CREDS_FILE",
       "label": "Host Creds File",
-      "description": "TODO: Add description",
+      "description": "Points to a host-supplied credentials file for provider auth.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7770,7 +8146,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_INVESTIGATE_FIRST",
@@ -8074,7 +8455,7 @@
     {
       "key": "CLAUDE_CODE_PARKED_PERMISSION_WAIT_MS",
       "label": "Parked Permission Wait Ms",
-      "description": "TODO: Add description",
+      "description": "Controls how long parked permission requests wait before proceeding, in milliseconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -8085,7 +8466,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.198"
+      "addedInVersion": "2.1.198",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PEWTER_OWL",
@@ -8111,7 +8497,7 @@
     {
       "key": "CLAUDE_CODE_PEWTER_OWL_TOOL",
       "label": "Pewter Owl Tool",
-      "description": "TODO: Add description",
+      "description": "Overrides the GrowthBook gate for the experimental pewter-owl tool.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8122,12 +8508,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds experimental tool schema"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_POWERUP_ONBOARDING",
       "label": "Powerup Onboarding",
-      "description": "TODO: Add description",
+      "description": "Forces the power-user onboarding experiment arm: banner or step.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8138,12 +8530,17 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.181"
+      "addedInVersion": "2.1.181",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS",
       "label": "Print Bg Wait Ceiling Ms",
-      "description": "TODO: Add description",
+      "description": "Caps background-task wait in print mode; 0 waits indefinitely.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -8154,7 +8551,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.182"
+      "addedInVersion": "2.1.182",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROACTIVE",
@@ -8244,7 +8646,7 @@
     {
       "key": "CLAUDE_CODE_REPORT_FINDINGS",
       "label": "Report Findings",
-      "description": "TODO: Add description",
+      "description": "Forces the structured findings-report tool during code review runs.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8255,7 +8657,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.196"
+      "addedInVersion": "2.1.196",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds one tool schema plus structured output"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RETRY_WATCHDOG",
@@ -8276,7 +8684,7 @@
     {
       "key": "CLAUDE_CODE_SAFE_MODE",
       "label": "Safe Mode",
-      "description": "TODO: Add description",
+      "description": "Disables all customizations (CLAUDE.md, hooks, skills) for troubleshooting broken configs.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8287,7 +8695,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "high",
+        "notes": "Strips CLAUDE.md and custom instructions"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SESSION_ID",
@@ -8376,7 +8790,7 @@
     {
       "key": "CLAUDE_CODE_SKILL_DESC_REFRAME",
       "label": "Skill Desc Reframe",
-      "description": "TODO: Add description",
+      "description": "Rewrites skill descriptions with experimental reframed wording.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8387,7 +8801,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.196"
+      "addedInVersion": "2.1.196",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Alters skill description text in prompt"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SKILL_DESCRIPTION",
@@ -8627,7 +9047,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_INSTALL_TIMEOUT_MS",
       "label": "Sync Skills Install Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps skill installation time during workspace sync; default thirty seconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -8638,7 +9058,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.163"
+      "addedInVersion": "2.1.163",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS",
@@ -8791,7 +9216,7 @@
     {
       "key": "CLAUDE_CODE_TODO_REMINDER_MODE",
       "label": "Todo Reminder Mode",
-      "description": "TODO: Add description",
+      "description": "Controls per-turn todo reminder nudges; set off to silence them.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8802,12 +9227,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.178"
+      "addedInVersion": "2.1.178",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Small reminders, but repeated every turn"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TOTAL_TOKENS_REMINDER",
       "label": "Total Tokens Reminder",
-      "description": "TODO: Add description",
+      "description": "Controls the token-usage reminder mode injected into prompts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8818,12 +9249,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.176"
+      "addedInVersion": "2.1.176",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Reminder repeats after tool-result batches"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TOTAL_TOKENS_REMINDER_AFTER_USER_TURN",
       "label": "Total Tokens Reminder After User Turn",
-      "description": "TODO: Add description",
+      "description": "Resets total-tokens reminder budget at the start of each user turn.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8834,12 +9271,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.202"
+      "addedInVersion": "2.1.202",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Changes reminder injection cadence"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TOTAL_TOKENS_REMINDER_BUDGET",
       "label": "Total Tokens Reminder Budget",
-      "description": "TODO: Add description",
+      "description": "Sets starting token budget for padded-countdown usage reminders.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8850,7 +9293,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.196"
+      "addedInVersion": "2.1.196",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Reminder block re-injected each turn"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_TUI_JUST_SWITCHED",
@@ -8942,7 +9391,7 @@
     {
       "key": "CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS",
       "label": "User Dialog Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Overrides how long user dialogs wait before timing out, in milliseconds.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -8953,7 +9402,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.169"
+      "addedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_VERIFY_PROMPT",
@@ -9022,7 +9476,7 @@
     {
       "key": "CLAUDE_CODE_WORKFLOW_SIZE_WARNING_AGENTS",
       "label": "Workflow Size Warning Agents",
-      "description": "TODO: Add description",
+      "description": "Overrides the agent-count threshold that triggers workflow size warnings.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9033,12 +9487,18 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.203"
+      "addedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Warning text injected past threshold"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WORKFLOW_SIZE_WARNING_TOKENS",
       "label": "Workflow Size Warning Tokens",
-      "description": "TODO: Add description",
+      "description": "Overrides token threshold that triggers workflow size warnings.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9049,7 +9509,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.203"
+      "addedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Warning emitted when projected tokens exceed cap"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WORKFLOWS",
@@ -9171,7 +9637,7 @@
     {
       "key": "CLAUDE_CODE_ARTIFACT_MCP",
       "label": "Artifact Mcp",
-      "description": "TODO: Add description",
+      "description": "Enables Artifact publishing through a dedicated MCP server integration.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -9184,12 +9650,18 @@
       "audience": "standard",
       "addedInVersion": "2.1.172",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.174"
+      "deprecatedInVersion": "2.1.174",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds artifact tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME_MCP",
       "label": "Frame Mcp",
-      "description": "TODO: Add description",
+      "description": "Enables the experimental Frame MCP tool integration.",
       "category": "mcp-plugins",
       "type": "text",
       "defaultValue": null,
@@ -9202,7 +9674,13 @@
       "audience": "standard",
       "addedInVersion": "2.1.169",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.172"
+      "deprecatedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds Frame tool schemas"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_COST_STEER",
@@ -9257,7 +9735,7 @@
     {
       "key": "CLAUDE_CODE_WEBFETCH_PROXY_PATH",
       "label": "Webfetch Proxy Path",
-      "description": "TODO: Add description",
+      "description": "Reroutes WebFetch traffic through a custom proxy path.",
       "category": "networking",
       "type": "text",
       "defaultValue": null,
@@ -9270,7 +9748,12 @@
       "audience": "standard",
       "addedInVersion": "2.1.166",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.169"
+      "deprecatedInVersion": "2.1.169",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AGENT_NAME",
@@ -9444,7 +9927,7 @@
     {
       "key": "CLAUDE_CODE_OTEL_DIAG_STDERRT",
       "label": "Otel Diag Stderrt",
-      "description": "TODO: Add description",
+      "description": "Diagnostic OTel stderr flag variant; appears unused in binary.",
       "category": "telemetry",
       "type": "text",
       "defaultValue": null,
@@ -9457,12 +9940,17 @@
       "audience": "standard",
       "addedInVersion": "2.1.201",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.202"
+      "deprecatedInVersion": "2.1.202",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_CONNECT_TIMEOUT_MS",
       "label": "Connect Timeout Ms",
-      "description": "TODO: Add description",
+      "description": "Caps connection timeout in milliseconds for outbound network requests.",
       "category": "uncategorised",
       "type": "number",
       "defaultValue": null,
@@ -9475,7 +9963,12 @@
       "audience": "standard",
       "addedInVersion": "2.1.182",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.186"
+      "deprecatedInVersion": "2.1.186",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_AGENTS_FLEET",
@@ -9526,7 +10019,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_SESSION_PERSISTENCE",
       "label": "Force Session Persistence",
-      "description": "TODO: Add description",
+      "description": "Forces transcript persistence even in child sessions that normally skip it.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -9539,7 +10032,12 @@
       "audience": "standard",
       "addedInVersion": "2.1.169",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.170"
+      "deprecatedInVersion": "2.1.170",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME",
@@ -9567,7 +10065,7 @@
     {
       "key": "CLAUDE_CODE_FRAME_AUTO_OPEN",
       "label": "Frame Auto Open",
-      "description": "TODO: Add description",
+      "description": "Auto-opens the Frame preview when a session starts.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9580,7 +10078,12 @@
       "audience": "standard",
       "addedInVersion": "2.1.166",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.172"
+      "deprecatedInVersion": "2.1.172",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FRAME_MODE",
@@ -9632,7 +10135,7 @@
     {
       "key": "CLAUDE_CODE_SHOJI_ENGINE",
       "label": "Shoji Engine",
-      "description": "TODO: Add description",
+      "description": "Toggles the undocumented experimental Shoji engine implementation.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9645,12 +10148,17 @@
       "audience": "standard",
       "addedInVersion": "2.1.193",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.203"
+      "deprecatedInVersion": "2.1.203",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_VELVET_FALCON",
       "label": "Velvet Falcon",
-      "description": "TODO: Add description",
+      "description": "Force-enables an undocumented codename experiment gate.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9663,7 +10171,12 @@
       "audience": "standard",
       "addedInVersion": "2.1.163",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.174"
+      "deprecatedInVersion": "2.1.174",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     }
   ]
 }
