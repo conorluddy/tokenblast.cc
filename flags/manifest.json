@@ -1,5 +1,5 @@
 {
-  "latest": "2.1.162",
+  "latest": "2.1.207",
   "snapshots": [
     {
       "version": "2.1.107",
@@ -479,6 +479,256 @@
       "totalFlags": 352,
       "added": 3,
       "removed": 7,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.163",
+      "file": "2.1.163.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.163",
+      "totalFlags": 356,
+      "added": 6,
+      "removed": 2,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.166",
+      "file": "2.1.166.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.166",
+      "totalFlags": 360,
+      "added": 4,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.169",
+      "file": "2.1.169.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.169",
+      "totalFlags": 367,
+      "added": 8,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.170",
+      "file": "2.1.170.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.170",
+      "totalFlags": 370,
+      "added": 4,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.172",
+      "file": "2.1.172.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.172",
+      "totalFlags": 375,
+      "added": 8,
+      "removed": 3,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.174",
+      "file": "2.1.174.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.174",
+      "totalFlags": 375,
+      "added": 2,
+      "removed": 2,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.176",
+      "file": "2.1.176.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.176",
+      "totalFlags": 376,
+      "added": 1,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.178",
+      "file": "2.1.178.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.178",
+      "totalFlags": 380,
+      "added": 5,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.179",
+      "file": "2.1.179.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.179",
+      "totalFlags": 385,
+      "added": 5,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.181",
+      "file": "2.1.181.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.181",
+      "totalFlags": 388,
+      "added": 4,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.182",
+      "file": "2.1.182.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.182",
+      "totalFlags": 390,
+      "added": 3,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.186",
+      "file": "2.1.186.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.186",
+      "totalFlags": 391,
+      "added": 2,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.187",
+      "file": "2.1.187.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.187",
+      "totalFlags": 392,
+      "added": 1,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.193",
+      "file": "2.1.193.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.193",
+      "totalFlags": 397,
+      "added": 5,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.195",
+      "file": "2.1.195.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.195",
+      "totalFlags": 399,
+      "added": 2,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.196",
+      "file": "2.1.196.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.196",
+      "totalFlags": 404,
+      "added": 5,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.198",
+      "file": "2.1.198.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.198",
+      "totalFlags": 415,
+      "added": 11,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.199",
+      "file": "2.1.199.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.199",
+      "totalFlags": 418,
+      "added": 3,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.200",
+      "file": "2.1.200.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.200",
+      "totalFlags": 420,
+      "added": 2,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.201",
+      "file": "2.1.201.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.201",
+      "totalFlags": 421,
+      "added": 1,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.202",
+      "file": "2.1.202.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.202",
+      "totalFlags": 423,
+      "added": 3,
+      "removed": 1,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.203",
+      "file": "2.1.203.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.203",
+      "totalFlags": 426,
+      "added": 5,
+      "removed": 2,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.205",
+      "file": "2.1.205.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.205",
+      "totalFlags": 432,
+      "added": 6,
+      "removed": 0,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.206",
+      "file": "2.1.206.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.206",
+      "totalFlags": 432,
+      "added": 2,
+      "removed": 2,
+      "notes": "Auto-generated snapshot"
+    },
+    {
+      "version": "2.1.207",
+      "file": "2.1.207.json",
+      "date": "2026-07-12",
+      "claudeCodeVersion": "2.1.207",
+      "totalFlags": 439,
+      "added": 7,
+      "removed": 0,
       "notes": "Auto-generated snapshot"
     }
   ]

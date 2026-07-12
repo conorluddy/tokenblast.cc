@@ -40,14 +40,22 @@ jobs:
             | grep -v -E '^CLAUDE_CODE_DISABLE_$|^CLAUDE_CODE_$|^CLAUDE_CODE_EXECPATH$|^CLAUDE_CODE_SANDBOXED$|^CLAUDE_CODE_SCRIPT_CAPS$|^CLAUDE_CODE_SDK_HAS_OAUTH_REFRESH$|^CLAUDE_CODE_SIMULATE_PROXY_USAGE$|^CLAUDE_CODE_ULTRAREVIEW_PREFLIGHT_FIXTURE$|^CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH$|^CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK$|^CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE$|^CLAUDE_CODE_REPO_CHECKOUTS$|^ANTHROPIC_AWS$' \
             > /tmp/source_keys.txt
 
-          # Extract keys from current snapshot
+          # Extract keys from current snapshot. Added is diffed against ALL
+          # keys (a lingering string for a deprecated flag must not re-add it);
+          # removed is diffed against ACTIVE keys only (already-deprecated
+          # flags must not count as removed on every run).
           node -e "
             const d = JSON.parse(require('fs').readFileSync('flags/$LATEST.json'));
             d.flags.forEach(f => console.log(f.key));
-          " | sort -u > /tmp/prev_keys.txt
+          " | sort -u > /tmp/prev_keys_all.txt
 
-          ADDED=$(comm -23 /tmp/source_keys.txt /tmp/prev_keys.txt | wc -l | tr -d ' ')
-          REMOVED=$(comm -13 /tmp/source_keys.txt /tmp/prev_keys.txt | wc -l | tr -d ' ')
+          node -e "
+            const d = JSON.parse(require('fs').readFileSync('flags/$LATEST.json'));
+            d.flags.filter(f => !f.deprecated).forEach(f => console.log(f.key));
+          " | sort -u > /tmp/prev_keys_active.txt
+
+          ADDED=$(comm -23 /tmp/source_keys.txt /tmp/prev_keys_all.txt | wc -l | tr -d ' ')
+          REMOVED=$(comm -13 /tmp/source_keys.txt /tmp/prev_keys_active.txt | wc -l | tr -d ' ')
 
           echo "added=$ADDED" >> "$GITHUB_OUTPUT"
           echo "removed=$REMOVED" >> "$GITHUB_OUTPUT"
