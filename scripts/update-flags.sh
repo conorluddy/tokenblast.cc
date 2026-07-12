@@ -5,25 +5,34 @@ set -euo pipefail
 # diff against the previous snapshot, and generate a new versioned JSON.
 #
 # Usage:
-#   ./scripts/update-flags.sh              # auto-detect latest npm version
-#   ./scripts/update-flags.sh --dry-run    # show diff only, don't write files
+#   ./scripts/update-flags.sh                    # auto-detect latest npm version
+#   ./scripts/update-flags.sh --dry-run          # show diff only, don't write files
+#   ./scripts/update-flags.sh 2.1.163            # target a specific version (backfill)
+#   ./scripts/update-flags.sh --dry-run 2.1.163
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 FLAGS_DIR="$REPO_ROOT/flags"
 MANIFEST="$FLAGS_DIR/manifest.json"
 TMP_DIR=$(mktemp -d)
 DRY_RUN=false
+REQ_VERSION="latest"
 
-[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+for arg in "$@"; do
+  if [[ "$arg" == "--dry-run" ]]; then
+    DRY_RUN=true
+  else
+    REQ_VERSION="$arg"
+  fi
+done
 
 cleanup() { rm -rf "$TMP_DIR"; }
 trap cleanup EXIT
 
 # === 1. Install latest Claude Code to temp dir ===
-echo "Installing @anthropic-ai/claude-code to temp dir..."
+echo "Installing @anthropic-ai/claude-code@$REQ_VERSION to temp dir..."
 cd "$TMP_DIR"
 npm init -y --silent > /dev/null 2>&1
-npm install @anthropic-ai/claude-code --silent 2>/dev/null
+npm install "@anthropic-ai/claude-code@$REQ_VERSION" --silent 2>/dev/null
 
 # The npm package ships a native ELF binary (no cli.js since ~2.1.9x).
 BINARY="$TMP_DIR/node_modules/@anthropic-ai/claude-code/bin/claude.exe"
@@ -63,15 +72,24 @@ if [[ ! -f "$PREV_FILE" ]]; then
   exit 1
 fi
 
-# Extract keys from previous snapshot
+# Extract keys from previous snapshot.
+# - ALL keys (incl. deprecated): a key that lingers in the binary strings but
+#   was already deprecated must not be re-added as a duplicate flag.
+# - ACTIVE keys only: already-deprecated flags must not show up as "removed"
+#   again on every run (which used to re-stamp their deprecatedInVersion).
 node -e "
   const d = JSON.parse(require('fs').readFileSync('$PREV_FILE'));
   d.flags.forEach(f => console.log(f.key));
-" | sort -u > "$TMP_DIR/prev_keys.txt"
+" | sort -u > "$TMP_DIR/prev_keys_all.txt"
+
+node -e "
+  const d = JSON.parse(require('fs').readFileSync('$PREV_FILE'));
+  d.flags.filter(f => !f.deprecated).forEach(f => console.log(f.key));
+" | sort -u > "$TMP_DIR/prev_keys_active.txt"
 
 # === 4. Diff ===
-ADDED=$(comm -23 "$TMP_DIR/source_keys.txt" "$TMP_DIR/prev_keys.txt")
-REMOVED=$(comm -13 "$TMP_DIR/source_keys.txt" "$TMP_DIR/prev_keys.txt")
+ADDED=$(comm -23 "$TMP_DIR/source_keys.txt" "$TMP_DIR/prev_keys_all.txt")
+REMOVED=$(comm -13 "$TMP_DIR/source_keys.txt" "$TMP_DIR/prev_keys_active.txt")
 
 ADDED_COUNT=$(echo "$ADDED" | grep -c . || true)
 REMOVED_COUNT=$(echo "$REMOVED" | grep -c . || true)
@@ -107,7 +125,9 @@ if [[ $ADDED_COUNT -gt 0 ]]; then
     [[ -z "$key" ]] && continue
     echo ""
     echo "## $key"
-    grep -o ".\{0,80\}$key.\{0,80\}" "$STRINGS_FILE" | head -2
+    # `|| true` guards against pipefail: head closes the pipe after 2 lines
+    # and grep exits non-zero on the resulting EPIPE for high-frequency keys.
+    grep -o ".\{0,80\}$key.\{0,80\}" "$STRINGS_FILE" | head -2 || true
   done <<< "$ADDED"
 fi
 
@@ -202,7 +222,7 @@ for (const key of addedKeys) {
 // Sort: non-deprecated first, then alphabetically within category
 flags.sort((a, b) => {
   if (a.deprecated && !b.deprecated) return 1;
-  if (!a.deprecated && b.deprecated) return 1;
+  if (!a.deprecated && b.deprecated) return -1;
   if (a.category !== b.category) return a.category.localeCompare(b.category);
   return a.key.localeCompare(b.key);
 });
