@@ -5159,7 +5159,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD",
       "label": "Disable Bedrock Content Type Guard",
-      "description": "TODO: Add description",
+      "description": "Suppresses the Bedrock streaming content-type check for misbehaving gateways or proxies.",
       "category": "provider-routing",
       "type": "boolean",
       "defaultValue": null,
@@ -5171,7 +5171,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.209"
+      "addedInVersion": "2.1.209",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST",
@@ -8084,7 +8089,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_RC_LONG_TURN_NUDGE",
       "label": "Force Rc Long Turn Nudge",
-      "description": "TODO: Add description",
+      "description": "Forces the remote-control long-turn nudge to fire immediately and always.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8096,7 +8101,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.209"
+      "addedInVersion": "2.1.209",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Testing override for a UI nudge dialog"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_STRIKETHROUGH",
@@ -8696,7 +8707,7 @@
     {
       "key": "CLAUDE_CODE_PROCESS_WRAPPER",
       "label": "Process Wrapper",
-      "description": "TODO: Add description",
+      "description": "Reroutes background and daemon session self-exec through a custom launcher path.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8708,7 +8719,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.209"
+      "addedInVersion": "2.1.209",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_PROPAGATE_TRACEPARENT",
@@ -8755,7 +8771,7 @@
     {
       "key": "CLAUDE_CODE_RC_PERMISSION_NUDGE",
       "label": "Rc Permission Nudge",
-      "description": "TODO: Add description",
+      "description": "Overrides timing and frequency of the remote-control permission nudge prompt.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8767,7 +8783,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.209"
+      "addedInVersion": "2.1.209",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Controls nudge display scheduling, not model tokens"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_REFUSAL_FALLBACK_CATCH_ALL",
