@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
+Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -239,12 +239,12 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` | boolean | Prevents Claude Code from updating the terminal window or tab title during sessions. |
 | `CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL` | boolean | Disables virtualised transcript rendering, forcing all messages to render simultaneously. |
 | `CLAUDE_CODE_EAGER_FLUSH` | boolean | Forces immediate stdout flush after each response chunk, useful for piped or cowork sessions. |
-| `CLAUDE_CODE_ENABLE_MORNING_BRIEF` 🆕 | boolean | Enables a morning brief summary generated at session start. |
+| `CLAUDE_CODE_ENABLE_MORNING_BRIEF` | boolean | Enables a morning brief summary generated at session start. |
 | `CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER` | boolean | Exits the process immediately after the first UI render cycle completes, for startup testing. |
 | `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exits the CLI after the specified idle milliseconds following the last response stop. |
 | `CLAUDE_CODE_FORCE_FULL_LOGO` | boolean | Forces the full ASCII logo to render regardless of terminal width or context. |
 | `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` | boolean | Forces the fullscreen-mode upsell prompt regardless of seen-count or feature-flag gate. |
-| `CLAUDE_CODE_MORNING_BRIEF_PROMPT` 🆕 | text | Overrides the prompt used for scheduled morning brief sessions. |
+| `CLAUDE_CODE_MORNING_BRIEF_PROMPT` | text | Overrides the prompt used for scheduled morning brief sessions. |
 | `CLAUDE_CODE_NO_FLICKER` | boolean | Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it. |
 | `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults. |
 | `CLAUDE_CODE_RELAUNCH_TERMINAL_SIZE` | text | Internal marker preserving terminal dimensions across CLI relaunch. |
@@ -283,6 +283,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `ANTHROPIC_FOUNDRY_RESOURCE` | text | Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided. |
 | `ANTHROPIC_VERTEX_BASE_URL` | text | Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_VERTEX_PROJECT_ID` | text | Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present. |
+| `CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD` 🆕 | boolean | — |
 | `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` | boolean | Signals that the host environment manages provider config, stripping auth env vars from subprocesses. |
 | `CLAUDE_CODE_USE_ANTHROPIC_AWS` | boolean | Routes all API calls through Anthropic's AWS platform (distinct from native Bedrock). |
 | `CLAUDE_CODE_USE_BEDROCK` | boolean | Routes all API calls through AWS Bedrock, disabling first-party error reporting. |
@@ -425,7 +426,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_AUTO_MODE_OUTCOME_CODES` | text | Overrides the GrowthBook gate controlling auto-mode permission outcome-code visibility. |
 | `CLAUDE_CODE_AUTO_MODE_REPO_VISIBILITY` | text | Enables repo visibility lookups when auto mode evaluates permission safety. |
 | `CLAUDE_CODE_AUTO_MODE_TEMPERATURE` | text | Overrides sampling temperature for the auto-mode classifier model. |
-| `CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MS` 🆕 | number | Caps AWS default-chain credential resolution time; defaults to 60 seconds. |
+| `CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MS` | number | Caps AWS default-chain credential resolution time; defaults to 60 seconds. |
 | `CLAUDE_CODE_BASALT_COVE` | text | Force-enables the experimental basalt_cove per-model prompt behaviour gate. |
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | Enables live token/turn counters in the terminal UI for benchmarking. |
 | `CLAUDE_CODE_BRIDGE_SESSION_ID` | text | Set internally to link child processes to their bridge session. |
@@ -458,6 +459,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_FLEET_PAST_SESSIONS` | text | Enables past-session history in the fleet sessions view. |
 | `CLAUDE_CODE_FORCE_BRIDGE` | boolean | Forces the REPL bridge transport path regardless of environment detection. |
 | `CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM` | boolean | Forces mid-conversation system prompt re-injection on all model versions. |
+| `CLAUDE_CODE_FORCE_RC_LONG_TURN_NUDGE` 🆕 | boolean | — |
 | `CLAUDE_CODE_FORCE_STRIKETHROUGH` | boolean | Forces strikethrough rendering regardless of terminal capability detection. |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
 | `CLAUDE_CODE_FORCE_TIP_ID` | boolean | Forces a specific onboarding tip to display, bypassing seen-state checks. |
@@ -469,7 +471,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_INVOKED_SKILLS` | text | Internal runtime register tracking which skills have fired and their per-invoke costs. |
 | `CLAUDE_CODE_JSONL_TRANSCRIPT` | text | Writes full conversation transcript as JSONL to the specified file path. |
 | `CLAUDE_CODE_KB_COHESION_FIXES` | text | Enables cohesion patches for knowledge-base content injected into the system prompt. |
-| `CLAUDE_CODE_LANTERN_PRISM` 🆕 | text | Force-enables the codenamed lantern-prism experiment, bypassing its GrowthBook gate. |
+| `CLAUDE_CODE_LANTERN_PRISM` | text | Force-enables the codenamed lantern-prism experiment, bypassing its GrowthBook gate. |
 | `CLAUDE_CODE_LOOP_KEEPALIVE` | text | Enables keepalive pings in the autonomous loop to prevent idle-timeout disconnection. |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | Enables persistent autonomous loop mode, continuing across blocked decisions. |
 | `CLAUDE_CODE_MANAGED_SETTINGS_PATH` | text | Loads org-managed settings from a custom path, overriding user-level config. |
@@ -486,8 +488,10 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_POWERUP_ONBOARDING` | text | Forces the power-user onboarding experiment arm: banner or step. |
 | `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS` | number | Caps background-task wait in print mode; 0 waits indefinitely. |
 | `CLAUDE_CODE_PROACTIVE` | text | Enables Kairos proactive/assistant mode for idle-triggered suggestions. |
+| `CLAUDE_CODE_PROCESS_WRAPPER` 🆕 | text | — |
 | `CLAUDE_CODE_PROPAGATE_TRACEPARENT` | text | Forwards a W3C traceparent header on outbound API requests for distributed trace correlation. |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
+| `CLAUDE_CODE_RC_PERMISSION_NUDGE` 🆕 | text | — |
 | `CLAUDE_CODE_REFUSAL_FALLBACK_CATCH_ALL` | text | Enables catch-all fallback-model rerouting when the API refuses a request. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_REPORT_FINDINGS` | text | Forces the structured findings-report tool during code review runs. |
@@ -500,7 +504,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_SKILL_DESC_REFRAME` | text | Rewrites skill descriptions with experimental reframed wording. |
 | `CLAUDE_CODE_SKILL_DESCRIPTION` | text | Overrides the trigger description text injected for the Claude Code docs skill. |
 | `CLAUDE_CODE_SKILL_NAME` | text | Overrides the default slash command name for the Claude Code docs skill. |
-| `CLAUDE_CODE_SKIP_AWS_CRED_CACHE` 🆕 | boolean | Bypasses cached AWS credentials when authenticating to Bedrock. |
+| `CLAUDE_CODE_SKIP_AWS_CRED_CACHE` | boolean | Bypasses cached AWS credentials when authenticating to Bedrock. |
 | `CLAUDE_CODE_SKIP_HFI_VERSION_CHECK` | boolean | Skips HFI protocol version compatibility check on startup. |
 | `CLAUDE_CODE_SKIP_PROJECT_BACKFILL` | boolean | Disables automatic backfill of project metadata at session start. |
 | `CLAUDE_CODE_SKIP_REPO_UPLOAD` | boolean | Prevents repository content from being uploaded to remote context store. |
@@ -522,7 +526,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER` | text | Controls the token-usage reminder mode injected into prompts. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER_AFTER_USER_TURN` | text | Resets total-tokens reminder budget at the start of each user turn. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER_BUDGET` | text | Sets starting token budget for padded-countdown usage reminders. |
-| `CLAUDE_CODE_TRIGGER_ID` 🆕 | text | Set internally to record which scheduled trigger spawned the remote session. |
+| `CLAUDE_CODE_TRIGGER_ID` | text | Set internally to record which scheduled trigger spawned the remote session. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
 | `CLAUDE_CODE_USE_GATEWAY` | text | Routes inference traffic through an Anthropic LLM gateway instead of the direct API. |
@@ -530,7 +534,7 @@ Generated from Claude Code **v2.1.207** — 439 flags across 18 categories.
 | `CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS` | number | Overrides how long user dialogs wait before timing out, in milliseconds. |
 | `CLAUDE_CODE_VERSION` | text | Exposes the current CLI version string to policy helper subprocesses. |
 | `CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPED` | text | Enables typed interim transcription results from the voice stream connection. |
-| `CLAUDE_CODE_WALNUT_SPIRE` 🆕 | text | Overrides the GrowthBook gate for the experimental walnut-spire feature. |
+| `CLAUDE_CODE_WALNUT_SPIRE` | text | Overrides the GrowthBook gate for the experimental walnut-spire feature. |
 | `CLAUDE_CODE_WORKFLOW_SIZE_WARNING_AGENTS` | text | Overrides the agent-count threshold that triggers workflow size warnings. |
 | `CLAUDE_CODE_WORKFLOW_SIZE_WARNING_TOKENS` | text | Overrides token threshold that triggers workflow size warnings. |
 | `CLAUDE_CODE_WORKFLOWS` | text | Enables the Workflows feature and specifies which workflow definitions are active. |
