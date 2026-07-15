@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
+Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -54,7 +54,9 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE` | boolean | Disables bulk pre-loading of memory entries into context, reducing upfront token usage. |
 | `CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC` | boolean | Disables the periodic background resync of the on-disk memory store. |
+| `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
+| `CLAUDE_CODE_DISABLE_ORG_MEMORY` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts. |
 | `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Enables an idle-return summary notification when resuming after an away period. |
 | `CLAUDE_CODE_FORCE_EVALUATE_MEMORY` | boolean | Forces memory evaluation on every turn, bypassing normal trigger conditions. |
@@ -275,7 +277,6 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `ANTHROPIC_AWS_BASE_URL` | text | Reroutes Anthropic-on-AWS traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_AWS_WORKSPACE_ID` | text | Required workspace ID sent as the anthropic-workspace-id header for Anthropic-on-AWS requests. |
 | `ANTHROPIC_BEDROCK_BASE_URL` | text | Reroutes AWS Bedrock traffic to a custom endpoint, overriding the region-derived default. |
-| `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | text | API key for the Amazon Bedrock Mantle managed-access backend. |
 | `ANTHROPIC_BEDROCK_MANTLE_BASE_URL` | text | Reroutes Bedrock Mantle traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_BEDROCK_SERVICE_TIER` | text | Sets the AWS Bedrock service tier header for capacity and priority routing. |
 | `ANTHROPIC_FOUNDRY_API_KEY` | text | API key for Microsoft Azure Foundry; mutually exclusive with Azure AD token provider. |
@@ -283,7 +284,7 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `ANTHROPIC_FOUNDRY_RESOURCE` | text | Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided. |
 | `ANTHROPIC_VERTEX_BASE_URL` | text | Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default. |
 | `ANTHROPIC_VERTEX_PROJECT_ID` | text | Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present. |
-| `CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD` | boolean | Suppresses the Bedrock streaming content-type check for misbehaving gateways or proxies. |
 | `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` | boolean | Signals that the host environment manages provider config, stripping auth env vars from subprocesses. |
 | `CLAUDE_CODE_USE_ANTHROPIC_AWS` | boolean | Routes all API calls through Anthropic's AWS platform (distinct from native Bedrock). |
 | `CLAUDE_CODE_USE_BEDROCK` | boolean | Routes all API calls through AWS Bedrock, disabling first-party error reporting. |
@@ -459,10 +460,11 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `CLAUDE_CODE_FLEET_PAST_SESSIONS` | text | Enables past-session history in the fleet sessions view. |
 | `CLAUDE_CODE_FORCE_BRIDGE` | boolean | Forces the REPL bridge transport path regardless of environment detection. |
 | `CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM` | boolean | Forces mid-conversation system prompt re-injection on all model versions. |
-| `CLAUDE_CODE_FORCE_RC_LONG_TURN_NUDGE` 🆕 | boolean | — |
+| `CLAUDE_CODE_FORCE_RC_LONG_TURN_NUDGE` | boolean | Forces the remote-control long-turn nudge to fire immediately and always. |
 | `CLAUDE_CODE_FORCE_STRIKETHROUGH` | boolean | Forces strikethrough rendering regardless of terminal capability detection. |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
 | `CLAUDE_CODE_FORCE_TIP_ID` | boolean | Forces a specific onboarding tip to display, bypassing seen-state checks. |
+| `CLAUDE_CODE_FORCE_WINDOWS_CREDMAN` 🆕 | boolean | — |
 | `CLAUDE_CODE_GB_BASE_URL` | text | Overrides the GrowthBook feature-flag server base URL for experimentation. |
 | `CLAUDE_CODE_GB_REFRESH_INTERVAL_MS` | number | Controls how often GrowthBook feature flags are re-fetched in milliseconds. |
 | `CLAUDE_CODE_GZIP_REQUEST_BODIES` | text | Compresses API request bodies with gzip, cutting upload bandwidth only. |
@@ -488,10 +490,10 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `CLAUDE_CODE_POWERUP_ONBOARDING` | text | Forces the power-user onboarding experiment arm: banner or step. |
 | `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS` | number | Caps background-task wait in print mode; 0 waits indefinitely. |
 | `CLAUDE_CODE_PROACTIVE` | text | Enables Kairos proactive/assistant mode for idle-triggered suggestions. |
-| `CLAUDE_CODE_PROCESS_WRAPPER` 🆕 | text | — |
+| `CLAUDE_CODE_PROCESS_WRAPPER` | text | Reroutes background and daemon session self-exec through a custom launcher path. |
 | `CLAUDE_CODE_PROPAGATE_TRACEPARENT` | text | Forwards a W3C traceparent header on outbound API requests for distributed trace correlation. |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
-| `CLAUDE_CODE_RC_PERMISSION_NUDGE` 🆕 | text | — |
+| `CLAUDE_CODE_RC_PERMISSION_NUDGE` | text | Overrides timing and frequency of the remote-control permission nudge prompt. |
 | `CLAUDE_CODE_REFUSAL_FALLBACK_CATCH_ALL` | text | Enables catch-all fallback-model rerouting when the API refuses a request. |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_REPORT_FINDINGS` | text | Forces the structured findings-report tool during code review runs. |
@@ -513,6 +515,7 @@ Generated from Claude Code **v2.1.209** — 443 flags across 18 categories.
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SUPERVISED` | text | Marks session as supervised, causing clean exit on uncaught exceptions. |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION` | text | Strips or replaces session attribution metadata injected into context by the CLI. |
+| `CLAUDE_CODE_SYNC_SESSION_REFS` 🆕 | text | — |
 | `CLAUDE_CODE_SYNC_SKILLS` | text | Triggers skill synchronisation at session start, pulling skill definitions from a remote source. |
 | `CLAUDE_CODE_SYNC_SKILLS_INSTALL_TIMEOUT_MS` | number | Caps skill installation time during workspace sync; default thirty seconds. |
 | `CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS` | number | Caps the startup wait for skill sync; session proceeds without skills once exceeded. |
@@ -545,6 +548,7 @@ These flags were present in earlier versions but have been removed.
 
 | Flag | Removed in |
 |------|------------|
+| `ANTHROPIC_BEDROCK_MANTLE_API_KEY` | 2.1.210 |
 | `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | 2.1.182 |
 | `CLAUDE_CODE_AGENT_COST_STEER` | 2.1.162 |
 | `CLAUDE_CODE_AGENT_LIST_IN_MESSAGES` | 2.1.178 |
