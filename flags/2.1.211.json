@@ -924,7 +924,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST",
       "label": "Disable Memory Stream List",
-      "description": "TODO: Add description",
+      "description": "Disables periodic streaming sync of multi-store memory metadata.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -935,7 +935,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Skips memory backend export/sync polling"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE",
@@ -961,7 +967,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_ORG_MEMORY",
       "label": "Disable Org Memory",
-      "description": "TODO: Add description",
+      "description": "Disables organization-level shared memory ledger writes and reads.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -972,7 +978,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Org memory can add large shared context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
@@ -1246,7 +1258,7 @@
     {
       "key": "CLAUDE_CODE_RESUME_INTERRUPTED_TURN_MAX_AGE_MS",
       "label": "Resume Interrupted Turn Max Age Ms",
-      "description": "TODO: Add description",
+      "description": "Caps how old an interrupted turn can be before resume is skipped.",
       "category": "context-memory",
       "type": "number",
       "defaultValue": null,
@@ -1258,7 +1270,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.211"
+      "addedInVersion": "2.1.211",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Longer window re-injects more stale turn context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_RESUME_PROMPT",
@@ -2146,7 +2164,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_REFRESH_MCP_TOOLS",
       "label": "Enable Refresh Mcp Tools",
-      "description": "TODO: Add description",
+      "description": "Enables a command to refresh MCP tool definitions without restarting.",
       "category": "mcp-plugins",
       "type": "boolean",
       "defaultValue": null,
@@ -2158,7 +2176,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.211"
+      "addedInVersion": "2.1.211",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "low",
+        "notes": "Adds one refresh command to tool list"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING",
@@ -3668,7 +3692,7 @@
     {
       "key": "CLAUDE_CODE_FORWARD_SUBAGENT_TEXT",
       "label": "Forward Subagent Text",
-      "description": "TODO: Add description",
+      "description": "Forwards subagent text output into the parent session's output stream.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -3680,7 +3704,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.211"
+      "addedInVersion": "2.1.211",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "medium",
+        "notes": "Streams subagent text alongside main output"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_OUTPUT_TOKENS",
@@ -6571,7 +6601,7 @@
     {
       "key": "CLAUDE_CODE_GB_DISK_CACHE_WHEN_TELEMETRY_OFF",
       "label": "Gb Disk Cache When Telemetry Off",
-      "description": "TODO: Add description",
+      "description": "Enables GrowthBook feature-flag disk caching even when telemetry is disabled.",
       "category": "telemetry",
       "type": "text",
       "defaultValue": null,
@@ -6583,7 +6613,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.211"
+      "addedInVersion": "2.1.211",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_OTEL_DIAG_STDERR",
@@ -8249,7 +8284,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_WINDOWS_CREDMAN",
       "label": "Force Windows Credman",
-      "description": "TODO: Add description",
+      "description": "Forces credential storage and retrieval through Windows Credential Manager.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8260,7 +8295,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
@@ -9324,7 +9364,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_SESSION_REFS",
       "label": "Sync Session Refs",
-      "description": "TODO: Add description",
+      "description": "Synchronizes session reference identifiers across bridged or resumed sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9335,7 +9375,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS",
