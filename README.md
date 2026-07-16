@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
+Generated from Claude Code **v2.1.211** — 450 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -54,9 +54,9 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE` | boolean | Disables bulk pre-loading of memory entries into context, reducing upfront token usage. |
 | `CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC` | boolean | Disables the periodic background resync of the on-disk memory store. |
-| `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` | boolean | — |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
-| `CLAUDE_CODE_DISABLE_ORG_MEMORY` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_ORG_MEMORY` | boolean | — |
 | `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts. |
 | `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Enables an idle-return summary notification when resuming after an away period. |
 | `CLAUDE_CODE_FORCE_EVALUATE_MEMORY` | boolean | Forces memory evaluation on every turn, bypassing normal trigger conditions. |
@@ -69,6 +69,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_REMOTE_MEMORY_DIR` | text | Redirects memory and session storage to an alternative directory for remote deployments. |
 | `CLAUDE_CODE_RESUME_FROM_SESSION` | text | Hydrates conversation context from a specific prior session ID via the Sessions API. |
 | `CLAUDE_CODE_RESUME_INTERRUPTED_TURN` | boolean | Automatically resumes an interrupted turn by re-injecting its message content. |
+| `CLAUDE_CODE_RESUME_INTERRUPTED_TURN_MAX_AGE_MS` 🆕 | number | — |
 | `CLAUDE_CODE_RESUME_PROMPT` | text | Overrides the default message injected when resuming an interrupted session. |
 | `CLAUDE_CODE_RESUME_THRESHOLD_MINUTES` | number | Sets minutes since the last message before the resume-session flow is offered. Default 70. |
 | `CLAUDE_CODE_RESUME_TOKEN_THRESHOLD` | number | Sets the minimum token count required before the resume-session prompt appears. Default 100000. |
@@ -148,6 +149,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
 | `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` | boolean | Enables fetching available models from a gateway endpoint via /v1/models. |
 | `CLAUDE_CODE_FORK_SUBAGENT` | text | Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate. |
+| `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` 🆕 | text | — |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICT` | text | Forces prompt-cache eviction for completed subagent transcripts. |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
@@ -170,6 +172,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_CFC` | boolean | Enables Claude-in-Chrome (CFC) mode, overriding the config-file default. |
 | `CLAUDE_CODE_ENABLE_FINE_GRAINED_TOOL_STREAMING` | boolean | Enables eager input streaming on tool calls, sending partial inputs before completion. |
 | `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` | boolean | Controls AI-generated next-prompt suggestions; overrides the GrowthBook feature flag. |
+| `CLAUDE_CODE_ENABLE_REFRESH_MCP_TOOLS` 🆕 | boolean | — |
 | `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` | boolean | Enables file-state checkpointing in SDK (headless) mode, where it is otherwise off. |
 | `CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENT` | boolean | Appends a token-usage block to every message, showing used/total/remaining counts. |
 | `CLAUDE_CODE_ENABLE_XAA` | boolean | Enables XAA (external agent authentication) OIDC flow for MCP server OAuth. |
@@ -375,6 +378,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` | boolean | Enables in-session feedback survey events sent via OpenTelemetry. |
 | `CLAUDE_CODE_ENABLE_TELEMETRY` | boolean | Activates third-party OpenTelemetry trace and metric export for the session. |
 | `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` | boolean | Opts into the enhanced beta tracing pipeline alongside ENABLE_ENHANCED_TELEMETRY_BETA. |
+| `CLAUDE_CODE_GB_DISK_CACHE_WHEN_TELEMETRY_OFF` 🆕 | text | — |
 | `CLAUDE_CODE_OTEL_DIAG_STDERR` | text | Enables OpenTelemetry diagnostic logging to stderr for debugging exporters. |
 | `CLAUDE_CODE_OTEL_FLUSH_TIMEOUT_MS` | number | Caps the time allotted for OpenTelemetry to flush all spans before process exit. Default 5,000ms. |
 | `CLAUDE_CODE_OTEL_HEADERS_HELPER_DEBOUNCE_MS` | number | Sets the debounce window for re-executing the OTel headers helper script. |
@@ -464,7 +468,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_FORCE_STRIKETHROUGH` | boolean | Forces strikethrough rendering regardless of terminal capability detection. |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
 | `CLAUDE_CODE_FORCE_TIP_ID` | boolean | Forces a specific onboarding tip to display, bypassing seen-state checks. |
-| `CLAUDE_CODE_FORCE_WINDOWS_CREDMAN` 🆕 | boolean | — |
+| `CLAUDE_CODE_FORCE_WINDOWS_CREDMAN` | boolean | — |
 | `CLAUDE_CODE_GB_BASE_URL` | text | Overrides the GrowthBook feature-flag server base URL for experimentation. |
 | `CLAUDE_CODE_GB_REFRESH_INTERVAL_MS` | number | Controls how often GrowthBook feature flags are re-fetched in milliseconds. |
 | `CLAUDE_CODE_GZIP_REQUEST_BODIES` | text | Compresses API request bodies with gzip, cutting upload bandwidth only. |
@@ -515,7 +519,7 @@ Generated from Claude Code **v2.1.210** — 446 flags across 18 categories.
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SUPERVISED` | text | Marks session as supervised, causing clean exit on uncaught exceptions. |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION` | text | Strips or replaces session attribution metadata injected into context by the CLI. |
-| `CLAUDE_CODE_SYNC_SESSION_REFS` 🆕 | text | — |
+| `CLAUDE_CODE_SYNC_SESSION_REFS` | text | — |
 | `CLAUDE_CODE_SYNC_SKILLS` | text | Triggers skill synchronisation at session start, pulling skill definitions from a remote source. |
 | `CLAUDE_CODE_SYNC_SKILLS_INSTALL_TIMEOUT_MS` | number | Caps skill installation time during workspace sync; default thirty seconds. |
 | `CLAUDE_CODE_SYNC_SKILLS_WAIT_TIMEOUT_MS` | number | Caps the startup wait for skill sync; session proceeds without skills once exceeded. |
