@@ -1188,7 +1188,7 @@
     {
       "key": "CLAUDE_CODE_MEMORY_PUSH_DELETE_MODE",
       "label": "Memory Push Delete Mode",
-      "description": "TODO: Add description",
+      "description": "Overrides memory push delete-mode ('immediate' or 'never') instead of default corroboration.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -1200,7 +1200,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "'never' mode keeps memory entries that would otherwise be pruned"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_REMOTE_MEMORY_DIR",
@@ -1319,7 +1325,7 @@
     {
       "key": "CLAUDE_CODE_RESUME_SOURCE_ALIVE",
       "label": "Resume Source Alive",
-      "description": "TODO: Add description",
+      "description": "Verifies source session liveness during resume, forking data on mismatch.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -1331,7 +1337,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Session bookkeeping only, no direct token cost"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_RESUME_THRESHOLD_MINUTES",
@@ -3768,7 +3780,7 @@
     {
       "key": "CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION",
       "label": "Max Subagents Per Session",
-      "description": "TODO: Add description",
+      "description": "Caps how many subagents can spawn within a single session.",
       "category": "model-effort",
       "type": "number",
       "defaultValue": null,
@@ -3780,7 +3792,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Higher limit allows more parallel subagent token usage"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SUBAGENT_CACHE_EVICT",
@@ -5963,7 +5981,7 @@
     {
       "key": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
       "label": "Max Web Searches Per Session",
-      "description": "TODO: Add description",
+      "description": "Caps how many WebSearch tool calls a session may issue.",
       "category": "search-filesystem",
       "type": "number",
       "defaultValue": null,
@@ -5975,7 +5993,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "tools",
+        "magnitude": "variable",
+        "notes": "Higher limit permits more search-result tokens returned"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ACTION",
@@ -8688,7 +8712,7 @@
     {
       "key": "CLAUDE_CODE_NANKEEN_KESTREL",
       "label": "Nankeen Kestrel",
-      "description": "TODO: Add description",
+      "description": "Force-enables a Windows-only sandboxing feature flag, overriding its experiment rollout gate.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8700,7 +8724,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_NATIVE_CURSOR",
@@ -9084,7 +9113,7 @@
     {
       "key": "CLAUDE_CODE_SEND_FEEDBACK",
       "label": "Send Feedback",
-      "description": "TODO: Add description",
+      "description": "Disables the in-app bug/feedback relay when set false; otherwise defers to experiment gating.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9096,7 +9125,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.212"
+      "addedInVersion": "2.1.212",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Controls /bug command relay only, not conversation tokens"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SESSION_ID",

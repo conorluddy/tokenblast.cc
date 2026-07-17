@@ -924,7 +924,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST",
       "label": "Disable Memory Stream List",
-      "description": "TODO: Add description",
+      "description": "Disables periodic streaming sync of multi-store memory metadata.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -936,7 +936,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Skips memory backend export/sync polling"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE",
@@ -962,7 +968,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_ORG_MEMORY",
       "label": "Disable Org Memory",
-      "description": "TODO: Add description",
+      "description": "Disables organization-level shared memory ledger writes and reads.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -974,7 +980,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Org memory can add large shared context"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP",
@@ -8183,7 +8195,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_WINDOWS_CREDMAN",
       "label": "Force Windows Credman",
-      "description": "TODO: Add description",
+      "description": "Forces credential storage and retrieval through Windows Credential Manager.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8195,7 +8207,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
@@ -9259,7 +9276,7 @@
     {
       "key": "CLAUDE_CODE_SYNC_SESSION_REFS",
       "label": "Sync Session Refs",
-      "description": "TODO: Add description",
+      "description": "Synchronizes session reference identifiers across bridged or resumed sessions.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9271,7 +9288,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.210"
+      "addedInVersion": "2.1.210",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_SYNC_SKILLS",
