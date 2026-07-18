@@ -528,7 +528,7 @@
     {
       "key": "CLAUDE_CODE_OAUTH_SCOPESI",
       "label": "Oauth Scopesi",
-      "description": "TODO: Add description",
+      "description": "Controls which OAuth scopes the CLI requests during login.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -540,7 +540,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OAUTH_TOKEN",
@@ -652,7 +657,7 @@
     {
       "key": "CLAUDE_CODE_SKIP_ANTHROPIC_GOOGLE_CLOUD_AUTH",
       "label": "Skip Anthropic Google Cloud Auth",
-      "description": "TODO: Add description",
+      "description": "Disables automatic Google Cloud credential lookup for Anthropic-on-Vertex requests.",
       "category": "auth",
       "type": "boolean",
       "defaultValue": null,
@@ -664,7 +669,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USER_EMAIL",
@@ -821,7 +831,7 @@
     {
       "key": "CLAUDE_CODE_COLD_COMPACTI",
       "label": "Cold Compacti",
-      "description": "TODO: Add description",
+      "description": "Forces a full context recompaction instead of incremental compaction.",
       "category": "context-memory",
       "type": "text",
       "defaultValue": null,
@@ -833,7 +843,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "high",
+        "notes": "Rewrites conversation history on trigger"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY",
@@ -2975,7 +2991,7 @@
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTIONM",
       "label": "Custom Model Option Descriptionm",
-      "description": "TODO: Add description",
+      "description": "Sets the descriptive label shown for a custom model option.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -2987,7 +3003,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME",
@@ -3736,7 +3757,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_APPEND_SUBAGENT_PROMPTS",
       "label": "Enable Append Subagent Prompts",
-      "description": "TODO: Add description",
+      "description": "Enables appending extra instructions to subagent system prompts.",
       "category": "model-effort",
       "type": "boolean",
       "defaultValue": null,
@@ -3748,7 +3769,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "medium",
+        "notes": "Adds text per subagent invocation"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL",
@@ -3885,7 +3912,7 @@
     {
       "key": "CLAUDE_CODE_NO_MODEL_FALLBACK",
       "label": "No Model Fallback",
-      "description": "TODO: Add description",
+      "description": "Blocks automatic fallback to alternate models during outages or compaction.",
       "category": "model-effort",
       "type": "text",
       "defaultValue": null,
@@ -3897,7 +3924,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Can block compaction, leaving context uncompacted"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SUBAGENT_CACHE_EVICT",
@@ -6765,7 +6798,7 @@
     {
       "key": "CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH",
       "label": "Otel Content Max Length",
-      "description": "TODO: Add description",
+      "description": "Caps character length of content captured in OpenTelemetry span attributes.",
       "category": "telemetry",
       "type": "number",
       "defaultValue": null,
@@ -6777,7 +6810,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Telemetry-only; truncates logged strings past limit"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OTEL_DIAG_STDERR",
@@ -6995,7 +7034,7 @@
     {
       "key": "ANTHROPIC_CUSTOM_HEADERSI",
       "label": "Custom Headersi",
-      "description": "TODO: Add description",
+      "description": "Injects custom HTTP headers into outbound Anthropic API requests.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7007,7 +7046,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_ENVIRONMENT_ID",
@@ -7070,7 +7114,7 @@
     {
       "key": "ANTHROPIC_GOOGLE_CLOUD_BASE_URL",
       "label": "Google Cloud Base Url",
-      "description": "TODO: Add description",
+      "description": "Reroutes Claude Platform on Google Cloud requests to a custom API endpoint.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7082,12 +7126,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_GOOGLE_CLOUD_LOCATION",
       "label": "Google Cloud Location",
-      "description": "TODO: Add description",
+      "description": "Sets the Google Cloud region for Claude Platform requests, overriding CLOUD_ML_REGION.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7099,12 +7148,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_GOOGLE_CLOUD_PROJECT",
       "label": "Google Cloud Project",
-      "description": "TODO: Add description",
+      "description": "Sets the GCP project ID used to authenticate Claude Platform on Google Cloud calls.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7116,12 +7170,17 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID",
       "label": "Google Cloud Workspace Id",
-      "description": "TODO: Add description",
+      "description": "Scopes Claude Platform on Google Cloud requests to a specific workspace.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7133,7 +7192,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "ANTHROPIC_ORGANIZATION_ID",
@@ -7505,7 +7569,7 @@
     {
       "key": "CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URLI",
       "label": "Assume First Party Base Urli",
-      "description": "TODO: Add description",
+      "description": "Treats a custom API base URL as official Anthropic infrastructure, enabling first-party-only request headers.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7517,7 +7581,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Affects auth/header handling, not token counts"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_BACKGROUND_TIMEOUT_MS",
@@ -8162,7 +8232,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACKY",
       "label": "Disable Nonstreaming Fallbacky",
-      "description": "TODO: Add description",
+      "description": "Disables automatic fallback to non-streaming API calls when a streaming request fails.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8174,7 +8244,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Changes transport reliability, not token usage"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK",
@@ -8370,7 +8446,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTINGD",
       "label": "Enable Sdk File Checkpointingd",
-      "description": "TODO: Add description",
+      "description": "Enables SDK-managed file checkpoints so edits can be rolled back during a session.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8382,7 +8458,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Disk-based snapshotting, not context tokens"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_EXPERIMENTAL_OBSERVER_AGENTS",
@@ -8472,7 +8554,7 @@
     {
       "key": "CLAUDE_CODE_FORCE_BRIDGEI",
       "label": "Force Bridgei",
-      "description": "TODO: Add description",
+      "description": "Forces the companion-app bridge dialog to activate regardless of normal trigger conditions.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -8484,7 +8566,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": true
     },
     {
       "key": "CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM",
@@ -8978,7 +9065,7 @@
     {
       "key": "CLAUDE_CODE_NATIVE_CURSORL",
       "label": "Native Cursorl",
-      "description": "TODO: Add description",
+      "description": "Forces the terminal's native cursor instead of Claude Code's custom-rendered cursor.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8990,7 +9077,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_OWNERSHIP_FRAME",
@@ -9693,7 +9785,7 @@
     {
       "key": "CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONI",
       "label": "Suppress Session Attributioni",
-      "description": "TODO: Add description",
+      "description": "Strips session attribution metadata from commits, PRs, and outbound requests.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9705,7 +9797,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "output",
+        "magnitude": "low",
+        "notes": "Removes attribution footer text"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_SYNC_SESSION_REFS",
@@ -10074,7 +10172,7 @@
     {
       "key": "CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD",
       "label": "Use Anthropic Google Cloud",
-      "description": "TODO: Add description",
+      "description": "Reroutes model traffic through Anthropic models on Google Cloud instead of the direct API.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -10086,7 +10184,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.214"
+      "addedInVersion": "2.1.214",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_USE_GATEWAY",
