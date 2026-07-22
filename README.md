@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
+Generated from Claude Code **v2.1.217** — 472 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -153,7 +153,9 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` | boolean | Enables fetching available models from a gateway endpoint via /v1/models. |
 | `CLAUDE_CODE_FORK_SUBAGENT` | text | Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate. |
 | `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` | text | Forwards subagent text output into the parent session's output stream. |
+| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` 🆕 | number | — |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
+| `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` 🆕 | number | — |
 | `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` | number | Caps how many subagents can spawn within a single session. |
 | `CLAUDE_CODE_NO_MODEL_FALLBACK` | text | Blocks automatic fallback to alternate models during outages or compaction. |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICT` | text | Forces prompt-cache eviction for completed subagent transcripts. |
@@ -251,7 +253,7 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_EAGER_FLUSH` | boolean | Forces immediate stdout flush after each response chunk, useful for piped or cowork sessions. |
 | `CLAUDE_CODE_EXIT_AFTER_FIRST_RENDER` | boolean | Exits the process immediately after the first UI render cycle completes, for startup testing. |
 | `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exits the CLI after the specified idle milliseconds following the last response stop. |
-| `CLAUDE_CODE_FLEETVIEW_SIMPLE` 🆕 | text | — |
+| `CLAUDE_CODE_FLEETVIEW_SIMPLE` | text | — |
 | `CLAUDE_CODE_FORCE_FULL_LOGO` | boolean | Forces the full ASCII logo to render regardless of terminal width or context. |
 | `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` | boolean | Forces the fullscreen-mode upsell prompt regardless of seen-count or feature-flag gate. |
 | `CLAUDE_CODE_NO_FLICKER` | boolean | Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it. |
@@ -315,6 +317,7 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_REMOTE_RAW_EVENTS_FILE` | text | Redirects raw remote-container events to a file path for offline inspection. |
 | `CLAUDE_CODE_REMOTE_SEND_KEEPALIVES` | boolean | Enables periodic keepalive heartbeats on the remote session connection to prevent idle disconnects. |
 | `CLAUDE_CODE_REMOTE_SESSION_ID` | text | Sets the remote session ID forwarded as the x-claude-remote-session-id request header. |
+| `CLAUDE_CODE_REMOTE_SESSION_ORIGIN` 🆕 | text | — |
 | `CLAUDE_CODE_REMOTE_SETTINGS_PATH` | text | Overrides remote settings with a local file path, bypassing the settings API fetch. |
 | `CLAUDE_CODE_REMOTE_SETTINGS_POLL_MS` | number | Controls polling interval in milliseconds for remote-settings refresh. |
 | `CLAUDE_CODE_WORKSPACE_HOST_PATHS` | text | Pipe-separated host path mappings attached to telemetry events as workspace.host_paths. |
@@ -423,8 +426,10 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_AGENT` | text | Labels the current session with its parent agent name during concurrent-session registration. |
 | `CLAUDE_CODE_AGENT_RULE_DISABLED` | text | Bun-runtime sentinel set by the Claude Code binary so that tools the CLI shells out to (Bun, and sibling coding agents like Cursor) recognise an AI agent is driving the session and skip interactive 'agent auto-rule' heuristics. Not a user-tunable feature — set automatically at process start. |
 | `CLAUDE_CODE_AGENT_VIEW_RELAUNCH` | text | Internal marker consumed on relaunch to restore agent view state. |
+| `CLAUDE_CODE_ALDER_WICKET` 🆕 | text | — |
 | `CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT` | text | Forces full repaints in alt-screen mode instead of incremental diff-based updates. |
 | `CLAUDE_CODE_ALTGR_AS_TEXT` | text | Forces AltGr keypresses to insert literal text instead of shortcuts. |
+| `CLAUDE_CODE_AMBER_ASTROLABE` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT` | text | Enables Artifact publishing support for the current session. |
 | `CLAUDE_CODE_ARTIFACT_AUTO_OPEN` | text | Controls automatic browser opening of freshly published artifacts. |
 | `CLAUDE_CODE_ARTIFACT_DIRECT_UPLOAD` | text | Forces artifact deploys onto the inline direct-upload path, skipping signed-URL init. |
@@ -444,6 +449,7 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MS` | number | Caps AWS default-chain credential resolution time; defaults to 60 seconds. |
 | `CLAUDE_CODE_BASALT_COVE` | text | Force-enables the experimental basalt_cove per-model prompt behaviour gate. |
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | Enables live token/turn counters in the terminal UI for benchmarking. |
+| `CLAUDE_CODE_BISON_CAIRN` 🆕 | text | — |
 | `CLAUDE_CODE_BRIDGE_SESSION_ID` | text | Set internally to link child processes to their bridge session. |
 | `CLAUDE_CODE_CHILD_SESSION` | text | Internal marker identifying tmux child sessions spawned by Claude Code. |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
@@ -458,6 +464,7 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_BG_EXIT_HANDOFF` | boolean | Disables handing off running background tasks when exiting. |
 | `CLAUDE_CODE_DISABLE_BUNDLED_SKILLS` | boolean | Strips bundled skills and workflows, hiding built-in slash commands from the model. |
 | `CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL` | boolean | Disables the built-in slash command for Claude Code documentation. |
+| `CLAUDE_CODE_DISABLE_EXPLORE_INHERIT_CAP` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_LAUNCH_COMPOSER` | boolean | Disables the launch composer UI at startup. |
 | `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` | boolean | Disables mouse click handling while keeping scroll support. |
 | `CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK` | boolean | Sends push notifications even when the user appears present. |
@@ -483,12 +490,14 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_GB_BASE_URL` | text | Overrides the GrowthBook feature-flag server base URL for experimentation. |
 | `CLAUDE_CODE_GB_REFRESH_INTERVAL_MS` | number | Controls how often GrowthBook feature flags are re-fetched in milliseconds. |
 | `CLAUDE_CODE_GZIP_REQUEST_BODIES` | text | Compresses API request bodies with gzip, cutting upload bandwidth only. |
+| `CLAUDE_CODE_HERON_TALLOW` 🆕 | text | — |
 | `CLAUDE_CODE_HOST_CREDS_FILE` | text | Points to a host-supplied credentials file for provider auth. |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off. |
 | `CLAUDE_CODE_INVOKED_SKILLS` | text | Internal runtime register tracking which skills have fired and their per-invoke costs. |
 | `CLAUDE_CODE_JSONL_TRANSCRIPT` | text | Writes full conversation transcript as JSONL to the specified file path. |
 | `CLAUDE_CODE_KB_COHESION_FIXES` | text | Enables cohesion patches for knowledge-base content injected into the system prompt. |
 | `CLAUDE_CODE_LANTERN_PRISM` | text | Force-enables the codenamed lantern-prism experiment, bypassing its GrowthBook gate. |
+| `CLAUDE_CODE_LARCH_CISTERN` 🆕 | text | — |
 | `CLAUDE_CODE_LOOP_KEEPALIVE` | text | Enables keepalive pings in the autonomous loop to prevent idle-timeout disconnection. |
 | `CLAUDE_CODE_LOOP_PERSISTENT` | text | Enables persistent autonomous loop mode, continuing across blocked decisions. |
 | `CLAUDE_CODE_MANAGED_SETTINGS_PATH` | text | Loads org-managed settings from a custom path, overriding user-level config. |
@@ -544,6 +553,7 @@ Generated from Claude Code **v2.1.216** — 462 flags across 18 categories.
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER` | text | Controls the token-usage reminder mode injected into prompts. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER_AFTER_USER_TURN` | text | Resets total-tokens reminder budget at the start of each user turn. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER_BUDGET` | text | Sets starting token budget for padded-countdown usage reminders. |
+| `CLAUDE_CODE_TRANSCRIPT_LOCAL_GC` 🆕 | text | — |
 | `CLAUDE_CODE_TRIGGER_ID` | text | Set internally to record which scheduled trigger spawned the remote session. |
 | `CLAUDE_CODE_TUI_JUST_SWITCHED` | text | Internal marker set by the CLI when relaunching into a new TUI mode such as fullscreen. |
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
