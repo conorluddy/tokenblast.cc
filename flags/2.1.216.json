@@ -4669,7 +4669,7 @@
     {
       "key": "CLAUDE_CODE_FLEETVIEW_SIMPLE",
       "label": "Fleetview Simple",
-      "description": "TODO: Add description",
+      "description": "Forces the simplified fleet-view UI instead of the full interactive session monitor.",
       "category": "output-display",
       "type": "text",
       "defaultValue": null,
@@ -4681,7 +4681,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.216"
+      "addedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_FORCE_FULL_LOGO",
@@ -8511,7 +8516,7 @@
     {
       "key": "CLAUDE_CODE_GAULT_KESTREL",
       "label": "Gault Kestrel",
-      "description": "TODO: Add description",
+      "description": "Env-var override that force-enables an internal feature experiment, bypassing remote and local config checks.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8522,7 +8527,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.215"
+      "addedInVersion": "2.1.215",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GB_BASE_URL",
@@ -8783,7 +8793,7 @@
     {
       "key": "CLAUDE_CODE_MARL_CORMORANT",
       "label": "Marl Cormorant",
-      "description": "TODO: Add description",
+      "description": "Forces on an internal experimental capability, short-circuiting the usual remote and local flag checks.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8794,7 +8804,12 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.215"
+      "addedInVersion": "2.1.215",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_MAX_TURNS",
@@ -9770,7 +9785,7 @@
     {
       "key": "CLAUDE_CODE_THISTLE_GREBE",
       "label": "Thistle Grebe",
-      "description": "TODO: Add description",
+      "description": "Selects the behavioral steering mode: default nudging, no nudges, or counter-steer.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -9781,7 +9796,13 @@
       "costDirection": null,
       "tags": [],
       "audience": "standard",
-      "addedInVersion": "2.1.215"
+      "addedInVersion": "2.1.215",
+      "tokenEffect": {
+        "surface": "system-prompt",
+        "magnitude": "low",
+        "notes": "Toggles injected behavioral nudge text"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TODO_REMINDER_MODE",
@@ -10176,7 +10197,7 @@
     {
       "key": "CLAUDE_CODE_OAUTH_SCOPESP",
       "label": "Oauth Scopesp",
-      "description": "TODO: Add description",
+      "description": "Space-separated OAuth scopes bound to a refresh token supplied via CLAUDE_CODE_OAUTH_REFRESH_TOKEN.",
       "category": "auth",
       "type": "text",
       "defaultValue": null,
@@ -10190,7 +10211,12 @@
       "isNew": true,
       "addedInVersion": "2.1.215",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.216"
+      "deprecatedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_COLD_COMPACTI",
@@ -10700,7 +10726,7 @@
     {
       "key": "CLAUDE_CODE_SHELLN",
       "label": "Shelln",
-      "description": "TODO: Add description",
+      "description": "Overrides the shell binary path used to execute bash tool commands.",
       "category": "session-lifecycle",
       "type": "text",
       "defaultValue": null,
@@ -10714,7 +10740,12 @@
       "isNew": true,
       "addedInVersion": "2.1.215",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.216"
+      "deprecatedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_TEAM_NAME",
@@ -10908,7 +10939,7 @@
     {
       "key": "CLAUDE_CODE_ENABLE_LAUNCH_COMPOSERM",
       "label": "Enable Launch Composerm",
-      "description": "TODO: Add description",
+      "description": "Enables the launch composer interface for starting new sessions.",
       "category": "uncategorised",
       "type": "boolean",
       "defaultValue": null,
@@ -10922,7 +10953,12 @@
       "isNew": true,
       "addedInVersion": "2.1.215",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.216"
+      "deprecatedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_ENABLE_OPUS_",
@@ -11325,7 +11361,7 @@
     {
       "key": "CLAUDE_CODE_VOICE_FORWARD_INTERIMS_TYPEDP",
       "label": "Voice Forward Interims Typedp",
-      "description": "TODO: Add description",
+      "description": "Forwards interim voice-transcription results as typed input before finalization.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -11339,12 +11375,18 @@
       "isNew": true,
       "addedInVersion": "2.1.215",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.216"
+      "deprecatedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "low",
+        "notes": "Streams partial dictation text into input"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_WORKFLOW_SIZE_WARNING_TOKENSP",
       "label": "Workflow Size Warning Tokensp",
-      "description": "TODO: Add description",
+      "description": "Sets the projected token cap that triggers a workflow-size warning.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -11358,7 +11400,13 @@
       "isNew": true,
       "addedInVersion": "2.1.215",
       "deprecated": true,
-      "deprecatedInVersion": "2.1.216"
+      "deprecatedInVersion": "2.1.216",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "variable",
+        "notes": "User-set threshold for total workflow token usage"
+      },
+      "internal": false
     }
   ]
 }
