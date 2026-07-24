@@ -923,7 +923,7 @@
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_MASS_DELETE_HOLD",
       "label": "Disable Memory Mass Delete Hold",
-      "description": "TODO: Add description",
+      "description": "Removes the threshold that holds back large batches of corroborated memory deletions.",
       "category": "context-memory",
       "type": "boolean",
       "defaultValue": null,
@@ -935,7 +935,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.218"
+      "addedInVersion": "2.1.218",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Allows unrestrained bulk deletion of memory entries"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC",
@@ -7595,7 +7601,7 @@
     {
       "key": "CLAUDE_CODE_AUTO_MODE_CLASSIFIER_QUEUE",
       "label": "Auto Mode Classifier Queue",
-      "description": "TODO: Add description",
+      "description": "Controls whether the auto-mode routing classifier batches its classification calls.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -7607,7 +7613,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.218"
+      "addedInVersion": "2.1.218",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_AUTO_MODE_CLASSIFY_EDITS",
@@ -8741,7 +8752,7 @@
     {
       "key": "CLAUDE_CODE_GORSE_PLOVER",
       "label": "Gorse Plover",
-      "description": "TODO: Add description",
+      "description": "Force-enables an internal experimental gate, bypassing its normal remote rollout check.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8753,7 +8764,12 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.218"
+      "addedInVersion": "2.1.218",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_GZIP_REQUEST_BODIES",
@@ -8886,7 +8902,7 @@
     {
       "key": "CLAUDE_CODE_JUNIPER_SUNDIAL",
       "label": "Juniper Sundial",
-      "description": "TODO: Add description",
+      "description": "Overrides how many turns occur between periodic maintenance cycles.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8898,7 +8914,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.218"
+      "addedInVersion": "2.1.218",
+      "tokenEffect": {
+        "surface": "context",
+        "magnitude": "medium",
+        "notes": "Lower value runs maintenance more frequently"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_KB_COHESION_FIXES",
