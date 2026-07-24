@@ -54,7 +54,7 @@ Generated from Claude Code **v2.1.218** — 475 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Strips all CLAUDE.md file content from the system prompt entirely. |
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE` | boolean | Disables bulk pre-loading of memory entries into context, reducing upfront token usage. |
-| `CLAUDE_CODE_DISABLE_MEMORY_MASS_DELETE_HOLD` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_MEMORY_MASS_DELETE_HOLD` 🆕 | boolean | Removes the threshold that holds back large batches of corroborated memory deletions. |
 | `CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC` | boolean | Disables the periodic background resync of the on-disk memory store. |
 | `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` | boolean | Disables periodic streaming sync of multi-store memory metadata. |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
@@ -436,7 +436,7 @@ Generated from Claude Code **v2.1.218** — 475 flags across 18 categories.
 | `CLAUDE_CODE_ARTIFACTS_API_BASE_URL` | text | Reroutes artifact upload traffic to a custom API endpoint. |
 | `CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL` | text | Treats a custom base URL as first-party Anthropic infrastructure. |
 | `CLAUDE_CODE_AUTO_BACKGROUND_TIMEOUT_MS` | number | Caps foreground wait before bash commands auto-background; minimum two seconds. |
-| `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_QUEUE` 🆕 | text | — |
+| `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_QUEUE` 🆕 | text | Controls whether the auto-mode routing classifier batches its classification calls. |
 | `CLAUDE_CODE_AUTO_MODE_CLASSIFY_EDITS` | text | Enables classifier checks catching edits that circumvent deny rules. |
 | `CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL` | text | Overrides the GrowthBook gate controlling auto-mode edit-removal visibility. |
 | `CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL_CAP` | text | Caps how much auto-mode edits may remove before extra visibility triggers. |
@@ -490,14 +490,14 @@ Generated from Claude Code **v2.1.218** — 475 flags across 18 categories.
 | `CLAUDE_CODE_GAULT_KESTREL` | text | Env-var override that force-enables an internal feature experiment, bypassing remote and local config checks. |
 | `CLAUDE_CODE_GB_BASE_URL` | text | Overrides the GrowthBook feature-flag server base URL for experimentation. |
 | `CLAUDE_CODE_GB_REFRESH_INTERVAL_MS` | number | Controls how often GrowthBook feature flags are re-fetched in milliseconds. |
-| `CLAUDE_CODE_GORSE_PLOVER` 🆕 | text | — |
+| `CLAUDE_CODE_GORSE_PLOVER` 🆕 | text | Force-enables an internal experimental gate, bypassing its normal remote rollout check. |
 | `CLAUDE_CODE_GZIP_REQUEST_BODIES` | text | Compresses API request bodies with gzip, cutting upload bandwidth only. |
 | `CLAUDE_CODE_HERON_TALLOW` | text | Force-enables an internal experimental feature flag ahead of its normal remote or local rollout. |
 | `CLAUDE_CODE_HOST_CREDS_FILE` | text | Points to a host-supplied credentials file for provider auth. |
 | `CLAUDE_CODE_INVESTIGATE_FIRST` | text | Controls Opus 4.7 investigate-first mode; accepts additive, compact, or on/off. |
 | `CLAUDE_CODE_INVOKED_SKILLS` | text | Internal runtime register tracking which skills have fired and their per-invoke costs. |
 | `CLAUDE_CODE_JSONL_TRANSCRIPT` | text | Writes full conversation transcript as JSONL to the specified file path. |
-| `CLAUDE_CODE_JUNIPER_SUNDIAL` 🆕 | text | — |
+| `CLAUDE_CODE_JUNIPER_SUNDIAL` 🆕 | text | Overrides how many turns occur between periodic maintenance cycles. |
 | `CLAUDE_CODE_KB_COHESION_FIXES` | text | Enables cohesion patches for knowledge-base content injected into the system prompt. |
 | `CLAUDE_CODE_LANTERN_PRISM` | text | Force-enables the codenamed lantern-prism experiment, bypassing its GrowthBook gate. |
 | `CLAUDE_CODE_LARCH_CISTERN` | text | Overrides an internal feature-flag experiment, letting users opt in early via the environment. |
