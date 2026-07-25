@@ -8369,7 +8369,7 @@
     {
       "key": "CLAUDE_CODE_DISPATCH_V",
       "label": "Dispatch V",
-      "description": "TODO: Add description",
+      "description": "Forces a dispatch-version identifier onto first-party Claude API requests.",
       "category": "uncategorised",
       "type": "text",
       "defaultValue": null,
@@ -8381,7 +8381,13 @@
       "tags": [],
       "audience": "standard",
       "isNew": true,
-      "addedInVersion": "2.1.220"
+      "addedInVersion": "2.1.220",
+      "tokenEffect": {
+        "surface": "none",
+        "magnitude": "negligible",
+        "notes": "Sets a request header/param, not conversation tokens"
+      },
+      "internal": false
     },
     {
       "key": "CLAUDE_CODE_DOWNLOAD_DEADLINE_MS_FOR_TESTING",
