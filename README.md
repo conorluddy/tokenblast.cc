@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
+Generated from Claude Code **v2.1.221** — 491 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -20,6 +20,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_API_BASE_URL` | text | Reroutes Files API calls to a custom base URL, falling back to ANTHROPIC_BASE_URL. |
 | `CLAUDE_CODE_API_KEY_FILE_DESCRIPTOR` | text | Reads the API key from a file descriptor, enabling secure secret injection without env-var exposure. |
 | `CLAUDE_CODE_API_KEY_HELPER_TTL_MS` | number | Controls how long the API key helper script result is cached before re-executing. |
+| `CLAUDE_CODE_ARTIFACTS_API_TOKEN` 🆕 | text | — |
 | `CLAUDE_CODE_ATTRIBUTION_HEADER` | boolean | Suppresses the Claude Code attribution header appended to API requests when set. |
 | `CLAUDE_CODE_AUTH_FAIL_EXIT_MS` | number | Forces remote child sessions to exit after sustained auth failure; default ten minutes. |
 | `CLAUDE_CODE_CUSTOM_OAUTH_URL` | text | Overrides the OAuth base URL to an approved custom endpoint for non-production auth flows. |
@@ -27,6 +28,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_HFI_BEARER_TOKEN` | text | Authenticates requests to the Human Feedback Interface service via bearer token. |
 | `CLAUDE_CODE_HOST_AUTH_ENV_VAR` | text | Names the environment variable holding the host authentication token. |
 | `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MS` | number | Controls how long to wait for a host auth token refresh before timing out. |
+| `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MSI` 🆕 | number | — |
 | `CLAUDE_CODE_OAUTH_` | text | Overrides OAuth credentials (token, client ID, scopes) used for authentication. |
 | `CLAUDE_CODE_OAUTH_CLIENT_ID` | text | Overrides the default OAuth client ID used during the authorization code flow. |
 | `CLAUDE_CODE_OAUTH_REFRESH_TOKEN` | text | Seeds an OAuth refresh token directly, skipping the interactive browser login step. |
@@ -47,7 +49,6 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` | text | Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context. |
 | `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | number | Token threshold for auto-compaction. Lower = more aggressive compaction. |
 | `CLAUDE_CODE_AUTO_MODE_PRIOR_ASSISTANT_CONTEXT` | text | Includes prior assistant turns in auto-mode permission evaluation. |
-| `CLAUDE_CODE_AUTO_MODE_SIBLING_CONTEXT` | text | Shares same-turn sibling agent context during auto-mode permission decisions. |
 | `CLAUDE_CODE_COLD_COMPACT` | text | Forces a cold compaction run regardless of current context fill level. |
 | `CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY` | text | Propagates nested CLAUDE.md files loaded by subagents into the coordinator's context. |
 | `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables automatic memory reads and writes, removing memory content from each turn's context. |
@@ -126,6 +127,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `ANTHROPIC_DEFAULT_FABLE_MODEL_SUPPORTED_CAPABILITIES` | text | Declares supported capabilities for a custom Fable model override. |
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL` | text | Remaps the 'haiku' model alias to a custom model ID, including Bedrock fallback IDs. |
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTION` | text | Sets the description shown in the model picker for the overridden Haiku model. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL_DESCRIPTIONU` 🆕 | text | — |
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME` | text | Sets the display label shown in the model picker for the overridden Haiku model. |
 | `ANTHROPIC_DEFAULT_HAIKU_MODEL_SUPPORTED_CAPABILITIES` | text | Declares capabilities for the overridden Haiku model, controlling feature routing. |
 | `ANTHROPIC_DEFAULT_OPUS_MODEL` | text | Remaps the 'opus' model alias to a custom model ID, including Bedrock fallback IDs. |
@@ -153,6 +155,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_EXPERIMENTAL_ADVISOR_TOOL` | boolean | Force-enables the experimental advisor server tool, bypassing the GrowthBook feature flag. |
 | `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` | boolean | Enables fetching available models from a gateway endpoint via /v1/models. |
 | `CLAUDE_CODE_FORK_SUBAGENT` | text | Force-enables the fork-subagent feature, bypassing the GrowthBook rollout gate. |
+| `CLAUDE_CODE_FORK_SUBAGENTB` 🆕 | text | — |
 | `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` | text | Forwards subagent text output into the parent session's output stream. |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` | number | Caps how many subagents can run in parallel at once. |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
@@ -197,7 +200,6 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` | text | Forces plugin Git clones to use HTTPS instead of SSH. |
 | `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads. |
 | `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Switches plugin storage to a ZIP-based cache, enabling faster cold installs. |
-| `CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V` | text | Set internally when spawning bridge sessions to select the v2 POST-based ingress transport. |
 | `CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS` | boolean | Skips plugin MCP server discovery, dropping their tool schemas. |
 | `CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS_EXCEPT` | boolean | Exempts named plugins when plugin MCP server loading is skipped. |
 | `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` | boolean | Enables environment-variable scrubbing and bubblewrap isolation for all subprocesses. |
@@ -293,6 +295,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `ANTHROPIC_FOUNDRY_BASE_URL` | text | Reroutes Microsoft Azure Foundry traffic to a custom endpoint; required if no resource name is set. |
 | `ANTHROPIC_FOUNDRY_RESOURCE` | text | Sets the Azure Foundry resource name, used to construct the base URL when no explicit URL is provided. |
 | `ANTHROPIC_VERTEX_BASE_URL` | text | Reroutes Google Vertex AI traffic to a custom endpoint, overriding the region-derived default. |
+| `ANTHROPIC_VERTEX_BASE_URLC` 🆕 | text | — |
 | `ANTHROPIC_VERTEX_PROJECT_ID` | text | Specifies the GCP project for Vertex AI when no GCLOUD_PROJECT env var is present. |
 | `CLAUDE_CODE_DISABLE_BEDROCK_CONTENT_TYPE_GUARD` | boolean | Suppresses the Bedrock streaming content-type check for misbehaving gateways or proxies. |
 | `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` | boolean | Signals that the host environment manages provider config, stripping auth env vars from subprocesses. |
@@ -431,12 +434,15 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_ALTGR_AS_TEXT` | text | Forces AltGr keypresses to insert literal text instead of shortcuts. |
 | `CLAUDE_CODE_AMBER_ASTROLABE` | text | Enables an internal experiment gate, overriding its remote-config default. |
 | `CLAUDE_CODE_ARTIFACT` | text | Enables Artifact publishing support for the current session. |
+| `CLAUDE_CODE_ARTIFACT_ASSET_BASE_URL` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT_AUTO_OPEN` | text | Controls automatic browser opening of freshly published artifacts. |
+| `CLAUDE_CODE_ARTIFACT_COMMENTS` 🆕 | text | — |
+| `CLAUDE_CODE_ARTIFACT_COMMENTS_AUTOREACT` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT_DIRECT_UPLOAD` | text | Forces artifact deploys onto the inline direct-upload path, skipping signed-URL init. |
+| `CLAUDE_CODE_ARTIFACT_LIVE_BASE_URL` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACTS_API_BASE_URL` | text | Reroutes artifact upload traffic to a custom API endpoint. |
 | `CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL` | text | Treats a custom base URL as first-party Anthropic infrastructure. |
 | `CLAUDE_CODE_AUTO_BACKGROUND_TIMEOUT_MS` | number | Caps foreground wait before bash commands auto-background; minimum two seconds. |
-| `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_QUEUE` | text | Controls whether the auto-mode routing classifier batches its classification calls. |
 | `CLAUDE_CODE_AUTO_MODE_CLASSIFY_EDITS` | text | Enables classifier checks catching edits that circumvent deny rules. |
 | `CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL` | text | Overrides the GrowthBook gate controlling auto-mode edit-removal visibility. |
 | `CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL_CAP` | text | Caps how much auto-mode edits may remove before extra visibility triggers. |
@@ -448,11 +454,13 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_AUTO_MODE_REPO_VISIBILITY` | text | Enables repo visibility lookups when auto mode evaluates permission safety. |
 | `CLAUDE_CODE_AUTO_MODE_TEMPERATURE` | text | Overrides sampling temperature for the auto-mode classifier model. |
 | `CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MS` | number | Caps AWS default-chain credential resolution time; defaults to 60 seconds. |
+| `CLAUDE_CODE_AWS_CHAIN_RESOLVE_TIMEOUT_MSIZ` 🆕 | number | — |
 | `CLAUDE_CODE_BASALT_COVE` | text | Force-enables the experimental basalt_cove per-model prompt behaviour gate. |
 | `CLAUDE_CODE_BENCH_LIVE_COUNTS` | text | Enables live token/turn counters in the terminal UI for benchmarking. |
 | `CLAUDE_CODE_BISON_CAIRN` | text | Overrides an internal experiment gate's default, forcing it on when set. |
 | `CLAUDE_CODE_BRIDGE_SESSION_ID` | text | Set internally to link child processes to their bridge session. |
 | `CLAUDE_CODE_CHILD_SESSION` | text | Internal marker identifying tmux child sessions spawned by Claude Code. |
+| `CLAUDE_CODE_CHILD_SESSIONH` 🆕 | text | — |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_COORDINATOR_EXTRA_TOOLS` | text | Whitelists extra tools past the coordinator agent's tool filter. |
 | `CLAUDE_CODE_COORDINATOR_MODE` | text | Switches the instance into coordinator role, loading a multi-agent orchestration system prompt. |
@@ -468,21 +476,25 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_EXPLORE_INHERIT_CAP` | boolean | Disables the model cap on the Explore search subagent, letting it inherit the parent model. |
 | `CLAUDE_CODE_DISABLE_LAUNCH_COMPOSER` | boolean | Disables the launch composer UI at startup. |
 | `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` | boolean | Disables mouse click handling while keeping scroll support. |
+| `CLAUDE_CODE_DISABLE_MOUSEW` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK` | boolean | Sends push notifications even when the user appears present. |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK` | boolean | Disables automatic retry or alternative handling when a model refuses a request. |
 | `CLAUDE_CODE_DISABLE_WORKFLOWS` | boolean | Disables the Workflows feature entirely, removing workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_WORKING_SYNC` | boolean | Disables working-file sync for remote SDK sessions. |
-| `CLAUDE_CODE_DISPATCH_V` 🆕 | text | — |
+| `CLAUDE_CODE_DISPATCH_V` | text | Forces a dispatch-version identifier onto first-party Claude API requests. |
 | `CLAUDE_CODE_DOWNLOAD_DEADLINE_MS_FOR_TESTING` | text | Testing-only override for the update download deadline in milliseconds. |
 | `CLAUDE_CODE_ENABLE_AUTO_MODE` | boolean | Enables automatic model-selection mode, allowing the CLI to pick the optimal Claude model. |
 | `CLAUDE_CODE_ENABLE_DESIGN_SYNC` | boolean | Enables syncing Claude Design assets, requiring a separate design login. |
 | `CLAUDE_CODE_ENABLE_LAUNCH_COMPOSER` | boolean | Enables the experimental launch composer startup interface. |
 | `CLAUDE_CODE_ENABLE_MENU_KIND_LANES` | boolean | Enables grouped kind lanes in slash-command menu listings. |
+| `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTINGH` 🆕 | boolean | — |
+| `CLAUDE_CODE_ENABLE_TOKEN_USAGE_ATTACHMENTG` 🆕 | boolean | — |
 | `CLAUDE_CODE_EXPERIMENTAL_OBSERVER_AGENTS` | text | Enables background observer agents that watch active agents. |
 | `CLAUDE_CODE_FABLE_BRIDGE_DIALOG_TIMEOUT_MS` | number | Caps how long the Fable bridge classifier dialog waits; default sixty seconds. |
 | `CLAUDE_CODE_FLEET_PAST_SESSIONS` | text | Enables past-session history in the fleet sessions view. |
 | `CLAUDE_CODE_FORCE_BRIDGE` | boolean | Forces the REPL bridge transport path regardless of environment detection. |
 | `CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEM` | boolean | Forces mid-conversation system prompt re-injection on all model versions. |
+| `CLAUDE_CODE_FORCE_MID_CONVERSATION_SYSTEMC` 🆕 | boolean | — |
 | `CLAUDE_CODE_FORCE_RC_LONG_TURN_NUDGE` | boolean | Forces the remote-control long-turn nudge to fire immediately and always. |
 | `CLAUDE_CODE_FORCE_STRIKETHROUGH` | boolean | Forces strikethrough rendering regardless of terminal capability detection. |
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
@@ -530,6 +542,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_SEND_FEEDBACK` | text | Disables the in-app bug/feedback relay when set false; otherwise defers to experiment gating. |
 | `CLAUDE_CODE_SESSION_ID` | text | Internal session identifier propagated to child processes for telemetry. |
 | `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
+| `CLAUDE_CODE_SESSION_KINDI` 🆕 | text | — |
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
 | `CLAUDE_CODE_SKILL_NAME` | text | Overrides the default slash command name for the Claude Code docs skill. |
@@ -553,6 +566,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_TEST_FORCE_DENY` | boolean | Forces all permission checks to deny — used in test harnesses only. |
 | `CLAUDE_CODE_TEST_NO_PWSH` | text | Disables PowerShell detection in tests, simulating a non-Windows environment. |
 | `CLAUDE_CODE_THISTLE_GREBE` | text | Selects the behavioral steering mode: default nudging, no nudges, or counter-steer. |
+| `CLAUDE_CODE_THRIFTY_SONIC` 🆕 | text | — |
 | `CLAUDE_CODE_TODO_REMINDER_MODE` | text | Controls per-turn todo reminder nudges; set off to silence them. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER` | text | Controls the token-usage reminder mode injected into prompts. |
 | `CLAUDE_CODE_TOTAL_TOKENS_REMINDER_AFTER_USER_TURN` | text | Resets total-tokens reminder budget at the start of each user turn. |
@@ -570,6 +584,7 @@ Generated from Claude Code **v2.1.220** — 476 flags across 18 categories.
 | `CLAUDE_CODE_WALNUT_SPIRE` | text | Overrides the GrowthBook gate for the experimental walnut-spire feature. |
 | `CLAUDE_CODE_WORKFLOW_SIZE_WARNING_AGENTS` | text | Overrides the agent-count threshold that triggers workflow size warnings. |
 | `CLAUDE_CODE_WORKFLOW_SIZE_WARNING_TOKENS` | text | Overrides token threshold that triggers workflow size warnings. |
+| `CLAUDE_CODE_WORKFLOW_SIZE_WARNING_TOKENSI` 🆕 | text | — |
 | `CLAUDE_CODE_WORKFLOWS` | text | Enables the Workflows feature and specifies which workflow definitions are active. |
 
 ## Deprecated
@@ -588,6 +603,8 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_ALDER_WICKET` | 2.1.218 |
 | `CLAUDE_CODE_ARTIFACT_MCP` | 2.1.174 |
 | `CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URLI` | 2.1.215 |
+| `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_QUEUE` | 2.1.221 |
+| `CLAUDE_CODE_AUTO_MODE_SIBLING_CONTEXT` | 2.1.221 |
 | `CLAUDE_CODE_COLD_COMPACTI` | 2.1.215 |
 | `CLAUDE_CODE_CONNECT_TIMEOUT_MS` | 2.1.186 |
 | `CLAUDE_CODE_DISABLE_AGENTS_FLEET` | 2.1.162 |
@@ -617,6 +634,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_OWNERSHIP_FRAME` | 2.1.216 |
 | `CLAUDE_CODE_PERFETTO_TRACEY` | 2.1.162 |
 | `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.159 |
+| `CLAUDE_CODE_POST_FOR_SESSION_INGRESS_V` | 2.1.221 |
 | `CLAUDE_CODE_SHELLN` | 2.1.216 |
 | `CLAUDE_CODE_SHOJI_ENGINE` | 2.1.203 |
 | `CLAUDE_CODE_SKILL_DESC_REFRAME` | 2.1.216 |
