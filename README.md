@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
+Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -28,7 +28,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_HFI_BEARER_TOKEN` | text | Authenticates requests to the Human Feedback Interface service via bearer token. |
 | `CLAUDE_CODE_HOST_AUTH_ENV_VAR` | text | Names the environment variable holding the host authentication token. |
 | `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MS` | number | Controls how long to wait for a host auth token refresh before timing out. |
-| `CLAUDE_CODE_MCP_SERVE_AUTH_TOKEN` 🆕 | text | — |
+| `CLAUDE_CODE_MCP_SERVE_AUTH_TOKEN` | text | — |
 | `CLAUDE_CODE_MEMORY_API_TOKEN` | text | — |
 | `CLAUDE_CODE_MESSAGING_TOKEN` | text | — |
 | `CLAUDE_CODE_OAUTH_` | text | Overrides OAuth credentials (token, client ID, scopes) used for authentication. |
@@ -188,7 +188,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | Flag | Type | Description |
 |------|------|-------------|
 | `CLAUDE_CODE_BRIDGE_MCP_CARRIER` | text | — |
-| `CLAUDE_CODE_CHROME_MCP_ORG_DENIED` 🆕 | text | — |
+| `CLAUDE_CODE_CHROME_MCP_ORG_DENIED` | text | — |
 | `CLAUDE_CODE_DISABLE_ADVISOR_TOOL` | boolean | Removes the advisor tool definition, preventing it from appearing in the tool list. |
 | `CLAUDE_CODE_DISABLE_ATTACHMENTS` | boolean | Strips @-mentioned files, MCP resources, and agent-mention attachments from context. |
 | `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` | boolean | Disables background agent execution and removes the run_in_background tool parameter. |
@@ -375,7 +375,6 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_GLOB_NO_IGNORE` | boolean | Bypasses .gitignore rules during glob file searches. |
 | `CLAUDE_CODE_GLOB_TIMEOUT_SECONDS` | number | Overrides the default ripgrep glob timeout in seconds. |
 | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` | number | Caps how many WebSearch tool calls a session may issue. |
-| `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONN` | number | — |
 
 ## Session & Lifecycle
 
@@ -532,10 +531,11 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_CHILD_SESSION` | text | Internal marker identifying tmux child sessions spawned by Claude Code. |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_CLOUD_SESSION_ID` | text | — |
+| `CLAUDE_CODE_COMPILED_ACORN` 🆕 | text | — |
 | `CLAUDE_CODE_COORDINATOR_EXTRA_TOOLS` | text | Whitelists extra tools past the coordinator agent's tool filter. |
 | `CLAUDE_CODE_COORDINATOR_MODE` | text | Switches the instance into coordinator role, loading a multi-agent orchestration system prompt. |
 | `CLAUDE_CODE_COORDINATOR_WORKER_CHECKIN_SECONDS` | text | — |
-| `CLAUDE_CODE_COZY_TEAPOT` 🆕 | text | — |
+| `CLAUDE_CODE_COZY_TEAPOT` | text | — |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DAPPER_LAGOON` | text | — |
 | `CLAUDE_CODE_DD_ERROR_TRACKING_FLUSH_INTERVAL_MS` | number | Controls the flush interval in milliseconds for Datadog error-tracking batches. |
@@ -594,7 +594,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | boolean | Forces synchronous terminal output rendering, bypassing async buffering. |
 | `CLAUDE_CODE_FORCE_TIP_ID` | boolean | Forces a specific onboarding tip to display, bypassing seen-state checks. |
 | `CLAUDE_CODE_FORCE_WINDOWS_CREDMAN` | boolean | Forces credential storage and retrieval through Windows Credential Manager. |
-| `CLAUDE_CODE_FORWARD_USER_INTENT` 🆕 | text | — |
+| `CLAUDE_CODE_FORWARD_USER_INTENT` | text | — |
 | `CLAUDE_CODE_GATEWAY_TOKEN_FILE_DESCRIPTOR` | text | — |
 | `CLAUDE_CODE_GAULT_KESTREL` | text | Env-var override that force-enables an internal feature experiment, bypassing remote and local config checks. |
 | `CLAUDE_CODE_GB_BASE_URL` | text | Overrides the GrowthBook feature-flag server base URL for experimentation. |
@@ -635,6 +635,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_MOCK_TRIAL` | text | Simulates a trial subscription state, bypassing live entitlement checks. |
 | `CLAUDE_CODE_NANKEEN_KESTREL` | text | Force-enables a Windows-only sandboxing feature flag, overriding its experiment rollout gate. |
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | Enables native terminal cursor when accessibility mode is not already active. |
+| `CLAUDE_CODE_NONBLOCKING_STDOUT` 🆕 | text | — |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | Enables automatic Claude Code self-update via Homebrew or winget. |
 | `CLAUDE_CODE_PARCHMENT_FERN` | text | — |
 | `CLAUDE_CODE_PARKED_PERMISSION_WAIT_MS` | number | Controls how long parked permission requests wait before proceeding, in milliseconds. |
@@ -651,7 +652,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_PROJECT_DIR_NAME` | text | — |
 | `CLAUDE_CODE_PROMPT_CACHE_TTL` | number | — |
 | `CLAUDE_CODE_PROPAGATE_TRACEPARENT` | text | Forwards a W3C traceparent header on outbound API requests for distributed trace correlation. |
-| `CLAUDE_CODE_QUESTION_EXTENDED` 🆕 | text | — |
+| `CLAUDE_CODE_QUESTION_EXTENDED` | text | — |
 | `CLAUDE_CODE_RATE_LIMIT_TIER` | text | Pins the OAuth rate-limit tier passed to forked background sessions. |
 | `CLAUDE_CODE_RC_PERMISSION_NUDGE` | text | Overrides timing and frequency of the remote-control permission nudge prompt. |
 | `CLAUDE_CODE_REFUSAL_FALLBACK_CATCH_ALL` | text | Enables catch-all fallback-model rerouting when the API refuses a request. |
@@ -714,6 +715,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_TURN_UPDATES` | text | — |
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
 | `CLAUDE_CODE_ULTRAREVIEW_QUOTA_FIXTURE` | text | — |
+| `CLAUDE_CODE_USE_` 🆕 | text | — |
 | `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD` | text | Reroutes model traffic through Anthropic models on Google Cloud instead of the direct API. |
 | `CLAUDE_CODE_USE_GATEWAY` | text | Routes inference traffic through an Anthropic LLM gateway instead of the direct API. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
@@ -724,7 +726,7 @@ Generated from Claude Code **v2.1.260** — 636 flags across 18 categories.
 | `CLAUDE_CODE_WEB_FETCH_AGENT` | text | — |
 | `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` | number | — |
 | `CLAUDE_CODE_WILLOW_TERN` | text | — |
-| `CLAUDE_CODE_WISE_COMET` 🆕 | text | — |
+| `CLAUDE_CODE_WISE_COMET` | text | — |
 | `CLAUDE_CODE_WORKFLOW_LAUNCH_SHA` | text | — |
 | `CLAUDE_CODE_WORKFLOW_PREFIX_STAGGER_MS` | number | — |
 | `CLAUDE_CODE_WORKFLOW_PROMPT_PROVENANCE` | text | — |
@@ -876,6 +878,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_MAX_CONTEXT_TOKENSW` | 2.1.246 |
 | `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCYM` | 2.1.246 |
 | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONI` | 2.1.231 |
+| `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONN` | 2.1.261 |
 | `CLAUDE_CODE_MEMORY_PUSH_DELETE_MODET` | 2.1.233 |
 | `CLAUDE_CODE_MEMORY_WRITE_SURVEY_TIMEOUT_MS` | 2.1.162 |
 | `CLAUDE_CODE_MID_CONVERSATION_SYSTEM` | 2.1.159 |
