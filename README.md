@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
+Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -531,7 +531,7 @@ Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
 | `CLAUDE_CODE_CHILD_SESSION` | text | Internal marker identifying tmux child sessions spawned by Claude Code. |
 | `CLAUDE_CODE_CLASSIFIER_SUMMARY` | text | Forces the post-turn classifier into LLM mode when truthy, heuristic when falsy. |
 | `CLAUDE_CODE_CLOUD_SESSION_ID` | text | — |
-| `CLAUDE_CODE_COMPILED_ACORN` 🆕 | text | — |
+| `CLAUDE_CODE_COMPILED_ACORN` | text | — |
 | `CLAUDE_CODE_COORDINATOR_EXTRA_TOOLS` | text | Whitelists extra tools past the coordinator agent's tool filter. |
 | `CLAUDE_CODE_COORDINATOR_MODE` | text | Switches the instance into coordinator role, loading a multi-agent orchestration system prompt. |
 | `CLAUDE_CODE_COORDINATOR_WORKER_CHECKIN_SECONDS` | text | — |
@@ -635,7 +635,7 @@ Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
 | `CLAUDE_CODE_MOCK_TRIAL` | text | Simulates a trial subscription state, bypassing live entitlement checks. |
 | `CLAUDE_CODE_NANKEEN_KESTREL` | text | Force-enables a Windows-only sandboxing feature flag, overriding its experiment rollout gate. |
 | `CLAUDE_CODE_NATIVE_CURSOR` | text | Enables native terminal cursor when accessibility mode is not already active. |
-| `CLAUDE_CODE_NONBLOCKING_STDOUT` 🆕 | text | — |
+| `CLAUDE_CODE_NONBLOCKING_STDOUT` | text | — |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | text | Enables automatic Claude Code self-update via Homebrew or winget. |
 | `CLAUDE_CODE_PARCHMENT_FERN` | text | — |
 | `CLAUDE_CODE_PARKED_PERMISSION_WAIT_MS` | number | Controls how long parked permission requests wait before proceeding, in milliseconds. |
@@ -644,6 +644,8 @@ Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
 | `CLAUDE_CODE_PEWTER_OWL_TOOL` | text | Overrides the GrowthBook gate for the experimental pewter-owl tool. |
 | `CLAUDE_CODE_POLICY_HELPER_PS` | text | — |
 | `CLAUDE_CODE_POLICY_HELPER_PSMODULEPATH` | text | — |
+| `CLAUDE_CODE_POLISHED_DEWDROP` 🆕 | text | — |
+| `CLAUDE_CODE_POLISHED_DEWDROPG` 🆕 | text | — |
 | `CLAUDE_CODE_POLL_EVENTS` | text | — |
 | `CLAUDE_CODE_POWERUP_ONBOARDING` | text | Forces the power-user onboarding experiment arm: banner or step. |
 | `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS` | number | Caps background-task wait in print mode; 0 waits indefinitely. |
@@ -715,7 +717,7 @@ Generated from Claude Code **v2.1.261** — 638 flags across 18 categories.
 | `CLAUDE_CODE_TURN_UPDATES` | text | — |
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
 | `CLAUDE_CODE_ULTRAREVIEW_QUOTA_FIXTURE` | text | — |
-| `CLAUDE_CODE_USE_` 🆕 | text | — |
+| `CLAUDE_CODE_USE_` | text | — |
 | `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD` | text | Reroutes model traffic through Anthropic models on Google Cloud instead of the direct API. |
 | `CLAUDE_CODE_USE_GATEWAY` | text | Routes inference traffic through an Anthropic LLM gateway instead of the direct API. |
 | `CLAUDE_CODE_USE_POWERSHELL_TOOL` | boolean | Enables the PowerShell tool as a Bash alternative; auto-enabled on Windows if no deny rule exists. |
