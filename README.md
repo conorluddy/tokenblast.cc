@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
+Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -55,6 +55,7 @@ Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
 | `CLAUDE_CODE_COLD_COMPACT` | text | Forces a cold compaction run regardless of current context fill level. |
 | `CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY` | text | Propagates nested CLAUDE.md files loaded by subagents into the coordinator's context. |
 | `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables automatic memory reads and writes, removing memory content from each turn's context. |
+| `CLAUDE_CODE_DISABLE_AWAITING_USER_IDLE` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Strips all CLAUDE.md file content from the system prompt entirely. |
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE` | boolean | Disables bulk pre-loading of memory entries into context, reducing upfront token usage. |
@@ -484,7 +485,9 @@ Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
 | `CLAUDE_CODE_ARTIFACT_COMMENTS` | text | — |
 | `CLAUDE_CODE_ARTIFACT_COMMENTS_AUTOREACT` | text | — |
 | `CLAUDE_CODE_ARTIFACT_DB` | text | — |
+| `CLAUDE_CODE_ARTIFACT_DB_STR_REPLACE` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT_DELETE` | text | — |
+| `CLAUDE_CODE_ARTIFACT_FIVE_CLASS_ASKS` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT_LIVE_BASE_URL` | text | — |
 | `CLAUDE_CODE_ARTIFACT_MULTI_FILE` | text | — |
 | `CLAUDE_CODE_ARTIFACT_OPEN_ACTION` | text | — |
@@ -644,8 +647,8 @@ Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
 | `CLAUDE_CODE_PEWTER_OWL_TOOL` | text | Overrides the GrowthBook gate for the experimental pewter-owl tool. |
 | `CLAUDE_CODE_POLICY_HELPER_PS` | text | — |
 | `CLAUDE_CODE_POLICY_HELPER_PSMODULEPATH` | text | — |
-| `CLAUDE_CODE_POLISHED_DEWDROP` 🆕 | text | — |
-| `CLAUDE_CODE_POLISHED_DEWDROPG` 🆕 | text | — |
+| `CLAUDE_CODE_POLISHED_DEWDROP` | text | — |
+| `CLAUDE_CODE_POLISHED_DEWDROPG` | text | — |
 | `CLAUDE_CODE_POLL_EVENTS` | text | — |
 | `CLAUDE_CODE_POWERUP_ONBOARDING` | text | Forces the power-user onboarding experiment arm: banner or step. |
 | `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS` | number | Caps background-task wait in print mode; 0 waits indefinitely. |
@@ -701,6 +704,7 @@ Generated from Claude Code **v2.1.263** — 640 flags across 18 categories.
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TEST_FORCE_DENY` | boolean | Forces all permission checks to deny — used in test harnesses only. |
 | `CLAUDE_CODE_TEST_NO_PWSH` | text | Disables PowerShell detection in tests, simulating a non-Windows environment. |
+| `CLAUDE_CODE_TETHER_LIVE` 🆕 | text | — |
 | `CLAUDE_CODE_THISTLE_GREBE` | text | Selects the behavioral steering mode: default nudging, no nudges, or counter-steer. |
 | `CLAUDE_CODE_THRIFTY_SONIC` | text | — |
 | `CLAUDE_CODE_TICKLISH_WHISPER` | text | — |
