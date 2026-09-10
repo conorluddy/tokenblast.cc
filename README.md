@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
+Generated from Claude Code **v2.1.267** — 649 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -55,7 +55,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_COLD_COMPACT` | text | Forces a cold compaction run regardless of current context fill level. |
 | `CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY` | text | Propagates nested CLAUDE.md files loaded by subagents into the coordinator's context. |
 | `CLAUDE_CODE_DISABLE_AUTO_MEMORY` | boolean | Disables automatic memory reads and writes, removing memory content from each turn's context. |
-| `CLAUDE_CODE_DISABLE_AWAITING_USER_IDLE` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_AWAITING_USER_IDLE` | boolean | — |
 | `CLAUDE_CODE_DISABLE_CLAUDE_MDS` | boolean | Strips all CLAUDE.md file content from the system prompt entirely. |
 | `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` | boolean | Strips built-in git workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_MEMORY_BULK_INFLATE` | boolean | Disables bulk pre-loading of memory entries into context, reducing upfront token usage. |
@@ -175,6 +175,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` | number | Limits how many levels deep subagents can spawn further nested subagents. |
 | `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` | number | Caps how many subagents can spawn within a single session. |
+| `CLAUDE_CODE_MODEL_CAPABILITIES` 🆕 | text | — |
 | `CLAUDE_CODE_MODEL_CATALOG` | text | — |
 | `CLAUDE_CODE_MODEL_CATALOG_URL` | text | — |
 | `CLAUDE_CODE_NO_MODEL_FALLBACK` | text | Blocks automatic fallback to alternate models during outages or compaction. |
@@ -227,6 +228,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` | text | Forces plugin Git clones to use HTTPS instead of SSH. |
 | `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads. |
 | `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Switches plugin storage to a ZIP-based cache, enabling faster cold installs. |
+| `CLAUDE_CODE_REMOTE_TOOLS_ADOPT_MCP` 🆕 | text | — |
 | `CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS` | boolean | Skips plugin MCP server discovery, dropping their tool schemas. |
 | `CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS_EXCEPT` | boolean | Exempts named plugins when plugin MCP server loading is skipped. |
 | `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` | boolean | Enables environment-variable scrubbing and bubblewrap isolation for all subprocesses. |
@@ -485,9 +487,10 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_ARTIFACT_COMMENTS` | text | — |
 | `CLAUDE_CODE_ARTIFACT_COMMENTS_AUTOREACT` | text | — |
 | `CLAUDE_CODE_ARTIFACT_DB` | text | — |
-| `CLAUDE_CODE_ARTIFACT_DB_STR_REPLACE` 🆕 | text | — |
+| `CLAUDE_CODE_ARTIFACT_DB_STR_REPLACE` | text | — |
 | `CLAUDE_CODE_ARTIFACT_DELETE` | text | — |
-| `CLAUDE_CODE_ARTIFACT_FIVE_CLASS_ASKS` 🆕 | text | — |
+| `CLAUDE_CODE_ARTIFACT_FIVE_CLASS_ASKS` | text | — |
+| `CLAUDE_CODE_ARTIFACT_HOT` 🆕 | text | — |
 | `CLAUDE_CODE_ARTIFACT_LIVE_BASE_URL` | text | — |
 | `CLAUDE_CODE_ARTIFACT_MULTI_FILE` | text | — |
 | `CLAUDE_CODE_ARTIFACT_OPEN_ACTION` | text | — |
@@ -542,6 +545,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
 | `CLAUDE_CODE_DAPPER_LAGOON` | text | — |
 | `CLAUDE_CODE_DD_ERROR_TRACKING_FLUSH_INTERVAL_MS` | number | Controls the flush interval in milliseconds for Datadog error-tracking batches. |
+| `CLAUDE_CODE_DESKTOP_APP_VERSION` 🆕 | text | — |
 | `CLAUDE_CODE_DEV_RAW_CHANGELOG_URL` | text | Overrides the raw changelog URL fetched at startup, pointing to a dev endpoint. |
 | `CLAUDE_CODE_DIR_SYNC_DISABLE_ANCHORING` | boolean | — |
 | `CLAUDE_CODE_DIR_SYNC_ENGINE` | text | — |
@@ -670,6 +674,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_SAFE_MODE` | text | Disables all customizations (CLAUDE.md, hooks, skills) for troubleshooting broken configs. |
 | `CLAUDE_CODE_SDK_` | text | — |
 | `CLAUDE_CODE_SEND_FEEDBACK` | text | Disables the in-app bug/feedback relay when set false; otherwise defers to experiment gating. |
+| `CLAUDE_CODE_SENDMESSAGE_HANDBACK` 🆕 | text | — |
 | `CLAUDE_CODE_SESSION_` | text | — |
 | `CLAUDE_CODE_SESSION_ID` | text | Internal session identifier propagated to child processes for telemetry. |
 | `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
@@ -704,7 +709,7 @@ Generated from Claude Code **v2.1.266** — 644 flags across 18 categories.
 | `CLAUDE_CODE_TEST_FIXTURES_ROOT` | text | Points the VCR fixture loader to a custom root directory for test recordings. |
 | `CLAUDE_CODE_TEST_FORCE_DENY` | boolean | Forces all permission checks to deny — used in test harnesses only. |
 | `CLAUDE_CODE_TEST_NO_PWSH` | text | Disables PowerShell detection in tests, simulating a non-Windows environment. |
-| `CLAUDE_CODE_TETHER_LIVE` 🆕 | text | — |
+| `CLAUDE_CODE_TETHER_LIVE` | text | — |
 | `CLAUDE_CODE_THISTLE_GREBE` | text | Selects the behavioral steering mode: default nudging, no nudges, or counter-steer. |
 | `CLAUDE_CODE_THRIFTY_SONIC` | text | — |
 | `CLAUDE_CODE_TICKLISH_WHISPER` | text | — |
