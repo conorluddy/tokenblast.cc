@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
+Generated from Claude Code **v2.1.278** — 689 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -177,7 +177,7 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` | text | Forwards subagent text output into the parent session's output stream. |
 | `CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT_MS` | number | — |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` | number | Caps how many subagents can run in parallel at once. |
-| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSE` 🆕 | number | — |
+| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSE` | number | — |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` | number | Limits how many levels deep subagents can spawn further nested subagents. |
 | `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` | number | Caps how many subagents can spawn within a single session. |
@@ -295,7 +295,7 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | number | Auto-exits the CLI after the specified idle milliseconds following the last response stop. |
 | `CLAUDE_CODE_FLEETVIEW_SIMPLE` | text | Forces the simplified fleet-view UI instead of the full interactive session monitor. |
 | `CLAUDE_CODE_FORCE_FULLSCREEN_UPSELL` | boolean | Forces the fullscreen-mode upsell prompt regardless of seen-count or feature-flag gate. |
-| `CLAUDE_CODE_FORCE_TERMINAL_IMAGES` 🆕 | boolean | — |
+| `CLAUDE_CODE_FORCE_TERMINAL_IMAGES` | boolean | — |
 | `CLAUDE_CODE_NO_FLICKER` | boolean | Enables the flicker-free alt-screen renderer, overriding tmux/iTerm2 detection that would disable it. |
 | `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults. |
 | `CLAUDE_CODE_RELAUNCH_TERMINAL_SIZE` | text | Internal marker preserving terminal dimensions across CLI relaunch. |
@@ -465,17 +465,17 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `ANTHROPIC_API_HOST` | text | — |
 | `ANTHROPIC_ASSETS_HOST` | text | — |
 | `ANTHROPIC_CONFIG_DIR` | text | Overrides the Anthropic config directory root, bypassing the default XDG_CONFIG_HOME/APPDATA-derived path used to locate profiles and credentials. |
-| `ANTHROPIC_DEFAULT_` 🆕 | text | — |
+| `ANTHROPIC_DEFAULT_` | text | — |
 | `ANTHROPIC_ENVIRONMENT_ID` | text | Identifies the managed-agents environment; injected into worker containers by the orchestrator. |
 | `ANTHROPIC_ENVIRONMENT_KEY` | text | Authentication key for the EnvironmentWorker API, scoped to a specific managed environment. |
 | `ANTHROPIC_FEDERATION_RULE_ID` | text | Sets the OIDC federation rule ID for token exchange; profile-level authentication.federation_rule_id takes precedence. |
-| `ANTHROPIC_FEDERATION_RULE_IDY` 🆕 | text | — |
 | `ANTHROPIC_GOOGLE_CLOUD_BASE_URL` | text | Reroutes Claude Platform on Google Cloud requests to a custom API endpoint. |
 | `ANTHROPIC_GOOGLE_CLOUD_LOCATION` | text | Sets the Google Cloud region for Claude Platform requests, overriding CLOUD_ML_REGION. |
 | `ANTHROPIC_GOOGLE_CLOUD_PROJECT` | text | Sets the GCP project ID used to authenticate Claude Platform on Google Cloud calls. |
 | `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID` | text | Scopes Claude Platform on Google Cloud requests to a specific workspace. |
 | `ANTHROPIC_ORGANIZATION_ID` | text | Pins the organization ID used for OIDC federation auth when config.organization_id is not set in the profile. |
 | `ANTHROPIC_SCOPE` | text | Sets the OAuth scope sent during token exchange, used as a fallback when authentication.scope is not defined in the profile. |
+| `ANTHROPIC_SECRET_PLACEHOLDER_` 🆕 | text | — |
 | `ANTHROPIC_SERVICE_ACCOUNT_ID` | text | Service account ID exchanged at the OIDC federation token endpoint alongside the identity token to mint an access token. |
 | `ANTHROPIC_SESSION_ID` | text | Identifies the active session inside a managed-agents worker container. |
 | `ANTHROPIC_TIER_NAMES` | text | — |
@@ -569,7 +569,6 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_COORDINATOR_WORKER_CHECKIN_SECONDS` | text | — |
 | `CLAUDE_CODE_COZY_TEAPOT` | text | — |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
-| `CLAUDE_CODE_DAPPER_LAGOON` | text | — |
 | `CLAUDE_CODE_DD_ERROR_TRACKING_FLUSH_INTERVAL_MS` | number | Controls the flush interval in milliseconds for Datadog error-tracking batches. |
 | `CLAUDE_CODE_DESKTOP_APP_VERSION` | text | — |
 | `CLAUDE_CODE_DEV_RAW_CHANGELOG_URL` | text | Overrides the raw changelog URL fetched at startup, pointing to a dev endpoint. |
@@ -582,7 +581,7 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_AGENT_VIEW` | boolean | Disables the agent view including background daemon and /background command. |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | boolean | Disables alternate terminal screen buffer, preventing fullscreen TUI mode. |
 | `CLAUDE_CODE_DISABLE_ARTIFACT` | boolean | Disables the Artifact tool, removing its schema from requests. |
-| `CLAUDE_CODE_DISABLE_ATTRIBUTION_CROSS_REPO` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_ATTRIBUTION_CROSS_REPO` | boolean | — |
 | `CLAUDE_CODE_DISABLE_BG_EXIT_HANDOFF` | boolean | Disables handing off running background tasks when exiting. |
 | `CLAUDE_CODE_DISABLE_BUNDLED_SKILLS` | boolean | Strips bundled skills and workflows, hiding built-in slash commands from the model. |
 | `CLAUDE_CODE_DISABLE_CFC_PROMPT` | boolean | — |
@@ -679,11 +678,14 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_PARCHMENT_FERN` | text | — |
 | `CLAUDE_CODE_PARKED_PERMISSION_WAIT_MS` | number | Controls how long parked permission requests wait before proceeding, in milliseconds. |
 | `CLAUDE_CODE_PARKED_STOP_RETIRES` | text | — |
+| `CLAUDE_CODE_PARSED_WILLOW` 🆕 | text | — |
+| `CLAUDE_CODE_PER_TURN_TIMING` 🆕 | text | — |
 | `CLAUDE_CODE_PEWTER_OWL` | text | Activates the Pewter Owl experiment cohort, enabling its associated feature variant. |
 | `CLAUDE_CODE_PEWTER_OWL_TOOL` | text | Overrides the GrowthBook gate for the experimental pewter-owl tool. |
 | `CLAUDE_CODE_POLICY_HELPER_PS` | text | — |
 | `CLAUDE_CODE_POLICY_HELPER_PSMODULEPATH` | text | — |
 | `CLAUDE_CODE_POLISHED_DEWDROP` | text | — |
+| `CLAUDE_CODE_POLISHED_DEWDROPA` 🆕 | text | — |
 | `CLAUDE_CODE_POLL_EVENTS` | text | — |
 | `CLAUDE_CODE_POWERUP_ONBOARDING` | text | Forces the power-user onboarding experiment arm: banner or step. |
 | `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS` | number | Caps background-task wait in print mode; 0 waits indefinitely. |
@@ -713,6 +715,7 @@ Generated from Claude Code **v2.1.276** — 686 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
 | `CLAUDE_CODE_SESSION_ORIGIN` | text | — |
+| `CLAUDE_CODE_SESSION_START_ANNOUNCEMENTS_BEFORE_PROMPT` 🆕 | text | — |
 | `CLAUDE_CODE_SILENT_TURN_REMINDER` | text | — |
 | `CLAUDE_CODE_SILENT_TURN_REMINDER_TEXT` | text | — |
 | `CLAUDE_CODE_SILENT_TURN_REMINDER_TURNS` | text | — |
@@ -806,6 +809,7 @@ These flags were present in earlier versions but have been removed.
 | `ANTHROPIC_DEFAULT_OPUS_MODEL_NAMER` | 2.1.245 |
 | `ANTHROPIC_DEFAULT_SONNET_MODEL_DESCRIPTION_` | 2.1.246 |
 | `ANTHROPIC_FEDERATION_RULE_IDW` | 2.1.246 |
+| `ANTHROPIC_FEDERATION_RULE_IDY` | 2.1.278 |
 | `ANTHROPIC_FOUNDRY_API_KEYZ` | 2.1.224 |
 | `ANTHROPIC_FOUNDRY_AUTH_TOKEN` | 2.1.182 |
 | `ANTHROPIC_IDENTITY_TOKENP` | 2.1.227 |
@@ -848,6 +852,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_CONTAINER_IDI` | 2.1.223 |
 | `CLAUDE_CODE_COORDINATOR_MODEV` | 2.1.246 |
 | `CLAUDE_CODE_CUSTOM_OAUTH_URLW` | 2.1.246 |
+| `CLAUDE_CODE_DAPPER_LAGOON` | 2.1.278 |
 | `CLAUDE_CODE_DESIGN_OAUTH_CLIENT_IDS` | 2.1.237 |
 | `CLAUDE_CODE_DIR_SYNC_ARCHIVE` | 2.1.246 |
 | `CLAUDE_CODE_DIR_SYNC_OVERLAY` | 2.1.245 |
