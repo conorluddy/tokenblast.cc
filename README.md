@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
+Generated from Claude Code **v2.1.301** — 808 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -65,7 +65,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_MEMORY_MASS_DELETE_HOLD` | boolean | Removes the threshold that holds back large batches of corroborated memory deletions. |
 | `CLAUDE_CODE_DISABLE_MEMORY_PERIODIC_RESYNC` | boolean | Disables the periodic background resync of the on-disk memory store. |
 | `CLAUDE_CODE_DISABLE_MEMORY_RO_UNSAVED_NOTICE` | boolean | — |
-| `CLAUDE_CODE_DISABLE_MEMORY_RO_UNSAVED_NOTICEC` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` | boolean | Disables periodic streaming sync of multi-store memory metadata. |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
 | `CLAUDE_CODE_DISABLE_ORG_MEMORY` | boolean | Disables organization-level shared memory ledger writes and reads. |
@@ -81,6 +80,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_MCP_MEMORY_CGROUP` | text | — |
 | `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT` | number | Caps silent MCP tool runtime in milliseconds; 0 disables the timeout. |
 | `CLAUDE_CODE_MEMORY_API_BASE_URL` | text | — |
+| `CLAUDE_CODE_MEMORY_API_TOKENG` 🆕 | text | — |
 | `CLAUDE_CODE_MEMORY_PUSH_DELETE_MODE` | text | Overrides memory push delete-mode ('immediate' or 'never') instead of default corroboration. |
 | `CLAUDE_CODE_POST_TURN_MEMORY` | text | — |
 | `CLAUDE_CODE_POST_TURN_MEMORY_CONFIG` | text | — |
@@ -130,7 +130,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
 | `CLAUDE_CODE_EVAL_ALLOW_FLAG_OVERRIDES` | text | — |
 | `CLAUDE_CODE_HIDE_CWD` | text | Hides the current working directory from the TUI status header. |
-| `CLAUDE_CODE_HIDE_REPLY_SERVER_NAME` 🆕 | text | — |
+| `CLAUDE_CODE_HIDE_REPLY_SERVER_NAME` | text | — |
 | `CLAUDE_CODE_HIDE_SETTINGS_HINT` | text | Hides the settings hint from the startup interface. |
 | `CLAUDE_CODE_IDE_HOST_OVERRIDE` | text | Overrides the IDE host address, bypassing WSL gateway detection entirely. |
 | `CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL` | boolean | Prevents automatic IDE extension installation on startup. |
@@ -188,7 +188,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` | text | Forwards subagent text output into the parent session's output stream. |
 | `CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT_MS` | number | — |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` | number | Caps how many subagents can run in parallel at once. |
-| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSD` 🆕 | number | — |
+| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSN` 🆕 | number | — |
 | `CLAUDE_CODE_MAX_EFFORT_REMINDER` | number | — |
 | `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | number | Caps output tokens per response, applied as a hard upper limit before the model default. |
 | `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` | number | Limits how many levels deep subagents can spawn further nested subagents. |
@@ -255,7 +255,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_PLUGIN_ARCHIVE_URL` | text | — |
 | `CLAUDE_CODE_PLUGIN_ATTRIBUTION` | text | — |
 | `CLAUDE_CODE_PLUGIN_BINARY_ASSETS` | text | Enables downloading platform-specific binary assets bundled with plugins. |
-| `CLAUDE_CODE_PLUGIN_BINARY_ASSETS_` 🆕 | text | — |
 | `CLAUDE_CODE_PLUGIN_CACHE_DIR` | text | Overrides the directory where downloaded plugin archives are cached. |
 | `CLAUDE_CODE_PLUGIN_DIR_WATCH` | text | — |
 | `CLAUDE_CODE_PLUGIN_DIRS` | text | — |
@@ -264,7 +263,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` | text | Forces plugin Git clones to use HTTPS instead of SSH. |
 | `CLAUDE_CODE_PLUGIN_SEED_DIR` | text | Adds colon-delimited directories as local plugin seed sources, bypassing marketplace downloads. |
 | `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE` | boolean | Switches plugin storage to a ZIP-based cache, enabling faster cold installs. |
-| `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHEI` 🆕 | text | — |
 | `CLAUDE_CODE_REMOTE_MCP_CONFIG` | text | — |
 | `CLAUDE_CODE_REMOTE_TOOLS_ADOPT_MCP` | text | — |
 | `CLAUDE_CODE_SKIP_PLUGIN_MCP_SERVERS` | boolean | Skips plugin MCP server discovery, dropping their tool schemas. |
@@ -332,7 +330,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_QUESTION_PREVIEW_FORMAT` | text | Sets question preview rendering format to markdown or html, overriding per-entrypoint defaults. |
 | `CLAUDE_CODE_RELAUNCH_TERMINAL_SIZE` | text | Internal marker preserving terminal dimensions across CLI relaunch. |
 | `CLAUDE_CODE_SCROLL_SPEED` | number | Overrides terminal scroll speed multiplier; capped at 20, defaults to 1 (3 on Windows). |
-| `CLAUDE_CODE_SCROLL_SPEEDE` 🆕 | number | — |
 | `CLAUDE_CODE_SIMPLE` | boolean | Enables bare/minimal output mode, suppressing decorations and disabling auto-memory. |
 | `CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT` | text | Swaps the full system prompt for a minimal identity-only prompt, dropping all dynamic sections (alias of CLAUDE_CODE_SIMPLE). |
 | `CLAUDE_CODE_SYNTAX_HIGHLIGHT` | boolean | Controls syntax highlighting for code blocks; set to falsy to disable, or a BAT theme name to override. |
@@ -351,6 +348,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_PLAN_MODE_REQUIRED` | boolean | Forces plan mode before any execution, blocking agentic tool use until a plan is approved. |
 | `CLAUDE_CODE_PLAN_V` | text | Selects the plan-mode implementation version or variant (e.g. v2). |
 | `CLAUDE_CODE_TASK_LIST_ID` | text | Pins the task-list namespace to a specific ID, overriding the team or session default. |
+| `CLAUDE_CODE_TASK_LIST_IDA` 🆕 | text | — |
 
 ## Provider Routing
 
@@ -425,12 +423,13 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | Flag | Type | Description |
 |------|------|-------------|
 | `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` | number | Caps the token output from file-read operations. Default 25,000. |
-| `CLAUDE_CODE_FILE_READ_MAX_PDF_PAGES_PER_MESSAGE` 🆕 | number | — |
-| `CLAUDE_CODE_FILE_READ_MAX_PDF_PAGES_PER_TURN` 🆕 | number | — |
+| `CLAUDE_CODE_FILE_READ_MAX_PDF_PAGES_PER_MESSAGE` | number | — |
+| `CLAUDE_CODE_FILE_READ_MAX_PDF_PAGES_PER_TURN` | number | — |
 | `CLAUDE_CODE_GLOB_HIDDEN` | boolean | Forces glob searches to include dotfiles and hidden directories. |
 | `CLAUDE_CODE_GLOB_NO_IGNORE` | boolean | Bypasses .gitignore rules during glob file searches. |
 | `CLAUDE_CODE_GLOB_TIMEOUT_SECONDS` | number | Overrides the default ripgrep glob timeout in seconds. |
 | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` | number | Caps how many WebSearch tool calls a session may issue. |
+| `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONF` 🆕 | number | — |
 | `CLAUDE_CODE_WEB_SEARCH_FAST_ARG` | text | — |
 | `CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR` | text | — |
 | `CLAUDE_CODE_WEBSEARCH_CITATIONS` | text | — |
@@ -587,12 +586,15 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_ARTIFACT_VIEWER_BASE_URL` | text | — |
 | `CLAUDE_CODE_ARTIFACTS_API_BASE_URL` | text | Reroutes artifact upload traffic to a custom API endpoint. |
 | `CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL` | text | Treats a custom base URL as first-party Anthropic infrastructure. |
-| `CLAUDE_CODE_ATTACHMENTS_BY_PATH` 🆕 | text | — |
+| `CLAUDE_CODE_ATTACHMENTS_BY_PATH` | text | — |
+| `CLAUDE_CODE_ATTACHMENTS_IN_USER_DATA` 🆕 | text | — |
 | `CLAUDE_CODE_ATTRIBUTION_ANNOUNCEMENT` | text | — |
+| `CLAUDE_CODE_ATTRIBUTION_ANNOUNCEMENTF` 🆕 | text | — |
 | `CLAUDE_CODE_ATTRIBUTION_STATUS_TIMEOUT_MS` | number | — |
 | `CLAUDE_CODE_AUTO_BACKGROUND_TIMEOUT_MS` | number | Caps foreground wait before bash commands auto-background; minimum two seconds. |
 | `CLAUDE_CODE_AUTO_MODE_ARTIFACT_CONSENT_RULE` | text | — |
 | `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_OVERLAP` | text | — |
+| `CLAUDE_CODE_AUTO_MODE_CLASSIFIER_OVERLAPH` 🆕 | text | — |
 | `CLAUDE_CODE_AUTO_MODE_CLASSIFY_ASK_USER_QUESTION` | text | — |
 | `CLAUDE_CODE_AUTO_MODE_CLASSIFY_EDITS` | text | Enables classifier checks catching edits that circumvent deny rules. |
 | `CLAUDE_CODE_AUTO_MODE_EDIT_REMOVAL` | text | Overrides the GrowthBook gate controlling auto-mode edit-removal visibility. |
@@ -641,6 +643,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_COZY_TEAPOT` | text | — |
 | `CLAUDE_CODE_CURRIED_TRINKET` | text | — |
 | `CLAUDE_CODE_DAEMON_COLD_START` | text | Overrides daemon cold-start behaviour — accepts 'transient' or 'ask'. |
+| `CLAUDE_CODE_DAPPER_CUPCAKE` 🆕 | text | — |
 | `CLAUDE_CODE_DD_ERROR_TRACKING_FLUSH_INTERVAL_MS` | number | Controls the flush interval in milliseconds for Datadog error-tracking batches. |
 | `CLAUDE_CODE_DESKTOP_APP_VERSION` | text | — |
 | `CLAUDE_CODE_DESKTOP_SKILL_SWITCHES` | text | — |
@@ -657,7 +660,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_CFC_PROMPT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL` | boolean | Disables the built-in slash command for Claude Code documentation. |
 | `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT` | boolean | — |
-| `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUTD` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_DIR_` | boolean | — |
 | `CLAUDE_CODE_DISABLE_EXPLORE_INHERIT_CAP` | boolean | Disables the model cap on the Explore search subagent, letting it inherit the parent model. |
 | `CLAUDE_CODE_DISABLE_FILE_MENTIONS` | boolean | — |
@@ -668,7 +670,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_MTLS_RELOAD_ON_STALE_CONNECTION` | boolean | — |
 | `CLAUDE_CODE_DISABLE_NESTED_USER_REPAIR` | boolean | — |
 | `CLAUDE_CODE_DISABLE_NOTIFICATION_PRESENCE_CHECK` | boolean | Sends push notifications even when the user appears present. |
-| `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALLH` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_PERMISSION_PROMPT_NOTIFY_HOOKS` | boolean | — |
 | `CLAUDE_CODE_DISABLE_PROACTIVITY` | boolean | — |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK` | boolean | Disables automatic retry or alternative handling when a model refuses a request. |
@@ -682,7 +683,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_WORKFLOWS` | boolean | Disables the Workflows feature entirely, removing workflow instructions from the system prompt. |
 | `CLAUDE_CODE_DISABLE_WORKING_SYNC` | boolean | Disables working-file sync for remote SDK sessions. |
 | `CLAUDE_CODE_DISPATCH_V` | text | Forces a dispatch-version identifier onto first-party Claude API requests. |
-| `CLAUDE_CODE_DONT_INHERIT_ENVI` 🆕 | text | — |
 | `CLAUDE_CODE_DOWNLOAD_DEADLINE_MS_FOR_TESTING` | text | Testing-only override for the update download deadline in milliseconds. |
 | `CLAUDE_CODE_EDITOR_CODELIVERY` | text | — |
 | `CLAUDE_CODE_ELEGANT_MEADOW` | text | — |
@@ -746,7 +746,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_HOVER_REST` | text | — |
 | `CLAUDE_CODE_HUMBLE_HAMMOCK` | text | — |
 | `CLAUDE_CODE_INLINE_TOOLS` | text | — |
-| `CLAUDE_CODE_INLINE_TOOLSD` 🆕 | text | — |
 | `CLAUDE_CODE_INSTALLED_VIA_NPM_WRAPPER` | text | — |
 | `CLAUDE_CODE_INVOKED_SKILLS` | text | Internal runtime register tracking which skills have fired and their per-invoke costs. |
 | `CLAUDE_CODE_JIT_POLICY_AFTER_STARTUP` | text | — |
@@ -763,7 +762,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_MARKETPLACE_NAME` | text | — |
 | `CLAUDE_CODE_MARKETPLACE_URL` | text | — |
 | `CLAUDE_CODE_MAX_TURNS` | number | Caps the maximum number of agentic turns before the session halts. |
-| `CLAUDE_CODE_MESSAGES_PROMPT_CACHE_TTL` 🆕 | number | — |
+| `CLAUDE_CODE_MESSAGES_PROMPT_CACHE_TTL` | number | — |
 | `CLAUDE_CODE_METRICS_ENDPOINT` | text | Reroutes usage and telemetry metrics to a custom endpoint URL. |
 | `CLAUDE_CODE_MOCK_TRIAL` | text | Simulates a trial subscription state, bypassing live entitlement checks. |
 | `CLAUDE_CODE_NANKEEN_KESTREL` | text | Force-enables a Windows-only sandboxing feature flag, overriding its experiment rollout gate. |
@@ -811,6 +810,7 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_RESTRICTEDY` | text | — |
 | `CLAUDE_CODE_RESULT_NONCE` | text | — |
 | `CLAUDE_CODE_RETRY_WATCHDOG` | text | Enables a retry watchdog on Linux remote entrypoints that forces retries on ECONNRESET/EPIPE and other transient network errors. |
+| `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` 🆕 | number | — |
 | `CLAUDE_CODE_RETRY_WATCHDOG_MAX_WAIT_MS` | number | — |
 | `CLAUDE_CODE_RIPPLING_TULIP` | text | — |
 | `CLAUDE_CODE_RUSTLING_PIXEL` | text | — |
@@ -843,7 +843,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_SNAPPY_PELICAN` | text | — |
 | `CLAUDE_CODE_SPAWN_TIMESTAMP_MS` | number | Records the Unix millisecond timestamp at process spawn for startup-latency telemetry. |
 | `CLAUDE_CODE_SPAWNED_BY_SERVER` | text | — |
-| `CLAUDE_CODE_SQUISHY_NEWT` | text | — |
 | `CLAUDE_CODE_STARTUP_FAILURE_RESULTS` | text | — |
 | `CLAUDE_CODE_STELLAR_DRIFT` | text | — |
 | `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` | text | Raises the maximum number of times a stop hook can block turn completion. |
@@ -852,7 +851,6 @@ Generated from Claude Code **v2.1.300** — 810 flags across 18 categories.
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
 | `CLAUDE_CODE_SUPERVISED` | text | Marks session as supervised, causing clean exit on uncaught exceptions. |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION` | text | Strips or replaces session attribution metadata injected into context by the CLI. |
-| `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONC` 🆕 | text | — |
 | `CLAUDE_CODE_SYNC_REUSE_WITHIN_MS` | number | — |
 | `CLAUDE_CODE_SYNC_SESSION_REFS` | text | Synchronizes session reference identifiers across bridged or resumed sessions. |
 | `CLAUDE_CODE_SYNC_SKILLS` | text | Triggers skill synchronisation at session start, pulling skill definitions from a remote source. |
@@ -1016,10 +1014,12 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILLO` | 2.1.246 |
 | `CLAUDE_CODE_DISABLE_CRONH` | 2.1.300 |
 | `CLAUDE_CODE_DISABLE_CRONI` | 2.1.231 |
+| `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUTD` | 2.1.301 |
 | `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUTI` | 2.1.293 |
 | `CLAUDE_CODE_DISABLE_DIR_SYNC` | 2.1.285 |
 | `CLAUDE_CODE_DISABLE_FEEDBACK_SURVEYS` | 2.1.233 |
 | `CLAUDE_CODE_DISABLE_MEMORY_RO_UNSAVED_NOTICEB` | 2.1.282 |
+| `CLAUDE_CODE_DISABLE_MEMORY_RO_UNSAVED_NOTICEC` | 2.1.301 |
 | `CLAUDE_CODE_DISABLE_MEMORY_RO_UNSAVED_NOTICEH` | 2.1.283 |
 | `CLAUDE_CODE_DISABLE_MOUSE_CLICKSC` | 2.1.280 |
 | `CLAUDE_CODE_DISABLE_MOUSEW` | 2.1.222 |
@@ -1029,6 +1029,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFICW` | 2.1.246 |
 | `CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACKY` | 2.1.215 |
 | `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALLD` | 2.1.299 |
+| `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALLH` | 2.1.301 |
 | `CLAUDE_CODE_DISABLE_PERMISSION_PROMPT_NOTIFY_HOOKSD` | 2.1.237 |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACKA` | 2.1.286 |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACKB` | 2.1.289 |
@@ -1039,6 +1040,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENTD` | 2.1.288 |
 | `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENTP` | 2.1.246 |
 | `CLAUDE_CODE_DONT_INHERIT_ENVF` | 2.1.295 |
+| `CLAUDE_CODE_DONT_INHERIT_ENVI` | 2.1.301 |
 | `CLAUDE_CODE_DOWNLOAD_DEADLINE_MS_FOR_TESTINGI` | 2.1.284 |
 | `CLAUDE_CODE_EFFORT_LEVEL_` | 2.1.287 |
 | `CLAUDE_CODE_EFFORT_LEVELI` | 2.1.227 |
@@ -1124,6 +1126,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MSI` | 2.1.222 |
 | `CLAUDE_CODE_HOST_AUTH_REFRESH_TIMEOUT_MSW` | 2.1.246 |
 | `CLAUDE_CODE_HOST_PLATFORME` | 2.1.237 |
+| `CLAUDE_CODE_INLINE_TOOLSD` | 2.1.301 |
 | `CLAUDE_CODE_INLINE_TOOLSJ` | 2.1.284 |
 | `CLAUDE_CODE_INLINE_TOOLSM` | 2.1.283 |
 | `CLAUDE_CODE_INLINE_TOOLSQ` | 2.1.296 |
@@ -1139,6 +1142,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_MARKETPLACE_NAMEP` | 2.1.300 |
 | `CLAUDE_CODE_MARL_CORMORANT` | 2.1.224 |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSC` | 2.1.299 |
+| `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSD` | 2.1.301 |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSE` | 2.1.280 |
 | `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTSF` | 2.1.284 |
 | `CLAUDE_CODE_MAX_CONTEXT_TOKENSW` | 2.1.246 |
@@ -1187,6 +1191,8 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_PERFORCE_MODER` | 2.1.224 |
 | `CLAUDE_CODE_PLAN_ARTIFACTS` | 2.1.238 |
 | `CLAUDE_CODE_PLAN_MODE_INTERVIEW_PHASE` | 2.1.159 |
+| `CLAUDE_CODE_PLUGIN_BINARY_ASSETS_` | 2.1.301 |
+| `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHEI` | 2.1.301 |
 | `CLAUDE_CODE_PLUGIN_USE_ZIP_CACHEZ` | 2.1.293 |
 | `CLAUDE_CODE_POLISHED_DEWDROPA` | 2.1.280 |
 | `CLAUDE_CODE_POLISHED_DEWDROPG` | 2.1.272 |
@@ -1209,6 +1215,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_SABLE_THRUSH` | 2.1.251 |
 | `CLAUDE_CODE_SABLE_THRUSHO` | 2.1.246 |
 | `CLAUDE_CODE_SCROLL_SPEEDA` | 2.1.288 |
+| `CLAUDE_CODE_SCROLL_SPEEDE` | 2.1.301 |
 | `CLAUDE_CODE_SCROLL_SPEEDI` | 2.1.223 |
 | `CLAUDE_CODE_SCROLL_SPEEDIA` | 2.1.223 |
 | `CLAUDE_CODE_SCROLL_SPEEDIZ` | 2.1.231 |
@@ -1237,6 +1244,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORYE` | 2.1.288 |
 | `CLAUDE_CODE_SKIP_VERTEX_AUTHL` | 2.1.246 |
 | `CLAUDE_CODE_SLEEPY_SNOWFLAKEC` | 2.1.293 |
+| `CLAUDE_CODE_SQUISHY_NEWT` | 2.1.301 |
 | `CLAUDE_CODE_STALL_TIMEOUT_MS_FOR_TESTINGH` | 2.1.281 |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICTA` | 2.1.281 |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICTF` | 2.1.284 |
@@ -1246,6 +1254,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICTR` | 2.1.286 |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICTZ` | 2.1.287 |
 | `CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTLJ` | 2.1.246 |
+| `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONC` | 2.1.301 |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONF` | 2.1.295 |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONI` | 2.1.215 |
 | `CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTIONK` | 2.1.292 |
