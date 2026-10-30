@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
+Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -70,6 +70,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` | boolean | Disables periodic streaming sync of multi-store memory metadata. |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
 | `CLAUDE_CODE_DISABLE_ORG_MEMORY` | boolean | Disables organization-level shared memory ledger writes and reads. |
+| `CLAUDE_CODE_DISABLE_POOLED_CONNECTION_IDLE_LIMIT` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts. |
 | `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Enables an idle-return summary notification when resuming after an away period. |
 | `CLAUDE_CODE_FORCE_EVALUATE_MEMORY` | boolean | Forces memory evaluation on every turn, bypassing normal trigger conditions. |
@@ -82,12 +83,13 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_MCP_MEMORY_CGROUP` | text | — |
 | `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT` | number | Caps silent MCP tool runtime in milliseconds; 0 disables the timeout. |
 | `CLAUDE_CODE_MEMORY_API_BASE_URL` | text | — |
+| `CLAUDE_CODE_MEMORY_CONTEXT_NO_WAIT` 🆕 | text | — |
 | `CLAUDE_CODE_MEMORY_PUSH_DELETE_MODE` | text | Overrides memory push delete-mode ('immediate' or 'never') instead of default corroboration. |
 | `CLAUDE_CODE_POST_TURN_MEMORY` | text | — |
 | `CLAUDE_CODE_POST_TURN_MEMORY_CONFIG` | text | — |
 | `CLAUDE_CODE_POST_TURN_MEMORY_SYNC` | text | — |
 | `CLAUDE_CODE_REMOTE_MEMORY_DIR` | text | Redirects memory and session storage to an alternative directory for remote deployments. |
-| `CLAUDE_CODE_REMOTE_TOOLS_HOST_IDLE_RELEASE_MINUTES` 🆕 | text | — |
+| `CLAUDE_CODE_REMOTE_TOOLS_HOST_IDLE_RELEASE_MINUTES` | text | — |
 | `CLAUDE_CODE_RESUME_FROM_SESSION` | text | Hydrates conversation context from a specific prior session ID via the Sessions API. |
 | `CLAUDE_CODE_RESUME_INTERRUPTED_TURN` | boolean | Automatically resumes an interrupted turn by re-injecting its message content. |
 | `CLAUDE_CODE_RESUME_INTERRUPTED_TURN_MAX_AGE_MS` | number | Caps how old an interrupted turn can be before resume is skipped. |
@@ -245,7 +247,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_XAA` | boolean | Enables XAA (external agent authentication) OIDC flow for MCP server OAuth. |
 | `CLAUDE_CODE_EXTRA_BODY` | text | Merges a JSON object into every API request body, enabling unsupported API fields. |
 | `CLAUDE_CODE_EXTRA_METADATA` | text | Injects custom JSON fields into the metadata object sent with every API request. |
-| `CLAUDE_CODE_HOST_GUARDS_ARTIFACTS_MCP` 🆕 | text | — |
+| `CLAUDE_CODE_HOST_GUARDS_ARTIFACTS_MCP` | text | — |
 | `CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH` | number | — |
 | `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY` | number | Caps the number of tool calls that execute in parallel per turn; defaults to 10. |
 | `CLAUDE_CODE_MCP_ALLOWLIST_ENV` | boolean | Passes the full host environment to MCP servers instead of a scrubbed subset. |
@@ -456,6 +458,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_ACTION` | text | Signals that Claude Code is running as a GitHub Actions workflow step. |
 | `CLAUDE_CODE_BASH_EDIT_DIFF` | text | — |
 | `CLAUDE_CODE_BASH_OUTPUT_AUDIENCE_NOTE` | text | — |
+| `CLAUDE_CODE_BRIDGE_CHILD_CLI_ENTRYPOINT` 🆕 | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_PROJECTS_ENTRYPOINT` | text | — |
 | `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP` | boolean | Disables killing idle background shells under memory pressure. |
 | `CLAUDE_CODE_DISABLE_INLINE_SHELL_RM_PROMPT` | boolean | — |
@@ -652,6 +655,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_CCR_EARLY_SYNC_AFTER_SETTINGS_REFUSAL` | text | — |
 | `CLAUDE_CODE_CCR_EVENT_FLUSH_POLICY` | text | — |
 | `CLAUDE_CODE_CCR_FOLD_FIRST_TURN_RESCAN` | text | — |
+| `CLAUDE_CODE_CCR_LONG_POLL` 🆕 | text | — |
 | `CLAUDE_CODE_CCR_OWN_CONNECTION_POOL` | text | — |
 | `CLAUDE_CODE_CCR_SKIP_FRESH_MIGRATIONS` | boolean | — |
 | `CLAUDE_CODE_CCR_SURFACE` | text | — |
@@ -708,6 +712,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_QUIET_BACKGROUND_WAIT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK` | boolean | Disables automatic retry or alternative handling when a model refuses a request. |
 | `CLAUDE_CODE_DISABLE_REFUSAL_RETRY` | boolean | — |
+| `CLAUDE_CODE_DISABLE_RESPONSE_COMPARISON` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_STARTUP_WORK_GATE` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STRUCTURED_OUTPUTS` | boolean | — |
 | `CLAUDE_CODE_DISABLE_SUBSTITUTION_RM_PROMPT` | boolean | — |
@@ -729,6 +734,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_MENU_KIND_LANES` | boolean | Enables grouped kind lanes in slash-command menu listings. |
 | `CLAUDE_CODE_ENABLE_SHARE_BUNDLE` | boolean | — |
 | `CLAUDE_CODE_ENABLE_TODO_TOOLS` | boolean | — |
+| `CLAUDE_CODE_END_` 🆕 | text | — |
 | `CLAUDE_CODE_EVAL_ALLOW_ARTIFACT_PUBLISH` | text | — |
 | `CLAUDE_CODE_EVAL_ARTIFACT_STUB_DIR` | text | — |
 | `CLAUDE_CODE_EVAL_CONFINED` | text | — |
@@ -891,6 +897,8 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_STARTUP_FAILURE_RESULTS` | text | — |
 | `CLAUDE_CODE_STELLAR_DRIFT` | text | — |
 | `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` | text | Raises the maximum number of times a stop hook can block turn completion. |
+| `CLAUDE_CODE_STREAM_EVENT_HOLD_MS` 🆕 | number | — |
+| `CLAUDE_CODE_STREAM_EVENT_MAX_LINE_BYTES` 🆕 | number | — |
 | `CLAUDE_CODE_STREAMED_BUMBLEBEE` | text | — |
 | `CLAUDE_CODE_STREAMED_BUMBLEBEE_TEXT` | text | — |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
@@ -928,6 +936,7 @@ Generated from Claude Code **v2.1.312** — 856 flags across 18 categories.
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
 | `CLAUDE_CODE_ULTRAREVIEW_QUOTA_FIXTURE` | text | — |
 | `CLAUDE_CODE_UNWATCHED_REPLY_HOLD_MS` | number | — |
+| `CLAUDE_CODE_UPFRONT_TOOLS` 🆕 | text | — |
 | `CLAUDE_CODE_USE_` | text | — |
 | `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD` | text | Reroutes model traffic through Anthropic models on Google Cloud instead of the direct API. |
 | `CLAUDE_CODE_USE_GATEWAY` | text | Routes inference traffic through an Anthropic LLM gateway instead of the direct API. |
