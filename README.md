@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
+Generated from Claude Code **v2.1.316** — 877 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -56,6 +56,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` | text | Adds extra directories to scan for CLAUDE.md and rules files, expanding the system-prompt context. |
 | `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | number | Token threshold for auto-compaction. Lower = more aggressive compaction. |
 | `CLAUDE_CODE_AUTO_MODE_COMPACT_THREAD_RULE` | text | — |
+| `CLAUDE_CODE_AUTO_MODE_FULL_CONTEXT` 🆕 | text | — |
 | `CLAUDE_CODE_AUTO_MODE_PRIOR_ASSISTANT_CONTEXT` | text | Includes prior assistant turns in auto-mode permission evaluation. |
 | `CLAUDE_CODE_COLD_COMPACT` | text | Forces a cold compaction run regardless of current context fill level. |
 | `CLAUDE_CODE_COORDINATOR_PROPAGATE_NESTED_MEMORY` | text | Propagates nested CLAUDE.md files loaded by subagents into the coordinator's context. |
@@ -70,7 +71,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_MEMORY_STREAM_LIST` | boolean | Disables periodic streaming sync of multi-store memory metadata. |
 | `CLAUDE_CODE_DISABLE_NESTED_CHAIN_IDLE` | boolean | Disables idle-state tracking for nested agent chains blocked on user input. |
 | `CLAUDE_CODE_DISABLE_ORG_MEMORY` | boolean | Disables organization-level shared memory ledger writes and reads. |
-| `CLAUDE_CODE_DISABLE_POOLED_CONNECTION_IDLE_LIMIT` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_POOLED_CONNECTION_IDLE_LIMIT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_PRECOMPACT_SKIP` | boolean | Forces the full compaction pipeline, disabling the fast-path short-circuit for large contexts. |
 | `CLAUDE_CODE_ENABLE_AWAY_SUMMARY` | boolean | Enables an idle-return summary notification when resuming after an away period. |
 | `CLAUDE_CODE_FORCE_EVALUATE_MEMORY` | boolean | Forces memory evaluation on every turn, bypassing normal trigger conditions. |
@@ -83,7 +84,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_MCP_MEMORY_CGROUP` | text | — |
 | `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT` | number | Caps silent MCP tool runtime in milliseconds; 0 disables the timeout. |
 | `CLAUDE_CODE_MEMORY_API_BASE_URL` | text | — |
-| `CLAUDE_CODE_MEMORY_CONTEXT_NO_WAIT` 🆕 | text | — |
+| `CLAUDE_CODE_MEMORY_CONTEXT_NO_WAIT` | text | — |
 | `CLAUDE_CODE_MEMORY_PUSH_DELETE_MODE` | text | Overrides memory push delete-mode ('immediate' or 'never') instead of default corroboration. |
 | `CLAUDE_CODE_POST_TURN_MEMORY` | text | — |
 | `CLAUDE_CODE_POST_TURN_MEMORY_CONFIG` | text | — |
@@ -208,6 +209,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_SKIP_MODEL_ACCESS_MEMORY` | boolean | — |
 | `CLAUDE_CODE_SUBAGENT_CACHE_EVICT` | text | Forces prompt-cache eviction for completed subagent transcripts. |
 | `CLAUDE_CODE_SUBAGENT_CONFIG_WARNING` | text | — |
+| `CLAUDE_CODE_SUBAGENT_EFFORT` 🆕 | text | — |
 | `CLAUDE_CODE_SUBAGENT_HISTORY` | text | — |
 | `CLAUDE_CODE_SUBAGENT_MODEL` | select | Overrides the model used for all subagent Task calls; set to 'haiku' or 'sonnet' to reduce cost. |
 | `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` | text | — |
@@ -222,6 +224,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 |------|------|-------------|
 | `CLAUDE_CODE_BRIDGE_MCP_CARRIER` | text | — |
 | `CLAUDE_CODE_CCR_EARLY_PLUGINS_SYNC` | text | — |
+| `CLAUDE_CODE_CCR_ONE_PLUGIN_LOAD_PER_RELOAD` 🆕 | text | — |
 | `CLAUDE_CODE_CHROME_LATE_MCP_SERVER` | text | — |
 | `CLAUDE_CODE_CHROME_MCP_ORG_DENIED` | text | — |
 | `CLAUDE_CODE_DESKTOP_SKILLS_PLUGIN_DIR` | text | — |
@@ -255,6 +258,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_MCP_APPS_HOST` | text | — |
 | `CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS` | number | Controls how long MCP tool calls run before auto-backgrounding, in milliseconds. |
 | `CLAUDE_CODE_MCP_CONNECTOR_PREWAIT_MS` | number | — |
+| `CLAUDE_CODE_MCP_NO_REDIAL_AFTER_POLICY_REFUSAL` 🆕 | text | — |
 | `CLAUDE_CODE_MCP_PREWAIT_SERVERS` | text | — |
 | `CLAUDE_CODE_MCP_PREWAIT_SERVERS_MS` | number | — |
 | `CLAUDE_CODE_MCP_REGISTRY_FETCH_AT_STARTUP` | text | — |
@@ -265,6 +269,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_MCP_SERVE_WORKSPACE_ROOT` | text | — |
 | `CLAUDE_CODE_MCP_SERVER_NAME` | text | Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server name. |
 | `CLAUDE_CODE_MCP_SERVER_URL` | text | Set internally by the CLI and passed to headersHelper subprocesses as the current MCP server URL. |
+| `CLAUDE_CODE_MCP_SKIP_UNCHANGED_RELIST` 🆕 | boolean | — |
 | `CLAUDE_CODE_MCP_STARTUP_WAIT_MS` | number | — |
 | `CLAUDE_CODE_PLUGIN_ARCHIVE_URL` | text | — |
 | `CLAUDE_CODE_PLUGIN_ATTRIBUTION` | text | — |
@@ -306,6 +311,8 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_CLIENT_CERT` | text | Loads a PEM client certificate from the given path to enable mTLS for outbound API requests. |
 | `CLAUDE_CODE_CLIENT_KEY` | text | Loads a PEM private key from the given path to pair with the mTLS client certificate. |
 | `CLAUDE_CODE_CLIENT_KEY_PASSPHRASE` | text | Supplies the passphrase to decrypt an encrypted mTLS client private key. |
+| `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_SELF_NAMED_CERT_DROP` 🆕 | boolean | — |
 | `CLAUDE_CODE_ENABLE_PROXY_AUTH_HELPER` | boolean | Activates the proxy auth helper subprocess that fetches credentials on demand; requires value '1'. |
 | `CLAUDE_CODE_HOST_HTTP_PROXY_PORT` | number | Sets the HTTP proxy port forwarded into the sandbox environment for host network access. |
 | `CLAUDE_CODE_HOST_SOCKS_PROXY_PORT` | number | Sets the SOCKS proxy port forwarded into the sandbox environment for host network access. |
@@ -458,7 +465,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_ACTION` | text | Signals that Claude Code is running as a GitHub Actions workflow step. |
 | `CLAUDE_CODE_BASH_EDIT_DIFF` | text | — |
 | `CLAUDE_CODE_BASH_OUTPUT_AUDIENCE_NOTE` | text | — |
-| `CLAUDE_CODE_BRIDGE_CHILD_CLI_ENTRYPOINT` 🆕 | text | — |
+| `CLAUDE_CODE_BRIDGE_CHILD_CLI_ENTRYPOINT` | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_PROJECTS_ENTRYPOINT` | text | — |
 | `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP` | boolean | Disables killing idle background shells under memory pressure. |
 | `CLAUDE_CODE_DISABLE_INLINE_SHELL_RM_PROMPT` | boolean | — |
@@ -655,7 +662,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_CCR_EARLY_SYNC_AFTER_SETTINGS_REFUSAL` | text | — |
 | `CLAUDE_CODE_CCR_EVENT_FLUSH_POLICY` | text | — |
 | `CLAUDE_CODE_CCR_FOLD_FIRST_TURN_RESCAN` | text | — |
-| `CLAUDE_CODE_CCR_LONG_POLL` 🆕 | text | — |
+| `CLAUDE_CODE_CCR_LONG_POLL` | text | — |
 | `CLAUDE_CODE_CCR_OWN_CONNECTION_POOL` | text | — |
 | `CLAUDE_CODE_CCR_SKIP_FRESH_MIGRATIONS` | boolean | — |
 | `CLAUDE_CODE_CCR_SURFACE` | text | — |
@@ -697,8 +704,10 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_EMPTY_CLASSIC_DISPATCH_SKIP` | boolean | — |
 | `CLAUDE_CODE_DISABLE_EXPLORE_INHERIT_CAP` | boolean | Disables the model cap on the Explore search subagent, letting it inherit the parent model. |
 | `CLAUDE_CODE_DISABLE_FILE_MENTIONS` | boolean | — |
+| `CLAUDE_CODE_DISABLE_HELD_MESSAGE_RECOGNITION` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_HOME_SETTINGS_SEED` | boolean | — |
 | `CLAUDE_CODE_DISABLE_HOOK_FORWARDING` | boolean | — |
+| `CLAUDE_CODE_DISABLE_HTTPS_AGENT_KEEPING` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_LAUNCH_COMPOSER` | boolean | Disables the launch composer UI at startup. |
 | `CLAUDE_CODE_DISABLE_LAUNCHER_SIGN_IN` | boolean | — |
 | `CLAUDE_CODE_DISABLE_LONE_SEC_DEFAULT_SHORTCUT` | boolean | — |
@@ -712,12 +721,13 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_QUIET_BACKGROUND_WAIT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK` | boolean | Disables automatic retry or alternative handling when a model refuses a request. |
 | `CLAUDE_CODE_DISABLE_REFUSAL_RETRY` | boolean | — |
-| `CLAUDE_CODE_DISABLE_RESPONSE_COMPARISON` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_RESPONSE_COMPARISON` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STARTUP_WORK_GATE` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STRUCTURED_OUTPUTS` | boolean | — |
 | `CLAUDE_CODE_DISABLE_SUBSTITUTION_RM_PROMPT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_TURN_HANDOFF` | boolean | — |
 | `CLAUDE_CODE_DISABLE_ULTRAREVIEW_TRUST_CHECK` | boolean | — |
+| `CLAUDE_CODE_DISABLE_ULTRATHINK` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_VITALS_EMITTER` | boolean | — |
 | `CLAUDE_CODE_DISABLE_WEB_FETCH` | boolean | — |
 | `CLAUDE_CODE_DISABLE_WORKFLOWS` | boolean | Disables the Workflows feature entirely, removing workflow instructions from the system prompt. |
@@ -734,7 +744,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_ENABLE_MENU_KIND_LANES` | boolean | Enables grouped kind lanes in slash-command menu listings. |
 | `CLAUDE_CODE_ENABLE_SHARE_BUNDLE` | boolean | — |
 | `CLAUDE_CODE_ENABLE_TODO_TOOLS` | boolean | — |
-| `CLAUDE_CODE_END_` 🆕 | text | — |
+| `CLAUDE_CODE_END_` | text | — |
 | `CLAUDE_CODE_EVAL_ALLOW_ARTIFACT_PUBLISH` | text | — |
 | `CLAUDE_CODE_EVAL_ARTIFACT_STUB_DIR` | text | — |
 | `CLAUDE_CODE_EVAL_CONFINED` | text | — |
@@ -873,6 +883,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_SENDMESSAGE_HANDBACK` | text | — |
 | `CLAUDE_CODE_SESSION_` | text | — |
 | `CLAUDE_CODE_SESSION_ATTENDED` | text | — |
+| `CLAUDE_CODE_SESSION_BEGAN_AS_COPY` 🆕 | text | — |
 | `CLAUDE_CODE_SESSION_ID` | text | Internal session identifier propagated to child processes for telemetry. |
 | `CLAUDE_CODE_SESSION_KIND` | text | Marks the session as 'bg', 'daemon', or 'daemon-worker' for forked children. |
 | `CLAUDE_CODE_SESSION_LOG` | text | Path to the per-session log file; set when forking background sessions. |
@@ -892,13 +903,14 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_SKIP_REPO_UPLOAD` | boolean | Prevents repository content from being uploaded to remote context store. |
 | `CLAUDE_CODE_SLEEPY_SNOWFLAKE` | text | — |
 | `CLAUDE_CODE_SNAPPY_PELICAN` | text | — |
+| `CLAUDE_CODE_SORTED_OTTER` 🆕 | text | — |
 | `CLAUDE_CODE_SPAWN_TIMESTAMP_MS` | number | Records the Unix millisecond timestamp at process spawn for startup-latency telemetry. |
 | `CLAUDE_CODE_SPAWNED_BY_SERVER` | text | — |
 | `CLAUDE_CODE_STARTUP_FAILURE_RESULTS` | text | — |
 | `CLAUDE_CODE_STELLAR_DRIFT` | text | — |
 | `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP` | text | Raises the maximum number of times a stop hook can block turn completion. |
-| `CLAUDE_CODE_STREAM_EVENT_HOLD_MS` 🆕 | number | — |
-| `CLAUDE_CODE_STREAM_EVENT_MAX_LINE_BYTES` 🆕 | number | — |
+| `CLAUDE_CODE_STREAM_EVENT_HOLD_MS` | number | — |
+| `CLAUDE_CODE_STREAM_EVENT_MAX_LINE_BYTES` | number | — |
 | `CLAUDE_CODE_STREAMED_BUMBLEBEE` | text | — |
 | `CLAUDE_CODE_STREAMED_BUMBLEBEE_TEXT` | text | — |
 | `CLAUDE_CODE_SUBSCRIPTION_TYPE` | text | Pins the OAuth subscription tier passed to forked background sessions. |
@@ -936,7 +948,7 @@ Generated from Claude Code **v2.1.314** — 865 flags across 18 categories.
 | `CLAUDE_CODE_TWO_STAGE_CLASSIFIER` | text | Enables two-stage intent classification pipeline for permission decisions. |
 | `CLAUDE_CODE_ULTRAREVIEW_QUOTA_FIXTURE` | text | — |
 | `CLAUDE_CODE_UNWATCHED_REPLY_HOLD_MS` | number | — |
-| `CLAUDE_CODE_UPFRONT_TOOLS` 🆕 | text | — |
+| `CLAUDE_CODE_UPFRONT_TOOLS` | text | — |
 | `CLAUDE_CODE_USE_` | text | — |
 | `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD` | text | Reroutes model traffic through Anthropic models on Google Cloud instead of the direct API. |
 | `CLAUDE_CODE_USE_GATEWAY` | text | Routes inference traffic through an Anthropic LLM gateway instead of the direct API. |
