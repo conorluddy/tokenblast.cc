@@ -4,7 +4,7 @@ Interactive config generator for [Claude Code](https://docs.anthropic.com/en/doc
 
 **[www.tokenblast.cc](https://www.tokenblast.cc)**
 
-Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
+Generated from Claude Code **v2.1.332** — 1026 flags across 18 categories.
 
 ## Authentication & Identity
 
@@ -86,7 +86,6 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_INCLUDE_PARTIAL_MESSAGES` | boolean | Includes incomplete in-flight messages in the context window during streaming. |
 | `CLAUDE_CODE_MAX_CONTEXT_TOKENS` | number | Overrides the model context window size, active only when DISABLE_COMPACT is also set. |
 | `CLAUDE_CODE_MCP_MEMORY_CGROUP` | text | — |
-| `CLAUDE_CODE_MCP_SERVE_MEMORY_WALKS_DEADLINE_MS` | number | — |
 | `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT` | number | Caps silent MCP tool runtime in milliseconds; 0 disables the timeout. |
 | `CLAUDE_CODE_MEMORY_API_BASE_URL` | text | — |
 | `CLAUDE_CODE_MEMORY_CONTEXT_NO_WAIT` | text | — |
@@ -146,7 +145,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 |------|------|-------------|
 | `ANTHROPIC_IDENTITY_TOKEN_FILE` | text | Path to a file containing the OIDC federation identity token, preferred over the inline ANTHROPIC_IDENTITY_TOKEN value. |
 | `CLAUDE_CODE_AUTO_CONNECT_IDE` | boolean | Forces automatic IDE extension connection on startup, or explicitly disables it when false. |
-| `CLAUDE_CODE_CHROME_SIDE_PANEL` 🆕 | text | — |
+| `CLAUDE_CODE_CHROME_SIDE_PANEL` | text | — |
 | `CLAUDE_CODE_EVAL_ALLOW_FLAG_OVERRIDES` | text | — |
 | `CLAUDE_CODE_HIDE_CWD` | text | Hides the current working directory from the TUI status header. |
 | `CLAUDE_CODE_HIDE_REPLY_SERVER_NAME` | text | — |
@@ -157,7 +156,8 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_OVERRIDE_DATE` | text | Overrides the current date used by the CLI, enabling time-dependent behaviour testing. |
 | `CLAUDE_CODE_RELAUNCH_PROACTIVITY_DECIDED` | text | — |
 | `CLAUDE_CODE_USER_DELEGATED_SESSION_ALLOWED_PROVIDERS` | text | — |
-| `CLAUDE_CODE_USER_DELEGATED_SESSION_SERVER_CHECK_PROVIDERS` 🆕 | text | — |
+| `CLAUDE_CODE_USER_DELEGATED_SESSION_ROUTINE_SERVER_CHECK_PROVIDERS` 🆕 | text | — |
+| `CLAUDE_CODE_USER_DELEGATED_SESSION_SERVER_CHECK_PROVIDERS` | text | — |
 
 ## Model & Effort
 
@@ -512,6 +512,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_INLINE_SHELL_RM_PROMPT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_POWERSHELL_ALIAS_SHADOW_CHECK` | boolean | — |
 | `CLAUDE_CODE_DISABLE_POWERSHELL_CMD_RM_DENY` | boolean | — |
+| `CLAUDE_CODE_DISABLE_POWERSHELL_LIBRARY_LOAD_GUARD` 🆕 | boolean | — |
 | `CLAUDE_CODE_DISABLE_SHELL_HEAD_START` | boolean | — |
 | `CLAUDE_CODE_DISABLE_WINDOWS_SHELL_LAUNCHER` | boolean | — |
 | `CLAUDE_CODE_DONT_INHERIT_ENV` | boolean | Strips the parent shell's environment variables from subprocess execution. |
@@ -700,7 +701,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_BREEZY_HORIZON` | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_ARTIFACT` | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_AUTO_DEFAULT` | text | — |
-| `CLAUDE_CODE_BRIDGE_CHILD_HELD_TO_AUTO` 🆕 | text | — |
+| `CLAUDE_CODE_BRIDGE_CHILD_HELD_TO_AUTO` | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_MACHINE_SETTINGS` | text | — |
 | `CLAUDE_CODE_BRIDGE_CHILD_START_DIR` | text | — |
 | `CLAUDE_CODE_BRIDGE_OWNER_ACCOUNT_UUID` | text | — |
@@ -767,7 +768,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_CFC_PROMPT` | boolean | — |
 | `CLAUDE_CODE_DISABLE_CLAUDE_CODE_SKILL` | boolean | Disables the built-in slash command for Claude Code documentation. |
 | `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT` | boolean | — |
-| `CLAUDE_CODE_DISABLE_DESKTOP_SHIP` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_DESKTOP_SHIP` | boolean | — |
 | `CLAUDE_CODE_DISABLE_DIR_` | boolean | — |
 | `CLAUDE_CODE_DISABLE_EARLY_KEY_GUARD` | boolean | — |
 | `CLAUDE_CODE_DISABLE_EMPTY_CLASSIC_DISPATCH_SKIP` | boolean | — |
@@ -792,13 +793,13 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_DISABLE_PERMISSION_PROMPT_NOTIFY_HOOKS` | boolean | — |
 | `CLAUDE_CODE_DISABLE_PROACTIVITY` | boolean | — |
 | `CLAUDE_CODE_DISABLE_QUIET_BACKGROUND_WAIT` | boolean | — |
-| `CLAUDE_CODE_DISABLE_REDIRECT_CHECK` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_REDIRECT_CHECK` | boolean | — |
 | `CLAUDE_CODE_DISABLE_REDIRECT_DENY_RECHECK` | boolean | — |
 | `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK` | boolean | Disables automatic retry or alternative handling when a model refuses a request. |
 | `CLAUDE_CODE_DISABLE_REFUSAL_RETRY` | boolean | — |
 | `CLAUDE_CODE_DISABLE_RESPONSE_COMPARISON` | boolean | — |
-| `CLAUDE_CODE_DISABLE_RESPONSE_COMPRESSION` 🆕 | boolean | — |
-| `CLAUDE_CODE_DISABLE_SHIP` 🆕 | boolean | — |
+| `CLAUDE_CODE_DISABLE_RESPONSE_COMPRESSION` | boolean | — |
+| `CLAUDE_CODE_DISABLE_SHIP` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STARTUP_WORK_GATE` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STOP_OF_HELD_MESSAGES` | boolean | — |
 | `CLAUDE_CODE_DISABLE_STRUCTURED_OUTPUTS` | boolean | — |
@@ -817,7 +818,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_DROP_UNAVAILABLE_DEFERRED_TOOL` | text | — |
 | `CLAUDE_CODE_EDITOR_CODELIVERY` | text | — |
 | `CLAUDE_CODE_ELEGANT_MEADOW` | text | — |
-| `CLAUDE_CODE_ELEGANT_MIST` 🆕 | text | — |
+| `CLAUDE_CODE_ELEGANT_MIST` | text | — |
 | `CLAUDE_CODE_ENABLE_AUTO_MODE` | boolean | Enables automatic model-selection mode, allowing the CLI to pick the optimal Claude model. |
 | `CLAUDE_CODE_ENABLE_DESIGN_SYNC` | boolean | Enables syncing Claude Design assets, requiring a separate design login. |
 | `CLAUDE_CODE_ENABLE_FUNCTION_HOOKS` | boolean | — |
@@ -841,7 +842,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_FEATURE_FLAGS_KICK_ON_WARM_CACHE` | text | — |
 | `CLAUDE_CODE_FEATURE_FLAGS_REFRESH_INTERVAL_MS` | number | — |
 | `CLAUDE_CODE_FEDERATION_CACHE_DIR` | text | — |
-| `CLAUDE_CODE_FETCH_PERSONAL_CLOUD_CONFIGURATION` 🆕 | text | — |
+| `CLAUDE_CODE_FETCH_PERSONAL_CLOUD_CONFIGURATION` | text | — |
 | `CLAUDE_CODE_FIZZY_GROVE` | text | — |
 | `CLAUDE_CODE_FLAG_FETCH_WAIT_MS` | number | — |
 | `CLAUDE_CODE_FLEET_PAST_SESSIONS` | text | Enables past-session history in the fleet sessions view. |
@@ -893,10 +894,11 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_HOST_PROMPT_SUPERSEDES_RECORD` | text | — |
 | `CLAUDE_CODE_HOST_SCHEDULED_RUN` | text | — |
 | `CLAUDE_CODE_HOST_SESSION_ID` | text | — |
+| `CLAUDE_CODE_HOST_SHORT_SCRATCHPAD` 🆕 | text | — |
 | `CLAUDE_CODE_HOST_SHORT_TEMP_DIRS` | text | — |
 | `CLAUDE_CODE_HOST_SHOWS_CONNECTION_NOTICE` | text | — |
 | `CLAUDE_CODE_HOST_SKILL_CATALOG` | text | — |
-| `CLAUDE_CODE_HOST_STARTED_AHEAD` 🆕 | text | — |
+| `CLAUDE_CODE_HOST_STARTED_AHEAD` | text | — |
 | `CLAUDE_CODE_HOST_WORKTREE` | text | — |
 | `CLAUDE_CODE_HOST_WORKTREE_FENCE` | text | — |
 | `CLAUDE_CODE_HOSTED_DESKTOP` | text | — |
@@ -905,6 +907,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_I_ACCEPT_CROSS_ORG_DATA_RISK` | text | — |
 | `CLAUDE_CODE_IGNORE_PERSISTED_TRUST` | text | — |
 | `CLAUDE_CODE_INCREMENTAL_REQUEST_BODY` | text | — |
+| `CLAUDE_CODE_INDEXED_SALAMANDER` 🆕 | text | — |
 | `CLAUDE_CODE_INLINE_TOOLS` | text | — |
 | `CLAUDE_CODE_INSTALLED_VIA_NPM_WRAPPER` | text | — |
 | `CLAUDE_CODE_INVOKED_SKILLS` | text | Internal runtime register tracking which skills have fired and their per-invoke costs. |
@@ -914,7 +917,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_LANTERN_PRISM` | text | Force-enables the codenamed lantern-prism experiment, bypassing its GrowthBook gate. |
 | `CLAUDE_CODE_LARCH_CISTERN` | text | Overrides an internal feature-flag experiment, letting users opt in early via the environment. |
 | `CLAUDE_CODE_LAUNCHED_BY_SESSION_IDS` | text | — |
-| `CLAUDE_CODE_LAZY_WORKTREE` 🆕 | text | — |
+| `CLAUDE_CODE_LAZY_WORKTREE` | text | — |
 | `CLAUDE_CODE_LEGACY_BUNDLE` | text | — |
 | `CLAUDE_CODE_LINKED_SPINDLE` | text | — |
 | `CLAUDE_CODE_LOOP_KEEPALIVE` | text | Enables keepalive pings in the autonomous loop to prevent idle-timeout disconnection. |
@@ -983,6 +986,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_RELAUNCH_PROACTIVITY_BASELINE` | text | — |
 | `CLAUDE_CODE_RELAUNCH_PROACTIVITY_EVER_ON` | text | — |
 | `CLAUDE_CODE_RELAUNCH_PROACTIVITY_LEVEL` | text | — |
+| `CLAUDE_CODE_RELAUNCH_SEAT_LAUNCH` 🆕 | text | — |
 | `CLAUDE_CODE_REMOVE_PROMPT_STRINGS` | text | — |
 | `CLAUDE_CODE_REPL` | text | Forces REPL mode on or off, overriding the GrowthBook feature-flag default. |
 | `CLAUDE_CODE_REPLY_GATE_POLICY` | text | — |
@@ -1007,7 +1011,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_SDK_READS_STARTUP_MARKS` | text | — |
 | `CLAUDE_CODE_SEND_FEEDBACK` | text | Disables the in-app bug/feedback relay when set false; otherwise defers to experiment gating. |
 | `CLAUDE_CODE_SENDMESSAGE_HANDBACK` | text | — |
-| `CLAUDE_CODE_SENDS_VIA_SESSION_SERVICE` 🆕 | text | — |
+| `CLAUDE_CODE_SENDS_VIA_SESSION_SERVICE` | text | — |
 | `CLAUDE_CODE_SERVED_PATHS` | text | — |
 | `CLAUDE_CODE_SERVED_SCHEMA_VERSION` | text | — |
 | `CLAUDE_CODE_SESSION_` | text | — |
@@ -1020,7 +1024,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_SESSION_NAME` | text | Human-readable name attached to a forked background session. |
 | `CLAUDE_CODE_SESSION_ORIGIN` | text | — |
 | `CLAUDE_CODE_SESSION_START_ANNOUNCEMENTS_BEFORE_PROMPT` | text | — |
-| `CLAUDE_CODE_SHINY_FOUNTAIN` 🆕 | text | — |
+| `CLAUDE_CODE_SHINY_FOUNTAIN` | text | — |
 | `CLAUDE_CODE_SHOW_HIDDEN_CHARACTERS` | text | — |
 | `CLAUDE_CODE_SILENT_TURN_REMINDER` | text | — |
 | `CLAUDE_CODE_SILENT_TURN_REMINDER_SECONDS` | text | — |
@@ -1038,6 +1042,7 @@ Generated from Claude Code **v2.1.331** — 1021 flags across 18 categories.
 | `CLAUDE_CODE_SORTED_OTTER` | text | — |
 | `CLAUDE_CODE_SPAWN_TIMESTAMP_MS` | number | Records the Unix millisecond timestamp at process spawn for startup-latency telemetry. |
 | `CLAUDE_CODE_SPAWNED_BY_SERVER` | text | — |
+| `CLAUDE_CODE_SPEND_PROJECT` 🆕 | text | — |
 | `CLAUDE_CODE_STARTER_MAY_HOLD_CONNECTOR_FILE` | text | — |
 | `CLAUDE_CODE_STARTUP_FAILURE_RESULTS` | text | — |
 | `CLAUDE_CODE_STELLAR_DRIFT` | text | — |
@@ -1407,6 +1412,7 @@ These flags were present in earlier versions but have been removed.
 | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONP` | 2.1.293 |
 | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSIONQ` | 2.1.284 |
 | `CLAUDE_CODE_MCP_HANDED_LISTINGS` | 2.1.312 |
+| `CLAUDE_CODE_MCP_SERVE_MEMORY_WALKS_DEADLINE_MS` | 2.1.332 |
 | `CLAUDE_CODE_MEMORY_API_TOKENA` | 2.1.310 |
 | `CLAUDE_CODE_MEMORY_API_TOKEND` | 2.1.288 |
 | `CLAUDE_CODE_MEMORY_API_TOKENE` | 2.1.296 |
